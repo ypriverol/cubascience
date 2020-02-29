@@ -15,7 +15,7 @@ install:
 
 script:
   - pip install -r requirements.txt
-  - jupyter nbconvert ciencia/ciencia.ipynb --to html --output index.html
+  - jupyter nbconvert ciencia.ipynb --to html --output index.html
 
 deploy:
   provider: pages
