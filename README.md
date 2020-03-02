@@ -22,6 +22,11 @@ You are free to contribute with questions, ideas by using github issues - https:
 If you know a Cuban researcher with more than 1k citations you can create an issue with the profile user. 
 
 
+# Cite as:
+
+Yasset Perez-Riverol. (2020, March 2). ypriverol/cubascience: First release (Version v1.0.0). Zenodo. http://doi.org/10.5281/zenodo.3693770
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3693770.svg)](https://doi.org/10.5281/zenodo.3693770)
 
 
 
