@@ -1,0 +1,9 @@
+jupyter
+pandas
+seaborn
+plotly
+plotly-express
+chart_studio
+matplotlib
+nbformat==4.4.0
+jupyter_disqus
