@@ -6,16 +6,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,34 +27,29 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r science/requirements.txt
           pip install -r demographics/requirements.txt
-          pip install nbconvert[webpdf] || pip install nbconvert
+          pip install nbconvert
 
       - name: Build site
         run: |
           mkdir -p site/science site/demographics
           cp index.html site/index.html
-          # Convert without re-execution so Pages stays fast and deterministic;
-          # notebooks ship with narrative + relative asset paths.
+          # Convert without re-execution so Pages stays fast and deterministic.
           jupyter nbconvert science/ciencia.ipynb \
             --to html --output-dir site/science --output index
           jupyter nbconvert demographics/demographics.ipynb \
             --to html --output-dir site/demographics --output index
-          # Copy figure assets referenced by relative paths in converted HTML
           mkdir -p site/demographics/figures site/science/data site/science/images
           cp -R demographics/figures/. site/demographics/figures/ || true
           cp -R science/data/. site/science/data/ || true
           cp -R science/images/. site/science/images/ || true
+          # Avoid Jekyll ignoring paths with underscores on classic Pages
+          touch site/.nojekyll
 
-      - uses: actions/upload-pages-artifact@v3
+      # Publish to gh-pages (this repo's Pages environment allows that branch).
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: site
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          publish_branch: gh-pages
+          force_orphan: true
