@@ -1,9 +1,4 @@
+# Minimal pins for local hub tooling / CI helpers.
+# Prefer per-project requirements under science/ and demographics/.
 jupyter
-pandas
-seaborn
-plotly
-plotly-express
-chart_studio
-matplotlib
-nbformat==4.4.0
-jupyter_disqus
+nbconvert

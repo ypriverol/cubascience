@@ -72,7 +72,15 @@ docs/_build/
 target/
 
 # Jupyter Notebook
-#.ipynb_checkpoints
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# GitHub Pages build output
+site/
+/site
+
+# Demographics project memory (local only; never commit)
+demographics/PROJECT-MEMORY.md
 
 # pyenv
 .python-version
@@ -105,3 +113,9 @@ venv.bak/
 # mypy
 .mypy_cache/
 .idea/
+
+# local venv
+.venv/
+
+# Codacy CLI local cache
+.codacy/

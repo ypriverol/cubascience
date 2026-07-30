@@ -1,0 +1,62 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r science/requirements.txt
+          pip install -r demographics/requirements.txt
+          pip install nbconvert[webpdf] || pip install nbconvert
+
+      - name: Build site
+        run: |
+          mkdir -p site/science site/demographics
+          cp index.html site/index.html
+          # Convert without re-execution so Pages stays fast and deterministic;
+          # notebooks ship with narrative + relative asset paths.
+          jupyter nbconvert science/ciencia.ipynb \
+            --to html --output-dir site/science --output index
+          jupyter nbconvert demographics/demographics.ipynb \
+            --to html --output-dir site/demographics --output index
+          # Copy figure assets referenced by relative paths in converted HTML
+          mkdir -p site/demographics/figures site/science/data site/science/images
+          cp -R demographics/figures/. site/demographics/figures/ || true
+          cp -R science/data/. site/science/data/ || true
+          cp -R science/images/. site/science/images/ || true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

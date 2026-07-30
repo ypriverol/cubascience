@@ -1,0 +1,10 @@
+jupyter
+pandas
+seaborn
+plotly
+plotly-express
+chart_studio
+matplotlib
+nbformat
+jupyter_disqus
+ipywidgets
