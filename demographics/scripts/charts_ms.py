@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 # -*- coding: utf-8 -*-
 import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt
 from scipy.stats import norm, beta as beta_dist
@@ -41,10 +49,10 @@ ax.plot([len(steps)-1-0.31,len(steps)-2+0.31],[running,running],color=MUTED,lw=0
 ax.set_xticks(x); ax.set_xticklabels([s[0] for s in steps],fontsize=8.5)
 ax.set_ylim(0,12); ax.set_ylabel("Población (millones)",fontsize=10)
 ax.set_title("Descomposición de la variación de población, 2019–2025 (Modelo D)",fontsize=13,fontweight="bold",loc="left",color=INK,pad=12)
-fig.tight_layout(); fig.savefig("/home/claude/ms_waterfall.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(ARTIFACTS / "ms_waterfall.png"), bbox_inches="tight"); plt.close(fig)
 
 # ===== Figura: distribución posterior Monte Carlo (Modelo D) en español =====
-declD=np.load("/home/claude/modelD_decline.npy")/1e6
+declD=np.load(str(ARTIFACTS / "modelD_decline.npy"))/1e6
 q5,q50,q95=np.percentile(declD,[5,50,95])
 fig,ax=plt.subplots(figsize=(9.0,4.2),dpi=200); style(ax)
 counts,edges=np.histogram(declD,bins=90,range=(1.6,3.0),density=True)
@@ -57,5 +65,5 @@ ax.annotate(f"intervalo del 90%: {q5:.2f}–{q95:.2f} M",(2.72,ax.get_ylim()[1]*
 ax.set_yticks([]); ax.set_xlim(1.6,3.0)
 ax.set_xlabel("Pérdida total de población, fin-2019 → fin-2025 (millones)",fontsize=10)
 ax.set_title("Distribución posterior del Modelo D (10⁶ simulaciones)",fontsize=13,fontweight="bold",loc="left",color=INK,pad=12)
-fig.tight_layout(); fig.savefig("/home/claude/ms_posterior.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(ARTIFACTS / "ms_posterior.png"), bbox_inches="tight"); plt.close(fig)
 print("ms figs ok", round(q5,2),round(q50,2),round(q95,2))

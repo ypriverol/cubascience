@@ -1,0 +1,183 @@
+% Cuba 2019–2026 depopulation — English scientific preprint
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{times}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{natbib}
+\setstretch{1.15}
+
+\graphicspath{{../../../figures/}}
+
+\title{Cuba's depopulation, 2019--2026:\\
+Monte Carlo interval estimates, an infant-mortality sentinel,\\
+and triangulation of independent registers}
+\author{Yasset P\'erez-Riverol\\
+\textit{Independent researcher}\\
+\texttt{ypriverol@gmail.com}}
+\date{Working paper (preprint) · 30 July 2026 · Not peer-reviewed}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\textbf{Background.}
+Cuba is losing population at one of the fastest peacetime rates in the Western Hemisphere.
+No census has been completed since 2012, and the national statistics office (ONEI) removed more than one million people from its published headcount in a single 2024 revision.
+End-2024 estimates still span roughly 8.0--11.0~million.
+This paper quantifies the 2019--2025 decline, decomposes migration versus internal demographic collapse, and projects to end-2026.
+
+\textbf{Methods.}
+We solve the demographic accounting identity with Monte Carlo simulation ($N=10^6$) under four prior sets (Models~A--D).
+Preferred Model~D anchors mortality in infant mortality---a high-integrity yearly sentinel---via an externally calibrated elasticity, and is validated by triangulation across independent administrative sources.
+Age-standardized excess mortality (Kitagawa-style) is reported separately from crude registered excess.
+
+\textbf{Results.}
+Preferred Model~D places the living population near \textbf{8.56~million} at end-2025 (median loss \textbf{2.31~million}, \textbf{21.3\%} on a corrected 2019 base; 90\% CI for loss roughly 1.94--2.71~million).
+Emigration accounts for about \textbf{86\%} of the absolute loss.
+Age-adjusted excess deaths in 2024--2025 are about \textbf{40{,}000--60{,}000}; crude registered excess over 2020--2025 is larger ($\sim$153{,}000) and must not be conflated with the age-adjusted figure.
+A nowcast places Model~D near \textbf{8.27~million} by end-2026 ($\sim$290{,}000 further loss).
+
+\textbf{Conclusions.}
+Depopulation is predominantly migratory in the headcount, but is reinforced by collapsing births, elevated mortality, and accelerated ageing.
+Cumulative loss from 2019 approaches roughly one in four people by end-2026 when measured against the official 2019 base---a different definition from the Model~D $-$21\% figure for end-2025.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Cuba; demography; emigration; natural decrease; infant mortality; fertility; ageing; statistical data quality.
+
+\section{Introduction}
+
+Counting Cubans has become contested.
+The last completed census was in 2012; the census planned for 2022 has been repeatedly postponed~\citep{onei_census}.
+In July 2024, ONEI reported an ``effective population'' of 10{,}055{,}968 at end-2023---about one million below prior published levels---then 9{,}748{,}007 (end-2024) and 9{,}434{,}593 (end-2025)~\citep{onei_revision,onei_2025}.
+
+Three incompatible series coexist (Figure~\ref{fig:pop}):
+the United Nations World Population Prospects path near 10.9~million (still assuming net emigration of order $10^4$ per year);
+ONEI's revised official series (9.43~million at end-2025);
+and independent estimates placing the living population nearer 8.0--8.6~million~\citep{albizu2023,albizu2024}.
+This paper estimates the 2019--2025 decline with honest intervals, decomposes drivers, audits official migration accounting, and projects to end-2026.
+
+\textbf{Central thesis.}
+The headcount loss is mostly emigration, but a second ``internal'' engine---birth collapse, excess mortality, and ageing---would sustain contraction even if emigration slowed.
+
+\section{Methods}
+
+\subsection{Accounting identity and Monte Carlo}
+Population change obeys
+\begin{equation}
+P_{\mathrm{end}} = P_{\mathrm{start}} + B - D - M_{\mathrm{net}},
+\end{equation}
+where $B$, $D$, and $M_{\mathrm{net}}$ are births, deaths, and net emigration over 2020--2025.
+We sample $N=10^6$ internally consistent scenarios from bounded priors, with correlation induced by a Gaussian copula.
+Within-model 90\% intervals are statistical uncertainty; the \textbf{range across models} ($\sim$1.8--3.0~million of cumulative loss) is structural uncertainty and should not be read as a single CI~\citep{repo}.
+
+\subsection{Four models}
+\begin{itemize}
+  \item \textbf{A (conservative):} ONEI-anchored vital events and migration.
+  \item \textbf{B (crisis-adjusted):} limited death under-registration plus higher migration toward independent estimates.
+  \item \textbf{C (worst case):} upper-bound priors calibrated to peacetime collapse analogs.
+  \item \textbf{D (preferred, sentinel):} death under-registration tightly bounded using infant mortality as a sentinel; migration uncertainty retained as in B/C.
+\end{itemize}
+
+\subsection{Infant-mortality sentinel}
+Infant mortality rose from 5.0 to 9.9 per thousand (2019--2025), a $\sim$98\% increase (and $\sim$39\% year-on-year in 2024--2025).
+Using an elasticity $e\approx 0.30$ from collapse analogs (range 0.22--0.40), the predicted all-cause mortality rise matches the registered crude death-rate rise ($\sim$33\% by 2024), arguing against huge hidden institutional deaths and locating residual under-registration mainly in at-home elderly deaths during funeral-system stress~\citep{modeld}.
+
+\subsection{Excess mortality}
+We distinguish (i) \textbf{crude} registered excess versus a no-crisis counterfactual on crisis-adjusted mid-year stocks ($\sim$153{,}000 over 2020--2025; $\sim$66{,}000 in 2024--2025), from (ii) \textbf{age-standardized} excess answering ``deaths beyond ageing''---about \textbf{40{,}000--60{,}000} in 2024--2025 (primary figure for science and communication).
+
+\subsection{Triangulation}
+Eight independent levels (UN, MINSAP denominator, electoral roll, ONEI, housing occupancy, Albizu-Campos 2023/2024, and Model~D) place the probable band near 8.0--8.9~million; registers that do not purge emigrants act as ceilings (Figure~\ref{fig:tri}).
+
+\subsection{Destinations ledger}
+Settled migrants only (avoiding transit double-counting): United States $\sim$800{,}000; Spain $\sim$130--135{,}000; Uruguay $\sim$35{,}000; other $\sim$255{,}000; floor $\sim$1.05~million.
+Encounter counts and nationality applications are separate concepts and are not added into the settled floor~\citep{destinations}.
+
+\section{Results}
+
+\subsection{Headline estimates}
+Table~\ref{tab:models} summarizes end-2025 medians.
+Model~D yields median population \textbf{8.56~million} and loss \textbf{2.31~million} (21.3\% on the corrected base).
+Migration's share of absolute loss is about \textbf{86--88\%}.
+A 2026 nowcast under continued crisis conditions places Model~D near \textbf{8.27~million} (further loss $\sim$290{,}000).
+
+\begin{table}[ht]
+\centering
+\caption{Four models: population loss 2019--2025 and end-2025 population (medians).}
+\label{tab:models}
+\begin{tabular}{llrrr}
+\toprule
+Model & Main assumption & Loss (M) & \% & Pop.\ end-2025 (M) \\
+\midrule
+A · conservative & ONEI-anchored & 1.93 & 17.6 & 9.06 \\
+B · crisis-adjusted & under-reg.\ + independent migration & 2.31 & 21.3 & 8.54 \\
+C · worst case & analog upper bound & 2.53 & 23.5 & 8.24 \\
+D · sentinel (preferred) & IMR sentinel + triangulation & 2.31 & 21.3 & 8.56 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{f1_poblacion.png}
+\caption{Official versus estimated living population, 2019--2030 (Model~D path in red).}
+\label{fig:pop}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{f2_tijera.png}
+\caption{Births versus deaths (``scissors''): deaths roughly double births by 2025.}
+\label{fig:scissors}
+\end{figure}
+
+\subsection{Internal engine}
+Births fell to 68{,}064 in 2025 (TFR 1.29); deaths were 136{,}214; natural balance $-$68{,}149.
+About 77\% of emigrants are aged 15--59; among those remaining, about 26.7\% are 60+ (median age $\sim$45).
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{f7_triangulacion.png}
+\caption{Triangulation of end-2025 population levels across independent sources.}
+\label{fig:tri}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.92\linewidth]{f9_exceso.png}
+\caption{Age-context for excess mortality; primary communication figure is 40--60 thousand age-adjusted excess deaths in 2024--2025.}
+\label{fig:excess}
+\end{figure}
+
+\section{Discussion}
+
+Model~D is preferred because the sentinel validates that registered deaths move with crisis severity, shrinking the need for large hidden-death multipliers and focusing residual uncertainty on migration and triangulation.
+An adversarial review correctly stresses that the loss is $\sim$86\% migratory and that within-model intervals can look falsely precise relative to across-model structure; those caveats are retained.
+
+\textbf{Percent language.}
+Against the official 2019 base (11.19~M), cumulative loss by end-2026 approaches $\sim$25\% (``about one in four'').
+Against the corrected Model~D base, end-2025 loss is $\sim$21\% (``about one in five'').
+These are not interchangeable headlines.
+
+\section{Limitations}
+No post-2012 census; ONEI's $\sim$24-month emigration rule lags recent exits; destination microdata are incomplete; elasticity and housing-occupancy assumptions are approximate; 2030 paths are scenarios, not forecasts.
+
+\section{Data and code availability}
+ONEI tables and a machine-readable claim sheet are in the public repository
+\url{https://github.com/ypriverol/cubascience} under \texttt{demographics/}.
+Interactive companion: \url{https://ypriverol.github.io/cubascience/demographics/}.
+Monte Carlo scripts (\texttt{scripts/model\_*.py}) write summaries to \texttt{artifacts/}.
+Third-party literature is cited, not redistributed.
+
+\section*{Competing interests}
+None declared.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

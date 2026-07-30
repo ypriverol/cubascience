@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 # -*- coding: utf-8 -*-
 """Seis figuras simples para público general. Un mensaje claro por gráfica, letra grande."""
 import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt
@@ -34,7 +42,7 @@ ax.set_xlim(2018.6,2031.2); ax.set_ylim(6.3,11.8); ax.set_xticks(range(2019,2031
 ax.set_ylabel("Habitantes (millones)",fontsize=11.5)
 title(ax,"Cuba se vacía: casi un cuarto de la población en siete años",
       "De 11,2 millones en 2019 a unos 8,3 en 2026. La cifra oficial va por detrás de la realidad.")
-fig.tight_layout(); fig.savefig("/home/claude/f1_poblacion.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(FIGURES / "f1_poblacion.png"), bbox_inches="tight"); plt.close(fig)
 
 # ================= F2: mueren el doble de los que nacen =================
 fig,ax=plt.subplots(figsize=(9.2,4.7),dpi=200); style(ax)
@@ -52,7 +60,7 @@ ax.set_xlim(2016.6,2025.7); ax.set_ylim(55,180); ax.set_xticks(yy)
 ax.set_ylabel("Miles por año",fontsize=11.5)
 title(ax,"En Cuba mueren casi el doble de los que nacen",
       "Aunque nadie emigrara, el país ya se encogería. En 2025 nacieron menos bebés que en 1899.")
-fig.tight_layout(); fig.savefig("/home/claude/f2_tijera.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(FIGURES / "f2_tijera.png"), bbox_inches="tight"); plt.close(fig)
 
 # ================= F3: a dónde fue la gente (cascada) =================
 fig,ax=plt.subplots(figsize=(9.2,4.8),dpi=200); style(ax)
@@ -76,7 +84,7 @@ ax.set_ylim(0,12); ax.set_ylabel("Habitantes (millones)",fontsize=11.5)
 ax.set_yticks([0,3,6,9,12])
 title(ax,"¿A dónde fueron 2,6 millones de personas?",
       "La mayoría emigró; el resto son muertes y nacimientos que no ocurrieron.")
-fig.tight_layout(); fig.savefig("/home/claude/f3_cascada.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(FIGURES / "f3_cascada.png"), bbox_inches="tight"); plt.close(fig)
 
 # ================= F4: el país envejece (oficial + nuestro modelo) =================
 fig,ax=plt.subplots(figsize=(9.2,4.9),dpi=200); style(ax)
@@ -97,7 +105,7 @@ ax.set_xlim(1999,2036.5); ax.set_ylim(10,42); ax.set_xticks(range(2000,2036,5))
 ax.set_ylabel("% de la población",fontsize=11.5)
 title(ax,"Un país cada vez más viejo: hacia un tercio (o más) mayor de 60",
       "Como la emigración se lleva sobre todo a jóvenes, bajo nuestra estimación el envejecimiento es aún peor.")
-fig.tight_layout(); fig.savefig("/home/claude/f4_envejece.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(FIGURES / "f4_envejece.png"), bbox_inches="tight"); plt.close(fig)
 
 # ================= F5: hasta la esperanza de vida baja =================
 fig,ax=plt.subplots(figsize=(9.2,4.5),dpi=200); style(ax)
@@ -111,7 +119,7 @@ ax.set_xlim(2000,2023.5); ax.set_ylim(70,80); ax.set_xticks(range(2000,2024,5))
 ax.set_ylabel("Años de vida al nacer",fontsize=11.5)
 title(ax,"Hasta la esperanza de vida retrocede",
       "El logro insignia del sistema cubano cae desde 2013, según los propios datos oficiales.")
-fig.tight_layout(); fig.savefig("/home/claude/f5_esperanza.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(FIGURES / "f5_esperanza.png"), bbox_inches="tight"); plt.close(fig)
 
 # ================= F6: las cifras oficiales no cuadran =================
 fig,ax=plt.subplots(figsize=(9.2,4.7),dpi=200); style(ax)
@@ -124,5 +132,5 @@ ax.set_ylim(0,360); ax.set_ylabel("Personas",fontsize=11.5); ax.set_yticks([0,10
 ax.set_yticklabels(["0","100 mil","200 mil","300 mil"])
 title(ax,"Las cifras oficiales no cuadran",
       "En 2022 el gobierno dijo que casi nadie emigró, el mismo año en que un tercio de millón se iba solo a EE. UU.")
-fig.tight_layout(); fig.savefig("/home/claude/f6_cifras.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(FIGURES / "f6_cifras.png"), bbox_inches="tight"); plt.close(fig)
 print("6 figuras listas")

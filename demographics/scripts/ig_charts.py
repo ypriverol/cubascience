@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 # -*- coding: utf-8 -*-
 """Gráficos de alta calidad (300 dpi) para el infográfico, estilo unificado."""
 import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt
@@ -11,7 +19,7 @@ mpl.rcParams.update({"font.family":"DejaVu Sans","text.color":INK,"axes.edgecolo
 def style(ax):
     for s in ("top","right","left"): ax.spines[s].set_visible(False)
     ax.grid(axis="y",color=GRID,lw=0.9); ax.tick_params(length=0)
-def save(fig,name): fig.savefig(f"/home/claude/{name}",bbox_inches="tight",dpi=300); plt.close(fig)
+def save(fig,name): fig.savefig(str(FIGURES / name) if str(name).startswith(("ig_","f")) else str(ARTIFACTS / name),bbox_inches="tight",dpi=300); plt.close(fig)
 
 # ===== 1. Población real vs oficial =====
 fig,ax=plt.subplots(figsize=(7.8,3.7)); style(ax)

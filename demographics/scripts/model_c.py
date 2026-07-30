@@ -26,6 +26,15 @@ Mortality calibration from analogs:
 Model C priors (vs Model B): push emigration toward full Albizu, widen death
 under-registration to the analog ceiling, add explicit blackout/epidemic pulse.
 """
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
+
 import numpy as np
 from scipy.stats import norm, beta as beta_dist
 
@@ -93,7 +102,7 @@ def modelA_pop():
     dA=DEATHS_REG*np.clip(rng.normal(1.015,0.012,N),0.99,1.06)
     return (OFFICIAL_2019-620_000*B0) - ((dA-BIRTHS*rng.normal(1,0.01,N))+R_MIG*(1+0.55*B2)), np.full(N,1.02)
 popA_2025, dfacA = modelA_pop()
-popB_2025 = np.load("/home/claude/modelB_pop.npy")
+popB_2025 = np.load(str(ARTIFACTS / "modelB_pop.npy"))
 dfacB = np.clip(rng.normal(1.055,0.03,N),1.0,1.14)
 
 for name,p25,df in [("Model A (ONEI)",popA_2025,dfacA),
@@ -105,10 +114,10 @@ for name,p25,df in [("Model A (ONEI)",popA_2025,dfacA),
           f"| loss in 2026 ~{(q25[0]-q[1])/1e3:.0f}k")
 
 # save Model C for charts
-np.save("/home/claude/modelC_decline.npy", decline)
-np.save("/home/claude/modelC_pop.npy", p2025)
-np.save("/home/claude/modelC_pop2026.npy", nowcast_2026(p2025, Dfac, None))
-np.save("/home/claude/modelB_pop2026.npy", nowcast_2026(popB_2025, dfacB, None))
+np.save(str(ARTIFACTS / "modelC_decline.npy"),  decline)
+np.save(str(ARTIFACTS / "modelC_pop.npy"),  p2025)
+np.save(str(ARTIFACTS / "modelC_pop2026.npy"),  nowcast_2026(p2025, Dfac, None))
+np.save(str(ARTIFACTS / "modelB_pop2026.npy"),  nowcast_2026(popB_2025, dfacB, None))
 
 # ================= ANALOG COMPARISON (cumulative % loss over the crisis window) =================
 print("\n=== ANALOG: cumulative population loss (context) ===")
@@ -123,4 +132,4 @@ analogs = {
  "Cuba Special Period 90s": 0.5,
 }
 for k,v in analogs.items(): print(f"  {k}: {v:.1f}%")
-np.save("/home/claude/analogs.npy", analogs, allow_pickle=True)
+np.save(str(ARTIFACTS / "analogs.npy"),  analogs, allow_pickle=True)

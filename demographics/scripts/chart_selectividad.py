@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 # -*- coding: utf-8 -*-
 import matplotlib as mpl, matplotlib.pyplot as plt, numpy as np
 SURF="#ffffff"; INK="#111111"; INK2="#3f3f3f"; MUTED="#8a8a85"; GRID="#e7e6e0"; BASE="#c3c2b7"
@@ -23,7 +31,7 @@ ax.legend(frameon=False,fontsize=10.5,loc="upper right")
 ax.set_title("Se van los jóvenes, se quedan los viejos",fontsize=15,fontweight="bold",loc="left",color=INK,pad=30)
 ax.text(0,1.045,"El 77% de quienes emigran tienen 15–59 años; entre los que se quedan, 1 de cada 4 supera los 60. Edad mediana: se van ~30, se quedan 45.",
         transform=ax.transAxes,fontsize=10,color=INK2,va="bottom")
-fig.tight_layout(); fig.savefig("/home/claude/f10_edad.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(FIGURES / "f10_edad.png"), bbox_inches="tight"); plt.close(fig)
 
 # ---- F8: provincias ----
 rates=[("La Habana",32.8),("Matanzas",28.2),("Cienfuegos",27.5),("Artemisa",26.8),("Mayabeque",26.1),
@@ -41,5 +49,5 @@ ax.set_xlim(0,37); ax.set_xlabel("Emigración neta en 2025 (por cada 1000 habita
 ax.set_title("El vaciamiento es nacional; la capital va primero",fontsize=15,fontweight="bold",loc="left",color=INK,pad=30)
 ax.text(0,1.03,"Todas las provincias pierden ~2% de su gente al año; La Habana y el occidente, más rápido que el oriente. Fuente: ONEI 2025.",
         transform=ax.transAxes,fontsize=10,color=INK2,va="bottom")
-fig.tight_layout(); fig.savefig("/home/claude/f11_provincias.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(FIGURES / "f11_provincias.png"), bbox_inches="tight"); plt.close(fig)
 print("figuras selectividad listas")

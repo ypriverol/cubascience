@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 # -*- coding: utf-8 -*-
 import matplotlib as mpl, matplotlib.pyplot as plt, numpy as np
 SURF="#ffffff"; INK="#111111"; INK2="#3f3f3f"; MUTED="#8a8a85"; GRID="#e7e6e0"; BASE="#c3c2b7"
@@ -29,7 +37,7 @@ ax.text(0,1.055,"Sumando solo a quienes se asentaron (sin doble contar el tráns
 ax.text(895,-1.35,"No sumados (tránsito hacia EE. UU., ya contados allí): México ~100 mil · Honduras · puente aéreo de Nicaragua ~100 mil (2023)",
         fontsize=8.5,color=MUTED,ha="right",style="italic")
 ax.set_ylim(-1.7,len(dest)-0.3)
-fig.tight_layout(); fig.savefig("/home/claude/f8_destinos.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(FIGURES / "f8_destinos.png"), bbox_inches="tight"); plt.close(fig)
 
 # cross-check: distintas estimaciones de la EMIGRACIÓN neta 2020-2025
 fig,ax=plt.subplots(figsize=(9.4,3.4),dpi=200)
@@ -47,5 +55,5 @@ ax.axvspan(1.0,1.6,color=GREEN,alpha=0.07,lw=0)
 ax.set_yticks(y); ax.set_yticklabels([e[0] for e in est],fontsize=10.2)
 ax.set_xlim(0,2.4); ax.set_xlabel("Emigración neta estimada 2020–2025 (millones)",fontsize=11)
 ax.set_title("¿Cuántos emigraron? El destino ancla el piso, los modelos el techo",fontsize=13.5,fontweight="bold",loc="left",color=INK,pad=12)
-fig.tight_layout(); fig.savefig("/home/claude/f8b_cruce.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(FIGURES / "f8b_cruce.png"), bbox_inches="tight"); plt.close(fig)
 print("destinos listos")

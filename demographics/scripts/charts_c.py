@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt
 
 SURF="#fcfcfb"; INK="#0b0b0b"; INK2="#52514e"; MUTED="#898781"; GRID="#e1e0d9"; BASE="#c3c2b7"
@@ -10,8 +18,8 @@ def style(ax):
     ax.grid(axis="y",color=GRID,lw=0.6); ax.tick_params(length=0)
 
 # ---------- Chart 6: three models end-2025 + end-2026 nowcast ----------
-popB25=np.load("/home/claude/modelB_pop.npy"); popC25=np.load("/home/claude/modelC_pop.npy")
-popB26=np.load("/home/claude/modelB_pop2026.npy"); popC26=np.load("/home/claude/modelC_pop2026.npy")
+popB25=np.load(str(ARTIFACTS / "modelB_pop.npy")); popC25=np.load(str(ARTIFACTS / "modelC_pop.npy"))
+popB26=np.load(str(ARTIFACTS / "modelB_pop2026.npy")); popC26=np.load(str(ARTIFACTS / "modelC_pop2026.npy"))
 # Model A end-2025 approx from earlier (median 9.06, ci 8.58-9.34) and 2026 (8.76, 8.27-9.07)
 def qs(a): return np.percentile(a,[5,50,95])/1e6
 rows=[
@@ -40,7 +48,7 @@ ax.legend(frameon=False,fontsize=9,loc="lower right")
 ax.set_title("Three models, and where each puts Cuba by the end of 2026",
              fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"Bars = 90% intervals. End-2026 is a nowcast (5 months out) from each model's end-2025 posterior.",fontsize=7.3,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/chart6_models_nowcast.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(ARTIFACTS / "chart6_models_nowcast.png"), bbox_inches="tight"); plt.close(fig)
 
 # ---------- Chart 7: analog comparison (cumulative % loss + annual rate) ----------
 analogs=[
@@ -66,5 +74,5 @@ ax.grid(axis="y",visible=False); ax.grid(axis="x",color=GRID,lw=0.6)
 ax.set_title("Cuba's loss in context: fast even by the standards of collapse",
              fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"Sources: R4V/UNHCR (Venezuela); US Census/PRB (Puerto Rico); CRS/WHO (Zimbabwe); UN (Syria); CMAJ (Cuba 1990s). Annual rate = cumulative ÷ years.",fontsize=7.0,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/chart7_analogs.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(ARTIFACTS / "chart7_analogs.png"), bbox_inches="tight"); plt.close(fig)
 print("charts ok")

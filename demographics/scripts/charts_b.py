@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -21,7 +29,7 @@ z=rng.multivariate_normal([0,0],[[1,.5],[.5,1]],size=N); u1,u2=norm.cdf(z[:,0]),
 B=beta_dist.ppf(u1,1.5,3.0); B2=beta_dist.ppf(u2,1.0,3.5)
 BIRTHS=529_367; DEATHS=782_233; RMIG=1_516_491
 declA=(DEATHS*np.clip(rng.normal(1.015,0.012,N),0.99,1.06)-BIRTHS*rng.normal(1,0.01,N)+RMIG*(1+0.55*B2))/1e6
-declB=np.load("/home/claude/modelB_decline.npy")/1e6
+declB=np.load(str(ARTIFACTS / "modelB_decline.npy"))/1e6
 
 fig,ax=plt.subplots(figsize=(8.6,4.4),dpi=200); style(ax)
 bins=np.linspace(1.6,3.0,110)
@@ -38,10 +46,10 @@ ax.set_title("Two models of the loss: how much you assume is hidden",
              fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"Model A anchors on ONEI's revised figures; Model B leans toward independent estimates and adds death under-registration + epidemic excess.",
          fontsize=7.3,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/chart4_modelAB.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(ARTIFACTS / "chart4_modelAB.png"), bbox_inches="tight"); plt.close(fig)
 
 # ---------- Chart 5: projection fan to 2030 ----------
-fan=np.load("/home/claude/fan.npy",allow_pickle=True).item()
+fan=np.load(str(ARTIFACTS / "fan.npy"), allow_pickle=True).item()
 yrs=sorted(fan.keys()); arr=np.array([fan[y] for y in yrs])/1e6  # cols: p5,p25,p50,p75,p95
 fig,ax=plt.subplots(figsize=(8.6,4.8),dpi=200); style(ax)
 # historical observed (ONEI) up to 2025
@@ -64,5 +72,5 @@ ax.set_title("If current trends hold: Cuba's population to 2030",
              fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"Projection starts from Model B's end-2025 estimate; combines declining births, aging-driven deaths, and three emigration regimes.",
          fontsize=7.3,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/chart5_projection.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(ARTIFACTS / "chart5_projection.png"), bbox_inches="tight"); plt.close(fig)
 print("ok",arr[-1])

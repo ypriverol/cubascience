@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 # -*- coding: utf-8 -*-
 import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt
 from scipy.stats import norm, beta as beta_dist
@@ -31,7 +39,7 @@ ax.set_xlim(2018.6,2027.2); ax.set_ylim(7.6,11.7); ax.set_xticks(range(2019,2026
 ax.set_ylabel("Población (millones, fin de año)",fontsize=10)
 ax.set_title("Tres versiones de la población de Cuba, 2019–2025",fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"Fuentes: ONEI; Albizu-Campos (2024, 2025); ONU WPP 2024. Línea discontinua = serie revisada o estimada, no observada anualmente.",fontsize=7.3,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/es_1_series.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(FIGURES / "es_1_series.png"), bbox_inches="tight"); plt.close(fig)
 
 # ===== 2. tijera nacimientos/defunciones =====
 fig,ax=plt.subplots(figsize=(8.6,4.6),dpi=200); style(ax)
@@ -48,12 +56,12 @@ ax.set_xlim(2016.6,2025.6); ax.set_ylim(55,185); ax.set_xticks(years)
 ax.set_ylabel("Miles por año",fontsize=10)
 ax.set_title("La tijera: las muertes ya duplican a los nacimientos",fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"Fuente: ONEI, estadísticas vitales (hechos registrados), 2017–2025.",fontsize=7.3,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/es_2_tijera.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(FIGURES / "es_2_tijera.png"), bbox_inches="tight"); plt.close(fig)
 
 # ===== 3. tres modelos + nowcast 2026 =====
 def qs(a): return np.percentile(a,[5,50,95])/1e6
-popB25=np.load("/home/claude/modelB_pop.npy"); popC25=np.load("/home/claude/modelC_pop.npy")
-popB26=np.load("/home/claude/modelB_pop2026.npy"); popC26=np.load("/home/claude/modelC_pop2026.npy")
+popB25=np.load(str(ARTIFACTS / "modelB_pop.npy")); popC25=np.load(str(ARTIFACTS / "modelC_pop.npy"))
+popB26=np.load(str(ARTIFACTS / "modelB_pop2026.npy")); popC26=np.load(str(ARTIFACTS / "modelC_pop2026.npy"))
 rows=[("Modelo A · ancla ONEI",np.array([8.58,9.06,9.34]),np.array([8.27,8.76,9.07]),S1),
       ("Modelo B · ajuste crisis",qs(popB25),qs(popB26),S2),
       ("Modelo C · peor caso",qs(popC25),qs(popC26),RED)]
@@ -73,7 +81,7 @@ ax.plot([],[],"o",color=INK2,label="● estimación fin-2025"); ax.plot([],[],"D
 ax.legend(frameon=False,fontsize=9,loc="lower right")
 ax.set_title("Tres modelos y dónde queda Cuba a fines de 2026",fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"Barras = intervalos del 90%. Fin-2026 es una proyección a 5 meses desde la distribución de cada modelo para fin-2025.",fontsize=7.3,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/es_3_modelos.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(FIGURES / "es_3_modelos.png"), bbox_inches="tight"); plt.close(fig)
 
 # ===== 4. analogos =====
 analogs=[("Siria 2011–20 (guerra)",50.0,">10",RED),("Venezuela 2013–24",25.0,"1–3",S4),
@@ -89,7 +97,7 @@ ax.set_xlim(0,60); ax.set_xlabel("Pérdida acumulada de población en el períod
 ax.grid(axis="y",visible=False); ax.grid(axis="x",color=GRID,lw=0.6)
 ax.set_title("La pérdida de Cuba en contexto: rápida incluso para un colapso",fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"Fuentes: R4V/ACNUR (Venezuela); Censo EEUU/PRB (Puerto Rico); CRS/OMS (Zimbabue); ONU (Siria); CMAJ (Cuba 90s). Tasa anual = acumulada ÷ años.",fontsize=6.9,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/es_4_analogos.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(FIGURES / "es_4_analogos.png"), bbox_inches="tight"); plt.close(fig)
 
 # ===== 5. proyeccion a 2030 (desde Modelo C) =====
 rng=np.random.default_rng(11); N=len(popC25)
@@ -117,5 +125,5 @@ ax.set_ylabel("Población (millones)",fontsize=10)
 ax.legend(frameon=False,fontsize=8.8,loc="lower left")
 ax.set_title("Si las tendencias continúan: Cuba hacia 2030",fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"Proyección desde la estimación fin-2025 del Modelo C; combina nacimientos en caída, muertes por envejecimiento y tres regímenes de emigración.",fontsize=7.0,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/es_5_proyeccion.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(FIGURES / "es_5_proyeccion.png"), bbox_inches="tight"); plt.close(fig)
 print("charts es ok", arr[-1])

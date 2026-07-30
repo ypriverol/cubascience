@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 # -*- coding: utf-8 -*-
 import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt
 
@@ -38,5 +46,5 @@ ax.set_ylabel("Miles de personas por año",fontsize=10)
 ax.legend(frameon=False,fontsize=9,loc="upper right")
 ax.set_title("El descuadre de 2022: las cifras oficiales no cuadran",fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"El saldo oficial de 2021–2022 (≈0) es incompatible con las llegadas documentadas a EEUU. La ONEI corrigió el resultado final (2023) sin corregir el camino.",fontsize=7.2,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/es_9_costura.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(FIGURES / "es_9_costura.png"), bbox_inches="tight"); plt.close(fig)
 print("audit chart ok")

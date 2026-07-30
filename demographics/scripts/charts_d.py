@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 # -*- coding: utf-8 -*-
 import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt
 
@@ -29,7 +37,7 @@ ax.set_ylabel("Índice (2019 = 100)",fontsize=10)
 ax.set_title("Indicadores de alerta temprana: se deterioran al unísono",fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.05,"La mortalidad infantil —métrica que Cuba sí registra con rigor— predice un alza de mortalidad general de ~30% (elasticidad 0.3,",fontsize=7.4,color=MUTED)
 fig.text(0.005,0.012,"calibrada con Venezuela). La TBM registrada subió +33% a 2024: la señal de alerta y las muertes registradas coinciden. Fuente: ONEI/MINSAP.",fontsize=7.4,color=MUTED)
-fig.tight_layout(rect=(0,0.055,1,1)); fig.savefig("/home/claude/es_6_centinela.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.055,1,1)); fig.savefig(str(FIGURES / "es_6_centinela.png"), bbox_inches="tight"); plt.close(fig)
 
 # ===== 7. exceso de mortalidad por año =====
 excess={2020:2993,2021:57124,2022:12190,2023:14339,2024:27823,2025:38142}
@@ -44,12 +52,12 @@ ax.set_xlim(2019.4,2025.6); ax.set_ylim(0,66); ax.set_xticks(xs)
 ax.set_ylabel("Muertes en exceso vs escenario sin crisis (miles)",fontsize=9.5)
 ax.set_title("~153,000 muertes en exceso, 2020–2025 (casi todas registradas)",fontsize=12.5,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"Exceso = muertes registradas por la ONEI menos las esperadas si la mortalidad de 2019 (ajustada por envejecimiento) hubiera continuado.",fontsize=7.2,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/es_7_exceso.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(FIGURES / "es_7_exceso.png"), bbox_inches="tight"); plt.close(fig)
 
 # ===== 8. cuatro modelos + nowcast 2026 (añade Modelo D) =====
 def qs(a): return np.percentile(a,[5,50,95])/1e6
-popB=np.load("/home/claude/modelB_pop.npy"); popC=np.load("/home/claude/modelC_pop.npy"); popD=np.load("/home/claude/modelD_pop.npy")
-popB26=np.load("/home/claude/modelB_pop2026.npy"); popC26=np.load("/home/claude/modelC_pop2026.npy"); popD26=np.load("/home/claude/modelD_pop2026.npy")
+popB=np.load(str(ARTIFACTS / "modelB_pop.npy")); popC=np.load(str(ARTIFACTS / "modelC_pop.npy")); popD=np.load(str(ARTIFACTS / "modelD_pop.npy"))
+popB26=np.load(str(ARTIFACTS / "modelB_pop2026.npy")); popC26=np.load(str(ARTIFACTS / "modelC_pop2026.npy")); popD26=np.load(str(ARTIFACTS / "modelD_pop2026.npy"))
 rows=[("Modelo A · ancla ONEI",np.array([8.58,9.06,9.34]),np.array([8.27,8.76,9.07]),S1),
       ("Modelo D · centinela ★",qs(popD),qs(popD26),"#7a3fb0"),
       ("Modelo B · ajuste crisis",qs(popB),qs(popB26),S2),
@@ -70,5 +78,5 @@ ax.plot([],[],"o",color=INK2,label="● estimación fin-2025"); ax.plot([],[],"D
 ax.legend(frameon=False,fontsize=9,loc="lower right")
 ax.set_title("Cuatro modelos: el centinela (D) converge con el ajuste por crisis (B)",fontsize=12.5,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"★ Modelo D reemplaza los multiplicadores arbitrarios de mortalidad por una estimación anclada en indicadores centinela. Barras = IC 90%.",fontsize=7.2,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/es_8_modelos4.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(FIGURES / "es_8_modelos4.png"), bbox_inches="tight"); plt.close(fig)
 print("charts d ok")

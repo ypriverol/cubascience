@@ -31,6 +31,15 @@ Residual UNREGISTERED deaths are therefore bounded and concentrated in the one
 channel the sentinel does NOT cover: AT-HOME elderly deaths during the 2024-2026
 funeral/cemetery collapse (Santiago, Havana, Matanzas). Model D sizes ONLY that.
 """
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
+
 import numpy as np
 from scipy.stats import norm, beta as beta_dist
 
@@ -88,7 +97,7 @@ print(f"  implied death under-reg median {np.median(Dfac)-1:+.1%} (Model C was +
 S(decline,"Total decline"); S(pct,"Percent decline",".1f"); S(p2025,"Pop end-2025")
 S(deaths,"True deaths 2020-25"); S(100*mig/decline,"Migration share %",".1f")
 print("  P(pop<8.5M):",round(float((p2025<8.5e6).mean()),3),"P(pop<8.0M):",round(float((p2025<8.0e6).mean()),3))
-np.save("/home/claude/modelD_pop.npy",p2025); np.save("/home/claude/modelD_decline.npy",decline)
+np.save(str(ARTIFACTS / "modelD_pop.npy"), p2025); np.save(str(ARTIFACTS / "modelD_decline.npy"), decline)
 
 # ---------- 4. END-2026 NOWCAST (Model D), with 2026 mortality lifted per worsening sentinels ----------
 # 2026 sentinel outlook: blackouts all year, IMR likely rises further, epidemics ongoing ->
@@ -101,10 +110,10 @@ p2026=p2025-(d26-b26)-m26
 q=np.percentile(p2026,[5,50,95])
 print(f"\n=== END-2026 NOWCAST (Model D) ===\n  end-2025 {np.median(p2025)/1e6:.2f}M -> end-2026 median {q[1]/1e6:.2f}M | 90% [{q[0]/1e6:.2f},{q[2]/1e6:.2f}]M")
 print(f"  loss during 2026 ~{(np.median(p2025)-q[1])/1e3:.0f}k")
-np.save("/home/claude/modelD_pop2026.npy",p2026)
+np.save(str(ARTIFACTS / "modelD_pop2026.npy"), p2026)
 
 # save sentinel series for chart
-np.save("/home/claude/sentinels.npy",{
+np.save(str(ARTIFACTS / "sentinels.npy"), {
  "imr":{2019:5.0,2020:5.0,2021:7.6,2022:7.5,2023:7.1,2024:7.1,2025:9.9},
  "cdr":{2019:9.7,2020:10.1,2021:15.0,2022:10.8,2023:11.1,2024:12.9,2025:14.4},
  "mmr":{2019:38.5,2020:40.0,2021:176.0,2022:41.0,2023:42.0,2024:40.6,2025:44.1},

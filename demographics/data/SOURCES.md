@@ -20,8 +20,9 @@ acceso público publicados por la oficina estadística del Estado.
 | `3.22saldosmigratoriosytasadesaldomigratoriototalporprovincias.xls` | Saldos migratorios y tasas por provincia |
 | `indicadoresdemograficos2025.pdf` | ONEI — Indicadores demográficos 2025 |
 
-PDFs de terceros usados en la investigación están empaquetados en
-`../literature/sources.zip` (ver `../literature/SOURCES.md`).
+PDFs de terceros usados en la investigación se citan pero **no se redistribuyen**
+en el repositorio (derechos de autor). Ver `../literature/SOURCES.md`. Un
+`sources.zip` local del autor, si existe, está en `.gitignore`.
 
 Fuente en línea: ONEI — <https://www.onei.gob.cu/poblacion-0>
 

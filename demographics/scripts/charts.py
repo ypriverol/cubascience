@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -68,7 +76,7 @@ ax.set_title("Three versions of Cuba's population, 2019–2025",
 fig.text(0.005, 0.012, "Sources: ONEI; Albizu-Campos (2024, 2025); UN World Population Prospects 2024. Dashed = series revised or estimated, not annually observed.",
          fontsize=7.5, color=MUTED)
 fig.tight_layout(rect=(0, 0.03, 1, 1))
-fig.savefig("/home/claude/chart1_population_series.png", bbox_inches="tight")
+fig.savefig(str(ARTIFACTS / "chart1_population_series.png"),  bbox_inches="tight")
 plt.close(fig)
 
 # ================= Chart 2: births vs deaths =================
@@ -95,7 +103,7 @@ ax.set_title("The scissors: deaths now double births",
 fig.text(0.005, 0.012, "Source: ONEI vital statistics (registered events), 2017–2025.",
          fontsize=7.5, color=MUTED)
 fig.tight_layout(rect=(0, 0.03, 1, 1))
-fig.savefig("/home/claude/chart2_births_deaths.png", bbox_inches="tight")
+fig.savefig(str(ARTIFACTS / "chart2_births_deaths.png"),  bbox_inches="tight")
 plt.close(fig)
 
 # ================= Chart 3: Monte Carlo posterior =================
@@ -136,6 +144,6 @@ ax.set_title("Monte Carlo estimate of Cuba's population loss since 2019",
 fig.text(0.005, 0.012, "1,000,000 simulations combining registered vital statistics with uncertainty in emigration undercount and death registration.",
          fontsize=7.5, color=MUTED)
 fig.tight_layout(rect=(0, 0.03, 1, 1))
-fig.savefig("/home/claude/chart3_posterior.png", bbox_inches="tight")
+fig.savefig(str(ARTIFACTS / "chart3_posterior.png"),  bbox_inches="tight")
 plt.close(fig)
 print("done", q5, q50, q95)

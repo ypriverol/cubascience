@@ -1,0 +1,8 @@
+destination,settled_approx,concept,notes
+United States,800000,settled,"CBP/DHS arrivals settled stock approx 2020–2025; not the same as encounter counts"
+Spain,132500,settled,"INE padron / residence approx mid-range of 130–135k"
+Uruguay,35000,settled,"Interior ministry residences approx"
+Other destinations,255000,settled,"Dominican Republic, Mexico/Brazil settled, Serbia/Russia routes, etc."
+Total floor,1050000,settled,"Sum of settled only; avoids transit double-counting"
+United States encounters 2022–2024,850000,encounters,"Do not add to settled ledger without labeling"
+Spain nationality applications,300000,applications,"Ley de Nietos applications; many applicants still in Cuba"

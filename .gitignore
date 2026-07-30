@@ -82,6 +82,15 @@ site/
 # Demographics project memory (local only; never commit)
 demographics/PROJECT-MEMORY.md
 
+# Local literature archive (cite-only in git; do not redistribute third-party PDFs)
+demographics/literature/sources.zip
+
+# Demographics MC binary dumps (summaries in artifacts/*.json are OK)
+demographics/artifacts/*.npy
+
+# Codacy CLI local cache
+.codacy/
+
 # pyenv
 .python-version
 
@@ -117,5 +126,17 @@ venv.bak/
 # local venv
 .venv/
 
+# LaTeX build junk
+demographics/manuscript/en/latex/*.aux
+demographics/manuscript/en/latex/*.bbl
+demographics/manuscript/en/latex/*.blg
+demographics/manuscript/en/latex/*.fdb_latexmk
+demographics/manuscript/en/latex/*.fls
+demographics/manuscript/en/latex/*.log
+demographics/manuscript/en/latex/*.out
+demographics/manuscript/en/latex/*.synctex.gz
+demographics/manuscript/en/latex/*.png
+
 # Codacy CLI local cache
 .codacy/
+demographics/manuscript/en/latex/main.pdf

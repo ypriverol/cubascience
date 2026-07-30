@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 # -*- coding: utf-8 -*-
 import numpy as np, matplotlib as mpl, matplotlib.pyplot as plt
 
@@ -33,7 +41,7 @@ ax.set_xticks(list(xs)+list(px)); ax.set_ylim(-95,24)
 ax.set_ylabel("Crecimiento natural: nacimientos − defunciones (miles)",fontsize=9.5)
 ax.set_title("El motor interno: el decrecimiento natural se acelera",fontsize=13,fontweight="bold",loc="left",color=INK,pad=12)
 fig.text(0.005,0.012,"De +636 personas en 2019 a −68 150 en 2025. Aun sin emigración, Cuba se contraería: mueren el doble de los que nacen. Fuente: ONEI.",fontsize=7.3,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/ms_natural.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(ARTIFACTS / "ms_natural.png"), bbox_inches="tight"); plt.close(fig)
 
 # ===== Fig B: envejecimiento con proyección oficial a 2035 =====
 struct={2000:(20.5,14.7),2005:(19.0,15.7),2010:(17.3,17.8),2015:(16.5,19.4),2019:(16.0,20.4),
@@ -54,7 +62,7 @@ ax.annotate("un tercio del país\nmayor de 60 en 2035",(2032,30),color=INK2,font
 ax.set_xlim(1999,2036); ax.set_ylim(10,35); ax.set_ylabel("% de la población",fontsize=10)
 ax.set_title("Implosión desde dentro: la estructura por edades, 2000–2035",fontsize=12.5,fontweight="bold",loc="left",color=INK,pad=12)
 fig.text(0.005,0.012,"La proyección oficial a 2035 ya se queda corta: la ONEI reportó 26.7% de 60+ a fin de 2025, por encima del 25% proyectado. Fuente: ONEI (tabla 3.12).",fontsize=7.1,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/ms_aging.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(ARTIFACTS / "ms_aging.png"), bbox_inches="tight"); plt.close(fig)
 
 # ===== Fig C: esperanza de vida oficial (declive) + independiente =====
 tri=[("2001–03",2002,76.997),("2005–07",2006,77.97),("2011–13",2012,78.45),("2014–16",2015,78.068),("2018–20",2019,77.70)]
@@ -68,7 +76,7 @@ ax.annotate("71.25 (2021)\nestimación independiente\n(Albizu-Campos)",(2021,71.
 ax.set_xlim(2000,2023); ax.set_ylim(70,79.5); ax.set_ylabel("Esperanza de vida al nacer (años)",fontsize=10)
 ax.set_title("La esperanza de vida ya caía en los datos oficiales",fontsize=12.5,fontweight="bold",loc="left",color=INK,pad=12)
 fig.text(0.005,0.012,"Serie oficial por trienios (azul): máximo en 2011–13, en descenso desde entonces. La estimación independiente para 2021 (rojo) marca el desplome de la crisis. Fuente: ONEI (tabla 3.17); Albizu-Campos.",fontsize=7.0,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/ms_life_exp.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(ARTIFACTS / "ms_life_exp.png"), bbox_inches="tight"); plt.close(fig)
 
 # ===== regenerar análogos SIN Puerto Rico =====
 analogs=[("Siria 2011–20 (guerra)",50.0,">10",RED),("Venezuela 2013–24",25.0,"1–3",S4),
@@ -84,5 +92,5 @@ ax.set_xlim(0,60); ax.set_xlabel("Pérdida acumulada de población en el períod
 ax.grid(axis="y",visible=False); ax.grid(axis="x",color=GRID,lw=0.6)
 ax.set_title("La pérdida de Cuba en contexto comparado",fontsize=13,fontweight="bold",loc="left",color=INK,pad=12)
 fig.text(0.005,0.012,"Fuentes: R4V/ACNUR (Venezuela); CRS/OMS (Zimbabue); ONU (Siria); CMAJ (Cuba 90s). Tasa anual = acumulada ÷ años.",fontsize=7.1,color=MUTED)
-fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig("/home/claude/es_4_analogos_noPR.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(FIGURES / "es_4_analogos_noPR.png"), bbox_inches="tight"); plt.close(fig)
 print("internal figs ok")

@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
 # -*- coding: utf-8 -*-
 import matplotlib as mpl, matplotlib.pyplot as plt, numpy as np
 SURF="#ffffff"; INK="#111111"; INK2="#3f3f3f"; MUTED="#8a8a85"; GRID="#e7e6e0"; BASE="#c3c2b7"
@@ -43,6 +51,6 @@ ax.set_title("Cuántos cubanos quedan: seis formas de estimarlo",fontsize=15,fon
 ax.text(0,1.055,"Las fuentes que no borran a los que se fueron dan cifras altas; las que sí lo corrigen convergen en ~8,5 millones.",
         transform=ax.transAxes,fontsize=10.3,color=INK2,va="bottom")
 ax.set_ylim(-1.6,len(rows)-0.4)
-fig.tight_layout(); fig.savefig("/home/claude/f7_triangulacion.png",bbox_inches="tight"); plt.close(fig)
+fig.tight_layout(); fig.savefig(str(FIGURES / "f7_triangulacion.png"), bbox_inches="tight"); plt.close(fig)
 print("triangulacion lista")
 

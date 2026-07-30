@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "version": "2026-07-30",
+    "preferred_model": "D",
+    "mc_draws_paper": 1000000,
+    "mc_draws_notebook_interactive": 100000,
+    "deaths_2023_canonical": 117739,
+    "deaths_2023_anuario_footnote": 117746
+  },
+  "vital": {
+    "official_pop_2019": 11193470,
+    "onei_pop_end_2025": 9434593,
+    "births_2025": 68064,
+    "deaths_2025": 136214,
+    "natural_balance_2025": -68149,
+    "tfr_2025": 1.29,
+    "births_2020_2025": 529367,
+    "deaths_2020_2025_registered": 782233,
+    "onei_net_mig_2020_2025": 1516491
+  },
+  "model_d": {
+    "pop_end_2025_m": 8.56,
+    "loss_2019_2025_m": 2.31,
+    "loss_pct_corrected_base": 21.3,
+    "pop_end_2026_m": 8.27,
+    "loss_during_2026_approx": 290000,
+    "migration_share_of_loss_pct": 86.0,
+    "definition_loss_pct": "Percent decline uses corrected end-2019 base (official minus baseline overstatement U0), not raw official 11.19M."
+  },
+  "headline_rules": {
+    "one_in_five_end_2025": {
+      "value_approx": "1 in 5",
+      "pct_approx": 21,
+      "base": "corrected / Model D",
+      "year": 2025
+    },
+    "one_in_four_end_2026": {
+      "value_approx": "1 in 4",
+      "pct_approx": 25,
+      "loss_m_approx": 2.9,
+      "base": "official 2019 (11.19M)",
+      "year": 2026,
+      "social_allowed": true,
+      "note": "Never present Model D -21% (end-2025) as 'a quarter'."
+    }
+  },
+  "excess_mortality": {
+    "primary_age_adjusted_2024_2025": {
+      "low": 40000,
+      "high": 60000,
+      "method": "age-standardized / Kitagawa-style counterfactual",
+      "products": [
+        "en_paper",
+        "es_essay",
+        "social",
+        "notebook"
+      ]
+    },
+    "secondary_crude_registered_2020_2025": 153000,
+    "secondary_crude_registered_2024_2025": 66000,
+    "note": "Always label crude vs age-adjusted."
+  },
+  "selectivity": {
+    "emigrants_age_15_59_pct": 77,
+    "median_age_leavers": 30,
+    "median_age_stayers": 45,
+    "pct_age_60_plus_remaining": 26.7
+  },
+  "models_summary": [
+    {
+      "id": "A",
+      "label": "A \u00b7 conservative",
+      "assumption": "ONEI-anchored",
+      "decline_m": 1.93,
+      "decline_pct": 17.6,
+      "pop_end_2025_m": 9.06
+    },
+    {
+      "id": "B",
+      "label": "B \u00b7 crisis-adjusted",
+      "assumption": "under-registration + independent emigration",
+      "decline_m": 2.31,
+      "decline_pct": 21.3,
+      "pop_end_2025_m": 8.54
+    },
+    {
+      "id": "C",
+      "label": "C \u00b7 worst case",
+      "assumption": "analog-calibrated upper bound",
+      "decline_m": 2.53,
+      "decline_pct": 23.5,
+      "pop_end_2025_m": 8.24
+    },
+    {
+      "id": "D",
+      "label": "D \u00b7 sentinel",
+      "assumption": "IMR sentinel + triangulation",
+      "decline_m": 2.31,
+      "decline_pct": 21.3,
+      "pop_end_2025_m": 8.56,
+      "preferred": true
+    }
+  ],
+  "triangulation": {
+    "band_low_m": 8.0,
+    "band_high_m": 8.9,
+    "sources": [
+      {
+        "source": "UN (stale migration)",
+        "estimate": 10.9,
+        "role": "ceiling"
+      },
+      {
+        "source": "MINSAP denominator",
+        "estimate": 10.24,
+        "role": "ceiling"
+      },
+      {
+        "source": "Electoral roll (level)",
+        "estimate": 10.0,
+        "role": "ceiling"
+      },
+      {
+        "source": "ONEI official",
+        "estimate": 9.43,
+        "role": "official"
+      },
+      {
+        "source": "Housing \u00d7 occupancy",
+        "estimate": 8.7,
+        "role": "occupancy"
+      },
+      {
+        "source": "Albizu-Campos (2023)",
+        "estimate": 8.62,
+        "role": "independent"
+      },
+      {
+        "source": "This study (Model D)",
+        "estimate": 8.56,
+        "role": "preferred"
+      },
+      {
+        "source": "Albizu-Campos (2024)",
+        "estimate": 8.03,
+        "role": "independent"
+      }
+    ]
+  },
+  "destinations_settled": {
+    "us": 800000,
+    "spain": 132500,
+    "uruguay": 35000,
+    "other": 255000,
+    "floor_total": 1050000,
+    "note": "Settled only \u2014 not encounters or nationality applications."
+  },
+  "destinations_other_concepts": {
+    "us_encounters_2022_2024_approx": 850000,
+    "spain_nationality_applications_approx": 300000,
+    "note": "Do not mix with settled ledger without labeling."
+  }
+}

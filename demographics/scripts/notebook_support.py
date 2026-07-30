@@ -1,46 +1,43 @@
 """Shared constants and light Monte Carlo helpers for demographics.ipynb."""
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
 import numpy as np
 from scipy.stats import beta as beta_dist
 from scipy.stats import norm
 
-OFFICIAL_2019 = 11_193_470
-BIRTHS_2020_25 = 105_038 + 99_096 + 95_403 + 90_392 + 71_374 + 68_064
-DEATHS_2020_25 = 112_439 + 167_645 + 120_098 + 117_739 + 128_098 + 136_214
-R_MIG_ONEI = 15_000 + 1_005_006 + 251_221 + 245_264
+_SCRIPTS = Path(__file__).resolve().parent
+if str(_SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS))
 
-ANCHORS = {
-    "population_end_2025_model_d_m": 8.56,
-    "loss_vs_2019_m": 2.31,
-    "loss_vs_2019_pct": 21.3,
-    "births_2025": 68_064,
-    "deaths_2025": 136_214,
-    "natural_balance_2025": -68_149,
-    "tfr_2025": 1.29,
-    "pct_age_60_plus": 26.7,
-    "median_age": 45,
-    "excess_deaths_2024_25_low": 40_000,
-    "excess_deaths_2024_25_high": 60_000,
-    "onei_end_2025": 9_434_593,
-}
+from constants import FIGURES, ROOT, get_claims, model_d_anchors  # noqa: E402
+
+_claims = get_claims()
+_v = _claims["vital"]
+
+OFFICIAL_2019 = int(_v["official_pop_2019"])
+BIRTHS_2020_25 = int(_v["births_2020_2025"])
+DEATHS_2020_25 = int(_v["deaths_2020_2025_registered"])
+R_MIG_ONEI = int(_v["onei_net_mig_2020_2025"])
+
+ANCHORS = model_d_anchors(_claims)
 
 TRIANGULATION = [
-    ("UN (stale migration)", 10.90, "ceiling"),
-    ("MINSAP denominator", 10.24, "ceiling"),
-    ("Electoral roll (level)", 10.00, "ceiling"),
-    ("ONEI official", 9.43, "official"),
-    ("Housing × occupancy", 8.70, "occupancy"),
-    ("Albizu-Campos (2023)", 8.62, "independent"),
-    ("This study (Model D)", 8.56, "preferred"),
-    ("Albizu-Campos (2024)", 8.03, "independent"),
+    (row["source"], row["estimate"], row["role"])
+    for row in _claims["triangulation"]["sources"]
 ]
 
 MODEL_SUMMARY = [
-    ("A · conservative", "ONEI-anchored", 1.93, 17.6, 9.06),
-    ("B · crisis-adjusted", "under-reg. + independent emigration", 2.31, 21.3, 8.54),
-    ("C · worst case", "analog-calibrated upper bound", 2.53, 23.5, 8.24),
-    ("D · sentinel ★", "IMR sentinel + triangulation", 2.31, 21.3, 8.56),
+    (
+        m["label"],
+        m["assumption"],
+        m["decline_m"],
+        m["decline_pct"],
+        m["pop_end_2025_m"],
+    )
+    for m in _claims["models_summary"]
 ]
 
 
@@ -70,3 +67,15 @@ def run_model_a(n: int = 100_000, seed: int = 42) -> dict[str, np.ndarray]:
 def summarize(x: np.ndarray) -> dict[str, float]:
     q = np.percentile(x, [5, 50, 95])
     return {"p05": float(q[0]), "median": float(q[1]), "p95": float(q[2])}
+
+
+__all__ = [
+    "ANCHORS",
+    "FIGURES",
+    "MODEL_SUMMARY",
+    "OFFICIAL_2019",
+    "ROOT",
+    "TRIANGULATION",
+    "run_model_a",
+    "summarize",
+]

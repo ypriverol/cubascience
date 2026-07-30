@@ -31,6 +31,15 @@ Two cross-checks are used to DISCIPLINE the pessimism so it is not arbitrary:
     (US + Spain + Brazil + Mexico + Uruguay + others), which even summed with
     generous undercount does not exceed ~2.5M for 2021-25.
 """
+from pathlib import Path
+import sys
+_SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPTS))
+from constants import ARTIFACTS, FIGURES
+ARTIFACTS.mkdir(parents=True, exist_ok=True)
+FIGURES.mkdir(parents=True, exist_ok=True)
+
+
 import numpy as np
 from scipy.stats import norm, beta as beta_dist, poisson
 
@@ -99,8 +108,8 @@ print("P(pop end-2025 < 8.0M):", round(float(np.mean(p2025 < 8_000_000)), 3))
 print("P(decline > 2.5M):", round(float(np.mean(decline > 2_500_000)), 3))
 
 # save posterior for chart
-np.save("/home/claude/modelB_decline.npy", decline)
-np.save("/home/claude/modelB_pop.npy", p2025)
+np.save(str(ARTIFACTS / "modelB_decline.npy"),  decline)
+np.save(str(ARTIFACTS / "modelB_pop.npy"),  p2025)
 
 # ================= FORWARD PROJECTION to 2030 =================
 # Start each path from Model B end-2025 population draw (uncertainty carried forward).
@@ -128,7 +137,7 @@ for yr in range(2026, 2031):
     pop = pop - (d - b) - m
     q = np.percentile(pop, [5, 50, 95])
     print(f"end-{yr}: median {q[1]/1e6:.2f}M | 90% [{q[0]/1e6:.2f}, {q[2]/1e6:.2f}]M")
-np.save("/home/claude/proj_2030.npy", pop)
+np.save(str(ARTIFACTS / "proj_2030.npy"),  pop)
 
 # store yearly fan for chart
 fan = {}
@@ -142,7 +151,7 @@ for yr in range(2026, 2031):
     m = mig_lvl * rng.normal(1.0, 0.18, N)
     pop2 = pop2 - (d - b) - m
     fan[yr] = np.percentile(pop2, [5, 25, 50, 75, 95])
-np.save("/home/claude/fan.npy", fan, allow_pickle=True)
+np.save(str(ARTIFACTS / "fan.npy"),  fan, allow_pickle=True)
 
 # ================= family-death Bayesian angle =================
 print("\n=== Family signal: does '3 deaths in 6 years' imply hidden mortality? ===")

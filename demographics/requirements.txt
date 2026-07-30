@@ -5,3 +5,5 @@ pandas
 nbformat
 jupyter
 nbconvert
+pyyaml
+pillow
