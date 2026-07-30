@@ -9,8 +9,12 @@
 \usepackage{hyperref}
 \usepackage{setspace}
 \usepackage{caption}
+\usepackage{subcaption}
+\usepackage{placeins}
 \usepackage{natbib}
 \setstretch{1.15}
+\captionsetup[subfigure]{font=small,labelfont=bf,skip=4pt}
+\captionsetup[figure]{font=small,labelfont=bf,skip=6pt}
 
 \graphicspath{{../../../figures/}}
 
@@ -130,18 +134,22 @@ D · sentinel (preferred) & IMR sentinel + triangulation & 2.31 & 21.3 & 8.56 \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[ht]
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}[t]{0.495\linewidth}
 \centering
 \includegraphics[width=\linewidth]{f1_poblacion.png}
 \caption{Official versus estimated living population, 2019--2030 (Model~D path in red).}
 \label{fig:pop}
-\end{figure}
-
-\begin{figure}[ht]
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.495\linewidth}
 \centering
 \includegraphics[width=\linewidth]{f3_cascada.png}
 \caption{Accounting decomposition of the 2019--2025 loss (emigration dominates).}
 \label{fig:cascade}
+\end{subfigure}
+\caption{Headline population path and accounting decomposition.}
+\label{fig:headline}
 \end{figure}
 
 \subsection{Triangulation of the living population}
@@ -150,9 +158,9 @@ Sources that correct for exit (housing occupancy $\sim$8.7~M; independent estima
 The official 9.43~M sits between the two families, closer to inflated registers: a ceiling, not a floor (Figure~\ref{fig:tri}).
 Between 2018 and 2023, actual voters fell 16.7\% (1.24~million fewer), far more than the roll itself ($-$5.9\%), consistent with physical absence rather than pure abstention.
 
-\begin{figure}[ht]
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=\linewidth]{f7_triangulacion.png}
+\includegraphics[width=0.95\linewidth]{f7_triangulacion.png}
 \caption{Triangulation of end-2025 population levels across independent sources.}
 \label{fig:tri}
 \end{figure}
@@ -172,13 +180,6 @@ Useful distinction: \textbf{realized loss} (exit-dominated) versus \textbf{futur
 In 2019 the natural balance was still slightly positive ($+$636); in 2025 deaths exceeded births by \textbf{68{,}149} (68{,}064 births versus 136{,}214 deaths; Figure~\ref{fig:scissors}).
 That 2025 deficit matches the 2021 COVID peak without a pandemic: natural decrease is now structural.
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\linewidth]{f2_tijera.png}
-\caption{Births versus deaths (``scissors''): deaths roughly double births by 2025.}
-\label{fig:scissors}
-\end{figure}
-
 \textbf{Fertility.}
 The total fertility rate fell to 1.29 children per woman in 2025, the lowest since 1958 and well below replacement (2.1).
 Two intertwined causes: emigration removes young women (the flow is majority female), and those who remain defer or forgo births under blackouts and scarcity.
@@ -188,11 +189,22 @@ Official projections move the share aged 60+ from 20.4\% (2019) to 26.7\% (2025)
 Under a smaller, youth-depleted stock the elderly share is higher still (order $\sim$29\% already in 2025 and, approximately, $\sim$40\% by 2035 as a first-order sketch requiring a full cohort projection).
 Median age reached \textbf{45} years in 2025 (Figure~\ref{fig:aging}).
 
-\begin{figure}[ht]
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}[t]{0.495\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f2_tijera.png}
+\caption{Births versus deaths (``scissors''): deaths roughly double births by 2025.}
+\label{fig:scissors}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.495\linewidth}
 \centering
 \includegraphics[width=\linewidth]{f4_envejece.png}
 \caption{Accelerated ageing as working-age adults leave.}
 \label{fig:aging}
+\end{subfigure}
+\caption{Internal demographic engine: natural decrease and accelerated ageing.}
+\label{fig:internal}
 \end{figure}
 
 \textbf{Life expectancy.}
@@ -200,13 +212,6 @@ Official life expectancy at birth peaked in 2011--13 (78.5 years) and fell to 77
 An independent 2021 estimate places it near 71 years~\citep{albizu2023,bronnum2023}.
 Life expectancy re-expresses the same mortality shock rather than providing independent corroboration; its magnitude (about 6.5 years in a single year in the independent path) is exceptional for peacetime.
 Translated to years of life lost, crude excess of $\sim$153{,}000 deaths in 2020--2025 implies more than one million person-years lost, concentrated among the elderly.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\linewidth]{f5_esperanza.png}
-\caption{Life expectancy at birth: official triennial series and independent 2021 estimate.}
-\label{fig:le}
-\end{figure}
 
 \textbf{Infant mortality and food insecurity as mechanisms.}
 Infant deaths rose from 461 (2018) to 715 (2022); the rate reached 9.9 per thousand in 2025 ($+$98\% since 2019).
@@ -219,26 +224,30 @@ Crude registered excess versus a no-crisis path is $\sim$153{,}000 over 2020--20
 After removing ageing via age-standardized comparison to a 2019 schedule on the already-aged stock, 2024--2025 still show about \textbf{40{,}000--60{,}000} excess deaths (Figure~\ref{fig:excess}).
 Mortality rates at ages 60+ remain 11--27\% above 2019: mortality rises not only because there are more elderly people, but because age-specific rates themselves are elevated.
 
-\begin{figure}[ht]
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.92\linewidth]{f9_exceso.png}
+\begin{subfigure}[t]{0.495\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f5_esperanza.png}
+\caption{Life expectancy at birth: official triennial series and independent 2021 estimate.}
+\label{fig:le}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.495\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f9_exceso.png}
 \caption{Registered deaths versus an aged 2019-schedule expectation.
 Primary claim: age-adjusted excess $\approx$40--60 thousand in 2024--2025.
 Crude registered excess $\sim$153{,}000 over 2020--2025 is a separate quantity.}
 \label{fig:excess}
+\end{subfigure}
+\caption{Mortality signal: life expectancy and age-adjusted excess deaths.}
+\label{fig:mortality}
 \end{figure}
 
 \subsection{Who leaves and who remains}
 About \textbf{77\%} of emigrants are aged 15--59; nearly half are under 35 (Figure~\ref{fig:age}).
 Among those remaining, about 26.7\% are 60+ (median age $\sim$45).
 Exit hollows the centre of the pyramid, ages the island, and removes those who would have children.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\linewidth]{f10_edad.png}
-\caption{Age composition of emigrants versus remaining residents.}
-\label{fig:age}
-\end{figure}
 
 The flow is majority female ($\sim$57\%); among reproductive ages roughly 133 women leave per 100 men.
 Births fell 38\% (from $\sim$110{,}000 in 2019 to 68{,}000 in 2025); about half of that fall is fewer women of fertile age (many emigrated) and half is lower fertility per woman (TFR from $\sim$1.6 to 1.29).
@@ -247,12 +256,24 @@ The migratory half is hardest to reverse: fertility recovery without mothers doe
 Emptying is national but unequal (Figure~\ref{fig:prov}).
 Havana leads at net emigration of \textbf{$-$33 per 1{,}000} in 2025; western and central provinces empty faster than the east, yet no province loses less than about 2\% of its people per year.
 
-\begin{figure}[ht]
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}[t]{0.495\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f10_edad.png}
+\caption{Age composition of emigrants versus remaining residents.}
+\label{fig:age}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.495\linewidth}
 \centering
 \includegraphics[width=\linewidth]{f11_provincias.png}
 \caption{Net emigration rate by province, 2025.}
 \label{fig:prov}
+\end{subfigure}
+\caption{Selectivity of exit: age structure and provincial intensity.}
+\label{fig:selectivity}
 \end{figure}
+\FloatBarrier
 
 \subsection{Comparative context and end-2026 path}
 Historically, contractions of this magnitude appear in deep economic collapse or war (Table~\ref{tab:hist}).
@@ -343,6 +364,7 @@ Third-party literature is cited, not redistributed.
 \section*{Competing interests}
 None declared.
 
+\FloatBarrier
 \bibliographystyle{plainnat}
 \bibliography{refs}
 
