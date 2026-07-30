@@ -30,14 +30,16 @@ latexmk -pdf main.tex
 cp main.pdf ../cuba-depopulation-2019-2026.pdf
 ```
 
-## Reproduce models
+## Regenerate charts (300 dpi)
 
 ```bash
-pip install -r requirements.txt
-cd scripts
-python3 model_d.py          # writes artifacts/ + validates Model D
-python3 charts_final.py     # manuscript figures (needs prior model runs as needed)
+cd demographics
+export MPLBACKEND=Agg
+python3 scripts/charts_publication.py   # ES infographic + EN manuscript figures
 ```
+
+Infographic panels: `infographic/ig_*.png` (6 charts).  
+Manuscript figures: `figures/f*.png` (English labels for the LaTeX paper).
 
 ## Cite
 
