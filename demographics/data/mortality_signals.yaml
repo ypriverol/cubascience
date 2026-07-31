@@ -68,15 +68,17 @@ buckets:
         default_weight: 0.25
       fertile_women_share_proxy:
         id: fertile_women_share_proxy
-        description: Proxy share of women of fertile age (inverted — lower share raises score via birth collapse).
+        description: >
+          Working-age share (15–59) as fertile-adjacent stock proxy
+          (inverted — lower share raises score via birth-base collapse).
         source: ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
         unit: share
         higher_means: less_birth_base  # after invert_for_score
         invert_for_score: true
         norm:
           method: minmax
-          lo: 0.18
-          hi: 0.28
+          lo: 0.55   # crisis / projection low
+          hi: 0.66   # pre-crisis high (~2019 63.6%)
         default_weight: 0.30
 
   health_decadence:
