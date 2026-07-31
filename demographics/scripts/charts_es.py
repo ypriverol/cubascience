@@ -37,7 +37,7 @@ for x,v in zip(onei_y,onei_v): ax.annotate(f"{v:.2f}",(x,v),textcoords="offset p
 for x,v in zip(alb_y,alb_v): ax.annotate(f"{v:.2f}",(x,v),textcoords="offset points",xytext=(0,-14),fontsize=8.5,color=INK2,ha="center")
 ax.set_xlim(2018.6,2027.2); ax.set_ylim(7.6,11.7); ax.set_xticks(range(2019,2026))
 ax.set_ylabel("Población (millones, fin de año)",fontsize=10)
-ax.set_title("Tres versiones de la población de Cuba, 2019–2025",fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
+ax.set_title("Tres versiones de la población de Cuba, 2021–2026",fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)
 fig.text(0.005,0.012,"Fuentes: ONEI; Albizu-Campos (2024, 2025); ONU WPP 2024. Línea discontinua = serie revisada o estimada, no observada anualmente.",fontsize=7.3,color=MUTED)
 fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(FIGURES / "es_1_series.png"), bbox_inches="tight"); plt.close(fig)
 
@@ -85,8 +85,8 @@ fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(FIGURES / "es_3_modelos.png
 
 # ===== 4. analogos =====
 analogs=[("Siria 2011–20 (guerra)",50.0,">10",RED),("Venezuela 2013–24",25.0,"1–3",S4),
- ("Zimbabue 1998–08",25.0,"~2.5",S4),("Cuba 2019–25 · Modelo C",23.5,"3.9",RED),
- ("Cuba 2019–25 · Modelo B",21.3,"3.5",S2),("Cuba 2019–25 · Modelo A",17.6,"2.9",S1),
+ ("Zimbabue 1998–08",25.0,"~2.5",S4),("Cuba 2021–25 · Modelo C",22.6,"~5.6",RED),
+ ("Cuba 2021–25 · Modelo B",20.4,"~4.1",S2),("Cuba 2021–25 · Modelo A",16.4,"~3.3",S1),
  ("Puerto Rico 2010–20",11.8,"1.2 (pico 3.9)",S3),("Cuba Período Especial 90s",0.5,"~0",MUTED)]
 fig,ax=plt.subplots(figsize=(8.8,5.0),dpi=200); style(ax)
 yy=np.arange(len(analogs))[::-1]

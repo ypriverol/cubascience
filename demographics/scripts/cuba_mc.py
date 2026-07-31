@@ -1,5 +1,5 @@
 """
-Monte Carlo interval estimation of Cuba's population decline, end-2019 -> end-2025.
+Monte Carlo interval estimation of Cuba's population decline, end-2021 -> end-2025 (legacy script; prefer model_from_2021.py).
 
 Accounting identity per component (2020..2025):
   P_end2025 = P_end2019 + births - deaths - net_emigration

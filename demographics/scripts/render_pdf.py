@@ -7,7 +7,7 @@ from playwright.async_api import async_playwright
 ROOT = Path(__file__).resolve().parents[1]
 MS = ROOT / "manuscript" / "es"
 HTML = MS / "manuscript.html"
-PDF = MS / "Cuba_despoblacion_2019-2025_manuscrito.pdf"
+PDF = MS / "Cuba_despoblacion_2021-2026_manuscrito.pdf"
 
 
 async def main():

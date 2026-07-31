@@ -7,7 +7,7 @@ Open analyses on Cuba — two peer projects in one repository:
 | Project | Path | What it is |
 |---|---|---|
 | **Scientific output** | [`science/`](science/) | Publications, citations, patents ([arXiv:2007.09638](https://arxiv.org/abs/2007.09638)) |
-| **Demographics 2019–2026** | [`demographics/`](demographics/) | Depopulation crisis: Monte Carlo + triangulation (ES/EN manuscripts + English notebook) |
+| **Demographics 2021–2026** | [`demographics/`](demographics/) | Population collapse: Monte Carlo from end-2021 + triangulation (ES/EN manuscripts + English notebook) |
 
 ## Browse
 
@@ -28,7 +28,7 @@ Issues and PRs welcome: https://github.com/ypriverol/cubascience/issues
 
 **Demographics study (forthcoming DOI)**
 
-> Pérez-Riverol, Y. (2026). *Cuba 2019–2026: depopulation in figures.* Zenodo (DOI forthcoming).
+> Pérez-Riverol, Y. (2026). *Estimating Cuba’s 2021–2026 population collapse.* Zenodo (DOI forthcoming).
 
 ## License
 

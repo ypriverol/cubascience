@@ -1,6 +1,6 @@
 # Estimating Cuba’s 2021–2026 population collapse
 
-Quantitative estimate of Cuba’s population loss between 2021 and 2026.
+Quantitative estimate of Cuba’s population loss between **end-2021 and end-2026**.
 **One in four Cubans gone in five years** (vs the official 2021 base by end-2026).
 
 > **Central finding (Model D).** ≈**8.59 M** living population at end-2025
@@ -11,12 +11,16 @@ Quantitative estimate of Cuba’s population loss between 2021 and 2026.
 > **Model E (provisional).** Vital reconstruction from ageing + health decadence +
 > bad reporting → true births/deaths → population ≈**8.96 M** end-2025
 > (−2.13 M, −19.2%). Preferred claims remain Model D until promoted.
+
+The Monte Carlo window starts at **official end-2021** (11,113,215), not 2019.
+Pre-crisis 2019 rates still appear only as methodological baselines (age schedule, IMR rise).
+
 ## Three products
 
 | Product | Lang | Audience | Path |
 |---|---|---|---|
-| Scientific preprint | EN | Researchers | [`manuscript/en/latex/`](manuscript/en/latex/) → [`cuba-depopulation-2019-2026.pdf`](manuscript/en/cuba-depopulation-2019-2026.pdf) |
-| Public essay | ES | General / diaspora | [`manuscript/es/cuba-despoblacion-2019-2026.md`](manuscript/es/cuba-despoblacion-2019-2026.md) |
+| Scientific preprint | EN | Researchers | [`manuscript/en/latex/`](manuscript/en/latex/) → [`cuba-depopulation-2021-2026.pdf`](manuscript/en/cuba-depopulation-2021-2026.pdf) |
+| Public essay | ES | General / diaspora | [`manuscript/es/cuba-despoblacion-2021-2026.md`](manuscript/es/cuba-despoblacion-2021-2026.md) |
 | Social infographic | ES | Twitter / IG | [`infographic/`](infographic/) + `social_1x1.png`, `social_4x5.png` |
 | Notebook companion | EN | Open science | [`demographics.ipynb`](demographics.ipynb) · [Pages](https://ypriverol.github.io/cubascience/demographics/) |
 
@@ -29,7 +33,7 @@ Related bibliometrics study: [arXiv:2007.09638](https://arxiv.org/abs/2007.09638
 ```bash
 cd manuscript/en/latex
 latexmk -pdf main.tex
-cp main.pdf ../cuba-depopulation-2019-2026.pdf
+cp main.pdf ../cuba-depopulation-2021-2026.pdf
 ```
 
 ## Regenerate charts (600 dpi manuscript PNGs; 400 dpi IG)
@@ -50,7 +54,7 @@ Artifacts: `artifacts/model_e_summary.json`, `artifacts/hsds_scores.json`.
 ## Cite
 
 > Pérez-Riverol, Y. (2026). *Estimating Cuba’s 2021–2026 population collapse.* Working paper.
-> PDF: `demographics/manuscript/en/cuba-depopulation-2019-2026.pdf`. Zenodo DOI forthcoming.
+> PDF: `demographics/manuscript/en/cuba-depopulation-2021-2026.pdf`. Zenodo DOI forthcoming.
 
 ## License
 

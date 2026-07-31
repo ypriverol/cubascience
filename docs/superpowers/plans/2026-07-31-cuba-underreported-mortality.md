@@ -272,8 +272,8 @@ git commit -m "Add Model E population from reconstructed births and deaths."
 
 ```bash
 cd demographics/manuscript/en/latex && latexmk -pdf -interaction=nonstopmode main.tex
-cp main.pdf ../cuba-depopulation-2019-2026.pdf
-git add demographics/scripts/charts_hsds.py demographics/figures/f12_hsds_vitals.png demographics/figures/f13_model_e_population.png demographics/manuscript/en/latex/main.tex demographics/manuscript/en/cuba-depopulation-2019-2026.pdf demographics/README.md
+cp main.pdf ../cuba-depopulation-2021-2026.pdf
+git add demographics/scripts/charts_hsds.py demographics/figures/f12_hsds_vitals.png demographics/figures/f13_model_e_population.png demographics/manuscript/en/latex/main.tex demographics/manuscript/en/cuba-depopulation-2021-2026.pdf demographics/README.md
 git commit -m "Document Model E vital reconstruction in figures and preprint."
 ```
 
