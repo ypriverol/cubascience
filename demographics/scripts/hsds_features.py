@@ -263,7 +263,7 @@ def build_feature_matrix(years: list[int] | None = None) -> pd.DataFrame:
                         "source_note": fspec.get("source", ""),
                     }
                 )
-        return pd.DataFrame(rows)
+    return pd.DataFrame(rows)
 
 
 def write_public_health_signals_md() -> None:
