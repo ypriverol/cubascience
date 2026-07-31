@@ -53,7 +53,7 @@ El rango honesto para fin de 2024 va de **8.0 a 11.0 millones** según a quién 
 
 La aritmética del cambio poblacional tiene solo tres términos: nacimientos, muertes y migración. Los tres se han movido contra Cuba a la vez.
 
-### La emigración: el término dominante (~86% de la pérdida)
+### La emigración: el término dominante (~91% de la pérdida)
 
 Insisto en esto porque la revisión adversarial lo dejó claro: por más dramática que sea la crisis sanitaria, **la despoblación de Cuba es, ante todo, un éxodo.** El éxodo de 2022–2024 empequeñece a todas las oleadas migratorias cubanas anteriores, combinadas:
 
@@ -61,7 +61,7 @@ Insisto en esto porque la revisión adversarial lo dejó claro: por más dramát
 - **España:** unos **300,000 cubanos solicitaron la nacionalidad** bajo la Ley de Memoria Democrática ("Ley de Nietos"), con más de 200,000 pasaportes ya emitidos.
 - **La ruta del sur (2025–2026):** cuando EEUU cerró sus vías en enero de 2025 (los encuentros de cubanos en la frontera se desplomaron de ~9,000 al mes a ~130), el flujo no se detuvo: se redistribuyó. Brasil recibió **~42,000 solicitudes de asilo cubanas en 2025** (su primera nacionalidad); México 28,700 entre enero y septiembre; Uruguay cifras récord; Guyana, decenas de miles por su auge petrolero.
 
-El balance migratorio revisado de la ONEI suma unos **1.5 millones netos para 2020–2025.** Albizu-Campos sostiene que solo la salida de 2024 fue de ~545,000. Y un dato crucial para el futuro: cerca del **80% de los emigrantes están en edad laboral (15–59)**, el flujo es mayoritariamente femenino, y la mayoría de las mujeres que se van están en edad fértil.
+El balance migratorio consistente con la identidad ONEI suma unos **1.50 millones netos para 2022–2025** (y ~1.52 M si se mira 2020–2025). Albizu-Campos sostiene que solo la salida de 2024 fue de ~545,000. Y un dato crucial para el futuro: cerca del **77% de los emigrantes están en edad laboral (15–59)**, el flujo es mayoritariamente femenino, y la mayoría de las mujeres que se van están en edad fértil.
 
 ### Las muertes: el COVID, y lo que vino después
 
@@ -69,7 +69,7 @@ El balance migratorio revisado de la ONEI suma unos **1.5 millones netos para 20
 
 Aquí tengo que ser preciso, porque es fácil contar doble. En Cuba, **el hecho de una muerte** se ha registrado históricamente con ~99–100% de cobertura. La prueba está en los propios datos: cuando llegó la ola Delta en 2021, las defunciones *totales* registradas por la ONEI saltaron a **167,645**, desde ~112,000 el año anterior. Esas ~55,000 muertes de más **sí se contaron**, el gobierno simplemente atribuyó apenas ~8,500 al COVID (la reconstrucción de Albizu-Campos sitúa la cifra real cerca de 20,000, y la señal de exceso es aún mayor).
 
-Esto importa para la aritmética de un modo que conviene no equivocar. **El dengue, la chikungunya, un cáncer sin tratar, un infarto durante un apagón, un paciente de diálisis que pierde su sesión, cuando ocurren en la isla, la muerte igual se registra** (solo que codificada como "cardiovascular" u "otra causa"). Ya están *dentro* de las 782,233 defunciones registradas que usa el modelo. Añadir un término aparte de "muertes por dengue" sería contarlas dos veces.
+Esto importa para la aritmética de un modo que conviene no equivocar. **El dengue, la chikungunya, un cáncer sin tratar, un infarto durante un apagón, un paciente de diálisis que pierde su sesión, cuando ocurren en la isla, la muerte igual se registra** (solo que codificada como "cardiovascular" u "otra causa"). Ya están *dentro* de las defunciones registradas que usa el modelo (unos **502,149** en 2022–2025; ~782,000 si se mira el tramo más amplio 2020–2025). Añadir un término aparte de "muertes por dengue" sería contarlas dos veces.
 
 La pregunta honesta es más estrecha: **¿cuántas muertes escapan por completo al registro, o nunca se publican?** Y aquí (a diferencia de 2021) sí hay evidencia nueva de que el propio sistema de registro se está resquebrajando: funerarias colapsadas en Santiago (una registró *29 cadáveres antes de las 10 de la mañana*), ataúdes que faltan, cuerpos trasladados en carretón; y una ola de arbovirus en 2025 en la que la OPS ubicó a Cuba con **la mayor incidencia de chikungunya de las Américas**, con solo ~3% de los casos confirmados por laboratorio.
 
@@ -83,9 +83,9 @@ Los nacimientos cayeron de 109,716 (2019) a **71,374 (2024)** y **68,064 (2025)*
 
 Este primer modelo le da deliberadamente el beneficio de la duda a las cifras oficiales. Convertí el desacuerdo en una estimación por intervalos mediante la identidad contable
 
-> **caída (2020–2025) = (muertes − nacimientos) + emigración neta**
+> **caída (2022–2025) = (muertes − nacimientos) + emigración neta**
 
-y corrí **1,000,000 de simulaciones**, donde cada extracción es un escenario internamente coherente de las cantidades en disputa. Los nacimientos (529,367) y las muertes registradas (782,233) entran casi fijos; la incertidumbre grande está en la emigración (multiplicador de 1.0 a 1.55 sobre el balance de la ONEI) y en cuánta población de 2019 ya estaba "de más" en el padrón.
+y corrí **1,000,000 de simulaciones**, donde cada extracción es un escenario internamente coherente de las cantidades en disputa. Los nacimientos (**325,233**) y las muertes registradas (**502,149**) de 2022–2025 entran casi fijos; la incertidumbre grande está en la emigración (multiplicador sobre el balance ONEI-consistente de ~1.50 M) y en cuánta población de **fin-2021** ya estaba "de más" en el padrón (sobrestimación de base \(U_0\)).
 
 **Resultado (fin-2021 → fin-2025):** caída mediana **1.80 millones (16.4%)**, IC 90% en la envolvente de modelos; población fin-2025 **9.16 M**. Es, en esencia, la propia cifra de la ONEI con un ajuste modesto al alza.
 
@@ -116,7 +116,7 @@ Para que la parte pesimista no sea arbitraria, la acoté con dos topes externos:
 | Población fin-2025 | **8.57 M** | **8.26 M** |
 | Participación de la emigración | ~90% | ~89% |
 
-Nótese lo que **no** cambia entre modelos: la emigración sigue siendo ~86% de la historia. Aunque deje que la mortalidad corra tan caliente como la evidencia permite, el éxodo domina. Eso no es un artefacto del modelo; es el hecho central de esta crisis.
+Nótese lo que **no** cambia entre modelos: la emigración sigue siendo ~**90–91%** de la historia. Aunque deje que la mortalidad corra tan caliente como la evidencia permite, el éxodo domina. Eso no es un artefacto del modelo; es el hecho central de esta crisis.
 
 Pero los multiplicadores de mortalidad de los Modelos B y C tenían un defecto que la revisión adversarial señaló con razón: eran *supuestos*, no mediciones. La siguiente sección los reemplaza por algo mucho más limpio.
 
@@ -180,7 +180,7 @@ Vale la pena mirar directamente los números oficiales (la propia ONEI y el Anua
 
 Pediste una proyección para el final de este año. Extendí el modelo hacia adelante con nacimientos que caen ~3.5% anual, muertes que suben pese a la población menor (por el envejecimiento: 26.7% ya tiene 60+), y la emigración bajo tres regímenes (éxodo persistente ~210k/año; cierre parcial ~120k; escalada ~300k).
 
-**Para fin de 2026 (a solo 5 meses vista):** los cuatro modelos coinciden en una pérdida de **~290,000 personas** durante este año. Cuba cerraría 2026 entre **8.76 M (Modelo A)**, **8.27 M (Modelo D, centinela)**, **8.24 M (Modelo B)** y **7.94 M (Modelo C)**. Incluso la cifra oficial de la ONEI probablemente caerá por debajo de **9.15 millones**. Mi mejor estimación puntual para diciembre de 2026 es **~8.3 millones de residentes reales.**
+**Para fin de 2026:** los cuatro modelos coinciden en una pérdida adicional del orden de **~300,000 personas** durante el año. El nowcast del Modelo D sitúa a Cuba cerca de **8.29 M** a fin de 2026 (banda ilustrativa entre modelos ~7.9–8.9 M). Incluso la cifra oficial de la ONEI seguirá cayendo. Mi mejor estimación puntual para diciembre de 2026 es **~8.3 millones de residentes reales.**
 
 ![Si las tendencias continúan: Cuba hacia 2030](../../figures/f1_poblacion.png)
 
@@ -198,28 +198,28 @@ Aquí es donde los análogos históricos disciplinan la imaginación, y donde tu
 - **Siria (2011–2020):** ~50%, pero es una guerra, el límite superior.
 - **El Período Especial cubano (años 90):** el contraejemplo. Pese a un colapso económico *más profundo* (−35% del PIB), Cuba **no** sufrió una caída poblacional y la esperanza de vida incluso *subió*. Es la mejor razón para dudar de los pulsos de mortalidad más agresivos: el sistema de salud cubano ha demostrado antes que triaje la mortalidad incluso en la escasez extrema.
 
-Aquí está el hallazgo que corta en ambas direcciones: **Cuba, con ~3.9%/año sostenido durante seis años (Modelo C), ya iguala el *pico* de Venezuela o el *peor año* de Puerto Rico, pero sostenido el doble de tiempo que cualquier precedente en tiempos de paz.** Eso hace creíble una lectura muy pesimista *y* al mismo tiempo la acota: nada sin guerra ha sostenido >4%/año durante años. Cuba está comprimiendo un colapso a escala Venezuela en la mitad del tiempo.
+Aquí está el hallazgo que corta en ambas direcciones: **Cuba, con ~3–4%/año en la ventana 2021–2025 (Modelo C ~22.6% acumulado), ya iguala el *pico* de Venezuela o el *peor año* de Puerto Rico, pero sostenido varios años seguidos.** Eso hace creíble una lectura muy pesimista *y* al mismo tiempo la acota: nada sin guerra ha sostenido >4%/año durante años. Cuba está comprimiendo un colapso a escala Venezuela en menos tiempo.
 
 ## 9. La revisión adversarial: dónde este análisis puede estar equivocado
 
 Un texto que se dice riguroso tiene que publicar sus propias debilidades. Estas son las tres críticas más fuertes que sobrevivieron a la revisión, y me parecen correctas:
 
-1. **Es ~86% una estimación de emigración disfrazada de mortalidad.** Toda la diferencia entre el Modelo A y el C la impulsa el multiplicador de emigración, no las muertes. El aparato de apagones y epidemias, por trágico que sea, aporta menos del 5%. Debo decirlo sin rodeos y no dejar que la maquinaria del terror sanitario fabrique una falsa precisión.
+1. **Es ~91% una estimación de emigración disfrazada de mortalidad.** Toda la diferencia entre el Modelo A y el C la impulsa el multiplicador de emigración, no las muertes. El aparato de apagones y epidemias, por trágico que sea, aporta una fracción menor del recuento. Debo decirlo sin rodeos y no dejar que la maquinaria del terror sanitario fabrique una falsa precisión.
 
-2. **La emigración se corrige cuatro veces por el mismo defecto.** El padrón de la ONEI es *de jure*: los cubanos no se dan de baja al irse. Ese único problema (un padrón inflado) lo corrijo por cuatro vías (la propia revisión de la ONEI, un multiplicador independiente, un término de "población de más" en 2019, y un techo de países de destino). Si la revisión de la ONEI ya reconcilió parte de eso, mis Modelos B y C podrían estar **contando doble** y exagerando la caída. Además, el techo de destino está inflado: las cifras de EEUU son *eventos* (encuentros), no personas únicas, y hay migración de tránsito que aparece en varios países a la vez.
+2. **La emigración se corrige varias veces por el mismo defecto.** El padrón de la ONEI es *de jure*: los cubanos no se dan de baja al irse. Ese único problema (un padrón inflado) lo corrijo por varias vías (la propia revisión de la ONEI, un multiplicador independiente, un término de "población de más" en **fin-2021**, y un techo de países de destino). Si la revisión de la ONEI ya reconcilió parte de eso, mis Modelos B y C podrían estar **contando doble** y exagerando la caída. Además, el techo de destino está inflado: las cifras de EEUU son *eventos* (encuentros), no personas únicas, y hay migración de tránsito que aparece en varios países a la vez.
 
-3. **Los intervalos son demasiado estrechos.** La incertidumbre honesta no es el IC del 90% de un solo modelo (~±12%), sino **toda la horquilla de A a C: ~1.8 a 3.0 millones.** La distancia entre las medianas de los modelos (0.60 M) supera al ancho del intervalo dentro de cada modelo (0.47 M), señal de que la incertidumbre estructural, no la estadística, es la que manda.
+3. **Los intervalos son demasiado estrechos.** La incertidumbre honesta no es el IC del 90% de un solo modelo, sino **toda la horquilla de A a C: ~1.8 a 2.4 millones** en la ventana 2021→2025. La distancia entre medianas de modelos supera al ancho típico del intervalo dentro de cada modelo: manda la incertidumbre estructural, no la estadística.
 
 **Y la crítica que te da la razón:** el rezago de 24 meses de la ONEI significa que quien se fue en 2024–2025 aún no está contado. Ese es el mecanismo real por el que la verdad *podría superar incluso al Modelo C*, pero es migratorio, no de muertes. Tu instinto de que las cifras son optimistas apunta en la dirección correcta; solo que la palanca es el avión, no el cementerio.
 
-**Conclusión del revisor:** el Modelo A es el más defendible; el B es una sensibilidad legítima; el C es un límite de cola (el escenario pesimista plausible), no la estimación central. Yo me quedo con un rango honesto de **~2.0 a 2.5 millones perdidos (19–23%)**, sabiendo que el verdadero número podría estar por encima si el rezago migratorio es tan grande como sospecho.
+**Conclusión del revisor:** el Modelo A es el más defendible como piso; el B/D son sensibilidades legítimas; el C es un límite de cola (el escenario pesimista plausible), no la estimación central. Yo me quedo con el **Modelo D (~2.21 M, 20.5%, 8.59 M)** como preferido, dentro de la horquilla A–C (~1.8–2.4 M), sabiendo que el verdadero número podría estar por encima si el rezago migratorio es tan grande como sospecho.
 
 ## 10. Interludio: ¿y mis tres muertes en la familia?
 
 La experiencia personal es un estimador sesgado, así que vale la pena hacer la cuenta en serio. La tasa bruta de mortalidad de Cuba en 2020–2025 fue de ~12.5 por 1,000, pero para una familia extensa de perfil envejecido (como casi todas ahora, porque los jóvenes se fueron) la tasa efectiva ronda 15–20 por 1,000. Con un cálculo de Poisson para una red familiar de ~25 personas:
 
 | Tasa supuesta | Muertes esperadas en 6 años | P(3 o más) |
-|, |, |, |
+|---|---|---|
 | 12.5 / 1,000 (media nacional) | 1.9 | 29% |
 | 16 / 1,000 (familia envejecida) | 2.4 | 43% |
 | 20 / 1,000 (crisis) | 3.0 | 58% |
@@ -232,7 +232,7 @@ Una precisión importante, porque la cifra correcta es a la vez menos y más ala
 
 ## 12. La crisis que no se detiene: el apagón permanente
 
-Todo lo que impulsó el colapso de 2020–2025 sigue operando en 2026, y varias cosas se aceleran. El dato que mejor captura el momento es la electricidad:
+Todo lo que impulsó el colapso de **2021–2025** sigue operando en 2026, y varias cosas se aceleran. El dato que mejor captura el momento es la electricidad:
 
 - **Cinco colapsos totales de la red nacional en los primeros siete meses de 2026** (el más reciente, el 14 de julio). El déficit de generación batió récord el 8 de julio con **2,341 MW**, frente a una demanda pico de ~3,150 MW, se generaban ~1,020 MW al amanecer.
 - **La Habana ha llegado a 35 horas seguidas sin electricidad; algunas provincias, hasta 3 días continuos.** En junio de 2026, más del 60% del país quedaba a oscuras en el pico. El propio ministro de Energía reconoció en diciembre de 2025 que **no se eliminarán los apagones en 2026.** Hablar de un "apagón permanente" en las provincias es defendible.
@@ -248,13 +248,13 @@ Entre fines de 2021 y fines de 2025, Cuba perdió **alrededor de una de cada cin
 
 El método centinela dejó una lección que vale más que cualquier cifra concreta: cuando una métrica que Cuba **sí** mide con honestidad (la mortalidad infantil) se dispara un 40%, y el alza de muertes que predice coincide con las muertes que la ONEI ya reporta, entonces sabemos dos cosas a la vez. La crisis sanitaria es real y mensurable; y, precisamente por eso, las muertes están en su mayoría contadas, y el vaciamiento del país es, ante todo, gente que se va.
 
-Y no se detiene por sí sola. Para **fin de este año** Cuba habrá perdido ~290,000 personas más; hacia **2030** mi proyección la lleva cerca de **7 millones, posiblemente 6.** Tenías razón en sospechar que las cifras oficiales pintan un cuadro demasiado amable: el rezago con que la ONEI cuenta a los emigrantes casi garantiza que la caída real va por delante de lo que se publica. Donde te corregiría es en el mecanismo (esto se explica sobre todo con quienes se van, no con quienes mueren) pero la dirección de tu intuición es la correcta.
+Y no se detiene por sí sola. Para **fin de este año** Cuba habrá perdido del orden de **~300,000** personas más (Modelo D ~**8.29 M**); hacia **2030** mi proyección la lleva cerca de **7 millones, posiblemente 6.** Tenías razón en sospechar que las cifras oficiales pintan un cuadro demasiado amable: el rezago con que la ONEI cuenta a los emigrantes casi garantiza que la caída real va por delante de lo que se publica. Donde te corregiría es en el mecanismo (esto se explica sobre todo con quienes se van, no con quienes mueren) pero la dirección de tu intuición es la correcta.
 
-El censo de 2026 (si se hace, y si sus resultados se publican con honestidad) será el acontecimiento estadístico más importante de Cuba en décadas. Mi apuesta es por un número más cercano a **8.5–9 millones** que a los 10.9 que todavía imprime la ONU. Me alegraría equivocarme en la otra dirección. En algún lugar de esa brecha entre las cifras oficiales y las independientes hay personas reales (los tres de mi propia familia entre ellas) y el primer deber de un número es no dejar que desaparezcan dos veces.
+El censo de 2026 (si se hace, y si sus resultados se publican con honestidad) será el acontecimiento estadístico más importante de Cuba en décadas. Mi apuesta es por un número más cercano a **~8.3–8.6 millones** (Modelo D) que a los 10.9 que todavía imprime la ONU. Me alegraría equivocarme en la otra dirección. En algún lugar de esa brecha entre las cifras oficiales y las independientes hay personas reales (los tres de mi propia familia entre ellas) y el primer deber de un número es no dejar que desaparezcan dos veces.
 
 ---
 
-*Nota metodológica: los cuatro modelos Monte Carlo (1,000,000 de extracciones cada uno; cópula gaussiana para la correlación de los supuestos) son ejercicios de síntesis sobre datos publicados, no estimaciones revisadas por pares. El Modelo D ancla la mortalidad en una transferencia mortalidad-infantil → mortalidad-general calibrada con Venezuela (elasticidad ~0.3), validada contra el alza de la tasa bruta de mortalidad registrada; el subregistro residual (+3%, tope +9%) se limita a las muertes domiciliarias durante el colapso funerario de 2024–2026. La incertidumbre honesta es la horquilla completa de A a C (~1.8–3.0 millones), no los intervalos (más estrechos) de un solo modelo. La revisión adversarial (§8) identificó tres debilidades declaradas abiertamente: la estimación es ~86% migratoria; las correcciones migratorias pueden contarse doble; y los intervalos internos transmiten una falsa precisión. El cálculo de muertes en exceso compara las defunciones registradas por la ONEI con un contrafactual de mortalidad de 2019 ajustado por envejecimiento. Donde las fuentes discrepan (nacimientos 2025 como 68,064/68,051; muertes como 136,214/134,354; muertes por arbovirus como 33/46/48/55) se usaron las cifras de la ONEI de julio de 2026 y de la OPS. Código y datos: https: //github.com/ypriverol/cubascience (carpeta demographics/).*
+*Nota metodológica: los cuatro modelos Monte Carlo (1,000,000 de extracciones; cópula gaussiana; script `model_from_2021.py`) cubren la ventana **fin-2021 → fin-2025**, con nowcast a fin-2026. Nacimientos 2022–2025 = 325,233; muertes registradas = 502,149; migración neta ONEI-consistente ≈ 1,501,706. El Modelo D ancla la mortalidad en una transferencia mortalidad-infantil → mortalidad-general calibrada con Venezuela (elasticidad ~0.3); el subregistro residual (+3%, tope +9%) se limita a muertes domiciliarias. Preferido: **8.59 M** (−2.21 M, −20.5% sobre base corregida; emigración ≈91%). La incertidumbre honesta es la horquilla A–C (~1.8–2.4 M), no el IC de un solo modelo. Debilidades declaradas (§8): la estimación es ~91% migratoria; las correcciones migratorias pueden solaparse; los intervalos internos transmiten falsa precisión. El exceso bruto ~153,000 (2020–2025) y el exceso ajustado por edad ~40–60 mil (2024–2025) son cantidades distintas. Código y datos: https://github.com/ypriverol/cubascience (carpeta `demographics/`; claim-sheet `data/claims.yaml`).*
 
 ## Fuentes
 
