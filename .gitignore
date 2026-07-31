@@ -139,10 +139,10 @@ demographics/manuscript/en/latex/*.png
 
 # Codacy CLI local cache
 .codacy/
-demographics/manuscript/en/latex/main.pdf
 
-# Duplicate LaTeX build PDF (canonical copy lives in manuscript/en/)
+# Duplicate LaTeX build PDFs (canonical copies live in manuscript/en/)
 demographics/manuscript/en/latex/main.pdf
+demographics/manuscript/en/latex/supplement.pdf
 demographics/.mplconfig/
 
 # Git worktrees (local agent isolation)
