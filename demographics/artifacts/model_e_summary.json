@@ -1,0 +1,49 @@
+{
+  "model": "E",
+  "label": "vital reconstruction (HSDS)",
+  "n": 50000,
+  "seed": 2027,
+  "anchors": {
+    "official_2021": 11113215,
+    "R_mig_onei_consistent": 1501706,
+    "B_reg_2022_2025": 325233,
+    "D_reg_2022_2025": 502149
+  },
+  "pop_2025": {
+    "p05": 8649935.33698319,
+    "median": 8960111.47863308,
+    "p95": 9192118.09233207
+  },
+  "pop_2026": {
+    "p05": 8326318.061467097,
+    "median": 8657937.335284654,
+    "p95": 8918409.926957982
+  },
+  "decline_2021_2025": {
+    "p05": 1898953.9757063852,
+    "median": 2129973.396296844,
+    "p95": 2439743.025223903
+  },
+  "pct_corrected_base": {
+    "p05": 17.1226845063043,
+    "median": 19.207594045044225,
+    "p95": 21.99987751567356
+  },
+  "mig_share_median": 87.79493371675346,
+  "natural_decrease_share_median": 12.20506628324655,
+  "u0_median": 21145.36263289883,
+  "sum_B_star_median": 314562.7416166971,
+  "sum_D_star_median": 575269.9631340657,
+  "mig_median": 1868913.2573633117,
+  "loss_vs_official_2021_end_2026_pct": 22.09331561312677,
+  "births_artifact": {
+    "sum_median": 314338.1995004935,
+    "sum_reg": 325233.0
+  },
+  "deaths_artifact": {
+    "sum_median": 569398.3235652978,
+    "sum_reg": 502159.0
+  },
+  "preferred_public_model_still": "D",
+  "note": "Model E is provisional beside A\u2013D until Task 8 adversarial gate."
+}
