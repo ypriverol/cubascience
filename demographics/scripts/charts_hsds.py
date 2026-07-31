@@ -36,7 +36,7 @@ def chart_vitals() -> Path:
     deaths = _deaths()
     births = _births()
 
-    fig, axes = plt.subplots(1, 3, figsize=(12.5, 3.8))
+    fig, axes = plt.subplots(1, 3, figsize=(13.5, 4.4))
 
     ax = axes[0]
     ax.fill_between(scores["year"], scores["S_p05"], scores["S_p95"], color=BLUE, alpha=0.2)
@@ -112,7 +112,7 @@ def chart_population() -> Path:
     labels.append("E")
     pops.append(e["pop_2025"]["median"] / 1e6)
 
-    fig, ax = plt.subplots(figsize=(7.2, 4.2))
+    fig, ax = plt.subplots(figsize=(8.0, 4.8))
     colors = [INK2] * (len(labels) - 1) + [RED]
     # highlight D
     for i, lab in enumerate(labels):

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate publication charts: Spanish infographic + English manuscript (seaborn style, 300 dpi)."""
+"""Regenerate publication charts: Spanish infographic + English manuscript (seaborn style, 600 dpi MS)."""
 from __future__ import annotations
 
 import sys
