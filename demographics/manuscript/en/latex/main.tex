@@ -230,7 +230,7 @@ A 2026 nowcast under the mixture in Section~\ref{sec:nowcast} places Model~D nea
 
 \begin{table}[ht]
 \centering
-\caption{Four models: population loss 2021--2025 and end-2025 population (medians).}
+\caption{Models A--E: population loss 2021--2025 and end-2025 population (medians). Model~E is provisional.}
 \label{tab:models}
 \begin{tabular}{llrrr}
 \toprule
@@ -240,9 +240,31 @@ A · conservative & ONEI-anchored & 1.80 & 16.4 & 9.16 \\
 B · crisis-adjusted & under-reg.\ + independent migration & 2.19 & 20.4 & 8.57 \\
 C · worst case & analog upper bound & 2.41 & 22.6 & 8.26 \\
 D · sentinel (preferred) & IMR sentinel + triangulation & 2.21 & 20.5 & 8.59 \\
+E · vital reconstr.\ (prov.) & ageing + HSDS $\to B^*,D^*$ & 2.13 & 19.2 & 8.96 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{Model E: vital reconstruction (provisional)}
+As a companion path, Model~E reconstructs \emph{true} deaths and births from a yearly health-system deterioration score $S_t$ built from ageing, health-system decadence, and documented official underreporting (including COVID cause-attribution misuse as an integrity feature, not as a $\times N$ multiplier on all deaths).
+Ageing enters an expected-death schedule; decadence raises an uplift $f(S_t)$; births stay near the register with crisis fertility and selective exit.
+Closing the identity $P^*=P^*_{\mathrm{start}}+\sum(B^*-D^*-M^*)$ with a Model~D-like migration bridge yields median end-2025 population about \textbf{8.96~million} (loss 2.13~million, 19.2\% on the corrected base; migration share $\sim$88\%).
+Figure~\ref{fig:hsds} shows $S_t$ and reconstructed versus registered vitals; Figure~\ref{fig:modele} places E beside A--D.
+Preferred public claims remain Model~D until an adversarial gate promotes E.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth]{f12_hsds_vitals.png}
+\caption{Health-system deterioration score $S_t$ and Model~E reconstructed deaths/births versus registered series (2022--2025).}
+\label{fig:hsds}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.72\linewidth]{f13_model_e_population.png}
+\caption{End-2025 population medians for Models A--E. Preferred public model remains D (blue); E (red) is provisional.}
+\label{fig:modele}
+\end{figure}
 
 \begin{figure}[!htbp]
 \centering
@@ -438,6 +460,7 @@ Cuba & $-3.3\%$ \\
 \section{Discussion}
 
 Model~D is preferred because the IMR--CDR consistency check shrinks the need for large hidden-death multipliers and focuses residual uncertainty on migration and on exit-correcting external registers.
+Model~E (vital reconstruction via $S_t$) lands in the same loss band ($\sim$2.1~M; pop.\ $\sim$8.96~M) and raises the natural-decrease share only modestly ($\sim$12\% versus $\sim$9\% under D), so it does not yet displace D for public claims.
 Sensitivity concerns remain first-order: absolute loss is $\sim$91\% migratory; migration corrections can share a common outdated-register defect; and within-model intervals look falsely precise relative to the across-model envelope.
 
 \textbf{Percent language.}

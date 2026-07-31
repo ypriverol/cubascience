@@ -7,7 +7,10 @@ Quantitative estimate of Cuba’s population loss between 2021 and 2026.
 > (≈**−2.21 M**, **−20.5%** on the corrected base). Emigration ≈**91%** of the loss.
 > Age-adjusted excess deaths 2024–2025 ≈**40–60k**. By end-2026, loss approaches
 > ~**1 in 4** vs the **official 2021** base (a different definition from −20.5%).
-
+>
+> **Model E (provisional).** Vital reconstruction from ageing + health decadence +
+> bad reporting → true births/deaths → population ≈**8.96 M** end-2025
+> (−2.13 M, −19.2%). Preferred claims remain Model D until promoted.
 ## Three products
 
 | Product | Lang | Audience | Path |
@@ -35,10 +38,14 @@ cp main.pdf ../cuba-depopulation-2019-2026.pdf
 cd demographics
 export MPLBACKEND=Agg
 python3 scripts/charts_publication.py   # ES infographic + EN manuscript figures
+python3 scripts/charts_hsds.py          # Model E / HSDS figures (f12, f13)
 ```
 
 Infographic panels: `infographic/ig_*.png` (6 charts).  
 Manuscript figures: `figures/f*.png` (English labels for the LaTeX paper).
+
+Model E scripts: `scripts/hsds_*.py` (features → score → deaths → births → population).
+Artifacts: `artifacts/model_e_summary.json`, `artifacts/hsds_scores.json`.
 
 ## Cite
 
