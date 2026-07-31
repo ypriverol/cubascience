@@ -27,4 +27,4 @@ Expert-coded 0–1 yearly scores for web features. Cite-only; not a survey.
 | 2025 | 0.35 | Ongoing |
 
 Lookups: MINSAP / PAHO notes; independent Cuban press; WHO COVID archives
-(see `literature/SOURCES.md`). Codes are severity inputs to \(S_t\), not death counts.
+(see `literature/SOURCES.md`). Codes are severity inputs to S_t, not death counts.
