@@ -47,7 +47,10 @@ def model_d_anchors(claims: dict[str, Any] | None = None) -> dict[str, float]:
     s = c["selectivity"]
     return {
         "population_end_2025_model_d_m": float(d["pop_end_2025_m"]),
-        "loss_vs_2019_m": float(d["loss_2019_2025_m"]),
+        "loss_vs_2021_m": float(d["loss_2021_2025_m"]),
+        "loss_vs_2021_pct": float(d["loss_pct_corrected_base"]),
+        # aliases kept for older notebook cells
+        "loss_vs_2019_m": float(d["loss_2021_2025_m"]),
         "loss_vs_2019_pct": float(d["loss_pct_corrected_base"]),
         "births_2025": int(v["births_2025"]),
         "deaths_2025": int(v["deaths_2025"]),

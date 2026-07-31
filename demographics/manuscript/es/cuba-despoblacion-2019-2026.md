@@ -1,11 +1,11 @@
-# ¿Cuántas personas ha perdido Cuba desde 2019? Una estimación con intervalos, y una proyección hasta fin de 2026
+# Estimando el colapso poblacional de Cuba, 2021–2026
 
 > **Artículo de divulgación** (comunicación pública). No es un artículo científico revisado por pares.
 > La versión científica en inglés (LaTeX/PDF) y el cuaderno reproducible están en el repositorio
 > [ypriverol/cubascience](https://github.com/ypriverol/cubascience) → `demographics/`.
 > Sitio: [ypriverol.github.io/cubascience/demographics](https://ypriverol.github.io/cubascience/demographics/).
 
-*Un intento riguroso de medir (y pronosticar) el mayor colapso demográfico en la historia del hemisferio occidental en tiempos de paz.*
+*Uno de cada cuatro cubanos menos en cinco años (respecto a la población oficial de 2021, hacia fines de 2026).*
 
 ---
 
@@ -15,21 +15,21 @@ Las anécdotas no son estadísticas. Pero en el caso de Cuba las estadísticas m
 
 **Una advertencia por delante.** Antes de escribir esto sometí mis propias cifras a una *revisión adversarial* (le pedí a un demógrafo escéptico que las atacara con todas sus fuerzas) y el resultado cambió cómo presento la conclusión. La revisión me dio la razón en una cosa y me corrigió en otra, y ambas importan:
 
-- **Me corrigió:** por más que las muertes por COVID, dengue, chikungunya y apagones sean reales y trágicas, esta es, en un **~86%, una crisis de emigración, no de mortalidad.** Aun contando cada muerte oculta que la evidencia permite, las defunciones explican solo ~13% de la caída. Quien quiera entender la despoblación de Cuba tiene que mirar los aviones y las balsas, no solo los cementerios.
+- **Me corrigió:** por más que las muertes por COVID, dengue, chikungunya y apagones sean reales y trágicas, esta es, en un **~91%, una crisis de emigración, no de mortalidad** (ventana 2021→2025). Aun contando cada muerte oculta que la evidencia permite, las defunciones explican solo una fracción menor de la caída. Quien quiera entender la despoblación de Cuba tiene que mirar los aviones y las balsas, no solo los cementerios.
 - **Me dio la razón, y aquí está tu intuición, que era correcta:** las cifras oficiales probablemente **subestiman** la pérdida, pero por una razón migratoria, no de muertes. La ONEI solo cuenta como "emigrante" a quien lleva ~24 meses fuera; quien se fue en 2024–2025 casi no aparece todavía. Ese rezago hace que incluso mi escenario más pesimista pueda quedarse corto. Y al auditar los propios números del régimen (§6) aparece la prueba: la ONEI declaró un saldo migratorio de **+991 personas en 2022**, el mismo año en que 313,506 cubanos entraron solo a Estados Unidos. Los números oficiales no cuadran consigo mismos.
 
 Con eso en mente, construyo **cuatro** estimaciones en lugar de una:
 
-| Modelo | Qué asume | Caída 2019→2025 | Población fin-2025 |
+| Modelo | Qué asume | Caída 2021→2025 | Población fin-2025 |
 |, |, |, |, |
-| **A · conservador** | ancla en las cifras oficiales revisadas de la ONEI | **1.93 M (17.6%)** · IC 90% 1.79–2.26 M | **9.06 M** |
-| **B · ajustado por crisis** | subregistro de muertes + emigración hacia estimaciones independientes | **2.31 M (21.3%)** · IC 90% 1.94–2.73 M | **8.54 M** |
-| **C · peor caso (calibrado con análogos)** | emigración y mortalidad al límite de lo que la evidencia y los casos comparables permiten | **2.53 M (23.5%)** · IC 90% 2.08–2.96 M | **8.24 M** |
-| **D · centinela ★** *(el mejor)* | mortalidad anclada en indicadores centinela en vez de supuestos; emigración como en B/C | **2.31 M (21.3%)** · IC 90% 1.94–2.71 M | **8.56 M** |
+| **A · conservador** | ancla en las cifras oficiales revisadas de la ONEI | **1.80 M (16.4%)** | **9.16 M** |
+| **B · ajustado por crisis** | subregistro de muertes + emigración hacia estimaciones independientes | **2.19 M (20.4%)** | **8.57 M** |
+| **C · peor caso (calibrado con análogos)** | emigración y mortalidad al límite de lo que la evidencia y los casos comparables permiten | **2.41 M (22.6%)** | **8.26 M** |
+| **D · centinela ★** *(el mejor)* | mortalidad anclada en indicadores centinela en vez de supuestos; emigración como en B/C | **2.21 M (20.5%)** | **8.59 M** |
 
-El **Modelo D es la novedad de esta versión** y, creo, el más defendible: reemplaza los multiplicadores de mortalidad (hasta ahora medio arbitrarios) por una estimación anclada en la mortalidad infantil y otros indicadores que Cuba **sí** registra con rigor (§5). Lo notable es que **converge con el Modelo B en ~8.5 millones**, por una razón que refuerza todo el argumento: la señal de deterioro que da la mortalidad infantil *coincide* con el alza de muertes que la ONEI ya reporta. Es decir, las cifras de muertes se mueven honestamente con la crisis, lo que valida usarlas y confirma que el gran signo de interrogación sigue siendo la migración, no las muertes.
+El **Modelo D es la novedad de esta versión** y, creo, el más defendible: reemplaza los multiplicadores de mortalidad (hasta ahora medio arbitrarios) por una estimación anclada en la mortalidad infantil y otros indicadores que Cuba **sí** registra con rigor (§5). Lo notable es que **converge con el Modelo B en ~8.6 millones**, por una razón que refuerza todo el argumento: la señal de deterioro que da la mortalidad infantil *coincide* con el alza de muertes que la ONEI ya reporta. Es decir, las cifras de muertes se mueven honestamente con la crisis, lo que valida usarlas y confirma que el gran signo de interrogación sigue siendo la migración, no las muertes.
 
-Nada parecido a ninguna de estas cifras le ha ocurrido a un país latinoamericano en tiempos de paz. Los análogos que los demógrafos usan para comparar son guerras. Y si las tendencias actuales continúan, mi proyección sitúa a Cuba en torno a **7 millones para 2030, y posiblemente en apenas 6 millones.** Para **fines de este año, 2026**, los cuatro modelos coinciden en que la isla habrá perdido **~290,000 personas más**, quedando entre **7.9 y 8.8 millones** (Modelo D: **8.27 M**).
+Nada parecido a ninguna de estas cifras le ha ocurrido a un país latinoamericano en tiempos de paz. Los análogos que los demógrafos usan para comparar son guerras. Y si las tendencias actuales continúan, mi proyección sitúa a Cuba en torno a **7 millones para 2030, y posiblemente en apenas 6 millones.** Para **fines de este año, 2026**, los cuatro modelos coinciden en que la isla habrá perdido **~300,000 personas más**, quedando entre **7.9 y 8.9 millones** (Modelo D: **8.29 M**).
 
 Aquí está cómo llegué a todo esto, por qué creo que la realidad está en la mitad pesimista del rango, y (crucialmente) dónde el propio método puede estar equivocándose.
 

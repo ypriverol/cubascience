@@ -1,13 +1,12 @@
-# Cuba 2019–2026: depopulation in figures
+# Estimating Cuba’s 2021–2026 population collapse
 
-Quantitative estimate of Cuba’s population loss between 2019 and 2026, combining
-**Monte Carlo simulation** on the demographic accounting identity with
-**triangulation of independent administrative registers**.
+Quantitative estimate of Cuba’s population loss between 2021 and 2026.
+**One in four Cubans gone in five years** (vs the official 2021 base by end-2026).
 
-> **Central finding (Model D).** ≈**8.56 M** living population at end-2025
-> (≈**−2.3 M**, **−21%** on the corrected base). Emigration ≈**86%** of the loss.
+> **Central finding (Model D).** ≈**8.59 M** living population at end-2025
+> (≈**−2.21 M**, **−20.5%** on the corrected base). Emigration ≈**91%** of the loss.
 > Age-adjusted excess deaths 2024–2025 ≈**40–60k**. By end-2026, loss approaches
-> ~**1 in 4** vs the **official 2019** base (a different definition from −21%).
+> ~**1 in 4** vs the **official 2021** base (a different definition from −20.5%).
 
 ## Three products
 
@@ -43,7 +42,7 @@ Manuscript figures: `figures/f*.png` (English labels for the LaTeX paper).
 
 ## Cite
 
-> Pérez-Riverol, Y. (2026). *Cuba’s depopulation, 2019–2026.* Working paper.
+> Pérez-Riverol, Y. (2026). *Estimating Cuba’s 2021–2026 population collapse.* Working paper.
 > PDF: `demographics/manuscript/en/cuba-depopulation-2019-2026.pdf`. Zenodo DOI forthcoming.
 
 ## License

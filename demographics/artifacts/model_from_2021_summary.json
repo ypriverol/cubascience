@@ -1,0 +1,44 @@
+{
+  "window": "end-2021 \u2192 end-2025",
+  "n": 1000000,
+  "seed": 2027,
+  "anchors": {
+    "official_pop_end_2021": 11113215,
+    "official_pop_end_2025": 9434593,
+    "births_2022_2025": 325233,
+    "deaths_2022_2025_registered": 502149,
+    "onei_net_mig_2022_2025": 1501706
+  },
+  "models": {
+    "A": {
+      "loss_m": 1.8,
+      "loss_pct": 16.4,
+      "pop_end_2025_m": 9.16,
+      "pop_end_2026_m": 8.87
+    },
+    "B": {
+      "loss_m": 2.19,
+      "loss_pct": 20.4,
+      "pop_end_2025_m": 8.57,
+      "pop_end_2026_m": 8.27
+    },
+    "C": {
+      "loss_m": 2.41,
+      "loss_pct": 22.6,
+      "pop_end_2025_m": 8.26,
+      "pop_end_2026_m": 7.95
+    },
+    "D": {
+      "loss_m": 2.21,
+      "loss_pct": 20.5,
+      "pop_end_2025_m": 8.59,
+      "pop_end_2026_m": 8.29,
+      "loss_90_m": [
+        1.84,
+        2.6
+      ],
+      "migration_share_pct": 91.3,
+      "one_in_four_end_2026_vs_official_2021_pct": 25.4
+    }
+  }
+}

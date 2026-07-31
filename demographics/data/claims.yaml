@@ -1,34 +1,42 @@
-# Canonical quantitative claims for Cuba demographics 2019–2026.
+# Canonical quantitative claims for Cuba demographics 2021–2026.
+# Monte Carlo window: end-2021 → end-2025 (+ end-2026 nowcast).
 # All public products (EN paper, ES essay, social IG, notebook) must use these definitions.
-# Do not change Model D methodology here — only document published anchors.
 
 meta:
   version: "2026-07-30"
   preferred_model: D
+  mc_window: "end-2021 → end-2025"
   mc_draws_paper: 1000000
   mc_draws_notebook_interactive: 100000
   deaths_2023_canonical: 117739
   deaths_2023_anuario_footnote: 117746
+  script: "scripts/model_from_2021.py"
 
 vital:
   official_pop_2019: 11193470
+  official_pop_end_2021: 11113215
   onei_pop_end_2025: 9434593
   births_2025: 68064
   deaths_2025: 136214
   natural_balance_2025: -68149
   tfr_2025: 1.29
+  births_2022_2025: 325233
+  deaths_2022_2025_registered: 502149
+  onei_net_mig_2022_2025: 1501706
+  # legacy full-crisis totals retained for excess-mortality context
   births_2020_2025: 529367
   deaths_2020_2025_registered: 782233
   onei_net_mig_2020_2025: 1516491
 
 model_d:
-  pop_end_2025_m: 8.56
-  loss_2019_2025_m: 2.31
-  loss_pct_corrected_base: 21.3
-  pop_end_2026_m: 8.27
-  loss_during_2026_approx: 290000
-  migration_share_of_loss_pct: 86.0
-  definition_loss_pct: "Percent decline uses corrected end-2019 base (official minus baseline overstatement U0), not raw official 11.19M."
+  pop_end_2025_m: 8.59
+  loss_2021_2025_m: 2.21
+  loss_pct_corrected_base: 20.5
+  loss_90_m: [1.84, 2.60]
+  pop_end_2026_m: 8.29
+  loss_during_2026_approx: 300000
+  migration_share_of_loss_pct: 91.0
+  definition_loss_pct: "Percent decline uses corrected end-2021 base (official minus baseline overstatement U0), not raw official 11.11M."
 
 headline_rules:
   one_in_five_end_2025:
@@ -39,11 +47,12 @@ headline_rules:
   one_in_four_end_2026:
     value_approx: "1 in 4"
     pct_approx: 25
-    loss_m_approx: 2.9
-    base: "official 2019 (11.19M)"
+    loss_m_approx: 2.82
+    base: "official 2021 (11.11M)"
     year: 2026
+    years_span: 5
     social_allowed: true
-    note: "Never present Model D -21% (end-2025) as 'a quarter'."
+    note: "Never present Model D -20.5% (end-2025) as 'a quarter'. One-in-four is official 2021 → end-2026."
 
 excess_mortality:
   primary_age_adjusted_2024_2025:
@@ -53,7 +62,7 @@ excess_mortality:
     products: [en_paper, es_essay, social, notebook]
   secondary_crude_registered_2020_2025: 153000
   secondary_crude_registered_2024_2025: 66000
-  note: "Always label crude vs age-adjusted."
+  note: "Always label crude vs age-adjusted. Crude series still spans 2020–2025 for human-toll context."
 
 selectivity:
   emigrants_age_15_59_pct: 77
@@ -65,27 +74,27 @@ models_summary:
   - id: A
     label: "A · conservative"
     assumption: "ONEI-anchored"
-    decline_m: 1.93
-    decline_pct: 17.6
-    pop_end_2025_m: 9.06
+    decline_m: 1.80
+    decline_pct: 16.4
+    pop_end_2025_m: 9.16
   - id: B
     label: "B · crisis-adjusted"
     assumption: "under-registration + independent emigration"
-    decline_m: 2.31
-    decline_pct: 21.3
-    pop_end_2025_m: 8.54
+    decline_m: 2.19
+    decline_pct: 20.4
+    pop_end_2025_m: 8.57
   - id: C
     label: "C · worst case"
     assumption: "analog-calibrated upper bound"
-    decline_m: 2.53
-    decline_pct: 23.5
-    pop_end_2025_m: 8.24
+    decline_m: 2.41
+    decline_pct: 22.6
+    pop_end_2025_m: 8.26
   - id: D
     label: "D · sentinel"
     assumption: "IMR sentinel + triangulation"
-    decline_m: 2.31
-    decline_pct: 21.3
-    pop_end_2025_m: 8.56
+    decline_m: 2.21
+    decline_pct: 20.5
+    pop_end_2025_m: 8.59
     preferred: true
 
 triangulation:
@@ -98,7 +107,7 @@ triangulation:
     - {source: "ONEI official", estimate: 9.43, role: official}
     - {source: "Housing × occupancy", estimate: 8.70, role: occupancy}
     - {source: "Albizu-Campos (2023)", estimate: 8.62, role: independent}
-    - {source: "This study (Model D)", estimate: 8.56, role: preferred}
+    - {source: "This study (Model D)", estimate: 8.59, role: preferred}
     - {source: "Albizu-Campos (2024)", estimate: 8.03, role: independent}
 
 destinations_settled:
@@ -107,7 +116,7 @@ destinations_settled:
   uruguay: 35000
   other: 255000
   floor_total: 1050000
-  note: "Settled only — not encounters or nationality applications."
+  note: "Settled only — not encounters or nationality applications. Mostly 2021–2025 exits."
 
 destinations_other_concepts:
   us_encounters_2022_2024_approx: 850000
