@@ -20,6 +20,7 @@ Pre-crisis 2019 rates still appear only as methodological baselines (age schedul
 | Product | Lang | Audience | Path |
 |---|---|---|---|
 | Scientific preprint | EN | Researchers | [`manuscript/en/latex/`](manuscript/en/latex/) → [`cuba-depopulation-2021-2026.pdf`](manuscript/en/cuba-depopulation-2021-2026.pdf) |
+| Supplement | EN | Researchers | [`cuba-depopulation-2021-2026-supplement.pdf`](manuscript/en/cuba-depopulation-2021-2026-supplement.pdf) (Model E; LE; provinces) |
 | Public essay | ES | General / diaspora | [`manuscript/es/cuba-despoblacion-2021-2026.md`](manuscript/es/cuba-despoblacion-2021-2026.md) |
 | Social infographic | ES | Twitter / IG | [`infographic/`](infographic/) + `social_1x1.png`, `social_4x5.png` |
 | Notebook companion | EN | Open science | [`demographics.ipynb`](demographics.ipynb) · [Pages](https://ypriverol.github.io/cubascience/demographics/) |
@@ -33,7 +34,9 @@ Related bibliometrics study: [arXiv:2007.09638](https://arxiv.org/abs/2007.09638
 ```bash
 cd manuscript/en/latex
 latexmk -pdf main.tex
+latexmk -pdf supplement.tex
 cp main.pdf ../cuba-depopulation-2021-2026.pdf
+cp supplement.pdf ../cuba-depopulation-2021-2026-supplement.pdf
 ```
 
 ## Regenerate charts (600 dpi manuscript PNGs; 400 dpi IG)
@@ -53,8 +56,9 @@ Artifacts: `artifacts/model_e_summary.json`, `artifacts/hsds_scores.json`.
 
 ## Cite
 
-> Pérez-Riverol, Y. (2026). *Estimating Cuba’s 2021–2026 population collapse.* Working paper.
-> PDF: `demographics/manuscript/en/cuba-depopulation-2021-2026.pdf`. Zenodo DOI forthcoming.
+> Pérez-Riverol, Y. (2026). *Estimating Cuba’s 2021–2026 population collapse.* Preprint.
+> PDF: `demographics/manuscript/en/cuba-depopulation-2021-2026.pdf`
+> (+ supplement). Zenodo DOI forthcoming.
 
 ## License
 

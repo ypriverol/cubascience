@@ -22,10 +22,11 @@
 \author{Yasset P\'erez-Riverol\\
 \textit{Independent researcher}\\
 \texttt{ypriverol@gmail.com}}
-\date{Working paper (preprint) · 30 July 2026 · Not peer-reviewed\\[0.35em]
-\large One in four Cubans gone in five years (official 2021 base by end-2026)\\[0.25em]
-\normalsize Monte Carlo interval estimates, an infant-mortality sentinel,\\
-and triangulation of independent registers}
+\date{Preprint · 31 July 2026\\[0.35em]
+\normalsize Monte Carlo estimates with an infant-mortality sentinel\\
+and triangulation of independent registers\\[0.4em]
+\footnotesize Supplementary figures (Model~E; life expectancy; provinces):\\
+\texttt{cuba-depopulation-2021-2026-supplement.pdf}}
 
 \begin{document}
 \maketitle
@@ -62,23 +63,28 @@ Cumulative loss from 2021 approaches roughly one in four people by end-2026 when
 
 Counting Cubans has become contested.
 The last completed census was in 2012; the census planned for 2022 has been repeatedly postponed and is now promised for 2026~\citep{onei_census}.
-Without a census, published population depends on projections and a lagging migration register.
+Without a census, published population depends on projections and a lagging migration register~\citep{preston2001,un_wpp}.
 In July 2024, ONEI reported an ``effective population'' of 10{,}055{,}968 at end-2023 (about one million below prior published levels), then 9{,}748{,}007 (end-2024) and 9{,}434{,}593 (end-2025)~\citep{onei_revision,onei_2025}.
 
 Three incompatible series coexist (Figure~\ref{fig:pop}):
-the United Nations World Population Prospects path near 10.9~million (still assuming net emigration of order $2\times10^4$ per year)~\citep{un_wpp};
+the United Nations World Population Prospects path near 10.9~million (still assuming net emigration of order $2\times10^4$ per year)~\citep{un_wpp,eclac2022};
 ONEI's revised official series (9.43~million at end-2025);
 and independent estimates placing the living population nearer 8.0--8.6~million~\citep{albizu2023,albizu2024}.
 Almost three million people separate the extremes.
 This paper estimates the 2021--2025 decline with honest intervals, decomposes drivers into migratory and internal components, audits official migration accounting against destination registers, and projects to end-2026.
 
+Cuba's fertility transition was already among Latin America's earliest and deepest~\citep{diazbriquets1982,hollerbach1984,diazbriquets2014}, so the present collapse is not a first encounter with below-replacement fertility.
+What is new is the \emph{speed} of headcount loss under combined emigration and natural decrease, in a regional context where Latin America and the Caribbean still grow overall~\citep{eclac2022,un_wpp}.
+Comparable peacetime contractions elsewhere have been driven primarily by emigration (e.g.\ Venezuela) or by war and displacement~\citep{coleman2006,pagegarcia2020}.
+
 \textbf{Central thesis.}
-The headcount loss is mostly emigration, but a second ``internal'' engine (birth collapse, excess mortality, and ageing) would sustain contraction even if emigration slowed.
-The two engines are not independent: selective exit of working-age adults and women of reproductive age causes much of the fertility collapse, so many ``births that do not occur'' are a delayed migratory effect.
+The headcount loss is mostly emigration, but a second ``internal'' engine (birth collapse, excess mortality, and ageing) would sustain contraction even if emigration slowed~\citep{lee2014,lesthaeghe2010}.
+The two engines are not independent: selective exit of working-age adults and women of reproductive age causes much of the fertility collapse, so many ``births that do not occur'' are a delayed migratory effect~\citep{bongaarts2009,diazbriquets2014}.
 
 \section{Methods}
 
 \subsection{Accounting identity and Monte Carlo}
+The balancing equation is the standard demographic accounting identity~\citep{preston2001}.
 Registered ONEI aggregates over 2022--2025 are fixed anchors~\citep{onei_2025}:
 births $B^{\mathrm{reg}}=325{,}233$, deaths $D^{\mathrm{reg}}=502{,}149$,
 and identity-consistent net emigration $R=1{,}501{,}706$.
@@ -143,13 +149,14 @@ As a \emph{calibration analogy}, Venezuela's collapse saw IMR rise $\sim$76\% (r
 \begin{equation}
 e=\frac{\mathrm{d}\ln(\mathrm{CDR})}{\mathrm{d}\ln(\mathrm{IMR})}\approx 0.30
 \end{equation}
-(working range 0.22--0.40 used only for sensitivity)~\citep{venezuela_imr}.
+(working range 0.22--0.40 used only for sensitivity)~\citep{venezuela_imr,pagegarcia2020,garcia2019}.
 Applied to Cuba's IMR rise, $(1+0.98)^{0.30}-1\approx 30\%$ predicted all-cause CDR increase.
 Registered Cuban CDR rose from 9.7 to 12.9 per thousand by 2024 ($\sim$33\%), inside that band~\citep{onei_2025}.
 This is a \textbf{consistency check}, not structural identification: it argues against very large \emph{hidden institutional} death undercounts and motivates bounding residual under-registration in Model~D to the at-home elderly channel during funeral-system stress (central $\sim$3\%, cap 9\%; Table~\ref{tab:priors})~\citep{modeld}.
 
 \subsection{Excess mortality}
 Two distinct quantities are reported and must not be added or substituted.
+The distinction follows standard practice in crisis mortality research: crude excess versus counterfactual baselines, versus composition-adjusted rate comparisons~\citep{karlinsky2021,msemburi2023,kishore2018,kitagawa1955}.
 
 \textbf{Crude registered excess.}
 On crisis-adjusted mid-year stocks $\tilde P_t$, define a no-crisis counterfactual CDR with a mild ageing drift from the 2019 level 9.7 per thousand,
@@ -167,7 +174,7 @@ To ask how many deaths exceed what the \emph{already aged} population would prod
 \begin{equation}
 E^{\mathrm{age}}_t = D^{\mathrm{reg}}_t - \sum_a m_{a,2019}\,P_{a,t},
 \end{equation}
-using ONEI age structure updated for recent ageing (Kitagawa-style rate/composition separation in spirit; full cohort reconstruction is not claimed)~\citep{kitagawa1955}.
+using ONEI age structure updated for recent ageing (Kitagawa-style rate/composition separation in spirit; full cohort reconstruction is not claimed)~\citep{kitagawa1955,preston2001}.
 For 2024--2025 this yields about \textbf{40{,}000--60{,}000} excess deaths; the interval reflects uncertainty in age stocks (official versus Model~D-consistent populations) and in the 2019 schedule.
 Illustrative point comparison in Figure~\ref{fig:excess}: expected $\sim$112.5k and $\sim$113.8k versus registered 128.1k and 136.2k.
 Mortality rates at ages 60+ remaining 11--27\% above 2019 support elevated age-specific risks, not composition alone.
@@ -184,8 +191,8 @@ Agreement is assessed against the exit-correcting family; ceilings bound the ups
 The probable band from those external sources is near 8.0--8.9~million.
 
 \subsection{Destinations ledger and migration bridge}
-Settled migrants only (avoiding transit double-counting): United States $\sim$800{,}000; Spain $\sim$130--135{,}000; Uruguay $\sim$35{,}000; other $\sim$255{,}000; floor $\sim$1.05~million~\citep{destinations}.
-Encounter counts and nationality applications are separate concepts and are never added into the settled floor (Table~\ref{tab:bridge}).
+Settled migrants only (avoiding transit double-counting): United States $\sim$800{,}000; Spain $\sim$130--135{,}000; Uruguay $\sim$35{,}000; other $\sim$255{,}000; floor $\sim$1.05~million~\citep{destinations,pew_cuban}.
+Encounter counts and nationality applications are separate concepts and are never added into the settled floor (Table~\ref{tab:bridge})~\citep{cbp_encounters}.
 
 \begin{table}[ht]
 \centering
@@ -230,7 +237,8 @@ A 2026 nowcast under the mixture in Section~\ref{sec:nowcast} places Model~D nea
 
 \begin{table}[ht]
 \centering
-\caption{Models A--E: population loss 2021--2025 and end-2025 population (medians). Model~E is provisional.}
+\caption{Models A--D: population loss 2021--2025 and end-2025 population (medians).
+A provisional vital-reconstruction companion (Model~E) is reported only in the supplement~\citep{modele_supp}.}
 \label{tab:models}
 \begin{tabular}{llrrr}
 \toprule
@@ -240,31 +248,9 @@ A · conservative & ONEI-anchored & 1.80 & 16.4 & 9.16 \\
 B · crisis-adjusted & under-reg.\ + independent migration & 2.19 & 20.4 & 8.57 \\
 C · worst case & analog upper bound & 2.41 & 22.6 & 8.26 \\
 D · sentinel (preferred) & IMR sentinel + triangulation & 2.21 & 20.5 & 8.59 \\
-E · vital reconstr.\ (prov.) & ageing + HSDS $\to B^*,D^*$ & 2.13 & 19.2 & 8.96 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-\subsection{Model E: vital reconstruction (provisional)}
-As a companion path, Model~E reconstructs \emph{true} deaths and births from a yearly health-system deterioration score $S_t$ built from ageing, health-system decadence, and documented official underreporting (including COVID cause-attribution misuse as an integrity feature, not as a $\times N$ multiplier on all deaths).
-Ageing enters an expected-death schedule; decadence raises an uplift $f(S_t)$; births stay near the register with crisis fertility and selective exit.
-Closing the identity $P^*=P^*_{\mathrm{start}}+\sum(B^*-D^*-M^*)$ with a Model~D-like migration bridge yields median end-2025 population about \textbf{8.96~million} (loss 2.13~million, 19.2\% on the corrected base; migration share $\sim$88\%).
-Figure~\ref{fig:hsds} shows $S_t$ and reconstructed versus registered vitals; Figure~\ref{fig:modele} places E beside A--D.
-Preferred public claims remain Model~D until an adversarial gate promotes E.
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=\linewidth]{f12_hsds_vitals.png}
-\caption{Health-system deterioration score $S_t$ and Model~E reconstructed deaths/births versus registered series (2022--2025).}
-\label{fig:hsds}
-\end{figure}
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=0.72\linewidth]{f13_model_e_population.png}
-\caption{End-2025 population medians for Models A--E. Preferred public model remains D (blue); E (red) is provisional.}
-\label{fig:modele}
-\end{figure}
 
 \begin{figure}[!htbp]
 \centering
@@ -316,10 +302,10 @@ That 2025 deficit matches the 2021 COVID peak without a pandemic: natural decrea
 
 \textbf{Fertility.}
 The total fertility rate fell to 1.29 children per woman in 2025, the lowest since 1958 and well below replacement (2.1).
-Two intertwined causes: emigration removes young women (the flow is majority female), and those who remain defer or forgo births under blackouts and scarcity.
+Two intertwined causes: emigration removes young women (the flow is majority female), and those who remain defer or forgo births under blackouts and scarcity~\citep{diazbriquets2014,bongaarts2009,lesthaeghe2010}.
 
 \textbf{Ageing.}
-Official projections move the share aged 60+ from 20.4\% (2019) to 26.7\% (2025) and toward 33\% by 2035, but they assume a larger living stock than Model~D.
+Official projections move the share aged 60+ from 20.4\% (2019) to 26.7\% (2025) and toward 33\% by 2035, but they assume a larger living stock than Model~D~\citep{onei_2025,lee2014}.
 Under a smaller, youth-depleted stock the elderly share is higher still (order $\sim$29\% already in 2025 and, approximately, $\sim$40\% by 2035 as a first-order sketch requiring a full cohort projection).
 Median age reached \textbf{45} years in 2025 (Figure~\ref{fig:aging}).
 
@@ -341,44 +327,33 @@ Median age reached \textbf{45} years in 2025 (Figure~\ref{fig:aging}).
 \label{fig:internal}
 \end{figure}
 
-\textbf{Life expectancy.}
-Official life expectancy at birth peaked in 2011--13 (78.5 years) and fell to 77.7 in 2018--20, before the worst of the crisis (Figure~\ref{fig:le}).
-An independent 2021 estimate places it near 71 years~\citep{albizu2023,bronnum2023}.
-Life expectancy re-expresses the same mortality shock rather than providing independent corroboration; its magnitude (about 6.5 years in a single year in the independent path) is exceptional for peacetime.
-Translated to years of life lost, crude excess of $\sim$153{,}000 deaths in 2020--2025 implies more than one million person-years lost, concentrated among the elderly.
-
-\textbf{Infant mortality and food insecurity as mechanisms.}
+\textbf{Life expectancy and food insecurity as mechanisms.}
+Official life expectancy at birth peaked in 2011--13 (78.5 years) and fell to 77.7 in 2018--20; an independent 2021 estimate places it near 71 years~\citep{albizu2023,bronnum2023}.
+That decline is large even relative to COVID-era life-expectancy losses documented internationally~\citep{aburto2022,msemburi2023}; the full series is shown in the supplement.
 Infant deaths rose from 461 (2018) to 715 (2022); the rate reached 9.9 per thousand in 2025 ($+$98\% since 2019).
-Cuba imports 70--80\% of food consumed; agricultural GDP fell 61.7\% between 2018 and 2024; WFP estimates more than four million Cubans in food insecurity ($\sim$22.5\% anaemia in early childhood).
+Cuba imports 70--80\% of food consumed; agricultural GDP fell 61.7\% between 2018 and 2024; WFP estimates more than four million Cubans in food insecurity ($\sim$22.5\% anaemia in early childhood)~\citep{wfp_cuba}.
 These facts do not yield a malnutrition death series (none exists); they are treated only as plausible amplifying pathways for infant and elderly mortality and for depressed fertility.
 
 \subsection{Age-adjusted excess in 2024--2025}
 Infant mortality remains a high-integrity early-warning sentinel because infant deaths occur in hospitals and are hard to hide.
 Crude registered excess versus the drifted no-crisis CDR is $\sim$153{,}000 over 2020--2025 (peak 2021).
-After removing compositional ageing via the 2019 age-schedule counterfactual, 2024--2025 still show about \textbf{40{,}000--60{,}000} excess deaths (Figure~\ref{fig:excess}).
+After removing compositional ageing via the 2019 age-schedule counterfactual, 2024--2025 still show about \textbf{40{,}000--60{,}000} excess deaths (Figure~\ref{fig:excess})~\citep{kitagawa1955,karlinsky2021}.
 Mortality rates at ages 60+ remain 11--27\% above 2019: mortality rises not only because there are more elderly people, but because age-specific rates themselves are elevated.
 
 \subsection{Who leaves and who remains}
 About \textbf{77\%} of emigrants are aged 15--59; nearly half are under 35 (Figure~\ref{fig:age}).
 Among those remaining, about 26.7\% are 60+ (median age $\sim$45).
-Exit hollows the centre of the pyramid, ages the island, and removes those who would have children.
+Exit hollows the centre of the pyramid, ages the island, and removes those who would have children~\citep{coleman2006,lee2014}.
 
 The flow is majority female ($\sim$57\%); among reproductive ages roughly 133 women leave per 100 men.
-Births fell 38\% (from $\sim$110{,}000 in 2019 to 68{,}000 in 2025); about half of that fall is fewer women of fertile age (many emigrated) and half is lower fertility per woman (TFR from $\sim$1.6 to 1.29).
+Births fell 38\% (from $\sim$110{,}000 in 2019 to 68{,}000 in 2025); about half of that fall is fewer women of fertile age (many emigrated) and half is lower fertility per woman (TFR from $\sim$1.6 to 1.29)~\citep{diazbriquets2014}.
 The migratory half is hardest to reverse: fertility recovery without mothers does not restore births.
 
-Emptying is national but unequal (Figure~\ref{fig:prov}).
-Havana leads at net emigration of \textbf{$-$33 per 1{,}000} in 2025; western and central provinces empty faster than the east, yet no province loses less than about 2\% of its people per year.
+Emptying is national but unequal: Havana leads at net emigration of \textbf{$-$33 per 1{,}000} in 2025; western and central provinces empty faster than the east, yet no province loses less than about 2\% of its people per year (provincial map in the supplement).
 Together, mortality and selectivity close the internal story of who dies, who leaves, and who remains (Figure~\ref{fig:mortality_selectivity}).
 
 \begin{figure}[!htbp]
 \centering
-\begin{subfigure}[t]{0.495\linewidth}
-\centering
-\includegraphics[width=\linewidth]{f5_esperanza.png}
-\caption{Life expectancy at birth: official triennial series and independent 2021 estimate.}
-\label{fig:le}
-\end{subfigure}\hfill
 \begin{subfigure}[t]{0.495\linewidth}
 \centering
 \includegraphics[width=\linewidth]{f9_exceso.png}
@@ -386,23 +361,15 @@ Together, mortality and selectivity close the internal story of who dies, who le
 Primary claim: age-adjusted excess $\approx$40--60 thousand in 2024--2025.
 Crude registered excess $\sim$153{,}000 over 2020--2025 is a separate quantity.}
 \label{fig:excess}
-\end{subfigure}
-
-\vspace{0.6em}
-
+\end{subfigure}\hfill
 \begin{subfigure}[t]{0.495\linewidth}
 \centering
 \includegraphics[width=\linewidth]{f10_edad.png}
 \caption{Age composition of emigrants versus remaining residents.}
 \label{fig:age}
-\end{subfigure}\hfill
-\begin{subfigure}[t]{0.495\linewidth}
-\centering
-\includegraphics[width=\linewidth]{f11_provincias.png}
-\caption{Net emigration rate by province, 2025.}
-\label{fig:prov}
 \end{subfigure}
-\caption{Mortality signal and selectivity of exit: life expectancy, age-adjusted excess deaths, emigrant age structure, and provincial intensity.}
+\caption{Mortality signal and selectivity of exit: age-adjusted excess deaths and emigrant age structure.
+Life expectancy and provincial maps appear in the supplement.}
 \label{fig:mortality_selectivity}
 \end{figure}
 \FloatBarrier
@@ -457,8 +424,8 @@ Cuba & $-3.3\%$ \\
 
 \section{Discussion}
 
-Model~D is preferred because the IMR--CDR consistency check shrinks the need for large hidden-death multipliers and focuses residual uncertainty on migration and on exit-correcting external registers.
-Model~E (vital reconstruction via $S_t$) lands in the same loss band ($\sim$2.1~M; pop.\ $\sim$8.96~M) and raises the natural-decrease share only modestly ($\sim$12\% versus $\sim$9\% under D), so it does not yet displace D for public claims.
+Model~D is preferred because the IMR--CDR consistency check shrinks the need for large hidden-death multipliers and focuses residual uncertainty on migration and on exit-correcting external registers~\citep{pagegarcia2020,modeld}.
+A provisional vital-reconstruction companion (Model~E) lands in the same loss band ($\sim$2.1~M; pop.\ $\sim$8.96~M) and is documented only in the supplement~\citep{modele_supp}; it does not displace D for public claims.
 Sensitivity concerns remain first-order: absolute loss is $\sim$91\% migratory; migration corrections can share a common outdated-register defect; and within-model intervals look falsely precise relative to the across-model envelope.
 
 \textbf{Percent language.}
@@ -467,8 +434,8 @@ Against the corrected Model~D base, end-2025 loss is $\sim$20.5\% (``about one i
 These are not interchangeable headlines.
 
 \textbf{Selectivity couples the engines.}
-Exit is age- and sex-selective; it ages the island, structurally depresses fertility, and (to the extent diaspora composition differs from the resident stock) can shift the composition of those who remain toward groups with worse documented health indicators.
-The natural balance, positive in 2019, fell to $-$68{,}149 in 2025; age-adjusted excess of 40{,}000--60{,}000 in 2024--2025 shows elevated mortality beyond ageing alone.
+Exit is age- and sex-selective; it ages the island, structurally depresses fertility, and (to the extent diaspora composition differs from the resident stock) can shift the composition of those who remain toward groups with worse documented health indicators~\citep{coleman2006,diazbriquets2014,lee2014}.
+The natural balance, positive in 2019, fell to $-$68{,}149 in 2025; age-adjusted excess of 40{,}000--60{,}000 in 2024--2025 shows elevated mortality beyond ageing alone~\citep{karlinsky2021,msemburi2023}.
 Migration and internal collapse are, in that sense, one coupled process.
 
 \subsection{Note on official migration accounting}
@@ -493,6 +460,7 @@ ONEI tables and a machine-readable claim sheet are in the public repository
 \url{https://github.com/ypriverol/cubascience} under \texttt{demographics/}.
 Interactive companion: \url{https://ypriverol.github.io/cubascience/demographics/}.
 Monte Carlo scripts (\texttt{scripts/model\_*.py}) write summaries to \texttt{artifacts/}.
+Supplementary PDF: \texttt{manuscript/en/cuba-depopulation-2021-2026-supplement.pdf}~\citep{modele_supp}.
 Third-party literature is cited, not redistributed.
 
 \section*{Competing interests}
