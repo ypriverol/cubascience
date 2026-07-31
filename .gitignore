@@ -144,3 +144,6 @@ demographics/manuscript/en/latex/main.pdf
 # Duplicate LaTeX build PDF (canonical copy lives in manuscript/en/)
 demographics/manuscript/en/latex/main.pdf
 demographics/.mplconfig/
+
+# Git worktrees (local agent isolation)
+.worktrees/
