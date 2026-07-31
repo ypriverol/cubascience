@@ -41,7 +41,7 @@ Within each bucket, feature `default_weight` values sum to 1.0.
 |---|---|---|---|---|
 | `elderly_share_60plus` | Share 60+ | ONEI 3.12/3.3; claims selectivity | minmax 0.18–0.30 | 0.45 |
 | `median_age_proxy` | Median age remaining | claims + age stocks | minmax 38–48 | 0.25 |
-| `fertile_women_share_proxy` | Fertile-age women share (**inverted** for score) | ONEI + 77% exit ages 15–59 | minmax 0.18–0.28 then invert | 0.30 |
+| `fertile_women_share_proxy` | Working-age 15–59 share (**inverted** for score) | ONEI + 77% exit ages 15–59 | minmax 0.55–0.66 then invert | 0.30 |
 
 ### Health decadence
 

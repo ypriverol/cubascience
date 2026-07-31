@@ -8,3 +8,4 @@ jupyter
 nbconvert
 pyyaml
 pillow
+xlrd>=2.0.1
