@@ -1,0 +1,191 @@
+# HSDS feature dictionary for Model E (vital reconstruction).
+# Task 1 freeze: named features, normalization rules, default weights.
+# Score construction and transfer to D*/B* happen in later tasks.
+
+meta:
+  version: "2026-07-31"
+  model: E
+  score_name: health_system_deterioration_S
+  years_core: [2019, 2020, 2021, 2022, 2023, 2024, 2025]
+  notes:
+    - "COVID misuse is an integrity/severity feature, never a raw multiplier on all deaths."
+    - "Ageing features feed both death schedule and fertile-woman base; avoid double-counting ageing again in decadence uplift (Task 8 gate)."
+    - "Default weights sum to 1.0 within each bucket; bucket mix weights sum to 1.0."
+
+onei_spine:
+  - file: 3.12evoluciondelaestructuraporedadesdelapoblaciondecuba.xls
+    role: age structure / elderly and fertile shares
+  - file: 3.3poblacionmediasegungruposdeedadessexoyzonas.xls
+    role: mean population by age group, sex, zone
+  - file: 3.15defuncionesporedadesquinquenalesysexo.xls
+    role: age-sex death schedule (base rates)
+  - file: 3.16defuncionesdemenoresdeunanoporsexo.xls
+    role: infant deaths / IMR sentinel
+  - file: 3.17esperanzadevidaporsexosyedadessimples.xls
+    role: life expectancy by sex and age
+  - file: 3.13movimientonaturaldelapoblacionporprovincias.xls
+    role: registered births and deaths (provincial natural movement)
+
+# Mix of the three buckets into yearly score S_t.
+bucket_mix:
+  ageing: 0.25
+  health_decadence: 0.50
+  bad_reporting: 0.25
+
+normalization:
+  default: minmax_2019_2025
+  description: >
+    For continuous series, value_norm = (x - x_lo) / (x_hi - x_lo) clipped to [0, 1],
+    where (x_lo, x_hi) are documented per feature (usually 2019 baseline vs crisis peak).
+  flags: binary 0/1
+  web_severity: expert_coded_0_1  # documented in artifacts/public_health_signals.md (Task 2)
+
+buckets:
+  ageing:
+    weight_within_bucket_sum: 1.0
+    features:
+      elderly_share_60plus:
+        id: elderly_share_60plus
+        description: Share of population aged 60+ (stayers under selective exit).
+        source: ONEI 3.12 / 3.3; claims selectivity.pct_age_60_plus_remaining for late years
+        unit: share
+        higher_means: more_mortality_pressure
+        norm:
+          method: minmax
+          lo: 0.18   # ~pre-crisis share order
+          hi: 0.30   # crisis / Model-D remaining share order
+        default_weight: 0.45
+      median_age_proxy:
+        id: median_age_proxy
+        description: Median age of remaining population (proxy from stayers vs leavers).
+        source: claims selectivity (median_age_stayers / leavers); ONEI age stocks
+        unit: years
+        higher_means: more_mortality_pressure
+        norm:
+          method: minmax
+          lo: 38
+          hi: 48
+        default_weight: 0.25
+      fertile_women_share_proxy:
+        id: fertile_women_share_proxy
+        description: Proxy share of women of fertile age (inverted — lower share raises score via birth collapse).
+        source: ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
+        unit: share
+        higher_means: less_birth_base  # after invert_for_score
+        invert_for_score: true
+        norm:
+          method: minmax
+          lo: 0.18
+          hi: 0.28
+        default_weight: 0.30
+
+  health_decadence:
+    weight_within_bucket_sum: 1.0
+    features:
+      imr_rise:
+        id: imr_rise
+        description: Infant mortality rate rise vs 2019 (high-integrity health sentinel).
+        source: ONEI 3.16; Indicadores demográficos / Anuario
+        unit: relative_rise
+        higher_means: worse_system
+        norm:
+          method: minmax
+          lo: 0.0    # no rise
+          hi: 1.0    # ~100% rise (Cuba ~2019→peak order)
+        default_weight: 0.22
+      cdr_rise:
+        id: cdr_rise
+        description: Crude death rate rise vs pre-crisis baseline (registered).
+        source: ONEI 3.13 / vital series in claims; Anuario
+        unit: relative_rise
+        higher_means: worse_system
+        norm:
+          method: minmax
+          lo: 0.0
+          hi: 0.50   # ~50% CDR rise ceiling for norm
+        default_weight: 0.18
+      mmr_rise:
+        id: mmr_rise
+        description: Maternal mortality rise (cite Albizu / MINSAP; cite-only PDF).
+        source: literature (maternal mortality reports); not redistributed
+        unit: relative_rise_or_level_norm
+        higher_means: worse_system
+        norm:
+          method: minmax
+          lo: 0.0
+          hi: 1.0
+        default_weight: 0.12
+      e0_gap:
+        id: e0_gap
+        description: Gap between official/implied e0 and independent low estimates (years lost).
+        source: ONEI 3.17; Brønnum-Hansen & Albizu-Campos (2023) cite-only
+        unit: years
+        higher_means: worse_survival
+        norm:
+          method: minmax
+          lo: 0.0
+          hi: 8.0
+        default_weight: 0.18
+      healthcare_collapse_web:
+        id: healthcare_collapse_web
+        description: Coded 0–1 severity of medicine shortages, blackouts in hospitals, staffing exit.
+        source: public web / press (Task 2 public_health_signals.md); cite-only
+        unit: score_0_1
+        higher_means: worse_system
+        norm:
+          method: identity  # already 0–1
+        default_weight: 0.18
+      epidemic_pressure_web:
+        id: epidemic_pressure_web
+        description: Coded 0–1 pressure from COVID waves and post-COVID epidemic burden.
+        source: public epi reports / WHO / press (Task 2); cite-only
+        unit: score_0_1
+        higher_means: worse_system
+        norm:
+          method: identity
+        default_weight: 0.12
+
+  bad_reporting:
+    weight_within_bucket_sum: 1.0
+    features:
+      covid_misuse_ratio_norm:
+        id: covid_misuse_ratio_norm
+        description: >
+          Normalized integrity signal from all-cause excess vs official COVID-attributed deaths.
+          Prefer log10(excess_or_all_cause_jump / covid_labels), then minmax to [0,1].
+          NEVER multiply registered all-cause deaths by this ratio.
+        source: official COVID labels vs 2021 all-cause jump / excess bands in claims
+        unit: log10_ratio_norm
+        higher_means: worse_integrity_or_severity
+        norm:
+          method: log10_ratio_then_minmax
+          ratio_lo: 1.0
+          ratio_hi: 50.0
+        default_weight: 0.40
+      onei_migration_seam_flag:
+        id: onei_migration_seam_flag
+        description: Binary/soft flag for years where ONEI migration seam / revision dump is active.
+        source: demographics/scripts/onei_audit.py identity; claims migration bridge
+        unit: flag_0_1
+        higher_means: worse_official_path
+        norm:
+          method: identity
+        default_weight: 0.35
+      stats_opacity_vs_independents:
+        id: stats_opacity_vs_independents
+        description: Discordance of official stocks/flows vs independent demographers / destination admin data.
+        source: Albizu reports (cite-only); US CBP and destination lower bounds; onei_audit
+        unit: score_0_1
+        higher_means: worse_transparency
+        norm:
+          method: identity_or_minmax
+          lo: 0.0
+          hi: 1.0
+        default_weight: 0.25
+
+# Placeholders for Task 4–5 transfer (not used until those tasks).
+transfer_priors_placeholders:
+  deaths:
+    note: "D*_t = Expected_from_ageing_t × f(S_t) × ε — f defined in hsds_deaths.py"
+  births:
+    note: "B*_t near B_reg unless S_t + missing-women evidence say otherwise; TFR 1.29 floor/anchor"
