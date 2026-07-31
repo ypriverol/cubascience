@@ -48,7 +48,7 @@ Machine-readable single source of truth. Every public number has an id, value, u
 | Family | Rule |
 |---|---|
 | Model D end-2025 | **8.56 M**; loss **2.31 M (−21.3%)** on corrected base |
-| “Quarter” / ¼ language | Only as **~25% by end-2026** vs **official 2019 base** (or cumulative ~2.9 M). Never as Model D −21% to 2025 |
+| “Quarter” / ¼ language | Only as **~25% by end-2026** vs **official 2021 base** (or cumulative ~2.9 M). Never as Model D −21% to 2025 |
 | Excess mortality | **Primary (science + social):** age-adjusted **40–60k in 2024–2025**. **Secondary:** crude registered excess ~153k (2020–25) / ~66k (2024–25) — always labeled |
 | Migration share of loss | **~86%** |
 | Working-age emigrants | **77%** aged 15–59 (retire bare “80%” or footnote as alternate source) |
@@ -62,7 +62,7 @@ Machine-readable single source of truth. Every public number has an id, value, u
 
 **Location:** `demographics/manuscript/en/latex/` (e.g. `main.tex`, `refs.bib`, figures via relative paths to `../../figures/`).
 
-**Working draft (optional):** keep/update `manuscript/en/cuba-depopulation-2019-2026.md` as an outline synced to sections — not the submission artifact.
+**Working draft (optional):** keep/update `manuscript/en/cuba-depopulation-2021-2026.md` as an outline synced to sections — not the submission artifact.
 
 **Target structure (~4–8k words):**
 
@@ -75,7 +75,7 @@ Machine-readable single source of truth. Every public number has an id, value, u
 7. Data & code availability — public repo; ONEI tables; **no** “code on request”  
 8. References — proper bibliography (bibliometrics arXiv:2007.09638 is related prior work, not this study’s primary cite)
 
-**Build:** `latexmk` / `pdflatex` locally; optional CI artifact later. Output PDF under `manuscript/en/` (e.g. `cuba-depopulation-2019-2026.pdf`).
+**Build:** `latexmk` / `pdflatex` locally; optional CI artifact later. Output PDF under `manuscript/en/` (e.g. `cuba-depopulation-2021-2026.pdf`).
 
 ## English notebook
 
@@ -86,7 +86,7 @@ Machine-readable single source of truth. Every public number has an id, value, u
 
 ## Spanish public essay
 
-**File:** `manuscript/es/cuba-despoblacion-2019-2026.md`
+**File:** `manuscript/es/cuba-despoblacion-2021-2026.md`
 
 - Keep rhetorical voice (anecdote, second person, adversarial narrative).  
 - Front-matter / lede label: *artículo de divulgación* / public communication — not peer-reviewed science.  

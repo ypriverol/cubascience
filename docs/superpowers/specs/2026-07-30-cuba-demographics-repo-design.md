@@ -2,7 +2,7 @@
 
 **Date:** 2026-07-30  
 **Status:** Approved in conversation; awaiting user review of this written spec  
-**Related prior work:** [arXiv:2007.09638](https://arxiv.org/abs/2007.09638) (Cuban research output); new study on Cuban demographic crisis 2019–2026
+**Related prior work:** [arXiv:2007.09638](https://arxiv.org/abs/2007.09638) (Cuban research output); new study on Cuban demographic crisis 2021–2026
 
 ## Goal
 
@@ -41,8 +41,8 @@ cubascience/
     ├── requirements.txt
     ├── PROJECT-MEMORY.md           # English; gitignored; not committed
     ├── manuscript/
-    │   ├── es/cuba-despoblacion-2019-2026.md
-    │   └── en/cuba-depopulation-2019-2026.md
+    │   ├── es/cuba-despoblacion-2021-2026.md
+    │   └── en/cuba-depopulation-2021-2026.md
     ├── infographic/
     ├── figures/
     ├── scripts/

@@ -71,7 +71,7 @@ for x, v in zip(alb_y, alb_v):
 ax.set_xlim(2018.6, 2027.2); ax.set_ylim(7.6, 11.7)
 ax.set_xticks(range(2019, 2026))
 ax.set_ylabel("Population (millions, end of year)", fontsize=10)
-ax.set_title("Three versions of Cuba's population, 2019–2025",
+ax.set_title("Three versions of Cuba's population, 2021–2026",
              fontsize=13, fontweight="bold", loc="left", color=INK, pad=14)
 fig.text(0.005, 0.012, "Sources: ONEI; Albizu-Campos (2024, 2025); UN World Population Prospects 2024. Dashed = series revised or estimated, not annually observed.",
          fontsize=7.5, color=MUTED)
@@ -138,8 +138,8 @@ ax.set_xlim(1.66, 2.62)
 ax.annotate("higher hidden\nemigration\n(toward Albizu-Campos)", (2.38, ax.get_ylim()[1]*0.25),
             color=INK2, fontsize=9, ha="center")
 ax.set_yticks([])
-ax.set_xlabel("Total population decline, end-2019 → end-2025 (millions)", fontsize=10)
-ax.set_title("Monte Carlo estimate of Cuba's population loss since 2019",
+ax.set_xlabel("Total population decline, end-2021 → end-2025 (millions)", fontsize=10)
+ax.set_title("Monte Carlo estimate of Cuba's population loss since 2021",
              fontsize=13, fontweight="bold", loc="left", color=INK, pad=14)
 fig.text(0.005, 0.012, "1,000,000 simulations combining registered vital statistics with uncertainty in emigration undercount and death registration.",
          fontsize=7.5, color=MUTED)
