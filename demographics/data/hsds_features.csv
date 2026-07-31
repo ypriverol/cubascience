@@ -1,7 +1,7 @@
 year,bucket,feature,value,value_norm,weight_default,source_note
 2019,ageing,elderly_share_60plus,0.204,0.19999999999999996,0.45,ONEI 3.12 / 3.3; claims selectivity.pct_age_60_plus_remaining for late years
 2019,ageing,median_age_proxy,38.0,0.0,0.25,claims selectivity (median_age_stayers / leavers); ONEI age stocks
-2019,ageing,fertile_women_share_proxy,0.318,0.0,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
+2019,ageing,fertile_women_share_proxy,0.636,0.21818181818181837,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
 2019,health_decadence,imr_rise,0.012844036697247763,0.012844036697247763,0.22,ONEI 3.16; Indicadores demográficos / Anuario
 2019,health_decadence,cdr_rise,0.0,0.0,0.18,ONEI 3.13 / vital series in claims; Anuario
 2019,health_decadence,mmr_rise,0.0,0.0,0.12,literature (maternal mortality reports); not redistributed
@@ -13,7 +13,7 @@ year,bucket,feature,value,value_norm,weight_default,source_note
 2019,bad_reporting,stats_opacity_vs_independents,0.2,0.2,0.25,Albizu reports (cite-only); US CBP and destination lower bounds; onei_audit
 2020,ageing,elderly_share_60plus,0.213,0.275,0.45,ONEI 3.12 / 3.3; claims selectivity.pct_age_60_plus_remaining for late years
 2020,ageing,median_age_proxy,39.166666666666664,0.11666666666666643,0.25,claims selectivity (median_age_stayers / leavers); ONEI age stocks
-2020,ageing,fertile_women_share_proxy,0.315,0.0,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
+2020,ageing,fertile_women_share_proxy,0.63,0.27272727272727304,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
 2020,health_decadence,imr_rise,-0.017142857142857126,0.0,0.22,ONEI 3.16; Indicadores demográficos / Anuario
 2020,health_decadence,cdr_rise,0.028781446807831346,0.05756289361566269,0.18,ONEI 3.13 / vital series in claims; Anuario
 2020,health_decadence,mmr_rise,0.2,0.2,0.12,literature (maternal mortality reports); not redistributed
@@ -25,7 +25,7 @@ year,bucket,feature,value,value_norm,weight_default,source_note
 2020,bad_reporting,stats_opacity_vs_independents,0.35,0.35,0.25,Albizu reports (cite-only); US CBP and destination lower bounds; onei_audit
 2021,ageing,elderly_share_60plus,0.21578913032817237,0.29824275273476986,0.45,ONEI 3.12 / 3.3; claims selectivity.pct_age_60_plus_remaining for late years
 2021,ageing,median_age_proxy,40.333333333333336,0.23333333333333356,0.25,claims selectivity (median_age_stayers / leavers); ONEI age stocks
-2021,ageing,fertile_women_share_proxy,0.31337371768655603,0.0,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
+2021,ageing,fertile_women_share_proxy,0.6267474353731121,0.30229604206261795,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
 2021,health_decadence,imr_rise,0.5217566803907323,0.5217566803907323,0.22,ONEI 3.16; Indicadores demográficos / Anuario
 2021,health_decadence,cdr_rise,0.5454545448803161,1.0,0.18,ONEI 3.13 / vital series in claims; Anuario
 2021,health_decadence,mmr_rise,0.7,0.7,0.12,literature (maternal mortality reports); not redistributed
@@ -37,7 +37,7 @@ year,bucket,feature,value,value_norm,weight_default,source_note
 2021,bad_reporting,stats_opacity_vs_independents,0.5,0.5,0.25,Albizu reports (cite-only); US CBP and destination lower bounds; onei_audit
 2022,ageing,elderly_share_60plus,0.223,0.35833333333333345,0.45,ONEI 3.12 / 3.3; claims selectivity.pct_age_60_plus_remaining for late years
 2022,ageing,median_age_proxy,41.5,0.35,0.25,claims selectivity (median_age_stayers / leavers); ONEI age stocks
-2022,ageing,fertile_women_share_proxy,0.3105,0.0,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
+2022,ageing,fertile_women_share_proxy,0.621,0.35454545454545494,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
 2022,health_decadence,imr_rise,0.4989046466044045,0.4989046466044045,0.22,ONEI 3.16; Indicadores demográficos / Anuario
 2022,health_decadence,cdr_rise,0.11182143433751945,0.2236428686750389,0.18,ONEI 3.13 / vital series in claims; Anuario
 2022,health_decadence,mmr_rise,0.5,0.5,0.12,literature (maternal mortality reports); not redistributed
@@ -49,7 +49,7 @@ year,bucket,feature,value,value_norm,weight_default,source_note
 2022,bad_reporting,stats_opacity_vs_independents,0.85,0.85,0.25,Albizu reports (cite-only); US CBP and destination lower bounds; onei_audit
 2023,ageing,elderly_share_60plus,0.22,0.3333333333333334,0.45,ONEI 3.12 / 3.3; claims selectivity.pct_age_60_plus_remaining for late years
 2023,ageing,median_age_proxy,42.666666666666664,0.46666666666666645,0.25,claims selectivity (median_age_stayers / leavers); ONEI age stocks
-2023,ageing,fertile_women_share_proxy,0.3,0.0,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
+2023,ageing,fertile_women_share_proxy,0.6,0.5454545454545461,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
 2023,health_decadence,imr_rise,0.41999999999999993,0.41999999999999993,0.22,ONEI 3.16; Indicadores demográficos / Anuario
 2023,health_decadence,cdr_rise,0.14445320952248797,0.28890641904497594,0.18,ONEI 3.13 / vital series in claims; Anuario
 2023,health_decadence,mmr_rise,0.45,0.45,0.12,literature (maternal mortality reports); not redistributed
@@ -61,7 +61,7 @@ year,bucket,feature,value,value_norm,weight_default,source_note
 2023,bad_reporting,stats_opacity_vs_independents,0.9,0.9,0.25,Albizu reports (cite-only); US CBP and destination lower bounds; onei_audit
 2024,ageing,elderly_share_60plus,0.22,0.3333333333333334,0.45,ONEI 3.12 / 3.3; claims selectivity.pct_age_60_plus_remaining for late years
 2024,ageing,median_age_proxy,43.833333333333336,0.5833333333333336,0.25,claims selectivity (median_age_stayers / leavers); ONEI age stocks
-2024,ageing,fertile_women_share_proxy,0.3,0.0,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
+2024,ageing,fertile_women_share_proxy,0.6,0.5454545454545461,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
 2024,health_decadence,imr_rise,0.41999999999999993,0.41999999999999993,0.22,ONEI 3.16; Indicadores demográficos / Anuario
 2024,health_decadence,cdr_rise,0.32941136194613696,0.6588227238922739,0.18,ONEI 3.13 / vital series in claims; Anuario
 2024,health_decadence,mmr_rise,0.55,0.55,0.12,literature (maternal mortality reports); not redistributed
@@ -73,7 +73,7 @@ year,bucket,feature,value,value_norm,weight_default,source_note
 2024,bad_reporting,stats_opacity_vs_independents,0.8,0.8,0.25,Albizu reports (cite-only); US CBP and destination lower bounds; onei_audit
 2025,ageing,elderly_share_60plus,0.267,0.7250000000000002,0.45,ONEI 3.12 / 3.3; claims selectivity.pct_age_60_plus_remaining for late years
 2025,ageing,median_age_proxy,45.0,0.7,0.25,claims selectivity (median_age_stayers / leavers); ONEI age stocks
-2025,ageing,fertile_women_share_proxy,0.2995,0.0,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
+2025,ageing,fertile_women_share_proxy,0.599,0.5545454545454551,0.3,ONEI 3.12 / 3.3; selectivity emigrants_age_15_59_pct
 2025,health_decadence,imr_rise,0.98,0.98,0.22,ONEI 3.16; Indicadores demográficos / Anuario
 2025,health_decadence,cdr_rise,0.45943138672977435,0.9188627734595487,0.18,ONEI 3.13 / vital series in claims; Anuario
 2025,health_decadence,mmr_rise,0.6,0.6,0.12,literature (maternal mortality reports); not redistributed
