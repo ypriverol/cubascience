@@ -53,8 +53,6 @@ def run_model_e(n: int = 100_000, seed: int = 2027) -> dict:
     nat_reg = np.maximum(nat_reg, 1.0)
     mig_w = nat_reg / nat_reg.sum()
 
-    b_med = {y["year"]: y["B_star"]["median"] for y in births["years"]}
-    d_med = {y["year"]: y["D_star"]["median"] for y in deaths["years"]}
     b_p05 = {y["year"]: y["B_star"]["p05"] for y in births["years"]}
     b_p95 = {y["year"]: y["B_star"]["p95"] for y in births["years"]}
     d_p05 = {y["year"]: y["D_star"]["p05"] for y in deaths["years"]}
