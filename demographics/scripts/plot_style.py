@@ -27,7 +27,8 @@ SOFT_RED = "#fecaca"
 SOFT_BLUE = "#dbeafe"
 SOFT_GREEN = "#d1fae5"
 
-DPI = 300
+DPI = 600  # manuscript / print PNGs
+DPI_IG = 400  # social infographic panels (file-size tradeoff)
 PALETTE = [BLUE, RED, ORANGE, GREEN, VIO, NAVY, CEIL]
 
 
@@ -101,17 +102,24 @@ def title_block(ax, title: str, subtitle: str | None = None) -> None:
         )
 
 
-def save_fig(fig, path: Path) -> Path:
+def save_fig(fig, path: Path, *, dpi: int | None = None) -> Path:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(path, dpi=DPI, facecolor=SURF, edgecolor="none")
+    fig.savefig(
+        path,
+        dpi=dpi or DPI,
+        facecolor=SURF,
+        edgecolor="none",
+        bbox_inches="tight",
+        pad_inches=0.14,
+    )
     plt.close(fig)
     return path
 
 
 def save_ig(fig, name: str) -> Path:
-    return save_fig(fig, INFOGRAPHIC / name)
+    return save_fig(fig, INFOGRAPHIC / name, dpi=DPI_IG)
 
 
 def save_ms(fig, name: str) -> Path:
-    return save_fig(fig, FIGURES / name)
+    return save_fig(fig, FIGURES / name, dpi=DPI)

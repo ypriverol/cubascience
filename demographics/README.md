@@ -32,7 +32,7 @@ latexmk -pdf main.tex
 cp main.pdf ../cuba-depopulation-2019-2026.pdf
 ```
 
-## Regenerate charts (300 dpi)
+## Regenerate charts (600 dpi manuscript PNGs; 400 dpi IG)
 
 ```bash
 cd demographics
@@ -41,8 +41,8 @@ python3 scripts/charts_publication.py   # ES infographic + EN manuscript figures
 python3 scripts/charts_hsds.py          # Model E / HSDS figures (f12, f13)
 ```
 
-Infographic panels: `infographic/ig_*.png` (6 charts).  
-Manuscript figures: `figures/f*.png` (English labels for the LaTeX paper).
+Infographic panels: `infographic/ig_*.png` (6 charts, 400 dpi).  
+Manuscript figures: `figures/f*.png` (English labels, 600 dpi for the LaTeX paper).
 
 Model E scripts: `scripts/hsds_*.py` (features → score → deaths → births → population).
 Artifacts: `artifacts/model_e_summary.json`, `artifacts/hsds_scores.json`.
