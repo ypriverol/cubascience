@@ -40,7 +40,7 @@ for arr,c,lab,dy in [(declA,S1,"A",0.92),(declB,S2,"B",0.80)]:
     ax.annotate(f"median {lab}\n{m:.2f}M",(m,ax.get_ylim()[1]*dy),color=c,fontsize=9,
                 fontweight="bold",ha="center",va="top")
 ax.set_yticks([]); ax.set_xlim(1.6,3.0)
-ax.set_xlabel("Total population decline, end-2019 → end-2025 (millions)",fontsize=10)
+ax.set_xlabel("Total population decline, end-2021 → end-2025 (millions)",fontsize=10)
 ax.legend(frameon=False,fontsize=9.5,loc="upper right")
 ax.set_title("Two models of the loss: how much you assume is hidden",
              fontsize=13,fontweight="bold",loc="left",color=INK,pad=14)

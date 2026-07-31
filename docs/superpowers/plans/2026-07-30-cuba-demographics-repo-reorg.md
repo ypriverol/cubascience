@@ -60,7 +60,7 @@
 
 **Files:**
 - Move: existing Spanish md/html/pdf into `demographics/manuscript/es/`
-- Create: `demographics/manuscript/en/cuba-depopulation-2019-2026.md` (structured outline aligned to notebook)
+- Create: `demographics/manuscript/en/cuba-depopulation-2021-2026.md` (structured outline aligned to notebook)
 
 - [ ] **Step 1:** Create `manuscript/es` and `manuscript/en`
 - [ ] **Step 2:** Move Spanish manuscript artifacts into `es/`

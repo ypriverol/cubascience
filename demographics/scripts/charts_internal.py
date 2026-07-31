@@ -80,8 +80,8 @@ fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(ARTIFACTS / "ms_life_exp.pn
 
 # ===== regenerar análogos SIN Puerto Rico =====
 analogs=[("Siria 2011–20 (guerra)",50.0,">10",RED),("Venezuela 2013–24",25.0,"1–3",S4),
- ("Zimbabue 1998–08",25.0,"~2.5",S4),("Cuba 2019–25 · Modelo C",23.5,"3.9",RED),
- ("Cuba 2019–25 · Modelo D ★",21.3,"3.5",VIO),("Cuba 2019–25 · Modelo A",17.6,"2.9",S1),
+ ("Zimbabue 1998–08",25.0,"~2.5",S4),("Cuba 2021–25 · Modelo C",22.6,"~5.6",RED),
+ ("Cuba 2021–25 · Modelo D ★",20.5,"~4.1",VIO),("Cuba 2021–25 · Modelo A",16.4,"~3.3",S1),
  ("Cuba Período Especial 90s",0.5,"~0",MUTED)]
 fig,ax=plt.subplots(figsize=(9.0,4.5),dpi=200); style(ax)
 yy=np.arange(len(analogs))[::-1]

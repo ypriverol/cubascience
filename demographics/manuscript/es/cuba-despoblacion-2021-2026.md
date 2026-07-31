@@ -11,7 +11,7 @@
 
 En mi propia familia, tres miembros han muerto en los últimos seis años. Otros se fueron de la isla. Cada cubano que conozco cuenta una versión de la misma historia: el grupo de WhatsApp donde la mitad de los números empiezan ya por +1, +34 o +598; el barrio donde la luz se va doce horas y otra casa se queda en silencio, con sus dueños en Miami, Madrid o Montevideo.
 
-Las anécdotas no son estadísticas. Pero en el caso de Cuba las estadísticas mismas están en disputa: el último censo fue en **2012**, el previsto para 2022 se ha pospuesto una y otra vez (ahora se promete para 2026), y la oficina de estadística borró un millón de personas de sus propias cifras en un solo anuncio. Así que este texto intenta algo concreto: estimar, con todo el rigor que los datos permiten, **cuánto ha caído la población de Cuba desde finales de 2019**, ponerle un intervalo de confianza honesto, y proyectarla hasta el final de este año.
+Las anécdotas no son estadísticas. Pero en el caso de Cuba las estadísticas mismas están en disputa: el último censo fue en **2012**, el previsto para 2022 se ha pospuesto una y otra vez (ahora se promete para 2026), y la oficina de estadística borró un millón de personas de sus propias cifras en un solo anuncio. Así que este texto intenta algo concreto: estimar, con todo el rigor que los datos permiten, **cuánto ha caído la población de Cuba desde finales de 2021**, ponerle un intervalo de confianza honesto, y proyectarla hasta el final de este año.
 
 **Una advertencia por delante.** Antes de escribir esto sometí mis propias cifras a una *revisión adversarial* (le pedí a un demógrafo escéptico que las atacara con todas sus fuerzas) y el resultado cambió cómo presento la conclusión. La revisión me dio la razón en una cosa y me corrigió en otra, y ambas importan:
 
@@ -21,7 +21,7 @@ Las anécdotas no son estadísticas. Pero en el caso de Cuba las estadísticas m
 Con eso en mente, construyo **cuatro** estimaciones en lugar de una:
 
 | Modelo | Qué asume | Caída 2021→2025 | Población fin-2025 |
-|, |, |, |, |
+|---|---|---|---|
 | **A · conservador** | ancla en las cifras oficiales revisadas de la ONEI | **1.80 M (16.4%)** | **9.16 M** |
 | **B · ajustado por crisis** | subregistro de muertes + emigración hacia estimaciones independientes | **2.19 M (20.4%)** | **8.57 M** |
 | **C · peor caso (calibrado con análogos)** | emigración y mortalidad al límite de lo que la evidencia y los casos comparables permiten | **2.41 M (22.6%)** | **8.26 M** |
@@ -39,7 +39,7 @@ Aquí está cómo llegué a todo esto, por qué creo que la realidad está en la
 
 Cualquier estimación tiene que partir de un hecho incómodo: existen tres series de población para Cuba, oficiales o semioficiales, mutuamente incompatibles.
 
-![Tres versiones de la población de Cuba, 2019–2025](../../figures/f1_poblacion.png)
+![Tres versiones de la población de Cuba, 2021–2026](../../figures/f1_poblacion.png)
 
 **La serie de la ONU (~10.9 millones en 2025).** La revisión 2024 de *World Population Prospects* todavía muestra a Cuba deslizándose suavemente de 11.2 millones (2019) a 10.9 (2025), porque su modelo asume una emigración neta de apenas ~22,000 personas al año, una cifra equivocada en un orden de magnitud respecto de lo que reporta cualquier otra fuente, incluido el propio gobierno cubano. El Banco Mundial reproduce estos números. Para esta pregunta, la serie de la ONU no es un contendiente serio; la trato como un techo obsoleto.
 
@@ -87,7 +87,7 @@ Este primer modelo le da deliberadamente el beneficio de la duda a las cifras of
 
 y corrí **1,000,000 de simulaciones**, donde cada extracción es un escenario internamente coherente de las cantidades en disputa. Los nacimientos (529,367) y las muertes registradas (782,233) entran casi fijos; la incertidumbre grande está en la emigración (multiplicador de 1.0 a 1.55 sobre el balance de la ONEI) y en cuánta población de 2019 ya estaba "de más" en el padrón.
 
-**Resultado (fin-2019 → fin-2025):** caída mediana **1.93 millones (17.6%)**, IC 90% **1.79–2.26 M**; población fin-2025 **9.06 M** (IC 8.58–9.34). Es, en esencia, la propia cifra de la ONEI con un ajuste modesto al alza.
+**Resultado (fin-2021 → fin-2025):** caída mediana **1.80 millones (16.4%)**, IC 90% en la envolvente de modelos; población fin-2025 **9.16 M**. Es, en esencia, la propia cifra de la ONEI con un ajuste modesto al alza.
 
 ## 4. Modelo B y Modelo C: por qué creo que lo conservador se queda corto
 
@@ -108,16 +108,13 @@ Para que la parte pesimista no sea arbitraria, la acoté con dos topes externos:
 
 ![Tres modelos y dónde queda Cuba a fines de 2026](../../figures/f7_triangulacion.png)
 
-**Resultados de los Modelos B y C (fin-2019 → fin-2025):**
+**Resultados de los Modelos B y C (fin-2021 → fin-2025):**
 
 | | Modelo B | Modelo C |
-|, |, |, |
-| Caída total (mediana) | **2.31 M (21.3%)** | **2.53 M (23.5%)** |
-| IC 90% | 1.94 – 2.73 M | 2.08 – 2.96 M |
-| Población fin-2025 | **8.54 M** | **8.24 M** |
-| P(población < 8.5 M) | ~46% | ~72% |
-| P(población < 8.0 M) | ~7% | ~29% |
-| Participación de la emigración | 86% | 85% |
+|---|---|---|
+| Caída total (mediana) | **2.19 M (20.4%)** | **2.41 M (22.6%)** |
+| Población fin-2025 | **8.57 M** | **8.26 M** |
+| Participación de la emigración | ~90% | ~89% |
 
 Nótese lo que **no** cambia entre modelos: la emigración sigue siendo ~86% de la historia. Aunque deje que la mortalidad corra tan caliente como la evidencia permite, el éxodo domina. Eso no es un artefacto del modelo; es el hecho central de esta crisis.
 
@@ -145,7 +142,7 @@ El Modelo D reemplaza el multiplicador arbitrario de mortalidad de los Modelos B
 
 ![Cuatro modelos: el centinela converge con el ajuste por crisis](../../figures/f7_triangulacion.png)
 
-**Resultado del Modelo D:** caída mediana **2.31 M (21.3%)**, IC 90% 1.94–2.71 M; población fin-2025 **8.56 M**. Converge con el Modelo B, pero ahora la mortalidad está *medida*, no supuesta. La probabilidad de estar ya por debajo de 8.5 M es del 43%.
+**Resultado del Modelo D:** caída mediana **2.21 M (20.5%)** sobre la base corregida, IC 90% ~1.84–2.60 M; población fin-2025 **8.59 M**. Converge con el Modelo B, pero ahora la mortalidad está *medida*, no supuesta. Emigración ≈**91%** de la pérdida absoluta.
 
 ### El costo humano: ~153,000 muertes en exceso
 
@@ -247,7 +244,7 @@ El envejecimiento cierra el círculo: con los jóvenes fuera y los nacimientos e
 
 ## 13. Conclusión
 
-Entre fines de 2019 y fines de 2025, Cuba perdió **alrededor de una de cada cinco personas.** La lectura conservadora (Modelo A) sitúa la pérdida en ~1.9 millones (18%); la que me parece más creíble (el Modelo D, con la mortalidad anclada en indicadores centinela) está en **~2.3 millones (21%)**, dejando una población real cercana a **8.5 millones, con una probabilidad real de que ya esté por debajo de 8.** En los cuatro modelos se mantiene el mismo hecho brutal: cerca del **86% de la pérdida es emigración.** Se van más cubanos de los que mueren, seis a uno, pero las muertes (unas **153,000 en exceso** entre 2020 y 2025, empezando por una catástrofe de COVID subreconocida en 2021 y con un repunte de crisis en 2024–2025) y los nacimientos que no ocurren (menos que en 1899) son las partes que no vuelven.
+Entre fines de 2021 y fines de 2025, Cuba perdió **alrededor de una de cada cinco personas** sobre la base corregida del Modelo D. La lectura conservadora (Modelo A) sitúa la pérdida en ~1.8 millones (16%); la que me parece más creíble (el Modelo D, con la mortalidad anclada en indicadores centinela) está en **~2.21 millones (20.5%)**, dejando una población real cercana a **8.59 millones**. En los cuatro modelos se mantiene el mismo hecho brutal: cerca del **91% de la pérdida es emigración.** Se van más cubanos de los que mueren, pero las muertes en exceso (unas **153,000** registradas en bruto entre 2020 y 2025; **40–60 mil** ajustadas por edad en 2024–2025) y los nacimientos que no ocurren son las partes que no vuelven. Contra la base **oficial de 2021**, la pérdida acumulada hacia fines de 2026 se acerca a **uno de cada cuatro**.
 
 El método centinela dejó una lección que vale más que cualquier cifra concreta: cuando una métrica que Cuba **sí** mide con honestidad (la mortalidad infantil) se dispara un 40%, y el alza de muertes que predice coincide con las muertes que la ONEI ya reporta, entonces sabemos dos cosas a la vez. La crisis sanitaria es real y mensurable; y, precisamente por eso, las muertes están en su mayoría contadas, y el vaciamiento del país es, ante todo, gente que se va.
 

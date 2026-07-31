@@ -93,7 +93,7 @@ def summ(x, name, fmt=",.0f"):
     q = np.percentile(x, [2.5, 5, 50, 95, 97.5])
     print(f"{name}: median {q[2]:{fmt}} | 90% [{q[1]:{fmt}}, {q[3]:{fmt}}] | 95% [{q[0]:{fmt}}, {q[4]:{fmt}}]")
 
-print("=== MODEL B (crisis-adjusted) : end-2019 -> end-2025 ===")
+print("=== MODEL B (crisis-adjusted) : end-2021 -> end-2025 ===")
 print(f"Registered deaths anchor {DEATHS_REG:,} | adj deaths median {np.median(deaths):,.0f} "
       f"(implied under-reg {np.median(deaths)/DEATHS_REG-1:+.1%})")
 summ(decline, "Total decline")

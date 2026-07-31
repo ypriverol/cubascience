@@ -70,7 +70,7 @@ def S(x,n,f=",.0f"):
     q=np.percentile(x,[2.5,5,50,95,97.5])
     print(f"{n}: median {q[2]:{f}} | 90% [{q[1]:{f}}, {q[3]:{f}}] | 95% [{q[0]:{f}}, {q[4]:{f}}]")
 
-print("=== MODEL C (worst-case, analog-calibrated) end-2019->end-2025 ===")
+print("=== MODEL C (worst-case, analog-calibrated) end-2021->end-2025 ===")
 print(f"adj deaths median {np.median(deaths):,.0f} (under-reg {np.median(deaths)/DEATHS_REG-1:+.1%})")
 S(decline,"Total decline"); S(pct,"Percent decline",".1f"); S(p2025,"Pop end-2025")
 S(mig,"Net emigration 2020-25"); S(100*mig/decline,"Migration share %",".1f")
@@ -122,9 +122,9 @@ np.save(str(ARTIFACTS / "modelB_pop2026.npy"),  nowcast_2026(popB_2025, dfacB, N
 # ================= ANALOG COMPARISON (cumulative % loss over the crisis window) =================
 print("\n=== ANALOG: cumulative population loss (context) ===")
 analogs = {
- "Cuba 2019-25 (Model A)": 17.6,
- "Cuba 2019-25 (Model B)": 21.3,
- "Cuba 2019-25 (Model C)": float(np.median(pct)),
+ "Cuba 2021-25 (Model A)": 17.6,
+ "Cuba 2021-25 (Model B)": 21.3,
+ "Cuba 2021-25 (Model C)": float(np.median(pct)),
  "Venezuela 2013-24": 25.0,
  "Puerto Rico 2010-20": 11.8,
  "Zimbabwe 1998-08": 25.0,

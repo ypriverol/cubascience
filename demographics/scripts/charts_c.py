@@ -55,9 +55,9 @@ analogs=[
  ("Syria 2011–20 (war)",50.0,">10",RED),
  ("Venezuela 2013–24",25.0,"1–3",S4),
  ("Zimbabwe 1998–08",25.0,"~2.5",S4),
- ("Cuba 2019–25 · Model C",23.5,"3.9",RED),
- ("Cuba 2019–25 · Model B",21.3,"3.5",S2),
- ("Cuba 2019–25 · Model A",17.6,"2.9",S1),
+ ("Cuba 2021–25 · Model C",22.6,"~5.6",RED),
+ ("Cuba 2021–25 · Model B",20.4,"~4.1",S2),
+ ("Cuba 2021–25 · Model A",16.4,"~3.3",S1),
  ("Puerto Rico 2010–20",11.8,"1.2 (3.9 peak)",S3),
  ("Cuba Special Period 90s",0.5,"~0",MUTED),
 ]
