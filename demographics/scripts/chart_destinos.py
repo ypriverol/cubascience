@@ -16,10 +16,8 @@ mpl.rcParams.update({"font.family":"DejaVu Sans","text.color":INK,"axes.edgecolo
 
 # asentados (miles), 2020-2025
 dest=[("Estados Unidos",800,BLUE),("España",135,ORANGE),("Uruguay",35,GREEN),
-      ("Otros (Rep. Dom.,\nGuyana, Rusia…)",45,GREY),("Rep. Dominicana",15,GREY),
-      ("Brasil (asentados)",10,GREY),("México (asentados)",8,GREY)]
-# ordenar desc
-dest=sorted(dest,key=lambda x:-x[1])
+      ("Resto (Rep. Dom.,\nMéxico, Brasil, Rusia…)",80,GREY)]
+# us 800 + non_us 250 (135+35+80) = 1050
 fig,ax=plt.subplots(figsize=(9.4,5.0),dpi=200)
 for s in ("top","right","left"): ax.spines[s].set_visible(False)
 ax.tick_params(length=0); ax.grid(axis="x",color=GRID,lw=0.7)

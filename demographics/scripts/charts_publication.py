@@ -114,18 +114,18 @@ def _pop_series(ax, lang: str) -> None:
         ax.set_ylabel("Millones de habitantes")
         title_block(
             ax,
-            "Colapso poblacional de Cuba, 2021–2026",
-            "Uno de cada cuatro hacia 2026 (base oficial 2021). Modelo D preferido.",
+            "Despoblación acelerada de Cuba, 2021–2026",
+            "≈1 de cada 5 (base corregida, escenario D). Brecha vs oficial 2021 → ~1 de 4 hacia 2026.",
         )
     else:
         ax.annotate("official series", (2023.7, 9.95), color=BLUE, fontsize=12, fontweight="bold", ha="right")
-        ax.annotate("Model D estimate", (2022.4, 8.95), color=RED, fontsize=12, fontweight="bold", ha="center")
+        ax.annotate("Model D scenario", (2022.4, 8.95), color=RED, fontsize=12, fontweight="bold", ha="center")
         ax.text(2027.7, 10.45, "illustrative scenario", color=MUTED, fontsize=11, style="italic", ha="center")
         ax.set_ylabel("Population (millions)")
         title_block(
             ax,
-            "Cuba’s 2021–2026 population collapse",
-            "One in four Cubans gone in five years (official 2021 base by end-2026).",
+            "Cuba’s 2021–2026 population decline",
+            "About 1 in 5 on corrected base (Model D). Register gap vs official 2021 → ~1 in 4 by 2026.",
         )
 
 
@@ -173,12 +173,12 @@ def _excess(ax, lang: str) -> None:
         lab_e, lab_r = "Esperadas (tasas 2019)", "Registradas"
         ylab = "Defunciones (miles)"
         title = "Exceso de mortalidad 2024–2025"
-        sub = "Cifra primaria del estudio: 40–60 mil muertes en exceso ajustadas por edad."
+        sub = "Residual provisional ~38 mil (2024–2025); banda 30–60 mil. Distinto del exceso bruto ~153 mil (2020–2025)."
     else:
         lab_e, lab_r = "Expected (2019 rates)", "Registered"
         ylab = "Deaths (thousands)"
-        title = "Mortality shock, 2024–2025"
-        sub = "Primary claim: age-adjusted excess ≈40–60k (beyond ageing)."
+        title = "Mortality residual, 2024–2025 (provisional)"
+        sub = "Illustrative schedule residual ~38k (2024–2025); sensitivity 30–60k. Distinct from crude ~153k (2020–2025)."
     df = pd.DataFrame(
         {
             "year": ["2024", "2024", "2025", "2025"],
@@ -292,8 +292,11 @@ def _triangulation(ax, lang: str) -> None:
         "ceiling": CEIL,
         "official": BLUE,
         "occupancy": GREEN,
+        "occupancy_fragile": GREEN,
         "independent": ORANGE,
+        "independent_shared_assumptions": ORANGE,
         "preferred": RED,
+        "estimand_not_validator": RED,
     }
     ax.axvspan(
         C["triangulation"]["band_low_m"],
@@ -312,11 +315,12 @@ def _triangulation(ax, lang: str) -> None:
         "Housing × occupancy": "Viviendas × ocupación",
         "Albizu-Campos (2023)": "Albizu-Campos (2023)",
         "This study (Model D)": "Este estudio (Modelo D)",
+        "This study (Model D scenario)": "Este estudio (escenario D)",
         "Albizu-Campos (2024)": "Albizu-Campos (2024)",
     }
     for i, (lab, val, role) in zip(y, rows):
         col = role_color.get(role, INK2)
-        preferred = role == "preferred"
+        preferred = role in ("preferred", "estimand_not_validator")
         ax.hlines(i, 7.4, val, colors=col, linewidths=1.2 if preferred else 0.7, alpha=0.35, zorder=2)
         ax.plot(
             val,
@@ -424,7 +428,7 @@ def _aging(ax) -> None:
     ax.plot(yrs, y014, color=BLUE, lw=2.8, marker="o", ms=6)
     ax.plot(py, p014, color=BLUE, lw=2.8, ls=(0, (2, 2)))
     ax.annotate("AGE 60+\n(official)", (2003, 16.0), color=ORANGE, fontsize=10.5, fontweight="bold", va="top")
-    ax.annotate("~40% (this study)", (2035, 40), color=RED, fontsize=10.5, fontweight="bold", ha="right", va="bottom")
+    ax.annotate("~40% (ilustrativo)", (2035, 40), color=RED, fontsize=10.5, fontweight="bold", ha="right", va="bottom")
     ax.annotate("AGES 0–14", (2000, 21.3), color=BLUE, fontsize=10.5, fontweight="bold")
     ax.text(2028.5, 18.5, "projection", color=MUTED, fontsize=10, style="italic", ha="center")
     ax.set_xlim(1999, 2036.5)

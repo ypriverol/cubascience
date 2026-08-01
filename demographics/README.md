@@ -1,19 +1,26 @@
-# Estimating Cuba’s 2021–2026 population collapse
+# Estimating Cuba’s 2021–2026 population decline
 
-Quantitative estimate of Cuba’s population loss between **end-2021 and end-2026**.
-**One in four Cubans gone in five years** (vs the official 2021 base by end-2026).
+Quantitative scenario audit of Cuba’s population loss between **end-2021 and end-2026**.
 
-> **Central finding (Model D).** ≈**8.59 M** living population at end-2025
-> (≈**−2.21 M**, **−20.5%** on the corrected base). Emigration ≈**91%** of the loss.
-> Age-adjusted excess deaths 2024–2025 ≈**40–60k**. By end-2026, loss approaches
-> ~**1 in 4** vs the **official 2021** base (a different definition from −20.5%).
+> **Primary uncertainty.** Across scenarios A–D, cumulative 2021–2025 loss ≈**1.8–2.4 M**.
 >
-> **Model E (provisional).** Vital reconstruction from ageing + health decadence +
-> bad reporting → true births/deaths → population ≈**8.96 M** end-2025
-> (−2.13 M, −19.2%). Preferred claims remain Model D until promoted.
+> **Illustrative central scenario (Model D).** ≈**8.59 M** living population at end-2025
+> (≈**−2.21 M**, **−20.5%** on the corrected base). Emigration ≈**91%** of absolute loss.
+> Model A (ONEI-anchored) remains the floor neighbourhood (≈**9.16 M**).
+>
+> **Register-gap aside (not the scientific lead).** Against the **official 2021** base,
+> the end-2026 gap approaches ~**1 in 4** — a different definition from Model D −20.5%.
+>
+> **Provisional mortality residual.** Illustrative 2019-schedule residual ≈**~38k** in
+> 2024–2025 (sensitivity 30–60k), pending a full ONEI 3.15 age–sex pipeline.
+> Crude registered excess 2020–2025 ≈**153k** is a separate quantity.
+>
+> **Model E (provisional).** Vital reconstruction ≈**8.96 M** end-2025 (−2.13 M, −19.2%).
+> Not preferred (different \(U_0\); ageing double-count risk). Details in the supplement.
 
 The Monte Carlo window starts at **official end-2021** (11,113,215), not 2019.
 Pre-crisis 2019 rates still appear only as methodological baselines (age schedule, IMR rise).
+Models A–D are **scenarios**, not identified estimators.
 
 ## Three products
 
@@ -56,7 +63,7 @@ Artifacts: `artifacts/model_e_summary.json`, `artifacts/hsds_scores.json`.
 
 ## Cite
 
-> Pérez-Riverol, Y. (2026). *Estimating Cuba’s 2021–2026 population collapse.* Preprint.
+> Pérez-Riverol, Y. (2026). *Estimating Cuba’s 2021–2026 population decline.* Preprint.
 > PDF: `demographics/manuscript/en/cuba-depopulation-2021-2026.pdf`
 > (+ supplement). Zenodo DOI forthcoming.
 
