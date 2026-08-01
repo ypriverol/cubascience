@@ -43,7 +43,10 @@ def model_d_anchors(claims: dict[str, Any] | None = None) -> dict[str, float]:
     c = claims or get_claims()
     d = c["model_d"]
     v = c["vital"]
-    x = c["excess_mortality"]["primary_age_adjusted_2024_2025"]
+    x = c["excess_mortality"].get(
+        "provisional_schedule_residual_2024_2025",
+        c["excess_mortality"]["primary_age_adjusted_2024_2025"],
+    )
     s = c["selectivity"]
     return {
         "population_end_2025_model_d_m": float(d["pop_end_2025_m"]),
@@ -58,8 +61,8 @@ def model_d_anchors(claims: dict[str, Any] | None = None) -> dict[str, float]:
         "tfr_2025": float(v["tfr_2025"]),
         "pct_age_60_plus": float(s["pct_age_60_plus_remaining"]),
         "median_age": float(s["median_age_stayers"]),
-        "excess_deaths_2024_25_low": int(x["low"]),
-        "excess_deaths_2024_25_high": int(x["high"]),
+        "excess_deaths_2024_25_low": int(x.get("band_low", x.get("low", 30000))),
+        "excess_deaths_2024_25_high": int(x.get("band_high", x.get("high", 60000))),
         "onei_end_2025": int(v["onei_pop_end_2025"]),
         "pop_end_2026_m": float(d["pop_end_2026_m"]),
         "migration_share_pct": float(d["migration_share_of_loss_pct"]),

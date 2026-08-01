@@ -28,7 +28,7 @@ Issues and PRs welcome: https://github.com/ypriverol/cubascience/issues
 
 **Demographics study (forthcoming DOI)**
 
-> Pérez-Riverol, Y. (2026). *Estimating Cuba’s 2021–2026 population collapse.* Zenodo (DOI forthcoming).
+> Pérez-Riverol, Y. (2026). *Estimating Cuba’s 2021–2026 population decline.* Zenodo (DOI forthcoming).
 
 ## License
 

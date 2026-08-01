@@ -1,4 +1,4 @@
-% Supplementary materials for: Estimating Cuba's 2021--2026 population collapse
+% Supplementary materials for: Estimating Cuba's 2021--2026 population decline
 \documentclass[11pt,a4paper]{article}
 
 \usepackage[margin=2.2cm]{geometry}
@@ -16,7 +16,7 @@
 \graphicspath{{../../../figures/}}
 
 \title{Supplementary materials:\\
-Estimating Cuba's 2021--2026 population collapse}
+Estimating Cuba's 2021--2026 population decline}
 \author{Yasset P\'erez-Riverol}
 \date{Preprint supplement · 31 July 2026}
 
@@ -24,13 +24,13 @@ Estimating Cuba's 2021--2026 population collapse}
 \maketitle
 
 \noindent These materials accompany the main preprint.
-Preferred public estimates remain Model~D; Model~E is provisional and is not used for headline claims~\citep{repo,modele_supp}.
+Models~A--D are scenarios; Model~D is an illustrative central path, not an identified estimator.
+Model~E is provisional and is not preferred for public claims~\citep{repo,modele_supp}.
 
 \section{Life expectancy series}
-Official life expectancy at birth peaked in 2011--13 (78.5 years) and fell to 77.7 in 2018--20, before the worst of the present crisis (Figure~\ref{fig:le}).
+Official life expectancy at birth peaked in 2011--13 (78.5 years) and fell to 77.7 in 2018--20 (Figure~\ref{fig:le}).
 An independent 2021 estimate places it near 71 years~\citep{albizu2023,bronnum2023}.
-Life expectancy re-expresses the same mortality shock rather than providing independent corroboration; its magnitude (about 6.5 years in a single year in the independent path) is exceptional for peacetime and large even relative to COVID-era losses documented internationally~\citep{aburto2022,msemburi2023}.
-Translated to years of life lost, crude excess of $\sim$153{,}000 deaths in 2020--2025 implies more than one million person-years lost, concentrated among the elderly.
+Life expectancy re-expresses the same mortality shock rather than providing independent corroboration of Model~D; its magnitude is large even relative to COVID-era losses documented internationally~\citep{aburto2022,msemburi2023}.
 
 \begin{figure}[!htbp]
 \centering
@@ -41,25 +41,30 @@ Translated to years of life lost, crude excess of $\sim$153{,}000 deaths in 2020
 
 \section{Provincial intensity of exit}
 Emptying is national but unequal (Figure~\ref{fig:prov}).
-Havana leads at net emigration of \textbf{$-$33 per 1{,}000} in 2025; western and central provinces empty faster than the east, yet no province loses less than about 2\% of its people per year~\citep{onei_2025}.
+ONEI \emph{Indicadores 2025} reports Havana external net emigration near \textbf{$-$33 per 1{,}000} in 2025; western and central provinces empty faster than the east~\citep{onei_2025}.
+If national migration accounting is biased, provincial \emph{ranks} are more trustworthy than precise levels.
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.9\linewidth]{f11_provincias.png}
-\caption{Net emigration rate by province, 2025.}
+\caption{Net emigration rate by province, 2025 (ONEI-reported).}
 \label{fig:prov}
 \end{figure}
 
 \section{Model E: vital reconstruction (provisional)}
-As a companion path, Model~E reconstructs \emph{true} deaths and births from a yearly health-system deterioration score $S_t$ built from ageing, health-system decadence, and documented official underreporting (including COVID cause-attribution misuse as an integrity feature, not as a $\times N$ multiplier on all deaths).
-The approach follows the spirit of excess-mortality reconstruction under incomplete registration~\citep{karlinsky2021,msemburi2023,kishore2018}, but uses a Cuban-specific deterioration score rather than a pandemic-only counterfactual.
+Model~E reconstructs deaths and births from a yearly health-system deterioration score $S_t$ (ageing, health-system decadence, documented underreporting), then closes the identity with a Model~D-like migration bridge.
+The spirit follows excess-mortality reconstruction under incomplete registration~\citep{karlinsky2021,msemburi2023,kishore2018}, but uses a Cuban-specific score rather than a pandemic-only counterfactual.
 
-Ageing enters an expected-death schedule; decadence raises an uplift $f(S_t)$; births stay near the register with crisis fertility and selective exit.
-Closing the identity $P^*=P^*_{\mathrm{start}}+\sum(B^*-D^*-M^*)$ with a Model~D-like migration bridge yields median end-2025 population about \textbf{8.96~million} (loss 2.13~million, 19.2\% on the corrected base; migration share $\sim$88\%).
+\textbf{Adversarial gate (why E is not promoted).}
+\begin{itemize}
+  \item Ageing enters both the expected-death schedule and the $S_t$ bucket (double-count risk).
+  \item ``Ageing schedule'' is currently a two-factor CDR proxy, not $\sum_a m_a P_a$.
+  \item Model~E's $U_0$ prior is much smaller than Model~D's; the higher end-2025 stock ($\sim$8.96~M vs 8.59~M) is therefore partly a \emph{different baseline prior}, not independent vital evidence.
+  \item $P^*$ remains migration-identified.
+\end{itemize}
+Median end-2025 population about \textbf{8.96~million} (loss 2.13~million, 19.2\% on the corrected base; migration share $\sim$88\%).
 Figure~\ref{fig:hsds} shows $S_t$ and reconstructed versus registered vitals; Figure~\ref{fig:modele} places E beside A--D.
-
-Preferred public claims remain Model~D until an adversarial gate promotes E.
-Model~E lands in the same loss band as D and raises the natural-decrease share only modestly ($\sim$12\% versus $\sim$9\% under D), so it does not yet displace D for public claims~\citep{repo}.
+Preferred public claims remain Model~D until this gate is cleared~\citep{repo}.
 
 \begin{figure}[!htbp]
 \centering
@@ -71,13 +76,13 @@ Model~E lands in the same loss band as D and raises the natural-decrease share o
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.72\linewidth]{f13_model_e_population.png}
-\caption{End-2025 population medians for Models A--E. Preferred public model remains D (blue); E (red) is provisional.}
+\caption{End-2025 population medians for Models A--E. Illustrative central scenario remains D (blue); E (red) is provisional.}
 \label{fig:modele}
 \end{figure}
 
 \begin{table}[ht]
 \centering
-\caption{Models A--E medians (end-2025). Model~E is provisional and reported only here.}
+\caption{Models A--E medians (end-2025).}
 \label{tab:modelsE}
 \begin{tabular}{llrrr}
 \toprule
@@ -85,15 +90,16 @@ Model & Main assumption & Loss (M) & \% & Pop.\ (M) \\
 \midrule
 A · conservative & ONEI-anchored & 1.80 & 16.4 & 9.16 \\
 B · crisis-adjusted & under-reg.\ + independent migration & 2.19 & 20.4 & 8.57 \\
-C · worst case & analog upper bound & 2.41 & 22.6 & 8.26 \\
-D · sentinel (preferred) & IMR sentinel + triangulation & 2.21 & 20.5 & 8.59 \\
-E · vital reconstr.\ (prov.) & ageing + HSDS $\to B^*,D^*$ & 2.13 & 19.2 & 8.96 \\
+C · upper stress & analog upper bound & 2.41 & 22.6 & 8.26 \\
+D · sentinel (illustrative) & IMR check + migration priors near B & 2.21 & 20.5 & 8.59 \\
+E · vital reconstr.\ (prov.) & HSDS $\to B^*,D^*$ & 2.13 & 19.2 & 8.96 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \section{Data pointers}
 Scripts and JSON artifacts for HSDS / Model~E live under \texttt{demographics/scripts/hsds\_*.py} and \texttt{demographics/artifacts/} in the companion repository~\citep{repo}.
+Adversarial notes: \texttt{artifacts/model\_e\_adversarial\_notes.md}.
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
