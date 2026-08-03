@@ -59,8 +59,8 @@ Esos 0.85~millones son la afirmación real del trabajo; los 2.53~millones son la
 Un escenario nulo ($U_0{=}0$, $M{=}1$, $D_{\mathrm{fac}}{=}1$) reproduce exactamente la cifra publicada por la ONEI y se reporta junto a los tres conjuntos de supuestos.
 Alrededor del \textbf{92\%} de esa brecha es emigración, contando tanto el flujo de 2022--2025 como el rezago previo a 2021 que sigue en el padrón.
 La continuación a fin de 2026 sitúa el escenario central cerca de \textbf{8.29~millones}.
-Cuba registra hoy unas 31\,000 defunciones anuales más que en 2019 pese a tener alrededor de 2~millones menos de residentes.
-La estandarización por edad separa dos fuerzas al alza de magnitud comparable ---unas \textbf{22\,300} defunciones adicionales al año por una población más envejecida y unas \textbf{28\,500} al año (banda del 90\%: 18\,600--38\,200) de exceso respecto de la tabla de 2019--- frente a unas 19\,400 defunciones menos al año por la menor población.
+Cuba registra hoy unas 31\,300 defunciones anuales más que en 2019 pese a tener alrededor de 2~millones menos de residentes.
+La estandarización por edad separa dos fuerzas al alza de magnitud comparable ---unas \textbf{22\,400} defunciones adicionales al año por una población más envejecida y unas \textbf{28\,500} al año (rango de sensibilidad a los supuestos: 18\,600--38\,200) de exceso respecto de la tabla de 2019--- frente a unas 19\,400 defunciones menos al año por la menor población.
 Excluyendo la ola pandémica de 2021, el total de exceso en 2022--2025 es de $\sim$\textbf{74\,800} (47\,000--103\,000).
 
 \textbf{Conclusiones.}
@@ -113,14 +113,14 @@ $M\ge 1$ escala la emigración neta de la ONEI, y $D_{\mathrm{fac}}\ge 1$ escala
 La pérdida se reporta sobre una sola base: el stock \emph{oficial} de fin de 2021.
 La brecha que define tiene tres partes aditivas ---sobrestimación de base $U_0$, emigración neta $R\,M$ y decrecimiento natural---, de modo que no hace falta un segundo porcentaje sobre ``base corregida''.
 
-Cada escenario son tres números, y la estimación puntual es la aritmética anterior evaluada en sus medianas.
-Verificamos que eso era todo lo que hacía la simulación: un Monte Carlo de $10^6$ extracciones con cópula gaussiana sobre las mismas marginales reproduce la mediana de forma cerrada con una diferencia de 4\,253 personas, el 0.05\%.
+Cada escenario son tres números, y la cifra puntual es la aritmética anterior evaluada en sus medias a priori, exacta porque la identidad es lineal en las tres.
+Verificamos que eso era todo lo que hacía la simulación: un Monte Carlo de $10^6$ extracciones con cópula gaussiana sobre las mismas marginales coincide con la forma cerrada dentro de unos cientos de personas, es decir, dentro del ruido de muestreo.
 Por eso la cópula se ha eliminado: movía la mediana unas 2\,200 personas y solo ensanchaba una banda interna que no es nuestro enunciado primario de incertidumbre.
 Se conserva un muestreo reducido ($N=2\times10^5$, marginales independientes) únicamente para reportar esa banda, que sigue siendo una dispersión \emph{predictiva a priori} y no error muestral.
 La \textbf{envolvente entre escenarios} es el enunciado primario~\citep{repo,modeld}.
 
 Definimos tres escenarios y cada uno se gana su lugar.
-El \textbf{piso} toma la serie oficial casi al pie de la letra ($M\approx 1$).
+El \textbf{conservador} añade una corrección modesta. \emph{No} es una cota inferior consistente con la ONEI: su $M$ medio es 1.089, un 9\% más de emigración que la reportada. El caso de corrección cero es el escenario nulo.
 El \textbf{central} eleva el prior migratorio por encima de la ONEI y acota el subregistro de defunciones al 9\%, apenas por encima del 7.5\% que el propio registro perdió en 2022 sin explicación.
 El \textbf{superior} define el techo de la envolvente.
 Versiones anteriores llevaban cinco conjuntos de priores; dos se han retirado.
@@ -130,7 +130,8 @@ Las revisiones de la ONEI de 2023--2024 ya absorbieron un stock rezagado grande,
 
 \begin{table}[ht]
 \centering
-\caption{Especificación de distribuciones a priori del escenario central (marginales; cópula gaussiana opcional).
+\caption{Especificación de distribuciones a priori del escenario central (tres marginales; sin estructura de dependencia).
+La cifra puntual usa las medias a priori de estas tres marginales.
 Escalas Beta: $U_0\in[0,700\,000]$, $M\in[1,1.72]$, $D_{\mathrm{fac}}\in[1,1.09]$.
 Ruido de nacimientos independiente $B=B^{\mathrm{reg}}\mathcal{N}(1,0.01^2)$.}
 \label{tab:priors}
@@ -191,7 +192,7 @@ Los niveles de población publicados se agrupan por contenido informativo (Figur
 Los techos que no depuran emigrantes incluyen \emph{World Population Prospects} de la ONU, el denominador del MINSAP y el padrón electoral (solo cotas superiores blandas).
 El recuento oficial revisado de la ONEI es 9.43~M a fin de 2025.
 Las construcciones independientes o que corrigen por salida incluyen viviendas$\times$ocupación ($\sim$8.7~M; escalar de ocupación frágil) y Albizu-Campos 2023/2024 (8.0--8.6~M; métodos que comparten con este trabajo los supuestos de crítica migratoria).
-El el escenario central (8.59~M) es el estimando del estudio y \emph{no} es validación externa de sí mismo; la coincidencia con Albizu o con viviendas es en parte un eco de distribuciones a priori compartidos, mientras que los techos acotan por arriba.
+El escenario central (8.58~M) es el estimando del estudio y \emph{no} es validación externa de sí mismo; la coincidencia con Albizu o con viviendas es en parte un eco de distribuciones a priori compartidas, mientras que los techos acotan por arriba.
 La banda blanda de las fuentes que corrigen por salida está cerca de 8.0--8.9~millones.
 
 El piso de destinos bajo concepto de asentamiento (Cuadro~\ref{tab:bridge}) comprende Estados Unidos $\sim$800\,000 (estatus administrativos / flujo CBP, \emph{no} el stock de la ACS), total no estadounidense $\sim$250\,000 (España $\sim$135\,000 + Uruguay $\sim$35\,000 + resto $\sim$80\,000), y un piso de $\sim$1.05~millones~\citep{destinations,pew_cuban}.
@@ -252,8 +253,9 @@ Afirmación & Cantidad & Valor & Estatus \\
 \multicolumn{4}{l}{\textit{Deterioro del sistema de salud}} \\
 & Defunciones registradas, 2025 & 136\,214 & oficial \\
 & Esperadas a tasas de 2019, estructura de 2025 & 112\,006 & derivado \\
-& Atribuibles al sistema de salud, 2025 & 28\,500 [18\,600--38\,200] & estimación \\
-& Atribuibles, 2022--2025 (pospandémico) & 74\,800 [47\,000--103\,000] & estimación \\
+& Exceso vs la tabla de 2019, 2025 & 28\,500 [18\,600--38\,200] & valor de escenario \\
+& Exceso, 2022--2025 (pospandémico) & 74\,800 [47\,000--103\,000] & valor de escenario \\
+& \quad bajo contrafactuales alternativos & 69\,400--103\,300 & sensibilidad \\
 & \quad sobre el total de 2022 previo a la revisión & $\sim$84\,100 & sensibilidad \\
 & Explicadas solo por el envejecimiento, 2025 & 22\,300 & derivado \\
 & Efecto del tamaño poblacional, 2025 & $-$19\,400 & derivado \\
@@ -262,11 +264,13 @@ Afirmación & Cantidad & Valor & Estatus \\
 & Retiro documentado del registro en 2022 & 8\,951 (7.5\%) & oficial \\
 \midrule
 \multicolumn{4}{l}{\textit{Población proyectada}} \\
-& Brecha vs oficial 2021, entre escenarios & 1.97--2.79~M & enunciado primario \\
-& Población viva fin-2025 (el escenario central) & 8.59~M & escenario \\
-& Brecha, escenario central & 2.52~M (22.8\%) & escenario \\
+& Brecha vs oficial 2021, entre conjuntos de supuestos & 1.97--2.79~M & rango de escenarios \\
+& \quad de la cual, caída ya publicada por la ONEI & 1.68~M & oficial \\
+& \quad corrección añadida por este trabajo (central) & 0.85~M & valor de escenario \\
+& Población viva fin-2025 (central) & 8.58~M & escenario \\
+& Brecha, escenario central & 2.53~M (22.8\%) & escenario \\
 & Cifra oficial ONEI fin-2025 & 9.43~M & oficial \\
-& Población viva fin-2026 (central) & 8.30~M & escenario \\
+& Población viva fin-2026 (central) & 8.29~M & escenario \\
 & Participación de la emigración en la brecha & $\sim$92\% & escenario \\
 \bottomrule
 \end{tabular}
@@ -309,6 +313,7 @@ El vaciamiento de las edades laborales del panel izquierdo es lo que impulsa el 
 
 \subsection{Deterioro del sistema de salud}
 
+Los dos motores se encuentran en la descomposición de la mortalidad, y leerla correctamente importa.
 Reducir la crisis solo a la emigración es incompleto: la emigración puede revertirse, pero los nacimientos que no ocurrieron y una población residual envejecida no.
 Una distinción útil es la de \textbf{pérdida realizada} (dominada por la salida) frente a \textbf{inercia futura} (donde el decrecimiento natural pesa cada vez más).
 En 2019 el saldo natural era todavía ligeramente positivo ($+$636); en 2025 las defunciones superaron a los nacimientos en \textbf{68\,150} (68\,064 nacimientos frente a 136\,214 defunciones; Figura~\ref{fig:scissors}).
@@ -347,15 +352,15 @@ La descomposición de la mortalidad responde directamente a la pregunta envejeci
 Cuba registró 136\,214 defunciones en 2025 frente a 109\,080 en 2019, 27\,134 más, o unas 31\,300 más una vez incluido el subregistro residual, mientras tenía alrededor de 2~millones menos de residentes.
 Entretanto, la población de 60 años y más subió de 2.31~millones (2019, observado) a unos 2.60~millones proyectados en 2025.
 Tres términos se compensan hasta dar ese aumento.
-Una población residente menor en $\sim$2~millones debería haber reducido las defunciones anuales en unas \textbf{19\,400}; el envejecimiento añadió unas \textbf{22\,300}; y el residual de exceso respecto de la tabla de 2019 es de unas \textbf{28\,500} al año (banda del 90\%: 18\,600--38\,200), o $\sim$298 por cada 100\,000 sobre la población oficial.
+Una población residente menor en $\sim$2~millones debería haber reducido las defunciones anuales en unas \textbf{19\,400}; el envejecimiento añadió unas \textbf{22\,400}; y el residual de exceso respecto de la tabla de 2019 es de unas \textbf{28\,500} al año (rango de sensibilidad a los supuestos: 18\,600--38\,200), o $\sim$297 por cada 100\,000 sobre la población oficial.
 Los dos términos al alza son de magnitud comparable ($\sim$44\% y $\sim$56\% del incremento bruto); ninguno por sí solo explica el aumento, y juntos lo superan porque la población menguante tira en sentido contrario.
-El puente basado en tasas brutas reportado en versiones anteriores de este trabajo cargaba a la crisis todo el desplazamiento etario y sobrestimaba el componente de colapso: $\sim$77\,000 para 2024--2025 combinados frente a \textbf{50\,200} (34\,500--65\,800) aquí.
+El puente basado en tasas brutas reportado en versiones anteriores de este trabajo cargaba a la crisis todo el desplazamiento etario y sobrestimaba el componente de colapso: $\sim$77\,000 para 2024--2025 combinados frente a \textbf{50\,100} (32\,600--67\,500) aquí.
 
 El perfil temporal separa dos episodios distintos.
 El exceso respecto de la tabla de 2019 fue de unas 5\,400 en 2020, alcanzaron $\sim$61\,900 en la ola de COVID-19 de 2021, retrocedieron a $\sim$12\,800 (2022) y $\sim$11\,900 (2023), y luego casi se duplicaron hasta $\sim$21\,600 (2024) y $\sim$28\,500 (2025).
 El valle de 2022--2023 separa la ola pandémica del alza posterior, de modo que el aumento de 2024--2025 no es una continuación del pico de 2021; coincide con las crisis de apagones, combustible, medicamentos y arbovirosis, aunque el residual por sí solo no permite descartar la mortalidad pos-aguda por COVID-19 ni cambios de codificación como contribuyentes.
-Excluyendo 2021 por completo, el total de exceso de 2022--2025 es de $\sim$\textbf{74\,800} (47\,000--103\,000); incluyéndolo, 2020--2025 da $\sim$142\,100 (107\,000--179\,100), frente a los $\sim$153\,000 de la definición más cruda de exceso registrado.
-Una continuación de escenario para 2026 llega a $\sim$32\,600 (20\,300--44\,500), pero esa cifra hereda la continuación supuesta de $+$4\% en defunciones y no es una observación.
+Excluyendo 2021 por completo, el total de exceso de 2022--2025 es de $\sim$\textbf{74\,800} (47\,000--103\,000); incluyéndolo, 2020--2025 da $\sim$142\,100 (105\,400--180\,500).
+Una continuación de escenario para 2026 llega a $\sim$32\,300 (20\,000--44\,200), pero esa cifra hereda la continuación supuesta de $+$4\% en defunciones y no es una observación.
 La incertidumbre dominante no está dentro de la simulación sino en la elección del contrafactual, y no está en el rango anterior.
 Mantener plana la mortalidad de 2019 es un supuesto; proyectar la propia tendencia precrisis de Cuba ($+0.24\%$/año) da 26\,700 para 2025, mientras que suponer la mejora del 0.5--1.5\%/año que lograron los pares regionales da 31\,600--38\,000.
 El rango completo, \textbf{26\,700--38\,000}, es comparable a todo el rango reportado y queda fuera de él; un ancla plana tiende más a subestimar que a sobrestimar.
@@ -366,7 +371,7 @@ Pasando al ruido interno del ancla y no a su elección: las tasas por edad prome
 \includegraphics[width=\linewidth]{f14_atribuible_es.png}
 \caption{Por qué suben las defunciones mientras cae la población.
 Izquierda: cambio en las defunciones anuales frente a 2019, descompuesto en tamaño poblacional, envejecimiento y deterioro de tasas; el punto es el cambio neto observado incluidas las defunciones no registradas estimadas.
-Derecha: defunciones de exceso respecto de la tabla de 2019, mediana y banda del 90\%.
+Derecha: defunciones de exceso respecto de la tabla de 2019, mediana y rango de sensibilidad a los supuestos.
 2026 es una continuación de escenario, no una observación.
 Las bandas son predictivas a priori bajo las marginales indicadas y comparten $D_{\mathrm{fac}}$ con el escenario central.}
 \label{fig:attrib}
@@ -383,7 +388,7 @@ La participación electoral cayó abruptamente entre 2018 y 2023; ese patrón es
 \centering
 \includegraphics[width=0.95\linewidth]{f7_triangulacion_es.png}
 \caption{Triangulación de los niveles de población a fin de 2025.
-El el escenario central es el estimando del estudio (no un validador); Albizu y viviendas son anclas blandas y cargadas de supuestos.}
+El escenario central es el estimando del estudio (no un validador); Albizu y viviendas son anclas blandas y cargadas de supuestos.}
 \label{fig:tri}
 \end{figure}
 
@@ -406,7 +411,7 @@ Escenario & Brecha (M) & Brecha \% & Pob.\ fin-2025 (M) & Pob.\ fin-2026 (M) \\
 \midrule
 \textit{Nulo: ONEI al pie de la letra} & \textit{1.68} & \textit{15.1} & \textit{9.43} & \textit{9.14} \\
 Conservador & 1.97 & 17.8 & 9.14 & 8.84 \\
-\textbf{Central ajustado por crisis} & \textbf{2.52} & \textbf{22.7} & \textbf{8.59} & \textbf{8.30} \\
+\textbf{Central ajustado por crisis} & \textbf{2.53} & \textbf{22.8} & \textbf{8.58} & \textbf{8.29} \\
 Superior de estrés & 2.79 & 25.1 & 8.32 & 8.02 \\
 \midrule
 \textit{Envolvente (excl.\ nulo)} & \textit{1.97--2.79} & \textit{17.8--25.1} & \textit{8.32--9.14} & \textit{8.02--8.84} \\
@@ -483,8 +488,8 @@ Cuba & $-3.3\%$ \\
 \subsection{Migración}
 
 
-Los dos motores se encuentran en la descomposición de la mortalidad, y leerla correctamente importa.
 
+El único caso documentado de revisión a la baja del registro de defunciones es ilustrativo.
 Usamos la cifra publicada, pero el total previo a la revisión elevaría la mortalidad atribuible de 2022 de $\sim$12\,700 a $\sim$21\,900, y el total pospandémico 2022--2025 de $\sim$74\,800 a $\sim$84\,100.
 Este es el anclaje empírico de cuánta holgura tiene demostrablemente el registro: un 7.5\% en un solo año, apenas por debajo del tope del 9\% sobre $D_{\mathrm{fac}}$, razón por la cual ese tope se mantiene en lugar de elevarse.
 Acota la pregunta desde la observación y no desde una creencia previa, y corta en ambas direcciones: un registro que puede perder 8\,951 defunciones sin explicación no es plenamente confiable, pero uno que publicó un alza del 54\% en un solo año en 2021 (de 109\,080 a 167\,645) tampoco es uno que oculte a gran escala.
@@ -494,7 +499,7 @@ La contabilidad reubica buena parte del éxodo en un salto único de revisión e
 Incluso tras esa revisión, los saldos netos de 2024--2025 quedan solo ligeramente por encima de las entradas registradas únicamente en Estados Unidos, mientras que el saldo de 2025 admite 317\,320 emigraciones externas brutas (neto $-$245\,264): subestimación continuada de la salida.
 Por eso este trabajo trata el recuento oficial como un techo y lo contrasta con fuentes que corrigen por salida (Figura~\ref{fig:tri}).
 
-En conjunto: frente al stock oficial de fin de 2021, la brecha a fin de 2025 se sitúa entre 1.94 y 2.80~millones, o 17.8--25.1\% (el enunciado primario).
+En conjunto: frente al stock oficial de fin de 2021, la brecha a fin de 2025 se sitúa entre 1.97 y 2.79~millones, o 17.8--25.1\% (el enunciado primario).
 Bajo el escenario central, la población viva está cerca de 8.58~millones a fin de 2025 y no en los 9.43~millones oficiales: una brecha de 2.53~millones (22.8\%), de la cual alrededor del 92\% es emigración; el piso anclado en la ONEI queda en 9.14~millones.
 Hacia fin de 2026 la continuación central está cerca de 8.29~millones, llevando la brecha a aproximadamente una de cada cuatro personas.
 Junto a ese recuento, el exceso respecto de la tabla de 2019 corre a $\sim$28\,500 defunciones al año a niveles de 2025 y a $\sim$74\,800 acumuladas en 2022--2025, un costo mayor que lo que explica el envejecimiento por sí solo y alrededor de un tercio inferior a lo que implicaba para 2024--2025 el puente basado en tasas brutas.
@@ -503,6 +508,7 @@ Un censo en 2026 realizado con prácticas estándar sería informativo; la banda
 
 \subsection{Deterioro del sistema de salud}
 
+Los dos motores se encuentran en la descomposición de la mortalidad, y leerla correctamente importa.
 La emigración se lleva adultos en edad laboral, lo que eleva la proporción de ancianos, lo que a su vez eleva las defunciones incluso con un sistema de salud inalterado: eso es lo que mide el término de envejecimiento: unas 22\,300 defunciones adicionales al año.
 Cuánto de ese envejecimiento es inducido por la migración \emph{no} se identifica aquí: el término se calcula sobre la estructura por edades observada de la ONEI, y la transición de la fecundidad cubana ya generaba envejecimiento décadas antes de la crisis, de modo que debe leerse como envejecimiento por todas las causas combinadas, de las cuales la salida selectiva es una.
 Encima de él se sitúa un deterioro de tasas de $\sim$28\,500 defunciones al año que el envejecimiento no explica, concentrado en 2024--2025 y todavía en ascenso en el escenario de 2026.
@@ -513,11 +519,10 @@ Su debilidad principal es la opuesta a la de los modelos poblacionales: el mecan
 Los apagones, los fallos de ambulancias y de diálisis por falta de combustible, la escasez de medicamentos, la oncología demorada y las olas de arbovirosis de 2025--2026 son todas vías plausibles, y ninguna se estima aquí por separado; la estimación es una asociación con el período de crisis, no una atribución por causa de muerte.
 Los indicadores de inseguridad alimentaria y anemia del PMA, y la caída del PIB agrícola, se discuten solo como vías \emph{contextuales} amplificadoras~\citep{wfp_cuba}; no entran en $D_{\mathrm{fac}}$ ni en la descomposición~\citep{karlinsky2021,msemburi2023}.
 
-El único caso documentado de revisión a la baja del registro de defunciones es ilustrativo.
 
 \subsection{Población proyectada}
 
-El el escenario central se mantiene como escenario central ilustrativo porque la comprobación de consistencia con la mortalidad infantil reduce la necesidad de multiplicadores grandes de defunciones ocultas y concentra la incertidumbre residual en la migración~\citep{pagegarcia2020,modeld}.
+El escenario central se mantiene porque la comprobación de consistencia con la mortalidad infantil reduce la necesidad de multiplicadores grandes de defunciones ocultas y concentra la incertidumbre residual en la migración~\citep{pagegarcia2020,modeld}.
 No es una estimación puntual identificada: la pérdida absoluta sigue siendo $\sim$91\% migratoria bajo las distribuciones a priori de D, y $U_0$ junto con $M>1$ pueden compartir un mismo defecto de padrón desactualizado.
 Los intervalos dentro de un escenario parecen falsamente precisos frente a la envolvente entre escenarios: la envolvente debe encabezar la lectura.
 El enunciado científico principal es la brecha del 22.8\% del escenario central a fin de 2025 sobre la base oficial de 2021 (entre una de cada cinco y una de cada cuatro personas), que hacia fin de 2026 se acerca al $\sim$25\%.

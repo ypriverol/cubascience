@@ -574,5 +574,25 @@
       ],
       "note": "This span is comparable to the entire Monte Carlo range and is NOT inside it. A flat anchor is more likely to under- than overstate, because Cuba's regional peers continued to improve.\n"
     }
+  },
+  "infant_mortality": {
+    "imr_per_1000": {
+      "2018": 4.0,
+      "2019": 5.0,
+      "2022": 7.49,
+      "2023": 7.1,
+      "2024": 7.1,
+      "2025": 9.9
+    },
+    "infant_deaths": {
+      "2018": 461,
+      "2019": 552,
+      "2022": 715
+    },
+    "infant_deaths_2019_source": "ONEI 3.16 (in repo, observed): 552",
+    "infant_deaths_2025_derived": 674,
+    "infant_deaths_2025_note": "674 = 9.9/1000 x 68,064 births. DERIVED, not observed: ONEI 3.16 stops at 2022. The 2025 IMR of 9.9 is a REPORTED figure (MINSAP/RCM via press) and is NOT in any ONEI table shipped here.\n",
+    "provenance_2025": "unverified_reported",
+    "caution": "The rate rose 98% but the deaths rose ~23%, because live births fell 38%. Report both. The 2019 baseline of 5.0 is itself the most-scrutinised statistic in Cuban vital registration; a literature on late-fetal/early- neonatal reclassification (Berdine, Geloso & Powell 2018) means part of any rise may be relaxation of classification practice rather than deterioration. This cuts against treating the sentinel as high-integrity without caveat.\n"
   }
 }
