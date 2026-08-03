@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 """
+RETIRED — DO NOT USE. Superseded by model_population.py.
+
+This script emits the five-model, corrected-base framework the manuscript
+explicitly abandoned (8.59 M, -20.5%, 1.8-2.4 M envelope). It is retained only
+so earlier published figures stay reproducible. Following the old README recipe
+with this script yields numbers that CONTRADICT the current paper.
+
 Monte Carlo from end-2021 → end-2025 (+ 2026 nowcast).
 
 Same Model D sentinel logic as model_d.py, but the accounting window starts at

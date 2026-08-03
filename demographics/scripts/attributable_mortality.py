@@ -256,8 +256,12 @@ def counterfactual_sensitivity(base: dict, expected_2025: float,
     supports the choice; regional peers were improving 0.5-1.5%/yr, which does
     not. Both readings are reported.
     """
+    fitted = _pre_crisis_trend()
+    sparse = fitted.get("2006_2019_sparse", {}).get("annual_pct", 0.236) / 100.0
+    contig = fitted.get("2013_2019_contiguous", {}).get("annual_pct", 0.678) / 100.0
     out = {}
-    for label, drift in [("cuba_pre_crisis_trend_+0.24pct", 0.0024),
+    for label, drift in [("cuba_trend_sparse_2006_2019", sparse),
+                         ("cuba_trend_contiguous_2013_2019", contig),
                          ("flat_2019_schedule_AS_USED", 0.0),
                          ("improvement_0.5pct_yr", -0.005),
                          ("improvement_1.0pct_yr", -0.010),
@@ -271,7 +275,8 @@ def counterfactual_sensitivity(base: dict, expected_2025: float,
     # same sensitivity -- previously it was computed for 2025 only.
     if expected_by_year and registered_by_year:
         cum = {}
-        for label, drift in [("cuba_pre_crisis_trend_+0.24pct", 0.0024),
+        for label, drift in [("cuba_trend_sparse_2006_2019", sparse),
+                             ("cuba_trend_contiguous_2013_2019", contig),
                              ("flat_2019_schedule_AS_USED", 0.0),
                              ("improvement_0.5pct_yr", -0.005),
                              ("improvement_1.0pct_yr", -0.010),
@@ -283,7 +288,19 @@ def counterfactual_sensitivity(base: dict, expected_2025: float,
             cum[label] = int(round(tot))
         out["cumulative_2022_2025"] = cum
         out["cumulative_2022_2025"]["_span"] = [min(cum.values()), max(cum.values())]
-    out["pre_crisis_trend_fitted"] = _pre_crisis_trend()
+    out["pre_crisis_trend_fitted"] = fitted
+    # Dfac asymmetry: the estimator lifts target-year deaths but leaves the 2019
+    # anchor at registered counts, so it assumes 2019 registration was complete
+    # and later years are ~3% incomplete. That reads Dfac as a DETERIORATION in
+    # completeness. The symmetric variant (anchor lifted too) is the reading in
+    # which Dfac is a constant level, and is reported so the choice is visible.
+    sym_2025 = registered_2025 * dfac_med - expected_2025 * dfac_med
+    out["dfac_symmetric_variant"] = {
+        "attributable_2025": int(round(sym_2025)),
+        "note": "Dfac applied to the 2019 anchor as well. Lower than the headline "
+                "because only a CHANGE in completeness since 2019 then counts as "
+                "excess. The headline treats Dfac as crisis-induced deterioration.",
+    }
     vals = [v["attributable_2025"] for v in out.values()
             if isinstance(v, dict) and "attributable_2025" in v]
     out["_range"] = {"low": min(vals), "high": max(vals),

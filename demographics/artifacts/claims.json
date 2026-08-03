@@ -13,8 +13,8 @@
     "deaths_2022_note": "ONEI first reported 129,049 deaths for calendar year 2022, then published 120,098 in its official statistics with no methodological explanation \u2014 a downward revision of 8,951 (7.5%). Canonical scripts use the published 120,098; the pre-revision figure is carried in death_register_revisions as a sensitivity, not as an alternative headline.\n",
     "deaths_2022_note_correction": "CORRECTION 2026-08-03: earlier drafts attributed the trio 129,049 / 120,098 / 117,746 to 2023. That was wrong \u2014 129,049 and 120,098 are BOTH 2022 figures (pre- and post-revision), which is why 120,098 is our canonical 2022 value. 117,746 is the Anuario 2023 total. Source: Latinoam\u00e9rica 21 / El Universal, \"El extra\u00f1o caso de los 9 mil muertos desaparecidos en Cuba\".\n",
     "deaths_2022_2025_note": "Identity window sum 502149 (model_from_2021). Model E death JSON sums 502159 \u2014 internal reconstruction path only.",
-    "script": "scripts/model_from_2021.py",
-    "primary_uncertainty": "across-scenario envelope A\u2013C/D (~1.8\u20132.4M loss), not within-D percentiles"
+    "script": "scripts/model_population.py",
+    "primary_uncertainty": "span across the three assumption sets (1.97-2.79M gap); not a confidence interval"
   },
   "vital": {
     "official_pop_2019": 11193470,
@@ -97,8 +97,8 @@
     ],
     "values": [
       11.11,
-      8.59,
-      8.3,
+      8.58,
+      8.29,
       7.0
     ],
     "note": "2030 point is illustrative scenario only, not a forecast."
@@ -151,7 +151,7 @@
         "pop_end_2026_m": 8.02
       }
     },
-    "headline": "Against the official end-2021 stock, the gap by end-2025 is 1.94-2.80 million (17.4-25.2%); the central scenario is 2.52 million (22.7%), leaving about 8.59 million living, against 9.43 million officially. Roughly 92% of the gap is emigration, counting both the 2022-25 flow and the pre-2021 backlog still on the roll.\n",
+    "headline": "Against the official end-2021 stock, the gap by end-2025 is 1.97-2.79 million (17.8-25.1%); the central scenario is 2.53 million (22.8%), leaving about 8.58 million living against 9.43 million officially -- of which 1.68 million is decline ONEI itself published and 0.85 million is this paper's correction. Roughly 92% of the gap is emigration, counting both the 2022-25 flow and the pre-2021 backlog still on the roll.\n",
     "retired": {
       "model_B": "landed within 0.02 M of the central scenario \u2014 same story, different dials",
       "model_E": "dominated by attributable_mortality.py (observed age data vs a hand-weighted index)",
@@ -166,10 +166,10 @@
     "primary_scientific": {
       "value_approx": "between one in six and one in four",
       "pct_range": [
-        17.4,
-        25.2
+        17.8,
+        25.1
       ],
-      "central_pct": 22.7,
+      "central_pct": 22.8,
       "year": 2025,
       "products": [
         "en_paper",
@@ -240,12 +240,12 @@
       "median": 28501,
       "p05": 18617,
       "p95": 38203,
-      "per_100k_official_stock": 298
+      "per_100k_official_stock": 297
     },
     "annual_2026_scenario": {
-      "median": 32600,
-      "p05": 20300,
-      "p95": 44500,
+      "median": 32291,
+      "p05": 20004,
+      "p95": 44173,
       "note": "Depends on the +4% registered-death continuation in model_from_2021.py \u2014 scenario, not observation."
     },
     "cumulative": {
@@ -276,19 +276,19 @@
       "2022": 12800,
       "2023": 11900,
       "2024": 21600,
-      "2025": 28600,
-      "2026": 32600
+      "2025": 28501,
+      "2026": 32291
     },
     "decomposition_2025": {
       "population_size_effect": -19400,
-      "ageing_effect": 22300,
-      "health_system_effect": 28600,
+      "ageing_effect": 22415,
+      "health_system_effect": 28501,
       "observed_rise_incl_unregistered": 31300,
       "note": "Change in annual deaths vs 2019 = size + ageing + rate, exactly per draw. A ~2.0M smaller resident population should have cut ~19,400 deaths a year; ageing added ~22,300; health-system deterioration added ~28,600. The two upward terms sum to more than the observed 31,300 rise because the smaller population pulls the other way.\n"
     },
     "ageing_share_of_gross_increase_2025_pct": 44,
     "headline_en": "Excess mortality against the 2019 age-specific schedule runs at roughly 28,500 deaths a year at 2025 levels (prior sensitivity range 18,600-38,200), against ~22,300 a year explained by population ageing alone.\n",
-    "headline_es": "El deterioro del sistema de salud se asocia a unas 28,500 muertes anuales en exceso a niveles de 2025 (banda 90% 18,700-38,300), frente a ~22,300 anuales que explica el envejecimiento por si solo.\n",
+    "headline_es": "El exceso respecto de la tabla de 2019 corre a unas 28,500 muertes anuales en exceso a niveles de 2025 (banda 90% 18,700-38,300), frente a ~22,300 anuales que explica el envejecimiento por si solo.\n",
     "status": "primary age-standardised estimate; supersedes the crude 2019-CDR bridge",
     "revision_note": "2026-08-03 adversarial review: the previous version derived the elderly count as (share x official total), which made it FALL 67k in 2024 because the official total absorbs ONEI's 2023 register catch-up in one step; and it used 3.12 shares rather than ONEI 3.3 observed age denominators. Both are fixed. 2024-2025 moved 47.1k -> 50.2k and 2022 moved 7.4k -> 12.8k.\n",
     "caveats": [
@@ -563,14 +563,19 @@
       "reason": "The same formula returns ~61,900 for 2021, which is a pandemic. A residual against a fixed schedule cannot distinguish health-system deterioration from post-acute COVID, coding drift, mortality displacement, health- selective emigration, or denominator error. \"Attributable\" requires an identified exposure and cause-of-death evidence; neither exists here.\n"
     },
     "counterfactual_sensitivity_2025": {
-      "cuba_pre_crisis_trend": 26681,
+      "cuba_trend_sparse_2006_2019": 26708,
+      "cuba_trend_contiguous_2013_2019": 23667,
       "flat_2019_as_used": 28305,
       "improvement_0_5pct": 31625,
       "improvement_1_0pct": 34864,
       "improvement_1_5pct": 38022,
       "span": [
-        26700,
-        38000
+        23667,
+        38022
+      ],
+      "cumulative_2022_2025_span": [
+        60488,
+        103321
       ],
       "note": "This span is comparable to the entire Monte Carlo range and is NOT inside it. A flat anchor is more likely to under- than overstate, because Cuba's regional peers continued to improve.\n"
     }

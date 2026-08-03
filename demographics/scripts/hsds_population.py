@@ -124,7 +124,7 @@ def run_model_e(n: int = 100_000, seed: int = 2027) -> dict:
             "sum_median": deaths["sum_D_star_2022_2025_median"],
             "sum_reg": deaths["sum_D_reg_2022_2025"],
         },
-        "preferred_public_model_still": claims["meta"]["preferred_model"],
+        "preferred_public_model_still": claims["meta"].get("preferred_scenario","central"),
         "note": "Model E is provisional beside A–D until Task 8 adversarial gate.",
     }
     ARTIFACTS.mkdir(parents=True, exist_ok=True)

@@ -2,21 +2,24 @@
 
 Quantitative scenario audit of Cuba’s population loss between **end-2021 and end-2026**.
 
-> **Primary uncertainty.** Across scenarios A–D, cumulative 2021–2025 loss ≈**1.8–2.4 M**.
+> **One base: the official end-2021 stock (11,113,215).** The gap by end-2025 spans
+> **1.97–2.79 M (17.8–25.1%)** across three assumption sets. A **null** scenario taking
+> ONEI at face value gives 1.68 M and reproduces the official figure exactly.
 >
-> **Illustrative central scenario (Model D).** ≈**8.59 M** living population at end-2025
-> (≈**−2.21 M**, **−20.5%** on the corrected base). Emigration ≈**91%** of absolute loss.
-> Model A (ONEI-anchored) remains the floor neighbourhood (≈**9.16 M**).
+> **Central scenario.** ≈**8.58 M** living at end-2025 against 9.43 M officially — a gap of
+> **2.53 M (22.8%)**, of which **1.68 M is decline ONEI itself published** and **0.85 M is
+> this paper's correction**. The 0.85 M is the actual claim. Emigration ≈**92%** of the gap.
 >
-> **Register-gap aside (not the scientific lead).** Against the **official 2021** base,
-> the end-2026 gap approaches ~**1 in 4** — a different definition from Model D −20.5%.
+> Point figures are closed-form arithmetic on three prior means; no parameter is informed
+> by a likelihood, and the ranges are prior sensitivity ranges, not confidence intervals.
 >
 > **Mortality attributable to health-system collapse.** Age-standardised decomposition
 > (`scripts/attributable_mortality.py`), on **observed** ONEI 3.3 age denominators:
-> at 2025 levels ≈**28.6k deaths/year** (90% band 18.7–38.3k) are attributable to
-> health-system deterioration, against ≈**22.3k/year** explained by ageing alone —
-> while the population is ~2 M smaller. Post-COVID 2022–2025 ≈**74.9k** (49.1–101.2k);
-> 2024–2025 ≈**50.2k**. This **supersedes** the crude 2019-CDR bridge (~77k for
+> at 2025 levels ≈**28.5k deaths/year** (prior sensitivity range 18.6–38.2k) of **excess
+> against the 2019 age-specific schedule** — deliberately *not* called "attributable to
+> health-system deterioration" — against ≈**22.4k/year** explained by ageing alone.
+> Post-COVID 2022–2025 ≈**74.8k** (47.0–103.0k); 2024–2025 ≈**50.1k**. Counterfactual
+> choice moves these more than the simulation does: 23.7–38.0k and 60.5–103.3k. This **supersedes** the crude 2019-CDR bridge (~77k for
 > 2024–2025, which charged the whole ageing shift to the crisis). Crude registered
 > excess 2020–2025 ≈**153k** is a separate, cruder quantity and must not be added.
 >
@@ -66,8 +69,10 @@ python3 ../../../scripts/render_manuscript_md.py
 ```bash
 cd demographics
 export MPLBACKEND=Agg
-python3 scripts/model_from_2021.py        # Models A–D + 2026 continuation
-python3 scripts/attributable_mortality.py # ageing vs health-system decomposition
+python3 scripts/model_population.py        # scenarios: null/conservative/central/upper
+python3 scripts/attributable_mortality.py # ageing vs rate-deterioration decomposition
+python3 scripts/age_standardised_mortality.py # WHO-standardised ASMR + SMR
+python3 scripts/consistency_model.py       # 18 internal-consistency tests
 python3 scripts/charts_publication.py     # ES infographic + EN manuscript figures
 python3 scripts/charts_manuscript_es.py   # ES manuscript figure set (f*_es.png)
 python3 scripts/charts_attributable.py    # f14 attributable mortality (EN + ES)
