@@ -186,7 +186,7 @@ Propagamos cuatro fuentes de incertidumbre sobre $N=2\times10^5$ extracciones: r
 Los parámetros sistemáticos se extraen una sola vez y se reutilizan en cada año, de modo que las ventanas acumuladas propagan error correlacionado y no independiente.
 La identidad anterior se cumple exactamente en cada extracción porque la referencia de 2019 usa las mismas tasas perturbadas que el año objetivo.
 Dado que $D_{\mathrm{fac}}$ es compartido con el escenario central, la estimación atribuible y el escenario de recuento no son independientes.
-Por comparabilidad con versiones anteriores, también se reporta el exceso bruto registrado sobre un contrafactual de deriva lineal, $\mathrm{TBM}^{\mathrm{cf}}_t=9.7+0.16(t-2019)$ ($\sim$153\,000 en 2020--2025); es una cantidad distinta y más cruda, y no debe sumarse a la estimación atribuible~\citep{karlinsky2021,msemburi2023,kishore2018}.
+Versiones anteriores llevaban además un comparador de exceso bruto registrado sobre un contrafactual de deriva lineal. Se ha eliminado: no se reproducía a partir de la fórmula declarada, su deriva quedaba por debajo de la deriva bruta precrisis observada en Cuba, y no servía a ningún argumento que la descomposición estandarizada por edad no sirva mejor~\citep{karlinsky2021,msemburi2023,kishore2018}.
 
 Los niveles de población publicados se agrupan por contenido informativo (Figura~\ref{fig:tri}).
 Los techos que no depuran emigrantes incluyen \emph{World Population Prospects} de la ONU, el denominador del MINSAP y el padrón electoral (solo cotas superiores blandas).
@@ -252,15 +252,15 @@ Afirmación & Cantidad & Valor & Estatus \\
 \midrule
 \multicolumn{4}{l}{\textit{Deterioro del sistema de salud}} \\
 & Defunciones registradas, 2025 & 136\,214 & oficial \\
-& Esperadas a tasas de 2019, estructura de 2025 & 112\,006 & derivado \\
+& Esperadas a tasas de 2019, estructura de 2025 & 112\,100 & derivado \\
 & Exceso vs la tabla de 2019, 2025 & 28\,500 [18\,600--38\,200] & valor de escenario \\
 & Exceso, 2022--2025 (pospandémico) & 74\,800 [47\,000--103\,000] & valor de escenario \\
 & \quad bajo contrafactuales alternativos & 69\,400--103\,300 & sensibilidad \\
 & \quad sobre el total de 2022 previo a la revisión & $\sim$84\,100 & sensibilidad \\
-& Explicadas solo por el envejecimiento, 2025 & 22\,300 & derivado \\
+& Explicadas solo por el envejecimiento, 2025 & 22\,400 & derivado \\
 & Efecto del tamaño poblacional, 2025 & $-$19\,400 & derivado \\
-& Razón de mortalidad estandarizada vs 2019, 2025 & 1.216 & derivado \\
-& Parte de la tasa bruta que es estructura por edad & $\sim$41\% & derivado \\
+& Razón de mortalidad estandarizada vs 2019, 2025 & 1.215 & derivado \\
+& Parte de la tasa bruta que es estructura por edad (2019) & 40.8\% & derivado \\
 & Retiro documentado del registro en 2022 & 8\,951 (7.5\%) & oficial \\
 \midrule
 \multicolumn{4}{l}{\textit{Población proyectada}} \\
@@ -362,8 +362,8 @@ El valle de 2022--2023 separa la ola pandémica del alza posterior, de modo que 
 Excluyendo 2021 por completo, el total de exceso de 2022--2025 es de $\sim$\textbf{74\,800} (47\,000--103\,000); incluyéndolo, 2020--2025 da $\sim$142\,100 (105\,400--180\,500).
 Una continuación de escenario para 2026 llega a $\sim$32\,300 (20\,000--44\,200), pero esa cifra hereda la continuación supuesta de $+$4\% en defunciones y no es una observación.
 La incertidumbre dominante no está dentro de la simulación sino en la elección del contrafactual, y no está en el rango anterior.
-Mantener plana la mortalidad de 2019 es un supuesto; proyectar la propia tendencia precrisis de Cuba ($+0.24\%$/año) da 26\,700 para 2025, mientras que suponer la mejora del 0.5--1.5\%/año que lograron los pares regionales da 31\,600--38\,000.
-El rango completo, \textbf{26\,700--38\,000}, es comparable a todo el rango reportado y queda fuera de él; un ancla plana tiende más a subestimar que a sobrestimar.
+Mantener plana la mortalidad de 2019 es un supuesto. Ahora ajustamos la tendencia precrisis en lugar de afirmarla, y depende de la ventana: la serie dispersa 2006--2019 (cuatro años son inutilizables, véanse las Advertencias) da $+0.236\%$/año, mientras que la ventana contigua 2013--2019 da $+0.678\%$/año. Proyectar la primera da 26\,700 para 2025 y la segunda unas 23\,600; suponer en cambio la mejora del 0.5--1.5\%/año de los pares regionales da 31\,600--38\,000.
+El rango completo, \textbf{23\,600--38\,000}, es comparable en amplitud a todo el rango reportado y \emph{no se propaga} a él. El mismo ejercicio sobre la ventana acumulada mueve 2022--2025 de 74\,200 a un rango de \textbf{69\,400--103\,300}, de modo que los 74\,800 del resumen dependen del ancla plana del mismo modo. Un ancla plana tiende más a subestimar que a sobrestimar, porque los pares regionales de Cuba siguieron mejorando.
 Pasando al ruido interno del ancla y no a su elección: las tasas por edad promedio de 2017--2019 quedan a menos del 1.1\% de las de 2019 a los 65 años y más, donde ocurre la mayoría de las defunciones, y ligeramente \emph{por encima}, de modo que 2019 fue un año comparativamente bueno y el ancla no favorece el resultado; la diferencia queda holgadamente dentro del ruido del 2\% de la tabla de tasas.
 
 \begin{figure}[!htbp]
@@ -509,11 +509,11 @@ Un censo en 2026 realizado con prácticas estándar sería informativo; la banda
 \subsection{Deterioro del sistema de salud}
 
 Los dos motores se encuentran en la descomposición de la mortalidad, y leerla correctamente importa.
-La emigración se lleva adultos en edad laboral, lo que eleva la proporción de ancianos, lo que a su vez eleva las defunciones incluso con un sistema de salud inalterado: eso es lo que mide el término de envejecimiento: unas 22\,300 defunciones adicionales al año.
+La emigración se lleva adultos en edad laboral, lo que eleva la proporción de ancianos, lo que a su vez eleva las defunciones incluso con un sistema de salud inalterado: eso es lo que mide el término de envejecimiento: unas 22\,400 defunciones adicionales al año.
 Cuánto de ese envejecimiento es inducido por la migración \emph{no} se identifica aquí: el término se calcula sobre la estructura por edades observada de la ONEI, y la transición de la fecundidad cubana ya generaba envejecimiento décadas antes de la crisis, de modo que debe leerse como envejecimiento por todas las causas combinadas, de las cuales la salida selectiva es una.
 Encima de él se sitúa un deterioro de tasas de $\sim$28\,500 defunciones al año que el envejecimiento no explica, concentrado en 2024--2025 y todavía en ascenso en el escenario de 2026.
 La asimetría relevante para la política pública es que la emigración puede revertirse, mientras que ni esas muertes ni los nacimientos que no ocurrieron pueden hacerlo.
-Dos propiedades hacen que la estimación atribuible sea más robusta que los escenarios poblacionales junto a los que se presenta: no depende de resolver la disputa migratoria, porque el número de ancianos se mantiene aproximadamente fijo y $E_t$ apenas se mueve entre la población oficial y la del escenario central; y no depende del ancla de 2019, que la sensibilidad 2017--2019 deja esencialmente inalterada a los 60 años y más.
+Dos propiedades hacen que la estimación atribuible sea más robusta que los escenarios poblacionales junto a los que se presenta: no depende de resolver la disputa migratoria, porque el número de ancianos se mantiene aproximadamente fijo y $E_t$ apenas se mueve entre la población oficial y la del escenario central; y es insensible al \emph{nivel} del ancla, que la sensibilidad 2017--2019 deja esencialmente inalterado a los 60 años y más (\emph{no} es insensible a su tendencia, que es la incertidumbre dominante señalada arriba).
 Sigue siendo condicional a que el registro de defunciones sea casi completo: un supuesto que el centinela de mortalidad infantil hace plausible para las muertes institucionales pero no demuestra, y que la distribución a priori de $D_{\mathrm{fac}}$ pretende absorber más que resolver.
 Su debilidad principal es la opuesta a la de los modelos poblacionales: el mecanismo no está identificado.
 Los apagones, los fallos de ambulancias y de diálisis por falta de combustible, la escasez de medicamentos, la oncología demorada y las olas de arbovirosis de 2025--2026 son todas vías plausibles, y ninguna se estima aquí por separado; la estimación es una asociación con el período de crisis, no una atribución por causa de muerte.
@@ -538,6 +538,9 @@ La descomposición de la mortalidad usa cuatro grupos de edad porque es el conju
 Su ancla de 2019 supone que no habría habido mejora contrafactual de la mortalidad cubana después de 2019, y comparte $D_{\mathrm{fac}}$ con el escenario central, por lo que no es independiente del escenario de recuento.
 Las defunciones atribuibles son una asociación con el período de crisis, no una atribución por causa de muerte.
 Los indicadores de inseguridad alimentaria son solo contextuales.
+
+La serie precrisis estandarizada por edad no puede ajustarse sobre una ventana completa: los paneles de la ONEI 3.15 para 2009--2012 se leen como aproximadamente la mitad de las defunciones reales y un control de lectura los rechaza, de modo que la tendencia descansa en 10 años no contiguos (o 7 contiguos, que dan una tendencia casi tres veces mayor).
+La incertidumbre dominante en el estimando de mortalidad es la elección del contrafactual, no algo interno a la simulación, y se reporta por separado en lugar de integrarse en el rango.
 
 \textbf{Estatus.}
 Este es un preprint y no ha sido revisado por pares.
