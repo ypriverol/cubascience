@@ -1,0 +1,15 @@
+# $title$
+
+$for(author)$$author$$sep$
+
+$endfor$
+
+$if(date)$$date$$endif$
+
+$if(abstract)$
+## $abstract-title$
+
+$abstract$
+$endif$
+
+$body$

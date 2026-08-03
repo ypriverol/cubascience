@@ -23,7 +23,7 @@ rows=[
  ("ONEI — cifra oficial", 9.43, 1, BLUE),
  ("Viviendas × ocupación (~2,2)", 8.7, 2, GREEN),
  ("Albizu-Campos (2023)", 8.62, 2, ORANGE),
- ("Este estudio · Modelo D (2025)", 8.56, 2, RED),
+ ("Este estudio · Modelo D (2025)", 8.59, 2, RED),
  ("Albizu-Campos (2024)", 8.03, 2, ORANGE),
 ]
 fig,ax=plt.subplots(figsize=(9.4,5.2),dpi=200)

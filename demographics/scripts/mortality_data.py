@@ -10,6 +10,10 @@ from constants import DATA
 
 ONEI = DATA / "onei"
 
+# ONEI 3.13 cells are demonstrably misaligned from this year on (see
+# cuba_natural_movement docstring).
+UNRELIABLE_FROM = 2017
+
 
 def _xls(pattern: str) -> Path:
     matches = sorted(ONEI.glob(pattern))
@@ -55,6 +59,72 @@ def age_structure_shares() -> pd.DataFrame:
     return out.sort_values("year").reset_index(drop=True)
 
 
+def mean_population_by_age(year: int) -> dict[str, float]:
+    """
+    Mid-year population by age group from ONEI 3.3, for 2006-2022.
+
+    3.3 is laid out as one column block per year (title carries "año YYYY"), with
+    single years of age 0-19 and then 20-24 ... 55-59, 60-64, 65-74, 75-84, 85+.
+    Returns the groups that ONEI 3.15 deaths can be matched to, plus the
+    within-60+ detail needed to measure (rather than assume) elderly ageing.
+    """
+    df = pd.read_excel(_xls("3.3*"), header=None)
+    col = None
+    for j in range(df.shape[1]):
+        v = df.iloc[0, j]
+        if isinstance(v, str) and v.startswith("3.3") and f"año {year}" in v:
+            col = j
+            break
+    if col is None:
+        raise ValueError(
+            f"Year {year} not found in ONEI 3.3 (published range is 2006-2022)"
+        )
+
+    vals: dict[str, float] = {}
+    for i in range(8, df.shape[0]):
+        lab = df.iloc[i, col]
+        if not isinstance(lab, str):
+            continue
+        key = lab.strip()
+        try:
+            vals[key] = float(df.iloc[i, col + 1])
+        except (TypeError, ValueError):
+            continue
+
+    def _sum(keys: tuple[str, ...]) -> float:
+        missing = [k for k in keys if k not in vals]
+        if missing:
+            raise ValueError(f"ONEI 3.3 {year}: missing rows {missing}")
+        return sum(vals[k] for k in keys)
+
+    # Older blocks publish 65-74 / 75-84; 2021-2022 split them into five-year
+    # groups. Harmonise to the coarser set so every year is comparable.
+    def _grp(coarse: str, fine: tuple[str, ...]) -> float:
+        return vals[coarse] if coarse in vals else _sum(fine)
+
+    out = {
+        "age_0_14": _sum(tuple(str(a) for a in range(15))),
+        "age_15_59": _sum(tuple(str(a) for a in range(15, 20))
+                          + ("20-24", "25-29", "30-34", "35-39", "40-44",
+                             "45-49", "50-54", "55-59")),
+        "age_60_64": vals["60-64"],
+        "age_65_plus": vals["65 y más"],
+        # within-60+ detail: this is what shows the 60+ group getting *younger*
+        # as the 1960s baby boom enters at 60-64.
+        "age_65_74": _grp("65-74", ("65-69", "70-74")),
+        "age_75_84": _grp("75-84", ("75-79", "80-84")),
+        "age_85_plus": vals["85 y más"],
+        # cohorts feeding the elderly groups in a forward projection
+        "age_40_44": vals["40-44"],
+        "age_45_49": vals["45-49"],
+        "age_50_54": vals["50-54"],
+        "age_55_59": vals["55-59"],
+        "total": vals["Total"],
+    }
+    out["age_60_plus"] = out["age_60_64"] + out["age_65_plus"]
+    return out
+
+
 def infant_deaths_by_year() -> pd.DataFrame:
     """Total infant deaths by calendar year (ONEI 3.16)."""
     df = pd.read_excel(_xls("3.16*"), header=None)
@@ -74,35 +144,53 @@ def infant_deaths_by_year() -> pd.DataFrame:
 
 
 def cuba_natural_movement() -> pd.DataFrame:
-    """National births and total deaths from ONEI 3.13 (Cuba block, left panel)."""
+    """
+    National births and total deaths from ONEI 3.13 (Cuba block, all panels).
+
+    ONEI lays 3.13 out as repeated column panels: years 1985-2005 sit in column 0
+    and 2006-2022 in column 9. Reading only column 0 silently dropped every recent
+    year, so all panels are scanned.
+
+    WARNING: the recent-year cells in this workbook are misaligned. For 2019 the
+    deaths column reads 101,892 against 109,080 in table 3.15, and the mid-year
+    population column jumps from 11.70 M (2018) to 10.50 M (2019). Do NOT use this
+    table for 2017 onward -- prefer ONEI 3.15 for deaths by age and claims.yaml for
+    national totals. Rows past ``UNRELIABLE_FROM`` are flagged, not dropped, so the
+    caller decides.
+    """
     df = pd.read_excel(_xls("3.13*"), header=None)
     rows = []
-    for _, row in df.iterrows():
-        v = row[0]
-        try:
-            year = int(float(v))
-        except (TypeError, ValueError):
-            continue
-        if year < 1985 or year > 2030:
-            continue
-        try:
-            births = float(row[1])
-            infant = float(row[2]) if pd.notna(row[2]) else float("nan")
-            deaths = float(row[4])
-            pop_mean = float(row[7]) if pd.notna(row[7]) else float("nan")
-        except (TypeError, ValueError):
-            continue
-        rows.append(
-            {
-                "year": year,
-                "births": births,
-                "infant_deaths_3_13": infant,
-                "deaths": deaths,
-                "pop_mean": pop_mean,
-                "source_file": "3.13",
-            }
-        )
-    # Keep first occurrence per year (left panel = earlier block)
+    # Panel starts: a column holding year labels, with the data laid out to its right.
+    for col in range(df.shape[1] - 7):
+        for i in range(df.shape[0]):
+            try:
+                year = int(float(df.iloc[i, col]))
+            except (TypeError, ValueError):
+                continue
+            if year < 1985 or year > 2030:
+                continue
+            try:
+                births = float(df.iloc[i, col + 1])
+                infant = float(df.iloc[i, col + 2]) if pd.notna(df.iloc[i, col + 2]) else float("nan")
+                deaths = float(df.iloc[i, col + 4])
+                pop_mean = float(df.iloc[i, col + 7]) if pd.notna(df.iloc[i, col + 7]) else float("nan")
+            except (TypeError, ValueError):
+                continue
+            # National rows only: provincial blocks repeat the same years at a
+            # tenth of the magnitude.
+            if births < 50_000:
+                continue
+            rows.append(
+                {
+                    "year": year,
+                    "births": births,
+                    "infant_deaths_3_13": infant,
+                    "deaths": deaths,
+                    "pop_mean": pop_mean,
+                    "source_file": "3.13",
+                    "unreliable": year >= UNRELIABLE_FROM,
+                }
+            )
     out = pd.DataFrame(rows).drop_duplicates("year", keep="first")
     return out.sort_values("year").reset_index(drop=True)
 
@@ -137,6 +225,9 @@ def life_expectancy_at_birth_panels() -> pd.DataFrame:
                     }
                 )
                 break
+    return pd.DataFrame(periods)
+
+
 def deaths_by_age_for_year(year: int) -> pd.DataFrame:
     """Deaths by quinquennial age group (both sexes) for a calendar year (ONEI 3.15)."""
     df = pd.read_excel(_xls("3.15*"), header=None)
@@ -165,7 +256,19 @@ def deaths_by_age_for_year(year: int) -> pd.DataFrame:
         except (TypeError, ValueError):
             continue
         rows.append({"age_group": lab, "deaths": val, "year": year})
-    return pd.DataFrame(rows)
+    out = pd.DataFrame(rows)
+    # Reconciliation guard. The ONEI 3.15 layout shifts across column panels and
+    # the reader silently returned ~40,000 deaths for 2009-2012 against a true
+    # ~86,000 -- four consecutive years halved with no error raised. Cuban annual
+    # deaths have not been below 60,000 since the 1980s, so anything under that
+    # is a parse failure, not data.
+    total = float(out["deaths"].sum())
+    if total < 60_000:
+        raise ValueError(
+            f"ONEI 3.15 {year}: parsed total {total:,.0f} deaths is implausibly "
+            f"low — the column panel for this year is misaligned. Do not use."
+        )
+    return out
 
 
 def expected_deaths_from_2019_schedule(target_year: int, pop_mean_override: float | None = None) -> dict:
@@ -176,7 +279,10 @@ def expected_deaths_from_2019_schedule(target_year: int, pop_mean_override: floa
     from constants import get_claims
 
     d19 = deaths_by_age_for_year(2019)
+    # Drop the misaligned recent rows: ONEI 3.13 reports a 2019 mid-year
+    # population of 10.50 M, which would quietly corrupt every denominator here.
     nat = cuba_natural_movement()
+    nat = nat.loc[~nat["unreliable"]]
     claims = get_claims()
     pm = dict(zip(claims["population_official_m"]["years"], claims["population_official_m"]["values"]))
 

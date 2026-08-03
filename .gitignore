@@ -126,16 +126,16 @@ venv.bak/
 # local venv
 .venv/
 
-# LaTeX build junk
-demographics/manuscript/en/latex/*.aux
-demographics/manuscript/en/latex/*.bbl
-demographics/manuscript/en/latex/*.blg
-demographics/manuscript/en/latex/*.fdb_latexmk
-demographics/manuscript/en/latex/*.fls
-demographics/manuscript/en/latex/*.log
-demographics/manuscript/en/latex/*.out
-demographics/manuscript/en/latex/*.synctex.gz
-demographics/manuscript/en/latex/*.png
+# LaTeX build junk (both language trees)
+demographics/manuscript/*/latex/*.aux
+demographics/manuscript/*/latex/*.bbl
+demographics/manuscript/*/latex/*.blg
+demographics/manuscript/*/latex/*.fdb_latexmk
+demographics/manuscript/*/latex/*.fls
+demographics/manuscript/*/latex/*.log
+demographics/manuscript/*/latex/*.out
+demographics/manuscript/*/latex/*.synctex.gz
+demographics/manuscript/*/latex/*.png
 
 # Codacy CLI local cache
 .codacy/
@@ -147,3 +147,13 @@ demographics/.mplconfig/
 
 # Git worktrees (local agent isolation)
 .worktrees/
+
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
+
+# Third-party research PDFs: cited, not redistributed (see literature/SOURCES.md)
+demographics/literature/sources.zip
+
+# Analysis artifacts ARE part of the record: the manuscript cites them.
+!demographics/artifacts/*.json

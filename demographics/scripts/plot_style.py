@@ -12,6 +12,7 @@ from constants import FIGURES, INFOGRAPHIC, INFOGRAPHIC_EN
 # Crisis-forward palette (print-safe, high contrast)
 INK = "#111827"
 INK2 = "#4b5563"
+SUB = "#374151"   # subtitle ink: darker than INK2, which washed out at 600 dpi
 MUTED = "#9ca3af"
 GRID = "#e5e7eb"
 BASE = "#d1d5db"
@@ -27,6 +28,12 @@ SOFT_RED = "#fecaca"
 SOFT_BLUE = "#dbeafe"
 SOFT_GREEN = "#d1fae5"
 
+# Figures are set in the manuscript's own body face so they read as part of the
+# document rather than as pasted-in graphics. STIXGeneral is the metric-compatible
+# fallback and also supplies the math glyphs.
+SERIF = "Times New Roman"
+SERIF_FALLBACK = ["Times New Roman", "STIXGeneral", "DejaVu Serif"]
+
 DPI = 600  # manuscript / print PNGs
 DPI_IG = 400  # social infographic panels (file-size tradeoff)
 PALETTE = [BLUE, RED, ORANGE, GREEN, VIO, NAVY, CEIL]
@@ -36,10 +43,13 @@ def apply_style() -> None:
     sns.set_theme(
         style="whitegrid",
         context="notebook",
-        font="DejaVu Sans",
+        font=SERIF,
         palette=PALETTE,
         rc={
-            "font.size": 11,
+            "font.family": "serif",
+            "font.serif": SERIF_FALLBACK,
+            "mathtext.fontset": "stix",
+            "font.size": 11.5,
             "axes.titlesize": 14.5,
             "axes.titleweight": "bold",
             "axes.labelsize": 12,
@@ -89,15 +99,15 @@ def style_ax(ax, grid: str = "y") -> None:
 
 
 def title_block(ax, title: str, subtitle: str | None = None) -> None:
-    ax.set_title(title, loc="left", color=INK, pad=20 if subtitle else 12)
+    ax.set_title(title, loc="left", color=INK, pad=24 if subtitle else 12)
     if subtitle:
         ax.text(
             0,
-            1.02,
+            1.025,
             subtitle,
             transform=ax.transAxes,
-            fontsize=10.5,
-            color=INK2,
+            fontsize=12,
+            color=SUB,
             va="bottom",
         )
 

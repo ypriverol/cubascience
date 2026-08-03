@@ -1,0 +1,122 @@
+{
+  "standard": "WHO World Standard Population 2000-2025 (Ahmad et al. 2001)",
+  "method": "direct standardisation, 18 five-year groups to 85+",
+  "numerator": "Cuba ICD-10 submission to WHO (Frmat 0), data/who/",
+  "denominator": "ONEI 3.3 mid-year population by age (observed)",
+  "years": [
+    {
+      "year": 2021,
+      "mid_year_population": 11147405,
+      "causes": {
+        "all_causes": {
+          "deaths": 167675,
+          "crude_per_100k": 1504.2,
+          "age_standardised_per_100k": 791.1,
+          "crude_over_standardised": 1.9,
+          "pct_of_crude_from_age_structure": 47.4
+        },
+        "circulatory_I00_I99": {
+          "deaths": 63193,
+          "crude_per_100k": 566.9,
+          "age_standardised_per_100k": 277.1,
+          "crude_over_standardised": 2.05,
+          "pct_of_crude_from_age_structure": 51.1
+        },
+        "ischaemic_heart_I20_I25": {
+          "deaths": 27255,
+          "crude_per_100k": 244.5,
+          "age_standardised_per_100k": 117.7,
+          "crude_over_standardised": 2.08,
+          "pct_of_crude_from_age_structure": 51.9
+        },
+        "cerebrovascular_I60_I69": {
+          "deaths": 13287,
+          "crude_per_100k": 119.2,
+          "age_standardised_per_100k": 58.6,
+          "crude_over_standardised": 2.04,
+          "pct_of_crude_from_age_structure": 50.9
+        },
+        "malignant_neoplasms_C00_C97": {
+          "deaths": 26949,
+          "crude_per_100k": 241.8,
+          "age_standardised_per_100k": 131.6,
+          "crude_over_standardised": 1.84,
+          "pct_of_crude_from_age_structure": 45.6
+        },
+        "diabetes_E10_E14": {
+          "deaths": 3970,
+          "crude_per_100k": 35.6,
+          "age_standardised_per_100k": 19.1,
+          "crude_over_standardised": 1.87,
+          "pct_of_crude_from_age_structure": 46.5
+        },
+        "respiratory_J00_J99": {
+          "deaths": 32558,
+          "crude_per_100k": 292.1,
+          "age_standardised_per_100k": 152.3,
+          "crude_over_standardised": 1.92,
+          "pct_of_crude_from_age_structure": 47.9
+        }
+      }
+    },
+    {
+      "year": 2022,
+      "mid_year_population": 11101363,
+      "causes": {
+        "all_causes": {
+          "deaths": 120108,
+          "crude_per_100k": 1081.9,
+          "age_standardised_per_100k": 568.1,
+          "crude_over_standardised": 1.9,
+          "pct_of_crude_from_age_structure": 47.5
+        },
+        "circulatory_I00_I99": {
+          "deaths": 48047,
+          "crude_per_100k": 432.8,
+          "age_standardised_per_100k": 210.3,
+          "crude_over_standardised": 2.06,
+          "pct_of_crude_from_age_structure": 51.4
+        },
+        "ischaemic_heart_I20_I25": {
+          "deaths": 20134,
+          "crude_per_100k": 181.4,
+          "age_standardised_per_100k": 87.2,
+          "crude_over_standardised": 2.08,
+          "pct_of_crude_from_age_structure": 51.9
+        },
+        "cerebrovascular_I60_I69": {
+          "deaths": 11469,
+          "crude_per_100k": 103.3,
+          "age_standardised_per_100k": 50.4,
+          "crude_over_standardised": 2.05,
+          "pct_of_crude_from_age_structure": 51.2
+        },
+        "malignant_neoplasms_C00_C97": {
+          "deaths": 25218,
+          "crude_per_100k": 227.2,
+          "age_standardised_per_100k": 123.3,
+          "crude_over_standardised": 1.84,
+          "pct_of_crude_from_age_structure": 45.7
+        },
+        "diabetes_E10_E14": {
+          "deaths": 2552,
+          "crude_per_100k": 23.0,
+          "age_standardised_per_100k": 12.2,
+          "crude_over_standardised": 1.89,
+          "pct_of_crude_from_age_structure": 47.0
+        },
+        "respiratory_J00_J99": {
+          "deaths": 14868,
+          "crude_per_100k": 133.9,
+          "age_standardised_per_100k": 65.8,
+          "crude_over_standardised": 2.04,
+          "pct_of_crude_from_age_structure": 50.9
+        }
+      }
+    }
+  ],
+  "excluded": {
+    "2023": "Cuba submitted 2023 deaths to WHO, but ONEI 3.3 population stops at 2022, so there is no observed denominator. Standardising it would require a projected population."
+  },
+  "how_to_read": "crude_over_standardised is the factor by which a CRUDE comparison overstates Cuba's position against an age-standardised comparator. For the diseases of old age it is large, which is why crude cause-specific comparisons against regional standardised rates are not evidence of anything."
+}

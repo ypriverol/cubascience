@@ -28,7 +28,7 @@ steps=[
  ("+ nacimientos\n2020–25",0.53,"pos"),
  ("− defunciones\n2020–25",-0.81,"neg"),
  ("− emigración\nneta 2020–25",-2.00,"neg"),
- ("Población\nfin-2025\n(Modelo D)",8.56,"base"),
+ ("Población\nfin-2025\n(Modelo D)",8.59,"base"),
 ]
 fig,ax=plt.subplots(figsize=(9.0,4.8),dpi=200); style(ax)
 x=np.arange(len(steps)); running=steps[0][1]

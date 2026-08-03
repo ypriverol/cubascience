@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Compute provisional 2019-schedule mortality residual from ONEI tables."""
+"""
+DEPRECATED: crude 2019-CDR mortality residual.
+
+Superseded by ``attributable_mortality.py``. This bridge applies the 2019 *crude*
+death rate to a later year's population, which charges the entire ageing shift
+(20.4% -> ~26% aged 60+) to the crisis and roughly doubles the estimated
+health-system component. Retained only so earlier published figures stay
+reproducible; do not use it for new claims.
+"""
 from __future__ import annotations
 
 import json

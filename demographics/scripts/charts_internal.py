@@ -61,7 +61,7 @@ ax.annotate("proyección oficial ONEI",(2028.5,20),color=MUTED,fontsize=8.5,ha="
 ax.annotate("un tercio del país\nmayor de 60 en 2035",(2032,30),color=INK2,fontsize=8.3,ha="center")
 ax.set_xlim(1999,2036); ax.set_ylim(10,35); ax.set_ylabel("% de la población",fontsize=10)
 ax.set_title("Implosión desde dentro: la estructura por edades, 2000–2035",fontsize=12.5,fontweight="bold",loc="left",color=INK,pad=12)
-fig.text(0.005,0.012,"La proyección oficial a 2035 ya se queda corta: la ONEI reportó 26.7% de 60+ a fin de 2025, por encima del 25% proyectado. Fuente: ONEI (tabla 3.12).",fontsize=7.1,color=MUTED)
+fig.text(0.005,0.012,"Proyección ONEI (tabla 3.12): 25.0% de 60+ en 2025. La cifra de 26.7% que circula para fin de 2025 es reportada, no reproducible a partir de los cuadros publicados.",fontsize=7.1,color=MUTED)
 fig.tight_layout(rect=(0,0.03,1,1)); fig.savefig(str(ARTIFACTS / "ms_aging.png"), bbox_inches="tight"); plt.close(fig)
 
 # ===== Fig C: esperanza de vida oficial (declive) + independiente =====

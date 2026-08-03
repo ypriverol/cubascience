@@ -1,0 +1,211 @@
+{
+  "layers": {
+    "L1_reported": "ONEI published series (this file, top)",
+    "L2_internal": "T1-T4: official numbers against each other",
+    "L3_external": "T5-T6: destination registers as lower bounds",
+    "L4_corrected": "scripts/model_from_2021.py (population) and scripts/attributable_mortality.py (deaths)"
+  },
+  "n_tests": 18,
+  "n_high_severity": 7,
+  "tests": [
+    {
+      "test": "T1_accounting_identity",
+      "year": 2021,
+      "implied_net_migration": 169,
+      "declared_net_migration": 169,
+      "residual": 0,
+      "severity": "info",
+      "verdict": "internally consistent"
+    },
+    {
+      "test": "T1_accounting_identity",
+      "year": 2022,
+      "implied_net_migration": 991,
+      "declared_net_migration": 991,
+      "residual": 0,
+      "severity": "info",
+      "verdict": "internally consistent"
+    },
+    {
+      "test": "T1_accounting_identity",
+      "year": 2023,
+      "implied_net_migration": -1006196,
+      "declared_net_migration": null,
+      "residual": null,
+      "severity": "info",
+      "verdict": "no declared figure published for this year"
+    },
+    {
+      "test": "T1_accounting_identity",
+      "year": 2024,
+      "implied_net_migration": -251237,
+      "declared_net_migration": -251221,
+      "residual": -16,
+      "severity": "info",
+      "verdict": "internally consistent"
+    },
+    {
+      "test": "T1_accounting_identity",
+      "year": 2025,
+      "implied_net_migration": -245264,
+      "declared_net_migration": -245264,
+      "residual": 0,
+      "severity": "info",
+      "verdict": "internally consistent"
+    },
+    {
+      "test": "T2_multisource_death_totals",
+      "year": 2021,
+      "sources": {
+        "onei_indicadores": 167645,
+        "who_submission": 167675
+      },
+      "spread": 30,
+      "spread_pct": 0.02,
+      "canonical_used": 167645,
+      "severity": "low",
+      "verdict": "trivial disagreement between official sources"
+    },
+    {
+      "test": "T2_multisource_death_totals",
+      "year": 2022,
+      "sources": {
+        "onei_first_reported": 129049,
+        "onei_published": 120098,
+        "who_submission": 120108
+      },
+      "spread": 8951,
+      "spread_pct": 7.45,
+      "canonical_used": 120098,
+      "severity": "high",
+      "verdict": "official sources disagree materially"
+    },
+    {
+      "test": "T2_multisource_death_totals",
+      "year": 2023,
+      "sources": {
+        "onei_indicadores": 117739,
+        "anuario_salud": 117746,
+        "who_submission": 117749
+      },
+      "spread": 10,
+      "spread_pct": 0.01,
+      "canonical_used": 117739,
+      "severity": "low",
+      "verdict": "trivial disagreement between official sources"
+    },
+    {
+      "test": "T3_revision_seam",
+      "year": 2021,
+      "population_drop": 68380,
+      "natural_decrease": 68549,
+      "implied_migration_component": -169,
+      "external_plausible_annual_max": 400000,
+      "excess_over_plausible": 0,
+      "severity": "info",
+      "verdict": "single-year change is within plausible annual flow"
+    },
+    {
+      "test": "T3_revision_seam",
+      "year": 2022,
+      "population_drop": 23704,
+      "natural_decrease": 24695,
+      "implied_migration_component": -991,
+      "external_plausible_annual_max": 400000,
+      "excess_over_plausible": 0,
+      "severity": "info",
+      "verdict": "single-year change is within plausible annual flow"
+    },
+    {
+      "test": "T3_revision_seam",
+      "year": 2023,
+      "population_drop": 1033543,
+      "natural_decrease": 27347,
+      "implied_migration_component": 1006196,
+      "external_plausible_annual_max": 400000,
+      "excess_over_plausible": 606196,
+      "severity": "high",
+      "verdict": "single-year drop exceeds any documented annual emigration: this is a backlog correction booked as one year's flow"
+    },
+    {
+      "test": "T3_revision_seam",
+      "year": 2024,
+      "population_drop": 307961,
+      "natural_decrease": 56724,
+      "implied_migration_component": 251237,
+      "external_plausible_annual_max": 400000,
+      "excess_over_plausible": 0,
+      "severity": "info",
+      "verdict": "single-year change is within plausible annual flow"
+    },
+    {
+      "test": "T3_revision_seam",
+      "year": 2025,
+      "population_drop": 313414,
+      "natural_decrease": 68150,
+      "implied_migration_component": 245264,
+      "external_plausible_annual_max": 400000,
+      "excess_over_plausible": 0,
+      "severity": "info",
+      "verdict": "single-year change is within plausible annual flow"
+    },
+    {
+      "test": "T4_rate_implies_denominator",
+      "year": 2023,
+      "source": "Anuario Estadistico de Salud 2023",
+      "published_cdr_per_1000": 11.5,
+      "implied_mid_year_population": 10238783,
+      "published_mid_year_population": 10572740,
+      "published_end_year_population": 10055968,
+      "residual_vs_published_mid": -333957,
+      "severity": "high",
+      "verdict": "the rate and the population series cannot both be right"
+    },
+    {
+      "test": "T5_external_contradiction",
+      "year": 2021,
+      "declared_net_outflow": 0,
+      "us_arrivals_only": 54818,
+      "multi_destination_floor": null,
+      "shortfall_vs_us_only": 54818,
+      "source_class": "external_lower_bound",
+      "shortfall_vs_multi_destination": null,
+      "severity": "high",
+      "verdict": "more Cubans were recorded arriving in the US alone than ONEI reports leaving for the entire world"
+    },
+    {
+      "test": "T5_external_contradiction",
+      "year": 2022,
+      "declared_net_outflow": 0,
+      "us_arrivals_only": 313506,
+      "multi_destination_floor": 369000,
+      "shortfall_vs_us_only": 313506,
+      "source_class": "external_lower_bound",
+      "shortfall_vs_multi_destination": 369000,
+      "severity": "high",
+      "verdict": "more Cubans were recorded arriving in the US alone than ONEI reports leaving for the entire world"
+    },
+    {
+      "test": "T5_external_contradiction",
+      "year": 2024,
+      "declared_net_outflow": 251221,
+      "us_arrivals_only": 145124,
+      "multi_destination_floor": 400000,
+      "shortfall_vs_us_only": 0,
+      "source_class": "external_lower_bound",
+      "shortfall_vs_multi_destination": 148779,
+      "severity": "high",
+      "verdict": "declared outflow clears the US-only floor but falls below the multi-destination lower bound, so the declared total cannot cover the recorded arrivals"
+    },
+    {
+      "test": "T6_stock_path_never_restated",
+      "year": 2022,
+      "published_population": 11089511,
+      "population_implied_by_external_floor": 10719520,
+      "overstatement": 369991,
+      "severity": "high",
+      "verdict": "the revision corrected the 2023 level but left the 2021-2022 path intact, so the published stock for those years remains too high by at least this much"
+    }
+  ],
+  "reading": "T1/T2/T4 use only official sources, so a failure there is the state's own numbers contradicting each other. T5/T6 use external arrival counts, which bound emigration from below and never fix its level. Nothing here identifies the true population: it identifies where the official series cannot be taken at face value, which is what the scenario priors in L4 are built to absorb."
+}

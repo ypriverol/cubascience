@@ -36,7 +36,7 @@ from plot_style import (  # noqa: E402
 
 apply_style()
 C = get_claims()
-MD = C["model_d"]
+MD = C["population_scenarios"]["scenarios"]["central"]
 TRI = C["triangulation"]["sources"]
 SEL = C["selectivity"]
 VIT = C["vital_series"]
@@ -105,24 +105,27 @@ def _pop_series(ax, lang: str) -> None:
     ax.set_xticks(range(2019, 2031, 2))
     ax.set_xlabel("")
     if lang == "es":
-        ax.annotate("cifra oficial", (2023.7, 9.95), color=BLUE, fontsize=12, fontweight="bold", ha="right")
-        ax.annotate("estimación real", (2022.4, 8.95), color=RED, fontsize=12, fontweight="bold", ha="center")
+        # Sits above the blue line at 2024-25; the old (2023.7, 9.95) anchor fell
+        # straight on the red Model D line. "estimación real" also overclaimed:
+        # D is a scenario, not a measurement.
+        ax.annotate("cifra oficial", (2024.6, 10.3), color=BLUE, fontsize=12, fontweight="bold", ha="center")
+        ax.annotate("escenario central", (2022.3, 9.0), color=RED, fontsize=12, fontweight="bold", ha="center")
         ax.text(2027.7, 10.45, "proyección ilustrativa", color=MUTED, fontsize=11, style="italic", ha="center")
         ax.set_ylabel("Millones de habitantes")
         title_block(
             ax,
             "Despoblación acelerada de Cuba, 2021–2026",
-            "≈1 de cada 5 (base corregida, escenario D). Brecha vs oficial 2021 → ~1 de 4 hacia 2026.",
+            "Brecha vs el stock oficial de 2021: 22.7% en 2025, ~25% hacia 2026 (escenario central).",
         )
     else:
-        ax.annotate("official series", (2023.7, 9.95), color=BLUE, fontsize=12, fontweight="bold", ha="right")
-        ax.annotate("Model D scenario", (2022.4, 8.95), color=RED, fontsize=12, fontweight="bold", ha="center")
+        ax.annotate("official series", (2024.6, 10.3), color=BLUE, fontsize=12, fontweight="bold", ha="center")
+        ax.annotate("central scenario", (2022.3, 9.0), color=RED, fontsize=12, fontweight="bold", ha="center")
         ax.text(2027.7, 10.45, "illustrative scenario", color=MUTED, fontsize=11, style="italic", ha="center")
         ax.set_ylabel("Population (millions)")
         title_block(
             ax,
             "Cuba’s 2021–2026 population decline",
-            "About 1 in 5 on corrected base (Model D). Register gap vs official 2021 → ~1 in 4 by 2026.",
+            "Gap vs the official 2021 stock: 22.7% by 2025, ~25% by 2026 (central scenario).",
         )
 
 
@@ -421,7 +424,7 @@ def _provinces(ax, lang: str) -> None:
         title_block(ax, "National emptying — Havana leads", "No province loses less than about 2% of its people per year.")
 
 
-def _aging(ax) -> None:
+def _aging(ax, lang: str = "en") -> None:
     style_ax(ax)
     yrs = [2000, 2005, 2010, 2015, 2019, 2020, 2021, 2022]
     y60 = [14.7, 15.7, 17.8, 19.4, 20.4, 21.3, 21.6, 22.3]
@@ -437,31 +440,52 @@ def _aging(ax) -> None:
     ax.plot(oy, om, color=RED, lw=2.8, ls=(0, (1, 1.4)), marker="D", ms=7, zorder=5)
     ax.plot(yrs, y014, color=BLUE, lw=2.8, marker="o", ms=6)
     ax.plot(py, p014, color=BLUE, lw=2.8, ls=(0, (2, 2)))
-    ax.annotate("AGE 60+\n(official)", (2003, 16.0), color=ORANGE, fontsize=10.5, fontweight="bold", va="top")
-    ax.annotate("~40% (illustrative)", (2035, 40), color=RED, fontsize=10.5, fontweight="bold", ha="right", va="bottom")
-    ax.annotate("AGES 0–14", (2000, 21.3), color=BLUE, fontsize=10.5, fontweight="bold")
-    ax.text(2028.5, 18.5, "projection", color=MUTED, fontsize=10, style="italic", ha="center")
+    if lang == "es":
+        l60, l014 = "60 AÑOS Y MÁS\n(oficial)", "0–14 AÑOS"
+        lill, lproj = "~40% (ilustrativo)", "proyección"
+        ylab = "% de la población"
+        title = "Envejecimiento acelerado de quienes se quedan"
+        sub = "Trayectoria oficial hacia ~33% de 60+ en 2035; la emigración selectiva lo empuja al alza."
+    else:
+        l60, l014 = "AGE 60+\n(official)", "AGES 0–14"
+        lill, lproj = "~40% (illustrative)", "projection"
+        ylab = "% of population"
+        title = "Accelerated ageing of those who remain"
+        sub = "Official path to ~33% aged 60+ by 2035; selective emigration pushes higher."
+    # (2003, 16.0) sat directly on the orange line; the 2010-2018 band above it is clear.
+    ax.annotate(l60, (2010.5, 21.4), color=ORANGE, fontsize=10.5, fontweight="bold",
+                ha="left", va="bottom")
+    ax.annotate(lill, (2035, 40), color=RED, fontsize=10.5, fontweight="bold", ha="right", va="bottom")
+    ax.annotate(l014, (2000, 21.3), color=BLUE, fontsize=10.5, fontweight="bold")
+    ax.text(2028.5, 18.5, lproj, color=MUTED, fontsize=10, style="italic", ha="center")
     ax.set_xlim(1999, 2036.5)
     ax.set_ylim(10, 43)
     ax.set_xticks(range(2000, 2036, 5))
-    ax.set_ylabel("% of population")
-    title_block(
-        ax,
-        "Accelerated ageing of those who remain",
-        "Official path to ~33% aged 60+ by 2035; selective emigration pushes higher.",
-    )
+    ax.set_ylabel(ylab)
+    title_block(ax, title, sub)
 
 
-def _waterfall(ax) -> None:
+def _waterfall(ax, lang: str = "en") -> None:
     style_ax(ax)
     # Model D medians on end-2021 → end-2025 window (rounded)
-    steps = [
-        ("Population\nend-2021", 11.11, "base"),
-        ("Net\nemigration", -2.01, "neg"),
-        ("Natural\ndecrease", -0.18, "neg"),
-        ("Baseline\nadjustment", -0.33, "neg"),
-        ("Living pop.\nend-2025", 8.59, "base"),
-    ]
+    if lang == "es":
+        # "Población real" would contradict the paper's framing: D is a scenario,
+        # not a measurement of the living population.
+        labels = ["Población\nfin-2021", "Emigración\nneta", "Variación\nnatural",
+                  "Ajuste de\nbase", "Escenario D\nfin-2025"]
+        ylab = "Población (millones)"
+        title = "Adónde fueron 2.2 millones de personas (2021→2025)"
+        sub = ("Medianas del escenario D con priores fijos (~91% emigración); "
+               "no es atribución identificada.")
+    else:
+        labels = ["Population\nend-2021", "Net\nemigration", "Natural\ndecrease",
+                  "Baseline\nadjustment", "Living pop.\nend-2025"]
+        ylab = "Population (millions)"
+        title = "Where 2.2 million people went (2021→2025)"
+        sub = ("Scenario D median decomposition under fixed priors "
+               "(~91% emigration); not identified attribution.")
+    steps = list(zip(labels, [11.11, -2.01, -0.18, -0.33, 8.59],
+                     ["base", "neg", "neg", "neg", "base"]))
     running = steps[0][1]
     for i, (lab, val, kind) in enumerate(steps):
         if kind == "base":
@@ -477,12 +501,8 @@ def _waterfall(ax) -> None:
     ax.set_xticks(range(len(steps)))
     ax.set_xticklabels([s[0] for s in steps], fontsize=9.5)
     ax.set_ylim(0, 12.2)
-    ax.set_ylabel("Population (millions)")
-    title_block(
-        ax,
-        "Where 2.2 million people went (2021→2025)",
-        "Scenario D median decomposition under fixed priors (~91% emigration); not identified attribution.",
-    )
+    ax.set_ylabel(ylab)
+    title_block(ax, title, sub)
 
 
 def _life_expectancy(ax) -> None:

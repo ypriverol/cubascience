@@ -1,0 +1,201 @@
+{
+  "standard": "WHO World Standard Population 2000-2025 (Ahmad et al. 2001)",
+  "method": "direct standardisation, 14 age groups, open-ended 65+",
+  "sources": {
+    "deaths": "ONEI 3.15",
+    "population": "ONEI 3.3"
+  },
+  "standardised": [
+    {
+      "year": 2017,
+      "total_deaths": 106941,
+      "mid_year_population": 11230142,
+      "crude_per_100k": 952.3,
+      "age_standardised_per_100k": 584.7,
+      "ageing_gap_per_100k": 367.6,
+      "pct_of_crude_explained_by_age_structure": 38.6,
+      "age_specific_per_1000": {
+        "0-4": 1.032,
+        "5-9": 0.138,
+        "10-14": 0.21,
+        "15-19": 0.399,
+        "20-24": 0.532,
+        "25-29": 0.682,
+        "30-34": 0.936,
+        "35-39": 1.17,
+        "40-44": 1.775,
+        "45-49": 2.767,
+        "50-54": 4.719,
+        "55-59": 8.159,
+        "60-64": 12.6,
+        "65+": 49.373
+      }
+    },
+    {
+      "year": 2018,
+      "total_deaths": 106201,
+      "mid_year_population": 11215344,
+      "crude_per_100k": 946.9,
+      "age_standardised_per_100k": 570.9,
+      "ageing_gap_per_100k": 376.1,
+      "pct_of_crude_explained_by_age_structure": 39.7,
+      "age_specific_per_1000": {
+        "0-4": 1.02,
+        "5-9": 0.2,
+        "10-14": 0.2,
+        "15-19": 0.376,
+        "20-24": 0.556,
+        "25-29": 0.632,
+        "30-34": 0.841,
+        "35-39": 1.334,
+        "40-44": 1.808,
+        "45-49": 2.774,
+        "50-54": 4.649,
+        "55-59": 8.043,
+        "60-64": 12.858,
+        "65+": 47.602
+      }
+    },
+    {
+      "year": 2019,
+      "total_deaths": 109080,
+      "mid_year_population": 11201549,
+      "crude_per_100k": 973.8,
+      "age_standardised_per_100k": 576.2,
+      "ageing_gap_per_100k": 397.6,
+      "pct_of_crude_explained_by_age_structure": 40.8,
+      "age_specific_per_1000": {
+        "0-4": 1.235,
+        "5-9": 0.193,
+        "10-14": 0.212,
+        "15-19": 0.406,
+        "20-24": 0.567,
+        "25-29": 0.618,
+        "30-34": 0.844,
+        "35-39": 1.259,
+        "40-44": 1.796,
+        "45-49": 2.887,
+        "50-54": 4.848,
+        "55-59": 8.172,
+        "60-64": 13.025,
+        "65+": 47.697
+      }
+    },
+    {
+      "year": 2020,
+      "total_deaths": 112439,
+      "mid_year_population": 11187533,
+      "crude_per_100k": 1005.0,
+      "age_standardised_per_100k": 581.3,
+      "ageing_gap_per_100k": 423.7,
+      "pct_of_crude_explained_by_age_structure": 42.2,
+      "age_specific_per_1000": {
+        "0-4": 1.145,
+        "5-9": 0.161,
+        "10-14": 0.167,
+        "15-19": 0.401,
+        "20-24": 0.523,
+        "25-29": 0.631,
+        "30-34": 0.819,
+        "35-39": 1.199,
+        "40-44": 1.805,
+        "45-49": 2.888,
+        "50-54": 4.686,
+        "55-59": 8.022,
+        "60-64": 13.008,
+        "65+": 48.8
+      }
+    },
+    {
+      "year": 2021,
+      "total_deaths": 167645,
+      "mid_year_population": 11147405,
+      "crude_per_100k": 1503.9,
+      "age_standardised_per_100k": 856.4,
+      "ageing_gap_per_100k": 647.5,
+      "pct_of_crude_explained_by_age_structure": 43.1,
+      "age_specific_per_1000": {
+        "0-4": 1.643,
+        "5-9": 0.184,
+        "10-14": 0.25,
+        "15-19": 0.388,
+        "20-24": 0.632,
+        "25-29": 0.785,
+        "30-34": 1.12,
+        "35-39": 1.773,
+        "40-44": 2.701,
+        "45-49": 4.28,
+        "50-54": 6.763,
+        "55-59": 11.329,
+        "60-64": 18.655,
+        "65+": 73.09
+      }
+    },
+    {
+      "year": 2022,
+      "total_deaths": 120098,
+      "mid_year_population": 11101363,
+      "crude_per_100k": 1081.8,
+      "age_standardised_per_100k": 616.3,
+      "ageing_gap_per_100k": 465.6,
+      "pct_of_crude_explained_by_age_structure": 43.0,
+      "age_specific_per_1000": {
+        "0-4": 1.701,
+        "5-9": 0.236,
+        "10-14": 0.228,
+        "15-19": 0.499,
+        "20-24": 0.64,
+        "25-29": 0.682,
+        "30-34": 0.915,
+        "35-39": 1.233,
+        "40-44": 1.863,
+        "45-49": 2.912,
+        "50-54": 4.505,
+        "55-59": 7.614,
+        "60-64": 13.065,
+        "65+": 52.172
+      }
+    }
+  ],
+  "crude_only_2023_2025": [
+    {
+      "year": 2023,
+      "total_deaths": 117739,
+      "crude_per_100k": 1113.4,
+      "age_standardised_per_100k": null,
+      "expected_deaths_2019_schedule": 109630,
+      "smr_vs_2019_schedule": 1.074,
+      "implied_asmr_per_100k": 618.8,
+      "note": "Direct standardisation impossible (no deaths-by-age after 2022). SMR = registered / expected-at-2019-rates on the projected age structure; implied ASMR assumes the rate rise is proportional across ages, which is an assumption, not a measurement."
+    },
+    {
+      "year": 2024,
+      "total_deaths": 128098,
+      "crude_per_100k": 1293.3,
+      "age_standardised_per_100k": null,
+      "expected_deaths_2019_schedule": 110554,
+      "smr_vs_2019_schedule": 1.159,
+      "implied_asmr_per_100k": 667.6,
+      "note": "Direct standardisation impossible (no deaths-by-age after 2022). SMR = registered / expected-at-2019-rates on the projected age structure; implied ASMR assumes the rate rise is proportional across ages, which is an assumption, not a measurement."
+    },
+    {
+      "year": 2025,
+      "total_deaths": 136214,
+      "crude_per_100k": 1420.4,
+      "age_standardised_per_100k": null,
+      "expected_deaths_2019_schedule": 112086,
+      "smr_vs_2019_schedule": 1.215,
+      "implied_asmr_per_100k": 700.2,
+      "note": "Direct standardisation impossible (no deaths-by-age after 2022). SMR = registered / expected-at-2019-rates on the projected age structure; implied ASMR assumes the rate rise is proportional across ages, which is an assumption, not a measurement."
+    }
+  ],
+  "change_2019_to_2022": {
+    "crude_pct": 11.1,
+    "age_standardised_pct": 7.0
+  },
+  "caveats": [
+    "Open-ended 65+ leaves within-65+ ageing uncontrolled, so the ageing correction here is a LOWER bound.",
+    "All-cause only. Cause-specific standardisation needs a cause x age x population table (PAHO PLISA / WHO Morticd10), which is not in this repo.",
+    "2023-2025 cannot be standardised: no published deaths-by-age after 2022."
+  ]
+}
