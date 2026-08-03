@@ -150,7 +150,7 @@ El Modelo D reemplaza el multiplicador arbitrario de mortalidad de los Modelos B
 
 El mismo método produce un número limpio y defendible: comparando las muertes registradas con las que habría habido sin crisis (manteniendo la mortalidad de 2019 ajustada por envejecimiento), Cuba tuvo **unas 153,000 muertes en exceso entre 2020 y 2025.** El pico fue 2021 (+57,000, la ola COVID que el gobierno declaró como ~8,500). Pero lo alarmante para el presente es la tendencia reciente: el exceso *volvió a subir* a +28,000 en 2024 y +38,000 en 2025, apagones, epidemias de arbovirus y un sistema de salud roto.
 
-![~153,000 muertes en exceso registrado bruto, 2020–2025 (distinto del residual provisional ~77 mil en 2024–2025; banda 65–90 mil)](../../figures/f9_exceso_es.png)
+![~153,000 muertes en exceso registrado bruto, 2020–2025 (distinto del residual provisional ~77 mil en 2024–2025; banda 65–90 mil)](../../figures/f9_exceso.png)
 
 La sutileza honesta: casi todas esas 153,000 muertes **ya están registradas**, así que no cambian el total de población (que ya usa las muertes registradas). Son el costo humano de la crisis, real y enorme, pero confirman, en lugar de inflar, la cifra de población. Tu intuición de que "un alza del 40% en la infantil implica más deterioro en otras partes" era exactamente correcta; solo que el deterioro **ya aparece** en las muertes registradas, y el debate poblacional sigue siendo migratorio.
 
