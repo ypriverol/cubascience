@@ -570,13 +570,15 @@
       "improvement_1_0pct": 34864,
       "improvement_1_5pct": 38022,
       "span": [
-        23667,
+        18460,
         38022
       ],
       "cumulative_2022_2025_span": [
-        60488,
+        45220,
         103321
       ],
+      "trend_identifiable": false,
+      "trend_note": "Both fitted pre-crisis slopes have 95% CIs containing zero (2006-2019: +0.236%/yr, p=0.066; 2013-2019: +0.678%/yr, p=0.064). The trend is NOT identifiable, so it is not fitted and propagated. The span uses the CI bounds the data permit, not point estimates.\n",
       "note": "This span is comparable to the entire Monte Carlo range and is NOT inside it. A flat anchor is more likely to under- than overstate, because Cuba's regional peers continued to improve.\n"
     }
   },
