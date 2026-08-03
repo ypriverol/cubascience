@@ -7,7 +7,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from constants import FIGURES, INFOGRAPHIC
+from constants import FIGURES, INFOGRAPHIC, INFOGRAPHIC_EN
 
 # Crisis-forward palette (print-safe, high contrast)
 INK = "#111827"
@@ -119,6 +119,10 @@ def save_fig(fig, path: Path, *, dpi: int | None = None) -> Path:
 
 def save_ig(fig, name: str) -> Path:
     return save_fig(fig, INFOGRAPHIC / name, dpi=DPI_IG)
+
+
+def save_ig_en(fig, name: str) -> Path:
+    return save_fig(fig, INFOGRAPHIC_EN / name, dpi=DPI_IG)
 
 
 def save_ms(fig, name: str) -> Path:

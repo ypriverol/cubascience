@@ -1,0 +1,33 @@
+# Age and sex selectivity claims — provenance for manuscript and charts.
+# Charts use the age-band percentages below; sex-ratio claims are intentionally conservative.
+
+meta:
+  version: "2026-08-02"
+  status: "age bands sourced; sex-ratio point estimates withheld pending ONEI disaggregation"
+
+age_composition:
+  emigrants:
+    age_0_14_pct: 15
+    age_15_59_pct: 77
+    age_60_plus_pct: 8
+    source: "Albizu-Campos (2023–2024) emigration-age synthesis; consistent with ONEI 77% working-age narrative in claims.yaml"
+    class: derived
+  remaining_official_structure:
+    age_0_14_pct: 16
+    age_15_59_pct: 57
+    age_60_plus_pct: 26.7
+    source: "ONEI Indicadores 2025 official age structure (not Model-D-consistent stock)"
+    class: observed
+
+median_age:
+  leavers: 30
+  stayers: 45
+  source: "ONEI / Albizu-Campos narrative; claims.selectivity"
+  class: derived
+
+sex_composition:
+  female_share_emigrants_pct: null
+  reproductive_age_women_per_100_men: null
+  public_wording_en: "majority-female flow"
+  public_wording_es: "flujo mayoritariamente femenino"
+  note: "Exact percentages (~57%, ~133:100) appear in the Spanish essay only from external flow tables; EN preprint uses qualitative wording until ONEI 3.22 or CBP age-sex microdata are recomputed in-repo."

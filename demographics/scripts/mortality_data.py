@@ -137,4 +137,76 @@ def life_expectancy_at_birth_panels() -> pd.DataFrame:
                     }
                 )
                 break
-    return pd.DataFrame(periods)
+def deaths_by_age_for_year(year: int) -> pd.DataFrame:
+    """Deaths by quinquennial age group (both sexes) for a calendar year (ONEI 3.15)."""
+    df = pd.read_excel(_xls("3.15*"), header=None)
+    header = df.iloc[4].tolist()
+    # ONEI layout: year label often one column right of the Total count column
+    year_col = None
+    for j, cell in enumerate(header):
+        try:
+            if int(float(cell)) == year:
+                year_col = j - 1 if j > 0 else j
+                break
+        except (TypeError, ValueError):
+            continue
+    if year_col is None:
+        raise ValueError(f"Year {year} not found in ONEI 3.15 header")
+    rows = []
+    for i in range(10, df.shape[0]):
+        label = df.iloc[i, 0]
+        if label is None or (isinstance(label, float) and pd.isna(label)):
+            continue
+        lab = str(label).strip()
+        if not lab or lab.lower() == "total":
+            continue
+        try:
+            val = float(df.iloc[i, year_col])
+        except (TypeError, ValueError):
+            continue
+        rows.append({"age_group": lab, "deaths": val, "year": year})
+    return pd.DataFrame(rows)
+
+
+def expected_deaths_from_2019_schedule(target_year: int, pop_mean_override: float | None = None) -> dict:
+    """
+    Expected deaths in target_year using 2019 CDR from ONEI 3.15 applied to target population.
+    Population defaults to claims.yaml official series when ONEI 3.13 lacks the year.
+    """
+    from constants import get_claims
+
+    d19 = deaths_by_age_for_year(2019)
+    nat = cuba_natural_movement()
+    claims = get_claims()
+    pm = dict(zip(claims["population_official_m"]["years"], claims["population_official_m"]["values"]))
+
+    pop_row = nat.loc[nat["year"] == target_year]
+    if not pop_row.empty:
+        pop_mean = float(pop_row["pop_mean"].iloc[0])
+        pop_source = "ONEI 3.13"
+    elif target_year in pm:
+        pop_mean = pm[target_year] * 1e6
+        pop_source = "claims.yaml population_official_m"
+    elif pop_mean_override is not None:
+        pop_mean = pop_mean_override
+        pop_source = "override"
+    else:
+        raise ValueError(f"No population for {target_year}")
+
+    pop19_row = nat.loc[nat["year"] == 2019, "pop_mean"]
+    pop19 = float(pop19_row.iloc[0]) if not pop19_row.empty else pm[2019] * 1e6
+
+    total_d19 = float(d19["deaths"].sum())
+    cdr19 = total_d19 / pop19 * 1000
+    expected = pop_mean * cdr19 / 1000.0
+    return {
+        "target_year": target_year,
+        "pop_mean": pop_mean,
+        "pop_source": pop_source,
+        "deaths_2019_schedule_total": total_d19,
+        "cdr_2019_per_thousand": cdr19,
+        "expected_deaths": expected,
+        "method": "2019 ONEI 3.15 total deaths / 2019 population × target population",
+        "source_files": ["3.15", "3.13 or claims.yaml"],
+    }
+

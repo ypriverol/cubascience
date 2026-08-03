@@ -48,7 +48,7 @@ fig.tight_layout(); fig.savefig(str(FIGURES / "f1_poblacion.png"), bbox_inches="
 fig,ax=plt.subplots(figsize=(9.2,4.7),dpi=200); style(ax)
 yy=list(range(2017,2026))
 b=[114971,116333,109716,105038,99096,95403,90392,71374,68064]
-d=[106941,106201,109080,112439,167645,120098,117746,128098,136214]
+d=[106941,106201,109080,112439,167645,120098,117739,128098,136214]
 ax.plot(yy,np.array(b)/1000,color=BLUE,lw=3,marker="o",ms=6)
 ax.plot(yy,np.array(d)/1000,color=RED,lw=3,marker="o",ms=6)
 ax.fill_between(yy,np.array(b)/1000,np.array(d)/1000,where=(np.array(d)>np.array(b)),color=RED,alpha=0.08)

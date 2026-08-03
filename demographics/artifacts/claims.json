@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "2026-07-31",
+    "version": "2026-08-02",
     "preferred_model": "D",
     "preferred_model_role": "illustrative central scenario (not an identified estimator)",
     "mc_window": "end-2021 \u2192 end-2025",
@@ -8,6 +8,9 @@
     "mc_draws_notebook_interactive": 100000,
     "deaths_2023_canonical": 117739,
     "deaths_2023_anuario_footnote": 117746,
+    "deaths_2023_note": "Canonical scripts use 117739 (Indicadores 2025). Anuario table 3.13 may show 117746 \u2014 do not mix in one sum.",
+    "natural_balance_2025_note": "136214 \u2212 68064 = \u221268150 (canonical). Prior draft used \u221268149 in error.",
+    "deaths_2022_2025_note": "Identity window sum 502149 (model_from_2021). Model E death JSON sums 502159 \u2014 internal reconstruction path only.",
     "script": "scripts/model_from_2021.py",
     "primary_uncertainty": "across-scenario envelope A\u2013C/D (~1.8\u20132.4M loss), not within-D percentiles"
   },
@@ -17,7 +20,7 @@
     "onei_pop_end_2025": 9434593,
     "births_2025": 68064,
     "deaths_2025": 136214,
-    "natural_balance_2025": -68149,
+    "natural_balance_2025": -68150,
     "tfr_2025": 1.29,
     "births_2022_2025": 325233,
     "deaths_2022_2025_registered": 502149,
@@ -25,6 +28,78 @@
     "births_2020_2025": 529367,
     "deaths_2020_2025_registered": 782233,
     "onei_net_mig_2020_2025": 1516491
+  },
+  "vital_series": {
+    "years": [
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "births": [
+      114971,
+      116333,
+      109716,
+      105038,
+      99096,
+      95403,
+      90392,
+      71374,
+      68064
+    ],
+    "deaths": [
+      106941,
+      106201,
+      109080,
+      112439,
+      167645,
+      120098,
+      117739,
+      128098,
+      136214
+    ],
+    "source": "ONEI Anuario Demogr\u00e1fico; deaths[2023] = deaths_2023_canonical"
+  },
+  "population_official_m": {
+    "years": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "values": [
+      11.19,
+      11.18,
+      11.11,
+      11.09,
+      10.06,
+      9.75,
+      9.43
+    ],
+    "source": "ONEI revised official series"
+  },
+  "model_d_path_m": {
+    "years": [
+      2021,
+      2025,
+      2026,
+      2030
+    ],
+    "values": [
+      11.11,
+      8.59,
+      8.29,
+      7.0
+    ],
+    "note": "2030 point is illustrative scenario only, not a forecast."
   },
   "model_d": {
     "pop_end_2025_m": 8.59,
@@ -66,11 +141,29 @@
   },
   "excess_mortality": {
     "provisional_schedule_residual_2024_2025": {
-      "point_illustrative": 38000,
-      "band_low": 30000,
-      "band_high": 60000,
-      "status": "provisional / not fully computed from ONEI 3.15",
-      "method": "Illustrative registered minus provisional 2019-schedule expected deaths (figure inputs); pending reproducible age\u2013sex pipeline.",
+      "point_illustrative": 77000,
+      "band_low": 65000,
+      "band_high": 90000,
+      "years": [
+        2024,
+        2025
+      ],
+      "expected_deaths_k": [
+        95.0,
+        91.9
+      ],
+      "registered_deaths_k": [
+        128.1,
+        136.2
+      ],
+      "residual_k_by_year": [
+        33.1,
+        44.3
+      ],
+      "pipeline_script": "scripts/mortality_schedule_residual.py",
+      "pipeline_artifact": "artifacts/mortality_residual_2024_2025.json",
+      "status": "provisional \u2014 coarse 2019 CDR bridge; refine with full age-sex cells",
+      "method": "Registered minus expected deaths: 2019 total deaths / 2019 population \u00d7 year-t population (ONEI 3.15 + claims population path).",
       "products": [
         "en_paper",
         "es_essay",
@@ -85,10 +178,20 @@
   },
   "selectivity": {
     "emigrants_age_15_59_pct": 77,
+    "emigrants_age_15_59_source": "ONEI emigration bulletins / Albizu-Campos (2023\u20132024) synthesis; see data/selectivity.yaml",
+    "emigrants_age_15_59_class": "derived",
+    "emigrants_children_pct": 15,
+    "emigrants_60_plus_pct": 8,
+    "residents_children_pct": 16,
+    "residents_15_59_pct": 57,
     "median_age_leavers": 30,
     "median_age_stayers": 45,
     "pct_age_60_plus_remaining": 26.7,
-    "pct_age_60_plus_note": "26.7% is official structure; Model-D-consistent share would be higher \u2014 treat as official, not D-consistent."
+    "pct_age_60_plus_note": "26.7% is official structure; Model-D-consistent share would be higher \u2014 treat as official, not D-consistent.",
+    "female_share_emigrants_pct": null,
+    "female_share_note": "Manuscript uses majority-female wording only; exact share not recomputed from ONEI microdata in this repo.",
+    "reproductive_age_women_per_100_men": null,
+    "reproductive_age_ratio_note": "Prior essay cited ~133:100 from external flow tables; omitted from EN preprint until sourced in selectivity.yaml."
   },
   "models_summary": [
     {

@@ -28,6 +28,7 @@ from plot_style import (  # noqa: E402
     VIO,
     apply_style,
     save_ig,
+    save_ig_en,
     save_ms,
     style_ax,
     title_block,
@@ -38,24 +39,20 @@ C = get_claims()
 MD = C["model_d"]
 TRI = C["triangulation"]["sources"]
 SEL = C["selectivity"]
+VIT = C["vital_series"]
+POP_OFF = C["population_official_m"]
+PATH = C["model_d_path_m"]
+XM = C["excess_mortality"]["provisional_schedule_residual_2024_2025"]
 
 
 def _pop_series(ax, lang: str) -> None:
     style_ax(ax)
-    official = pd.DataFrame(
-        {
-            "year": [2019, 2020, 2021, 2022, 2023, 2024, 2025],
-            "pop": [11.19, 11.18, 11.11, 11.09, 10.06, 9.75, 9.43],
-            "series": "official",
-        }
-    )
-    model = pd.DataFrame(
-        {
-            "year": [2021, 2025, 2026, 2030],
-            "pop": [11.11, MD["pop_end_2025_m"], MD["pop_end_2026_m"], 7.0],
-            "series": "model",
-        }
-    )
+    off_years = POP_OFF["years"]
+    off_vals = POP_OFF["values"]
+    official = pd.DataFrame({"year": off_years, "pop": off_vals, "series": "official"})
+    path_years = PATH["years"]
+    path_vals = PATH["values"]
+    model = pd.DataFrame({"year": path_years, "pop": path_vals, "series": "model"})
     ax.axvspan(2025, 2030.6, color=SOFT_GREEN, alpha=0.35, lw=0, zorder=0)
     sns.lineplot(
         data=official,
@@ -131,9 +128,9 @@ def _pop_series(ax, lang: str) -> None:
 
 def _scissors(ax, lang: str) -> None:
     style_ax(ax)
-    yy = list(range(2017, 2026))
-    b = np.array([114971, 116333, 109716, 105038, 99096, 95403, 90392, 71374, 68064]) / 1000
-    d = np.array([106941, 106201, 109080, 112439, 167645, 120098, 117739, 128098, 136214]) / 1000
+    yy = VIT["years"]
+    b = np.array(VIT["births"], dtype=float) / 1000
+    d = np.array(VIT["deaths"], dtype=float) / 1000
     df = pd.DataFrame({"year": yy + yy, "count": np.r_[b, d], "kind": ["births"] * len(yy) + ["deaths"] * len(yy)})
     ax.fill_between(yy, b, d, where=(d > b), color=SOFT_RED, alpha=0.55, interpolate=True, zorder=1)
     sns.lineplot(
@@ -159,12 +156,28 @@ def _scissors(ax, lang: str) -> None:
         ax.annotate("NACIMIENTOS", (2017.1, 118), color=BLUE, fontsize=11.5, fontweight="bold")
         ax.annotate("DEFUNCIONES", (2017.1, 99), color=RED, fontsize=11.5, fontweight="bold")
         ax.set_ylabel("Miles por año")
-        title_block(ax, "La tijera demográfica: mueren casi el doble", "Aunque nadie emigrara, el país ya se encogería (−68 149 en 2025).")
+        title_block(ax, "La tijera demográfica: mueren casi el doble", f"Aunque nadie emigrara, el país ya se encogería (−{abs(C['vital']['natural_balance_2025']):,} en 2025).".replace(",", " "))
     else:
         ax.annotate("BIRTHS", (2017.1, 118), color=BLUE, fontsize=11.5, fontweight="bold")
         ax.annotate("DEATHS", (2017.1, 99), color=RED, fontsize=11.5, fontweight="bold")
         ax.set_ylabel("Thousands per year")
-        title_block(ax, "Demographic scissors: deaths roughly double births", "Natural decrease alone removes ~68k people in 2025.")
+        title_block(ax, "Demographic scissors: deaths roughly double births", f"Natural decrease alone removes ~{abs(C['vital']['natural_balance_2025']):,} people in 2025.".replace(",", " "))
+
+
+def _excess_subtitle(lang: str) -> str:
+    pt = int(round(XM["point_illustrative"] / 1000))
+    bl = int(round(XM["band_low"] / 1000))
+    bh = int(round(XM["band_high"] / 1000))
+    crude = int(C["excess_mortality"]["secondary_crude_registered_2020_2025"] / 1000)
+    if lang == "es":
+        return (
+            f"Residual provisional ~{pt} mil (2024–2025); banda {bl}–{bh} mil. "
+            f"Distinto del exceso bruto ~{crude} mil (2020–2025)."
+        )
+    return (
+        f"Illustrative schedule residual ~{pt}k (2024–2025); sensitivity {bl}–{bh}k. "
+        f"Distinct from crude ~{crude}k (2020–2025)."
+    )
 
 
 def _excess(ax, lang: str) -> None:
@@ -173,19 +186,16 @@ def _excess(ax, lang: str) -> None:
         lab_e, lab_r = "Esperadas (tasas 2019)", "Registradas"
         ylab = "Defunciones (miles)"
         title = "Exceso de mortalidad 2024–2025"
-        sub = "Residual provisional ~38 mil (2024–2025); banda 30–60 mil. Distinto del exceso bruto ~153 mil (2020–2025)."
     else:
         lab_e, lab_r = "Expected (2019 rates)", "Registered"
         ylab = "Deaths (thousands)"
         title = "Mortality residual, 2024–2025 (provisional)"
-        sub = "Illustrative schedule residual ~38k (2024–2025); sensitivity 30–60k. Distinct from crude ~153k (2020–2025)."
-    df = pd.DataFrame(
-        {
-            "year": ["2024", "2024", "2025", "2025"],
-            "deaths": [112.5, 128.1, 113.8, 136.2],
-            "kind": [lab_e, lab_r, lab_e, lab_r],
-        }
-    )
+    sub = _excess_subtitle(lang)
+    rows = []
+    for y, e, r in zip(XM["years"], XM["expected_deaths_k"], XM["registered_deaths_k"]):
+        rows.append({"year": str(y), "deaths": e, "kind": lab_e})
+        rows.append({"year": str(y), "deaths": r, "kind": lab_r})
+    df = pd.DataFrame(rows)
     sns.barplot(
         data=df,
         x="year",
@@ -211,7 +221,7 @@ def _excess(ax, lang: str) -> None:
                 color=color,
             )
     # gap callouts on registered bars
-    for i, (e, r) in enumerate([(112.5, 128.1), (113.8, 136.2)]):
+    for i, (e, r) in enumerate(zip(XM["expected_deaths_k"], XM["registered_deaths_k"])):
         ax.annotate(
             f"+{r - e:.0f}k",
             (i + 0.18, r),
@@ -244,8 +254,8 @@ def _age(ax, lang: str) -> None:
         ylab = "Share of group (%)"
         title = "Who leaves — and who remains"
         sub = "Selective exodus: 77% of emigrants are aged 15–59."
-    emig = [15, SEL["emigrants_age_15_59_pct"], 8]
-    resid = [16, 57, int(round(SEL["pct_age_60_plus_remaining"]))]
+    emig = [SEL["emigrants_children_pct"], SEL["emigrants_age_15_59_pct"], SEL["emigrants_60_plus_pct"]]
+    resid = [SEL["residents_children_pct"], SEL["residents_15_59_pct"], int(round(SEL["pct_age_60_plus_remaining"]))]
     df = pd.DataFrame(
         {
             "band": bands * 2,
@@ -471,7 +481,7 @@ def _waterfall(ax) -> None:
     title_block(
         ax,
         "Where 2.2 million people went (2021→2025)",
-        "Exodus dominates (~91%); natural decrease and baseline correction complete the identity.",
+        "Scenario D median decomposition under fixed priors (~91% emigration); not identified attribution.",
     )
 
 
@@ -503,6 +513,10 @@ def make_pair(drawer, ig_name: str | None, ms_name: str) -> None:
         drawer(ax, "es")
         fig.tight_layout()
         save_ig(fig, ig_name)
+        fig, ax = plt.subplots(figsize=figsize)
+        drawer(ax, "en")
+        fig.tight_layout()
+        save_ig_en(fig, ig_name)
     fig, ax = plt.subplots(figsize=figsize)
     drawer(ax, "en")
     fig.tight_layout()
@@ -522,12 +536,20 @@ def main() -> None:
     fig, ax = plt.subplots(figsize=(8.5, 4.9))
     _triangulation(ax, "en")
     fig.tight_layout()
+    save_ig_en(fig, "ig_triangulacion.png")
+    fig, ax = plt.subplots(figsize=(8.5, 4.9))
+    _triangulation(ax, "en")
+    fig.tight_layout()
     save_ms(fig, "f7_triangulacion.png")
 
     fig, ax = plt.subplots(figsize=(8.5, 5.2))
     _provinces(ax, "es")
     fig.tight_layout()
     save_ig(fig, "ig_provincias.png")
+    fig, ax = plt.subplots(figsize=(8.5, 5.2))
+    _provinces(ax, "en")
+    fig.tight_layout()
+    save_ig_en(fig, "ig_provincias.png")
     fig, ax = plt.subplots(figsize=(8.5, 5.2))
     _provinces(ax, "en")
     fig.tight_layout()
@@ -548,7 +570,7 @@ def main() -> None:
     fig.tight_layout()
     save_ms(fig, "f5_esperanza.png")
 
-    print("publication charts regenerated (seaborn style; IG ES + manuscript EN)")
+    print("publication charts regenerated (seaborn style; IG ES + IG EN + manuscript EN)")
 
 
 if __name__ == "__main__":

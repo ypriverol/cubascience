@@ -2,7 +2,7 @@ from pathlib import Path
 import sys
 _SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(_SCRIPTS))
-from constants import ARTIFACTS, FIGURES
+from constants import ARTIFACTS, FIGURES, get_claims
 ARTIFACTS.mkdir(parents=True, exist_ok=True)
 FIGURES.mkdir(parents=True, exist_ok=True)
 
@@ -82,9 +82,10 @@ plt.close(fig)
 # ================= Chart 2: births vs deaths =================
 fig, ax = plt.subplots(figsize=(8.6, 4.6), dpi=200)
 style_ax(ax)
-years = list(range(2017, 2026))
-births = [114971, 116333, 109716, 105038, 99096, 95403, 90392, 71374, 68064]
-deaths = [106941, 106201, 109080, 112439, 167645, 120098, 117739, 128098, 136214]
+_v = get_claims()["vital_series"]
+years = _v["years"]
+births = _v["births"]
+deaths = _v["deaths"]
 
 ax.plot(years, np.array(births)/1000, color=S1, lw=2, marker="o", ms=5)
 ax.plot(years, np.array(deaths)/1000, color=S2, lw=2, marker="o", ms=5)

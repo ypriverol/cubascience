@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Estimating Cuba's 2021–2026 population decline</title>
+<meta name="author" content="Yasset Pérez-Riverol">
+<meta name="description" content="Estimating Cuba's 2021–2026 population decline. Monte Carlo scenarios; illustrative central scenario D ≈8.59 M (about 1 in 5 on corrected base).">
+<meta name="keywords" content="Cuba, depopulation, demography, emigration, mortality, fertility, ageing, Monte Carlo, ONEI">
+<meta name="citation_title" content="Estimating Cuba's 2021–2026 population decline">
+<meta name="citation_author" content="Pérez-Riverol, Yasset">
+<meta name="citation_publication_date" content="2026">
+<style>
+@page { size: 420mm 594mm; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { background:#ffffff; }
+body {
+  width: 420mm; min-height: 594mm;
+  font-family: "Georgia","Times New Roman",serif;
+  color:#0f1720; position:relative;
+  padding: 18mm 20mm 14mm 20mm;
+}
+.kicker { font-family:"Helvetica Neue",Arial,sans-serif; font-size:11pt; letter-spacing:3px;
+  text-transform:uppercase; color:#e23b34; font-weight:700; }
+h1 { font-size:36pt; line-height:1.05; margin:4mm 0 3mm 0; font-weight:700; letter-spacing:-0.5px; }
+h1 .hl { color:#e23b34; }
+.dek { font-family:"Helvetica Neue",Arial,sans-serif; font-size:13pt; line-height:1.45;
+  color:#3f4a56; max-width:355mm; font-weight:400; }
+.rule { height:3px; background:#0f1720; margin:5mm 0 0 0; }
+.rule.thin { height:1px; background:#cdd3d0; }
+.hero { display:flex; gap:6mm; margin:6mm 0 2mm 0; }
+.stat { flex:1; border-top:4px solid #e23b34; padding-top:3mm; }
+.stat.b { border-top-color:#1f6fd6; }
+.stat.o { border-top-color:#ef7a3d; }
+.stat.g { border-top-color:#12a67a; }
+.stat .num { font-family:"Helvetica Neue",Arial,sans-serif; font-size:33pt; font-weight:800;
+  line-height:1; letter-spacing:-1px; }
+.stat.r .num{color:#e23b34;} .stat.b .num{color:#1f6fd6;}
+.stat.o .num{color:#ef7a3d;} .stat.g .num{color:#12a67a;}
+.stat .lab { font-family:"Helvetica Neue",Arial,sans-serif; font-size:11pt; line-height:1.32;
+  color:#3f4a56; margin-top:2.5mm; }
+.grid { display:flex; flex-wrap:wrap; gap:6mm 8mm; margin-top:5mm; }
+.panel { width:calc(50% - 4mm); }
+.panel h2 { font-family:"Helvetica Neue",Arial,sans-serif; font-size:15pt; font-weight:700;
+  color:#0f1720; margin-bottom:1mm; letter-spacing:-0.2px; }
+.panel .sub { font-family:"Helvetica Neue",Arial,sans-serif; font-size:10pt; color:#5a6470;
+  line-height:1.35; margin-bottom:2mm; }
+.panel img { width:100%; display:block; }
+.panel .src { font-family:"Helvetica Neue",Arial,sans-serif; font-size:8.5pt; color:#8a938f;
+  margin-top:1.5mm; font-style:italic; }
+.footer { margin-top:7mm; }
+.foot-grid { display:flex; gap:8mm; font-family:"Helvetica Neue",Arial,sans-serif; }
+.foot-col { flex:1; font-size:9pt; line-height:1.5; color:#3f4a56; }
+.foot-col h3 { font-size:9.5pt; text-transform:uppercase; letter-spacing:1.5px;
+  color:#0f1720; margin-bottom:2mm; font-weight:700; }
+.cite { background:#f4f6f7; border-left:4px solid #0f1720; padding:3.5mm 4mm;
+  font-size:9pt; line-height:1.5; color:#0f1720; }
+.badge { display:inline-block; background:#0f1720; color:#fff; font-weight:700;
+  font-size:8pt; padding:1mm 2.5mm; border-radius:2px; letter-spacing:0.5px; margin-right:2mm;}
+.badge.cc { background:#12a67a; }
+</style>
+</head>
+<body>
+
+  <div class="kicker">Demographic analysis · Cuba 2021–2026</div>
+  <h1>Scenario audit of Cuba's <span class="hl">population decline</span>, 2021–2026</h1>
+  <div class="dek"><b>Primary scenario envelope A–D: ~1.8–2.4 million</b> of loss in 2021–2025. Illustrative central scenario (D): <b>≈8.59 M</b> and <b>about 1 in 5</b> on the corrected base. Against the <b>official 2021</b> headcount, the gap toward 2026 approaches <b>1 in 4</b> — a different definition. Emigration accounts for ≈91% of absolute loss under D.</div>
+  <div class="rule"></div>
+
+  <div class="hero">
+    <div class="stat r">
+      <div class="num">1.8–2.4 M</div>
+      <div class="lab">across-scenario envelope<br>(primary uncertainty)</div>
+    </div>
+    <div class="stat b">
+      <div class="num">8.59 M</div>
+      <div class="lab">scenario D end-2025<br>(not an identified estimator)</div>
+    </div>
+    <div class="stat o">
+      <div class="num">2.0×</div>
+      <div class="lab">deaths roughly double births<br>(136k vs 68k in 2025)</div>
+    </div>
+    <div class="stat g">
+      <div class="num">1.05 M</div>
+      <div class="lab">settled-destination floor<br>(U.S. ~800k + non-U.S. ~250k)</div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="panel">
+      <h2>Official headcount versus scenarios</h2>
+      <div class="sub">ONEI ≈9.43 M vs scenario D ≈8.59 M (end-2025). Post-2026: illustrative trend, not a forecast.</div>
+      <img src="ig_poblacion.png" alt="Living population vs official series 2019-2030">
+      <div class="src">Source: ONEI / Monte Carlo scenarios (Model D = illustrative central path).</div>
+    </div>
+
+    <div class="panel">
+      <h2>Demographic scissors: more deaths, fewer births</h2>
+      <div class="sub">Since 2020 deaths exceed births by a wide margin. In 2025 two people die for every baby born.</div>
+      <img src="ig_tijera.png" alt="Births vs deaths 2017-2025">
+      <div class="src">Source: ONEI demographic yearbooks. The 2021 spike corresponds to the COVID wave.</div>
+    </div>
+
+    <div class="panel">
+      <h2>Eight sources, soft band 8.0–8.9 M</h2>
+      <div class="sub">High ceilings (UN, electoral roll) vs exit-correcting anchors (Albizu, housing). Scenario D is the study estimand, not external validation.</div>
+      <img src="ig_triangulacion.png" alt="Population triangulation across eight sources">
+      <div class="src">Electoral roll, MINSAP, housing occupancy, UN, Albizu-Campos (2023, 2024), and scenario D.</div>
+    </div>
+
+    <div class="panel">
+      <h2>Provisional mortality residual, 2024–2025</h2>
+      <div class="sub">Illustrative ~77k vs 2019 schedule (band 65–90k). Distinct from crude registered excess ~153k (2020–2025). Full ONEI age–sex pipeline pending.</div>
+      <img src="ig_exceso.png" alt="Mortality residual 2024-2025">
+      <div class="src">Not a Kitagawa decomposition; expected-deaths residual under a provisional 2019 schedule.</div>
+    </div>
+
+    <div class="panel">
+      <h2>The young leave; the old remain</h2>
+      <div class="sub">77% of emigrants are aged 15–59. Each young exit reduces future births.</div>
+      <img src="ig_edad.png" alt="Age structure: who emigrates vs who stays">
+      <div class="src">Age composition of emigrants vs residents; median age leavers ≈30, stayers 45.</div>
+    </div>
+
+    <div class="panel">
+      <h2>Emptying is national; Havana leads</h2>
+      <div class="sub">All provinces lose about 2% of their people per year (ONEI; levels may be biased).</div>
+      <img src="ig_provincias.png" alt="Net emigration by province 2025">
+      <div class="src">Net emigration 2025 per 1,000 inhabitants. Source: ONEI Indicators 2025.</div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="rule thin" style="margin-bottom:5mm;"></div>
+    <div class="foot-grid">
+      <div class="foot-col" style="flex:1.35;">
+        <h3>How to cite</h3>
+        <div class="cite">
+          Pérez-Riverol, Y. (2026). <i>Estimating Cuba's 2021–2026 population decline.</i> [Infographic / preprint]. Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+        </div>
+        <div style="margin-top:3mm;">
+          <span class="badge">DOI pending</span>
+          <span class="badge cc">CC BY 4.0</span>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h3>Method</h3>
+        Demographic balance solved by Monte Carlo (10⁶ draws). Models A–D = scenarios; D = illustrative central path. Destination ledger floor ~1.05 M (U.S. admin + 250k non-U.S.). The step to ~2.0 M net under D is a prior on ONEI migration, not destination microdata.
+      </div>
+      <div class="foot-col">
+        <h3>Sources</h3>
+        ONEI yearbooks and Indicators 2025. UN WPP. Albizu-Campos; Brønnum-Hansen &amp; Albizu (2023). Data and code: github.com/ypriverol/cubascience
+      </div>
+    </div>
+    <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:8pt;color:#8a938f;margin-top:4mm;">
+      Yasset Pérez-Riverol · July 2026 · Primary structural uncertainty: across-scenario envelope ≈1.8–2.4 M. Within-scenario intervals = prior spread, not sampling error.
+    </div>
+  </div>
+
+</body>
+</html>
