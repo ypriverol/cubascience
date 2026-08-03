@@ -59,7 +59,7 @@ Esos 0.85~millones son la afirmación real del trabajo; los 2.53~millones son la
 Un escenario nulo ($U_0{=}0$, $M{=}1$, $D_{\mathrm{fac}}{=}1$) reproduce exactamente la cifra publicada por la ONEI y se reporta junto a los tres conjuntos de supuestos.
 Alrededor del \textbf{92\%} de esa brecha es emigración, contando tanto el flujo de 2022--2025 como el rezago previo a 2021 que sigue en el padrón.
 La continuación a fin de 2026 sitúa el escenario central cerca de \textbf{8.29~millones}.
-Cuba registra hoy unas 31\,300 defunciones anuales más que en 2019 pese a tener alrededor de 2~millones menos de residentes.
+Cuba registró 27\,100 defunciones más en 2025 que en 2019, o unas 31\,300 una vez añadidas las defunciones no registradas estimadas, mientras que el stock del escenario central es unos 2~millones menor.
 La estandarización por edad separa dos fuerzas al alza de magnitud comparable ---unas \textbf{22\,400} defunciones adicionales al año por una población más envejecida y unas \textbf{28\,500} al año (rango de sensibilidad a los supuestos: 18\,600--38\,200) de exceso respecto de la tabla de 2019--- frente a unas 19\,400 defunciones menos al año por la menor población.
 Excluyendo la ola pandémica de 2021, el total de exceso en 2022--2025 es de $\sim$\textbf{74\,800} (47\,000--103\,000).
 
@@ -114,7 +114,7 @@ La pérdida se reporta sobre una sola base: el stock \emph{oficial} de fin de 20
 La brecha que define tiene tres partes aditivas ---sobrestimación de base $U_0$, emigración neta $R\,M$ y decrecimiento natural---, de modo que no hace falta un segundo porcentaje sobre ``base corregida''.
 
 Cada escenario son tres números, y la cifra puntual es la aritmética anterior evaluada en sus medias a priori, exacta porque la identidad es lineal en las tres.
-Verificamos que eso era todo lo que hacía la simulación: un Monte Carlo de $10^6$ extracciones con cópula gaussiana sobre las mismas marginales coincide con la forma cerrada dentro de unos cientos de personas, es decir, dentro del ruido de muestreo.
+Verificamos que eso era todo lo que hacía la simulación: un Monte Carlo de $10^6$ extracciones con cópula gaussiana sobre las mismas marginales coincide con la forma cerrada dentro de unos cientos de personas (1\,117 en el escenario superior), es decir, dentro del ruido de muestreo.
 Por eso la cópula se ha eliminado: movía la mediana unas 2\,200 personas y solo ensanchaba una banda interna que no es nuestro enunciado primario de incertidumbre.
 Se conserva un muestreo reducido ($N=2\times10^5$, marginales independientes) únicamente para reportar esa banda, que sigue siendo una dispersión \emph{predictiva a priori} y no error muestral.
 La \textbf{envolvente entre escenarios} es el enunciado primario~\citep{repo,modeld}.
@@ -147,7 +147,7 @@ $D_{\mathrm{fac}}$ & $1+0.09\times\mathrm{Beta}(1.8,3.2)$ & Subregistro residual
 \end{table}
 
 La mortalidad infantil subió de 5.0 a 9.9 por mil nacidos vivos (2019--2025), un incremento del $\sim$98\% en la \emph{tasa}.
-La mayor parte es el denominador: las defunciones infantiles pasaron de $\sim$549 a $\sim$674, un 23\%, mientras los nacidos vivos caían un 38\%.
+La mayor parte es el denominador: las defunciones infantiles pasaron de 552 (observado, ONEI 3.16) a $\sim$674 (derivado), un 22\%, mientras los nacidos vivos caían un 38\%.
 Ambas cifras importan y reportar solo la tasa sobrestima la señal.
 Las defunciones infantiles son comparativamente difíciles de ocultar, de modo que la tasa infantil se trata como un centinela de alta integridad del \emph{estrés} del sistema de salud.
 En el mismo período la tasa bruta de mortalidad registrada subió de 9.7 a 14.2 por mil ($\sim$46\%).
@@ -350,9 +350,9 @@ Esa caída es grande frente a las pérdidas internacionales de la era COVID~\cit
 Las defunciones infantiles subieron de 461 (2018) a 715 (2022); la tasa alcanzó 9.9 por mil en 2025 ($+$98\% desde 2019).
 
 La descomposición de la mortalidad responde directamente a la pregunta envejecimiento frente a colapso (Figura~\ref{fig:attrib}).
-Cuba registró 136\,214 defunciones en 2025 frente a 109\,080 en 2019, 27\,134 más, o unas 31\,300 más una vez incluido el subregistro residual, mientras tenía alrededor de 2~millones menos de residentes.
+Cuba registró 136\,214 defunciones en 2025 frente a 109\,080 en 2019 ---27\,134 más, o unas 31\,300 una vez añadidas las defunciones no registradas estimadas--- mientras el stock del escenario central es unos 2~millones menor (la serie oficial cae 1.76~millones en el mismo tramo).
 Entretanto, la población de 60 años y más subió de 2.31~millones (2019, observado) a unos 2.60~millones proyectados en 2025.
-Tres términos se compensan hasta dar ese aumento.
+Tres términos dan cuenta de ese aumento (las medianas no son aditivas, de modo que suman 31\,500 y no 31\,300).
 Una población residente menor en $\sim$2~millones debería haber reducido las defunciones anuales en unas \textbf{19\,400}; el envejecimiento añadió unas \textbf{22\,400}; y el residual de exceso respecto de la tabla de 2019 es de unas \textbf{28\,500} al año (rango de sensibilidad a los supuestos: 18\,600--38\,200), o $\sim$297 por cada 100\,000 sobre la población oficial.
 Los dos términos al alza son de magnitud comparable ($\sim$44\% y $\sim$56\% del incremento bruto); ninguno por sí solo explica el aumento, y juntos lo superan porque la población menguante tira en sentido contrario.
 El puente basado en tasas brutas reportado en versiones anteriores de este trabajo cargaba a la crisis todo el desplazamiento etario y sobrestimaba el componente de colapso: $\sim$77\,000 para 2024--2025 combinados frente a \textbf{50\,100} (32\,600--67\,500) aquí.
@@ -503,7 +503,7 @@ Por eso este trabajo trata el recuento oficial como un techo y lo contrasta con 
 En conjunto: frente al stock oficial de fin de 2021, la brecha a fin de 2025 se sitúa entre 1.97 y 2.79~millones, o 17.8--25.1\% (el enunciado primario).
 Bajo el escenario central, la población viva está cerca de 8.58~millones a fin de 2025 y no en los 9.43~millones oficiales: una brecha de 2.53~millones (22.8\%), de la cual alrededor del 92\% es emigración; el piso anclado en la ONEI queda en 9.14~millones.
 Hacia fin de 2026 la continuación central está cerca de 8.29~millones, llevando la brecha a aproximadamente una de cada cuatro personas.
-Junto a ese recuento, el exceso respecto de la tabla de 2019 corre a $\sim$28\,500 defunciones al año a niveles de 2025 y a $\sim$74\,800 acumuladas en 2022--2025, un costo mayor que lo que explica el envejecimiento por sí solo y alrededor de un tercio inferior a lo que implicaba para 2024--2025 el puente basado en tasas brutas.
+Junto a ese recuento ---de cuya brecha de 2.53~millones, 1.68~millones son caída ya publicada por la ONEI y 0.85~millones la corrección de este trabajo--- el exceso respecto de la tabla de 2019 corre a $\sim$28\,500 defunciones al año a niveles de 2025 y a $\sim$74\,800 acumuladas en 2022--2025, un costo mayor que lo que explica el envejecimiento por sí solo y alrededor de un tercio inferior a lo que implicaba para 2024--2025 el puente basado en tasas brutas.
 Un censo en 2026 realizado con prácticas estándar sería informativo; la banda de escenario de trabajo a fin de 2026 es de 7.9--8.9~millones y no la trayectoria de 10.9~millones de \emph{World Population Prospects} bajo supuestos de emigración neta todavía bajos~\citep{un_wpp}.
 
 
@@ -526,7 +526,7 @@ Los indicadores de inseguridad alimentaria y anemia del PMA, y la caída del PIB
 El escenario central se mantiene porque la comprobación de consistencia con la mortalidad infantil reduce la necesidad de multiplicadores grandes de defunciones ocultas y concentra la incertidumbre residual en la migración~\citep{pagegarcia2020,modeld}.
 No es una estimación puntual identificada: la pérdida absoluta sigue siendo $\sim$91\% migratoria bajo las distribuciones a priori del escenario central, y $U_0$ junto con $M>1$ pueden compartir un mismo defecto de padrón desactualizado.
 Los intervalos dentro de un escenario parecen falsamente precisos frente a la envolvente entre escenarios: la envolvente debe encabezar la lectura.
-El enunciado científico principal es la brecha del 22.8\% del escenario central a fin de 2025 sobre la base oficial de 2021 (entre una de cada cinco y una de cada cuatro personas), que hacia fin de 2026 se acerca al $\sim$25\%.
+El enunciado científico principal son los 0.85~millones en que el escenario central queda por debajo de la propia cifra de la ONEI para fin de 2025. La brecha de 2.53~millones (22.8\%) frente a la base oficial de 2021 es la suma de esa corrección y los 1.68~millones que la ONEI ya ha publicado; ambas no deben citarse indistintamente.
 La salida es selectiva por edad y sexo; envejece la isla y deprime estructuralmente la fecundidad~\citep{coleman2006,diazbriquets2014,lee2014}.
 El saldo natural, positivo en 2019, cayó a $-$68\,150 en 2025.
 
