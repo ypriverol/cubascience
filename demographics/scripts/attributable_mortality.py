@@ -221,6 +221,7 @@ def _pre_crisis_trend() -> dict:
     choice rather than take it on trust.
     """
     from age_standardised_mortality import standardise
+    from scipy import stats
     out = {}
     for name, yrs in [("2006_2019_sparse", [2006, 2007, 2008, 2013, 2014, 2015,
                                             2016, 2017, 2018, 2019]),
@@ -236,8 +237,25 @@ def _pre_crisis_trend() -> dict:
             continue
         xs = np.array([a for a, _ in pts], float)
         ys = np.log(np.array([b for _, b in pts], float))
-        slope = float(np.polyfit(xs, ys, 1)[0])
-        out[name] = {"n_years": len(pts), "annual_pct": round(100 * slope, 3)}
+        r = stats.linregress(xs, ys)
+        tcrit = float(stats.t.ppf(0.975, len(pts) - 2))
+        out[name] = {
+            "n_years": len(pts),
+            "annual_pct": round(100 * r.slope, 3),
+            "se_pct": round(100 * r.stderr, 3),
+            "p_value": round(float(r.pvalue), 4),
+            "r_squared": round(float(r.rvalue) ** 2, 3),
+            "ci95_pct": [round(100 * (r.slope - tcrit * r.stderr), 3),
+                         round(100 * (r.slope + tcrit * r.stderr), 3)],
+        }
+    # BOTH confidence intervals contain zero (p = 0.066, 0.064). The pre-crisis
+    # trend is NOT identifiable from this series. We therefore do not fit it and
+    # propagate it -- that would manufacture precision the data cannot support.
+    # The flat anchor is a stated convention, and the counterfactual span below
+    # uses the CI bounds rather than the point estimates.
+    out["identifiable"] = False
+    out["verdict"] = ("Neither slope differs from zero at conventional levels; "
+                      "the flat 2019 anchor is a convention, not a finding.")
     return out
 
 
@@ -259,8 +277,13 @@ def counterfactual_sensitivity(base: dict, expected_2025: float,
     fitted = _pre_crisis_trend()
     sparse = fitted.get("2006_2019_sparse", {}).get("annual_pct", 0.236) / 100.0
     contig = fitted.get("2013_2019_contiguous", {}).get("annual_pct", 0.678) / 100.0
+    # Upper 95% bound of the steeper fit: the most the data permit for a
+    # worsening pre-crisis trend, and therefore the lowest defensible excess.
+    contig_hi = fitted.get("2013_2019_contiguous", {}).get(
+        "ci95_pct", [0, 1.413])[1] / 100.0
     out = {}
-    for label, drift in [("cuba_trend_sparse_2006_2019", sparse),
+    for label, drift in [("cuba_trend_contiguous_upper95", contig_hi),
+                         ("cuba_trend_sparse_2006_2019", sparse),
                          ("cuba_trend_contiguous_2013_2019", contig),
                          ("flat_2019_schedule_AS_USED", 0.0),
                          ("improvement_0.5pct_yr", -0.005),
@@ -275,7 +298,8 @@ def counterfactual_sensitivity(base: dict, expected_2025: float,
     # same sensitivity -- previously it was computed for 2025 only.
     if expected_by_year and registered_by_year:
         cum = {}
-        for label, drift in [("cuba_trend_sparse_2006_2019", sparse),
+        for label, drift in [("cuba_trend_contiguous_upper95", contig_hi),
+                             ("cuba_trend_sparse_2006_2019", sparse),
                              ("cuba_trend_contiguous_2013_2019", contig),
                              ("flat_2019_schedule_AS_USED", 0.0),
                              ("improvement_0.5pct_yr", -0.005),

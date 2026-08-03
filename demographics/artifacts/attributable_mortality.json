@@ -38,6 +38,10 @@
     "note": "A ratio above 1 at ages 65+ means 2019 was a comparatively good year, so the 2019 anchor is NOT conservative there; the shift is well inside the 2% schedule noise either way."
   },
   "counterfactual_sensitivity": {
+    "cuba_trend_contiguous_upper95": {
+      "expected_2025": 121931,
+      "attributable_2025": 18460
+    },
     "cuba_trend_sparse_2006_2019": {
       "expected_2025": 113683,
       "attributable_2025": 26708
@@ -63,6 +67,7 @@
       "attributable_2025": 38022
     },
     "cumulative_2022_2025": {
+      "cuba_trend_contiguous_upper95": 45220,
       "cuba_trend_sparse_2006_2019": 69469,
       "cuba_trend_contiguous_2013_2019": 60488,
       "flat_2019_schedule_AS_USED": 74203,
@@ -70,26 +75,42 @@
       "improvement_1.0pct_yr": 93799,
       "improvement_1.5pct_yr_regional_norm": 103321,
       "_span": [
-        60488,
+        45220,
         103321
       ]
     },
     "pre_crisis_trend_fitted": {
       "2006_2019_sparse": {
         "n_years": 10,
-        "annual_pct": 0.236
+        "annual_pct": 0.236,
+        "se_pct": 0.111,
+        "p_value": 0.0665,
+        "r_squared": 0.36,
+        "ci95_pct": [
+          -0.02,
+          0.492
+        ]
       },
       "2013_2019_contiguous": {
         "n_years": 7,
-        "annual_pct": 0.678
-      }
+        "annual_pct": 0.678,
+        "se_pct": 0.286,
+        "p_value": 0.0639,
+        "r_squared": 0.529,
+        "ci95_pct": [
+          -0.057,
+          1.413
+        ]
+      },
+      "identifiable": false,
+      "verdict": "Neither slope differs from zero at conventional levels; the flat 2019 anchor is a convention, not a finding."
     },
     "dfac_symmetric_variant": {
       "attributable_2025": 24868,
       "note": "Dfac applied to the 2019 anchor as well. Lower than the headline because only a CHANGE in completeness since 2019 then counts as excess. The headline treats Dfac as crisis-induced deterioration."
     },
     "_range": {
-      "low": 23667,
+      "low": 18460,
       "high": 38022,
       "note": "This span is comparable to the entire Monte Carlo band and is NOT included in it. A flat anchor is more likely to under- than overstate, because Cuba's peers kept improving."
     }
