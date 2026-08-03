@@ -43,7 +43,7 @@ def get_claims() -> dict[str, Any]:
 # Convenience anchors used by notebook_support
 def model_d_anchors(claims: dict[str, Any] | None = None) -> dict[str, float]:
     c = claims or get_claims()
-    d = c["model_d"]
+    d = c["population_scenarios"]["scenarios"]["central"]
     v = c["vital"]
     x = c["excess_mortality"].get(
         "provisional_schedule_residual_2024_2025",
@@ -52,11 +52,11 @@ def model_d_anchors(claims: dict[str, Any] | None = None) -> dict[str, float]:
     s = c["selectivity"]
     return {
         "population_end_2025_model_d_m": float(d["pop_end_2025_m"]),
-        "loss_vs_2021_m": float(d["loss_2021_2025_m"]),
-        "loss_vs_2021_pct": float(d["loss_pct_corrected_base"]),
+        "loss_vs_2021_m": float(d["gap_m"]),
+        "loss_vs_2021_pct": float(d["gap_pct"]),
         # aliases kept for older notebook cells
-        "loss_vs_2019_m": float(d["loss_2021_2025_m"]),
-        "loss_vs_2019_pct": float(d["loss_pct_corrected_base"]),
+        "loss_vs_2019_m": float(d["gap_m"]),
+        "loss_vs_2019_pct": float(d["gap_pct"]),
         "births_2025": int(v["births_2025"]),
         "deaths_2025": int(v["deaths_2025"]),
         "natural_balance_2025": int(v["natural_balance_2025"]),
@@ -67,5 +67,5 @@ def model_d_anchors(claims: dict[str, Any] | None = None) -> dict[str, float]:
         "excess_deaths_2024_25_high": int(x.get("band_high", x.get("high", 60000))),
         "onei_end_2025": int(v["onei_pop_end_2025"]),
         "pop_end_2026_m": float(d["pop_end_2026_m"]),
-        "migration_share_pct": float(d["migration_share_of_loss_pct"]),
+        "migration_share_pct": float(d["emigration_share_of_gap_pct"]),
     }

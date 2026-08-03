@@ -28,8 +28,8 @@ meta:
     "El extraño caso de los 9 mil muertos desaparecidos en Cuba".
 
   deaths_2022_2025_note: "Identity window sum 502149 (model_from_2021). Model E death JSON sums 502159 — internal reconstruction path only."
-  script: "scripts/model_from_2021.py"
-  primary_uncertainty: "across-scenario envelope A–C/D (~1.8–2.4M loss), not within-D percentiles"
+  script: "scripts/model_population.py"
+  primary_uncertainty: "span across the three assumption sets (1.97-2.79M gap); not a confidence interval"
 
 vital:
   official_pop_2019: 11193470
@@ -61,7 +61,7 @@ population_official_m:
 
 model_d_path_m:
   years: [2021, 2025, 2026, 2030]
-  values: [11.11, 8.59, 8.30, 7.0]
+  values: [11.11, 8.58, 8.29, 7.0]
   note: "2030 point is illustrative scenario only, not a forecast."
 
 population_scenarios:
@@ -102,9 +102,10 @@ population_scenarios:
       gap_pct: 25.1
       pop_end_2026_m: 8.02
   headline: >
-    Against the official end-2021 stock, the gap by end-2025 is 1.94-2.80 million
-    (17.4-25.2%); the central scenario is 2.52 million (22.7%), leaving about
-    8.59 million living, against 9.43 million officially. Roughly 92% of the gap
+    Against the official end-2021 stock, the gap by end-2025 is 1.97-2.79 million
+    (17.8-25.1%); the central scenario is 2.53 million (22.8%), leaving about
+    8.58 million living against 9.43 million officially -- of which 1.68 million
+    is decline ONEI itself published and 0.85 million is this paper's correction. Roughly 92% of the gap
     is emigration, counting both the 2022-25 flow and the pre-2021 backlog still
     on the roll.
   retired:
@@ -121,8 +122,8 @@ headline_rules:
   single_base: "official end-2021 stock (11,113,215). Do not publish a second base."
   primary_scientific:
     value_approx: "between one in six and one in four"
-    pct_range: [17.4, 25.2]
-    central_pct: 22.7
+    pct_range: [17.8, 25.1]
+    central_pct: 22.8
     year: 2025
     products: [en_paper, es_paper, notebook]
   note: >
@@ -181,11 +182,11 @@ attributable_mortality:
     median: 28501
     p05: 18617
     p95: 38203
-    per_100k_official_stock: 298
+    per_100k_official_stock: 297
   annual_2026_scenario:
-    median: 32600
-    p05: 20300
-    p95: 44500
+    median: 32291
+    p05: 20004
+    p95: 44173
     note: "Depends on the +4% registered-death continuation in model_from_2021.py — scenario, not observation."
   cumulative:
     "2020_2025": {median: 142095, p05: 105356, p95: 180494}
@@ -198,12 +199,12 @@ attributable_mortality:
     2022: 12800
     2023: 11900
     2024: 21600
-    2025: 28600
-    2026: 32600
+    2025: 28501
+    2026: 32291
   decomposition_2025:
     population_size_effect: -19400
-    ageing_effect: 22300
-    health_system_effect: 28600
+    ageing_effect: 22415
+    health_system_effect: 28501
     observed_rise_incl_unregistered: 31300
     note: >
       Change in annual deaths vs 2019 = size + ageing + rate, exactly per draw.
@@ -217,7 +218,7 @@ attributable_mortality:
     28,500 deaths a year at 2025 levels (prior sensitivity range 18,600-38,200), against ~22,300 a year explained
     by population ageing alone.
   headline_es: >
-    El deterioro del sistema de salud se asocia a unas 28,500 muertes anuales en
+    El exceso respecto de la tabla de 2019 corre a unas 28,500 muertes anuales en
     exceso a niveles de 2025 (banda 90% 18,700-38,300), frente a ~22,300 anuales
     que explica el envejecimiento por si solo.
   status: "primary age-standardised estimate; supersedes the crude 2019-CDR bridge"
@@ -471,12 +472,14 @@ sourcing_resolutions:
       selective emigration, or denominator error. "Attributable" requires an
       identified exposure and cause-of-death evidence; neither exists here.
   counterfactual_sensitivity_2025:
-    cuba_pre_crisis_trend: 26681
+    cuba_trend_sparse_2006_2019: 26708
+    cuba_trend_contiguous_2013_2019: 23667
     flat_2019_as_used: 28305
     improvement_0_5pct: 31625
     improvement_1_0pct: 34864
     improvement_1_5pct: 38022
-    span: [26700, 38000]
+    span: [23667, 38022]
+    cumulative_2022_2025_span: [60488, 103321]
     note: >
       This span is comparable to the entire Monte Carlo range and is NOT inside
       it. A flat anchor is more likely to under- than overstate, because Cuba's
