@@ -22,10 +22,10 @@
 \author{Yasset P\'erez-Riverol\\
 \textit{Independent researcher}\\
 \texttt{ypriverol@gmail.com}}
-\date{Preprint · 31 July 2026\\[0.35em]
+\date{Preprint · 3 August 2026\\[0.35em]
 \normalsize Scenario ensembles, an infant-mortality consistency check,\\
-and triangulation of independent registers\\[0.4em]
-\footnotesize Supplementary figures (Model~E detail; life expectancy; provinces):\\
+an attributable-mortality decomposition, and triangulation of independent registers\\[0.4em]
+\footnotesize Supplementary figures (life expectancy; provinces):\\
 \texttt{cuba-depopulation-2021-2026-supplement.pdf}}
 
 \begin{document}
@@ -34,26 +34,35 @@ and triangulation of independent registers\\[0.4em]
 \begin{abstract}
 \textbf{Background.}
 Cuba is losing population at one of the fastest peacetime rates in the Western Hemisphere.
-No census has been completed since 2012, and the national statistics office (ONEI) removed more than one million people from its published headcount in a single 2024 revision.
+No census has been completed since 2012, and the national statistics office (ONEI) revised its published headcount downward by more than one million in a single 2024 revision.
 End-2025 published levels still span roughly 8.0--11.0~million.
 This paper audits the 2021--2025 headcount decline with transparent scenario ensembles, decomposes migration versus internal demographic change, and reports an end-2026 scenario continuation.
 
 \textbf{Methods.}
-We solve the demographic accounting identity with Monte Carlo simulation ($N=10^6$) under prior sets labeled Models~A--D (scenarios, not identified estimators), with optional Gaussian-copula dependence among baseline overstatement, migration, and death registration.
-Model~D is an \emph{illustrative central scenario}: migration priors comparable to Model~B, with residual death under-registration tightened after an infant-mortality consistency check (a Venezuela analogy, not structural identification).
-External registers are used as ceilings or soft corroboration; Model~D is never treated as external validation of itself.
-Crude registered excess mortality is reported separately from a \emph{provisional} 2019-schedule residual (pending a full ONEI age--sex pipeline).
+We solve the demographic accounting identity under three scenarios---floor, central, upper---each specified by three numbers: end-2021 roll overstatement, a multiplier on ONEI net emigration, and residual death under-registration.
+Point figures are closed form and exact by linearity; a reduced Monte Carlo reports prior sensitivity ranges only.
+No parameter is informed by a likelihood, so these are scenario values, not estimates, and the ranges are not confidence intervals.
+All results are stated against a single base, the official end-2021 stock.
+External registers are used as ceilings or soft corroboration; the central scenario is never treated as external validation of itself.
+Separately, we decompose the change in annual deaths since 2019 by indirect age standardisation on ONEI age-specific mortality, splitting it into a population-size term, an ageing term, and a residual rate term reported as excess deaths relative to the 2019 age-specific schedule.
 
 \textbf{Results.}
-Across scenarios, cumulative 2021--2025 loss spans roughly \textbf{1.8--2.4~million} (the primary uncertainty statement).
-Under the illustrative central scenario (Model~D), living population is near \textbf{8.59~million} at end-2025 (median loss \textbf{2.21~million}, \textbf{20.5\%} on a corrected 2021 base under fixed priors; within-scenario 90\% band for loss roughly 1.84--2.60~million).
-Under those same Model~D priors, emigration accounts for about \textbf{91\%} of absolute loss.
-A provisional vital-reconstruction companion (Model~E) yields $\sim$8.96~million and remains non-preferred.
-An end-2026 scenario continuation under Model~D sits near \textbf{8.29~million}.
+Against the official end-2021 stock of 11.11~million, the gap by end-2025 spans \textbf{1.97--2.79~million} (\textbf{17.8--25.1\%}) across three assumption sets; a null scenario taking ONEI at face value gives 1.68~million (exactly, by construction) and is reported with them.
+Two quantities must be kept apart.
+Against the \emph{official 2021 stock}, the central scenario's gap is \textbf{2.53~million} (22.8\%)---but 1.68~million of that is decline ONEI itself published, so only \textbf{0.85~million} is this paper's added correction.
+Against ONEI's \emph{end-2025} figure of 9.43~million, the central scenario's living population of \textbf{8.58~million} is lower by \textbf{0.85~million}.
+That 0.85~million is the paper's actual claim; the 2.53~million is the two combined.
+A null scenario ($U_0{=}0$, $M{=}1$, $D_{\mathrm{fac}}{=}1$) reproduces ONEI's published figure exactly---necessarily so, since $R$ is defined as the residual that closes the identity---and is reported alongside the three assumption sets so the span does not exclude the official series by construction.
+About \textbf{92\%} of that gap is emigration, counting both the 2022--2025 flow and the pre-2021 backlog still on the roll.
+The end-2026 continuation places the central scenario near \textbf{8.29~million}.
+Cuba now registers some 31{,}300 more deaths a year than in 2019 despite having about 2~million fewer residents.
+Age standardisation separates two upward forces of comparable size---about \textbf{22{,}400} additional deaths per year from an older population and about \textbf{28{,}500} per year of excess against the 2019 schedule (prior sensitivity range 18{,}600--38{,}200)---against roughly 19{,}400 fewer deaths per year from the smaller population.
+Excluding the 2021 pandemic wave, the attributable total over 2022--2025 is $\sim$\textbf{74{,}800} (47{,}000--103{,}000).
 
 \textbf{Conclusions.}
 Depopulation is predominantly migratory in the headcount, reinforced by collapsing births, elevated mortality, and accelerated ageing.
-Against the \emph{official} 2021 stock, the end-2026 register gap approaches one in four (a different definition from Model~D's $-$20.5\% on the corrected base).
+Against the official 2021 stock the end-2026 gap approaches one in four; because a single base is used throughout, this is the same quantity as the headline, not a second definition.
+Mortality is a small share of headcount loss but a large absolute toll: it is separately measurable, roughly half of it is not explained by ageing, and it is still rising.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Cuba; demography; emigration; natural decrease; infant mortality; fertility; ageing; statistical data quality.
@@ -97,29 +106,30 @@ P_{2025} &= P_{2021} - \Delta,
 \end{align}
 where $U_0$ is end-2021 baseline overstatement (people already effectively abroad but still on the roll),
 $M\ge 1$ scales ONEI net emigration, and $D_{\mathrm{fac}}\ge 1$ scales registered deaths.
-Percent loss uses the \emph{corrected} base $P_{2021}$, not $P^{\mathrm{off}}_{2021}$.
-We draw $N=10^6$ scenarios.
-In Model~D, $(U_0,M,D_{\mathrm{fac}})$ may be coupled by a Gaussian copula on latent normals; the numeric $\rho$ matrix is an illustrative dependence assumption (default scientific reading treats medians as driven by margins; an independence sensitivity barely moves them).
-Within-scenario 90\% bands are \emph{prior-predictive} spreads under fixed Beta margins---not sampling error from data.
-The \textbf{range across Models~A--D} ($\sim$1.8--2.4~million of cumulative loss) is the primary structural uncertainty statement~\citep{repo,modeld}.
+Loss is reported on a single base: the \emph{official} end-2021 stock.
+The gap it defines has three additive parts---baseline overstatement $U_0$, net emigration $R\,M$, and natural decrease---so no second ``corrected base'' percentage is needed.
 
-We define five prior sets.
-\textbf{A (conservative)} uses modest $U_0$ and $M$ near ONEI with a small death multiplier (\texttt{model\_from\_2021.py}).
-\textbf{B (crisis-adjusted)} raises $M$, allows death under-registration up to $\sim$14\%, and adds an explicit epidemic pulse.
-\textbf{C (upper stress)} pushes $U_0$/$M$ and under-registration further (cap $\sim$18\%) with a large elderly mortality pulse.
-\textbf{D (illustrative central)} keeps migration priors comparable to B but \emph{tightens} death under-registration after the infant-mortality consistency check (Table~\ref{tab:priors}).
-\textbf{E (provisional companion)} is a vital reconstruction via a health-system deterioration score (supplement) and is not preferred for public claims.
-Models~A--D are \textbf{scenarios} (prior narratives), not scientifically identified estimators of a unique living population.
-Model~D is preferred as an illustrative central path inside the across-scenario envelope because its migration prior matches B while replacing B's wide mortality pulse with a sentinel-bounded $D_{\mathrm{fac}}$---not because $M$ is uniquely identified by a likelihood.
-Models~B and~D yield nearly identical headcount medians because migration priors dominate absolute loss.
-ONEI's 2023--2024 revisions already absorbed a large lagged stock; scaling revised $R$ by $M>1$ \emph{and} subtracting large $U_0$ can double-count the same outdated-register defect.
-We therefore always report the ONEI-anchored neighbourhood (Model~A / $M\approx 1$) beside Model~D, and treat $U_0+(M-1)R$ as constrained by destination floors plus documented lag---not as unbounded free parameters.
+Each scenario is three numbers, and the point figure is the arithmetic above evaluated at their prior means, which is exact because the identity is linear in all three.
+We verified that this is all the simulation was doing: the closed form and a Monte Carlo over the same margins agree to within a few hundred people, i.e.\ to sampling noise.
+The copula has therefore been removed---it moved the median by $\sim$2{,}200 people and only widened a within-scenario band that is not our primary uncertainty statement.
+A reduced draw ($N=2\times10^5$, independent margins) is retained solely to report that band, which remains a \emph{prior-predictive} spread under fixed Beta margins, not sampling error.
+The \textbf{across-scenario envelope} is the primary uncertainty statement~\citep{repo,modeld}.
+
+We define three scenarios, each earning its place.
+\textbf{Conservative} adds a modest correction. It is \emph{not} an ONEI-consistent lower bound: its mean $M$ is 1.089, i.e.\ 9\% more emigration than ONEI reports. The zero-correction case is the null scenario.
+\textbf{Central} raises the migration prior above ONEI and caps residual death under-registration at 9\%---just above the 7.5\% the register itself shed in 2022 without explanation.
+\textbf{Upper} defines the top of the envelope.
+Earlier versions carried five prior sets; two have been retired.
+A crisis-adjusted variant landed within 0.02~million of the central scenario---the same scenario with different dials---and a vital-reconstruction companion built on a hand-weighted deterioration index has been superseded by the attributable-mortality decomposition below, which estimates the same quantity from observed age-specific data rather than from a dimensionless score.
+These are \textbf{scenarios} (prior narratives), not identified estimators of a unique living population.
+ONEI's 2023--2024 revisions already absorbed a large lagged stock, so scaling revised $R$ by $M>1$ \emph{and} subtracting a large $U_0$ can double-count the same outdated-register defect; we therefore always report the floor beside the central path and treat $U_0+(M-1)R$ as constrained by destination floors plus documented lag.
 
 \begin{table}[ht]
 \centering
-\caption{Model~D prior specification (margins; optional Gaussian copula).
+\caption{Central-scenario specification. Three margins, no dependence structure.
 Beta scales: $U_0\in[0,700{,}000]$, $M\in[1,1.72]$, $D_{\mathrm{fac}}\in[1,1.09]$.
-Birth noise independent $B=B^{\mathrm{reg}}\mathcal{N}(1,0.01^2)$.}
+Birth noise independent $B=B^{\mathrm{reg}}\mathcal{N}(1,0.01^2)$.
+The point figure uses the prior means of these three margins.}
 \label{tab:priors}
 \begin{tabular}{llp{6.2cm}}
 \toprule
@@ -132,34 +142,53 @@ $D_{\mathrm{fac}}$ & $1+0.09\times\mathrm{Beta}(1.8,3.2)$ & Residual death under
 \end{tabular}
 \end{table}
 
-Infant mortality rose from 5.0 to 9.9 per thousand live births (2019--2025), a $\sim$98\% increase.
-Infant deaths are comparatively hard to hide (hospital occurrence; international scrutiny), so IMR is treated as a high-integrity sentinel of health-system \emph{stress}, not as a calibrator of elderly death completeness.
-As a loose foreign analogy (not a Cuban structural parameter), Venezuela's crisis saw IMR rise $\sim$76\% (roughly 2012--2017) alongside an all-cause crude death-rate rise of order $\sim$25\%~\citep{pagegarcia2020,garcia2019,venezuela_imr}.
-A log-elasticity reading is
-\begin{equation}
-e=\frac{\ln(1.25)}{\ln(1.76)}\approx 0.39,
-\end{equation}
-so Cuba's IMR rise would predict $(1.98)^{0.39}-1\approx 31\%$ higher CDR if the analogy transferred.
-Registered Cuban CDR rose from 9.7 to 12.9 per thousand by 2024 ($\sim$33\%), roughly consistent with that order of magnitude~\citep{onei_2025}.
-This remains a \textbf{consistency check against very large hidden institutional undercounts}, not identification of $D_{\mathrm{fac}}$; residual under-registration in Model~D is still limited to a small at-home elderly channel (central $\sim$3\%, cap 9\%; Table~\ref{tab:priors})~\citep{modeld}.
+Infant mortality rose from 5.0 to 9.9 per thousand live births (2019--2025), a $\sim$98\% increase in the \emph{rate}.
+Most of that is the denominator: infant \emph{deaths} rose from $\sim$549 to $\sim$674, about 23\%, while live births fell 38\%.
+Both figures matter and only reporting the rate overstates the signal.
+Infant deaths are comparatively hard to hide (hospital occurrence; international scrutiny), so the infant rate is treated as a high-integrity sentinel of health-system \emph{stress}.
+Over the same period the registered crude death rate rose from 9.7 to 14.2 per thousand ($\sim$46\%).
+Both moved sharply upward together, which is what a deteriorating system with an intact death register looks like; a register concealing deaths at scale would show the sentinel rising while all-cause mortality stayed flat.
+Earlier versions converted this into a log-elasticity calibrated on Venezuela and reported a predicted CDR rise.
+That step has been removed: it rested on two numbers from one country with no uncertainty attached, and the conclusion---no signature of large-scale concealment---follows from the co-movement without it.
+Residual under-registration in the central scenario is accordingly limited to a small at-home elderly channel (central $\sim$3\%, cap 9\%)~\citep{modeld}.
 
-Two distinct mortality quantities are reported and must not be added or substituted~\citep{karlinsky2021,msemburi2023,kishore2018}.
-For crude registered excess, on crisis-adjusted mid-year stocks $\tilde P_t$, we define a no-crisis counterfactual CDR with a mild ageing drift from the 2019 level 9.7 per thousand,
-$\mathrm{CDR}^{\mathrm{cf}}_t=9.7+0.16(t-2019)$, and
-\begin{equation}
-E^{\mathrm{crude}}_t = D^{\mathrm{reg}}_t - \mathrm{CDR}^{\mathrm{cf}}_t\cdot \tilde P_t/1000.
-\end{equation}
-Summing 2020--2025 yields $\sum E^{\mathrm{crude}}_t\approx 153{,}000$ (of which $\sim$66{,}000 in 2024--2025); most of this toll is already inside registered death totals, and the linear CDR drift is a transparent baseline, not full age standardization.
-Separately, Figure~\ref{fig:excess} compares registered deaths to \emph{illustrative} expected deaths under a provisional 2019 schedule bridge ($\sim$95k and $\sim$92k versus registered 128.1k and 136.2k), implying a combined residual of order $\sim$77{,}000 for 2024--2025 (\texttt{scripts/mortality\_schedule\_residual.py}).
-A wider 65{,}000--90{,}000 band is retained as sensitivity to population-stock choice pending a full ONEI table 3.15 age--sex application to explicit $P_{a,t}$~\citep{preston2001}.
-We deliberately avoid calling this a Kitagawa decomposition: Kitagawa separates rate versus composition contributions to a rate difference; here we report a direct expected-deaths residual~\citep{kitagawa1955}.
-Mortality rates at ages 60+ remaining 11--27\% above 2019 are consistent with elevated age-specific risks, but that claim also awaits full schedule publication.
+Mortality is treated as a separate estimand from the headcount, and the question it answers is separate too: how many Cubans are dying because the health system has deteriorated, as opposed to because the resident population is older?
+A crude-rate baseline cannot answer this, because it charges the entire ageing shift---from 20.4\% aged 60+ in 2019 to roughly 25--27\% in 2025---to the crisis.
+We therefore replace the crude bridge used in earlier versions of this work with indirect age standardisation~\citep{preston2001}.
+
+Let $m^{2019}_a$ be age-specific death rates in 2019 from ONEI table 3.15, over the groups $a\in\{0\text{--}14,\,15\text{--}59,\,60\text{--}64,\,65+\}$---the finest set the deaths table shares with ONEI table 3.3, which publishes mid-year population by age annually.
+Splitting 60+ matters: the 1960s birth cohort is now entering at 60--64, so the elderly group is becoming \emph{younger} (60--64 rose from 25.7\% of the 60+ population in 2019 to 27.9\% in 2022), and a single open-ended 60+ group would misread that composition shift as rising mortality.
+Expected deaths in year $t$ under an unchanged 2019 health system are $E_t=\sum_a m^{2019}_a P_{a,t}$, and the change in annual deaths since 2019 decomposes exactly into
+\begin{align}
+\text{size} &= (P_t-P_{2019})\,\mathrm{CDR}_{2019}/1000, \\
+\text{ageing} &= \textstyle\sum_a m^{2019}_a (P_{a,t}-P_{a,2019})/1000 - \text{size}, \\
+\text{rate} &= D_t\,D_{\mathrm{fac}} - E_t,
+\end{align}
+with $D_t D_{\mathrm{fac}} - D_{2019} = \text{size}+\text{ageing}+\text{rate}$.
+This is a Kitagawa-type decomposition applied to a death \emph{count} rather than to a crude-rate difference; the size term is the count analogue of holding exposure fixed~\citep{kitagawa1955}.
+The rate term is \emph{excess deaths relative to the 2019 age-specific schedule}.
+We deliberately do not call it ``attributable to health-system deterioration''.
+The same formula applied to 2021 returns $\sim$61{,}900, which is a pandemic, not a health system; a residual against a fixed schedule absorbs pandemic and post-acute mortality, coding drift, mortality displacement, health-selective emigration, and denominator error without discriminating among them.
+Attribution would require an identified exposure, cause-of-death evidence consistent with the mechanism, and quantitative exclusion of competitors---none of which we have.
+
+The decomposition is far less denominator-sensitive than the crude bridge it replaces.
+In 2019, 82\% of Cuban deaths occurred at ages 60+, while emigration is $\sim$77\% aged 15--59.
+We therefore hold the elderly \emph{count} approximately fixed across stock scenarios, so that under the central-scenario stock the same elderly people sit on a smaller total and the 60+ share rises to $\sim$29\% (against $\sim$26\% officially).
+That $\sim$29\% is an assumption of this decomposition, not an observation, and it is deliberately conservative: because 8\% of emigrants are themselves aged 60+, holding the count fixed slightly overstates expected deaths and so understates the attributable residual.
+Its consequence is that $E_t$ barely changes between the official ($\sim$9.4~M) and central-scenario ($\sim$8.6~M) stocks, whereas a crude rate applied to the smaller stock mechanically inflates the residual.
+Age structure is \emph{observed} for 2019--2022 and cohort-projected for 2023--2026 from the observed 2022 structure, with entrants from the 55--59 cohort, exits at the 2019 schedule, and elderly emigration at the 8\% share of emigrants aged 60+.
+We never derive the elderly count as (age share $\times$ official total): the official total absorbs ONEI's 2023 register catch-up in a single step, and multiplying that step by an age share deletes elderly residents who never emigrated.
+We propagate four sources of uncertainty over $N=2\times10^5$ draws: 2\% noise on the 2019 schedule; a symmetric $\mathcal{N}(0,0.03)$ residual drift for within-65+ composition after 2022; the central-scenario $D_{\mathrm{fac}}$ prior for unregistered deaths; and a 50/50 mixture over official and central-scenario population paths, with a projection error growing 1.5\% per year beyond 2022.
+Systematic parameters are drawn once and reused in every year, so cumulative windows propagate correlated rather than independent error.
+The identity above closes exactly in every draw because the 2019 reference uses the same perturbed rates as the target year.
+Because $D_{\mathrm{fac}}$ is shared with the central scenario, the attributable estimate and the headcount scenario are not independent.
+Earlier versions also carried a crude registered-excess comparator on a linear-drift counterfactual. It has been dropped: it did not reproduce from the stated formula, its drift was below Cuba's own observed pre-crisis crude drift, and it served no argument the age-standardised decomposition does not serve better~\citep{karlinsky2021,msemburi2023,kishore2018}.
 
 Published population levels are grouped by information content (Figure~\ref{fig:tri}).
 Ceilings that do not purge emigrants include the UN World Population Prospects, the MINSAP denominator, and the electoral roll (soft upper bounds only).
 The official ONEI revised headcount is 9.43~M at end-2025.
 Exit-correcting or independent constructs include housing$\times$occupancy ($\sim$8.7~M; fragile occupancy scalar) and Albizu-Campos 2023/2024 (8.0--8.6~M; methods that share migration-critique assumptions with this paper).
-Model~D (8.59~M) is the study estimand and is \emph{not} external validation of itself; agreement with Albizu/housing is partly shared-prior echo, while ceilings bound the upside.
+The central scenario (8.59~M) is the study estimand and is \emph{not} external validation of itself; agreement with Albizu/housing is partly shared-prior echo, while ceilings bound the upside.
 The soft band from exit-correcting sources is near 8.0--8.9~million.
 
 The settled-concept destination floor (Table~\ref{tab:bridge}) comprises United States $\sim$800{,}000 (administrative/CBP-pipeline statuses, \emph{not} ACS stock), non-U.S.\ total $\sim$250{,}000 (Spain $\sim$135{,}000 + Uruguay $\sim$35{,}000 + rest $\sim$80{,}000), and floor $\sim$1.05~million~\citep{destinations,pew_cuban}.
@@ -180,16 +209,16 @@ U.S.\ ACS Cuban-born rise 2019--24 (not settled) & $\sim$0.34~M & Stock-change f
 Unquantified gap toward ONEI $R$ & $\to\sim$1.5~M & Residual, not validated persons \\
 ONEI identity-consistent net $R$ (2022--25) & 1.50~M & Official flow after revision \\
 Albizu-Campos--type net & $\sim$1.8~M & Independent upper narrative \\
-Model~D median $R\times M$ & $\sim$2.0~M & Prior-driven scenario engine \\
+Central-scenario median $R\times M$ & $\sim$2.0~M & Prior-driven scenario engine \\
 U.S.\ encounters 2022--2024 (not settled) & $\sim$0.85~M & Events; do not add to floor \\
 Spain nationality applications & $\sim$0.30~M & Many applicants still in Cuba \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Destination data do \emph{not} identify Model~D's $\sim$2.0~million net emigration; they support a large floor and leave the 1.05$\to$2.0 path as soft gap-filling plus a migration prior.
-If true net emigration were nearer 1.5 than 2.0~million, living population would sit toward $\sim$8.9 rather than $\sim$8.6~million; cumulative loss would remain large and emigration would still dominate absolute loss under every scenario in Table~\ref{tab:models}.
-Conditional on end-2025 draws, the end-2026 scenario continuation~\label{sec:nowcast} uses births centered at 65{,}682 ($\mathcal{N}$ noise 3\%),
+Destination data do \emph{not} identify the central scenario's $\sim$2.0~million net emigration; they support a large floor and leave the 1.05$\to$2.0 path as soft gap-filling plus a migration prior.
+If true net emigration were nearer 1.5 than 2.0~million, living population would sit toward $\sim$9.1 rather than $\sim$8.6~million; cumulative loss would remain large and emigration would still dominate absolute loss under every scenario in Table~\ref{tab:models}.
+Conditional on end-2025 draws, the end-2026 scenario continuation uses births centered at 65{,}682 ($\mathcal{N}$ noise 3\%),
 deaths centered at $1.04\times 136{,}214$ times the same $D_{\mathrm{fac}}$,
 and a three-regime net emigration mixture with probabilities $(0.35,0.35,0.30)$ on centers $(150{,}000,\;210{,}000,\;300{,}000)$ plus 15\% log-scale noise.
 The $\sim$4\% death lift and regime weights are scenario assumptions, not a validated forecast.
@@ -197,69 +226,88 @@ Paths to $\sim$7~million by 2030 in Figure~\ref{fig:pop} are \textbf{illustrativ
 
 \section{Results}
 
-Table~\ref{tab:models} summarizes end-2025 medians for Models~A--E.
-The scientifically primary uncertainty statement is the across-scenario loss envelope ($\sim$1.8--2.4~million).
-Illustrative Model~D yields median population \textbf{8.59~million} and loss \textbf{2.21~million} (20.5\% on the corrected base under fixed priors; within-scenario 90\% band 1.84--2.60~million).
-Under Model~D priors, migration's share of absolute loss is about \textbf{91\%}.
-Model~A (ONEI-anchored, $M\approx 1$) remains the conservative floor neighbourhood ($\sim$9.16~M).
-Provisional Model~E yields $\sim$8.96~M (loss 2.13~M): same loss band, higher stock, partly because its $U_0$ prior is much smaller than Model~D's; an adversarial gate does not promote E over D~\citep{modele_supp}.
-Percentage language: against official 2021 (11.11~M), end-2025 register-gap loss is roughly 20--23\%; against the corrected study base it is about 16--23\% across A--D.
-A 2026 scenario continuation places Model~D near \textbf{8.29~million} (further loss $\sim$300{,}000; across-scenario band roughly 7.9--8.9~million).
-
 \begin{table}[ht]
 \centering
-\caption{Models A--E: population loss 2021--2025 and end-2025 population (medians).
-A--D are scenarios; D is the illustrative central path; E is provisional.}
-\label{tab:models}
-\begin{tabular}{llrrr}
+\small
+\caption{Headline quantities by claim. Bands are 90\% prior-predictive under the
+stated margins, not sampling error. ``Scenario'' marks a quantity that depends on
+an assumption rather than an observation.}
+\label{tab:headline}
+\begin{tabular}{llrl}
 \toprule
-Model & Main assumption & Loss (M) & \% & Pop.\ end-2025 (M) \\
+Claim & Quantity & Value & Status \\
 \midrule
-A · conservative & ONEI-anchored & 1.80 & 16.4 & 9.16 \\
-B · crisis-adjusted & under-reg.\ + independent migration & 2.19 & 20.4 & 8.57 \\
-C · upper stress & analog upper bound & 2.41 & 22.6 & 8.26 \\
-D · sentinel (illustrative) & IMR check + migration priors near B & 2.21 & 20.5 & 8.59 \\
-E · vital reconstr.\ (prov.) & HSDS $\to B^*,D^*$ (differs in $U_0$) & 2.13 & 19.2 & 8.96 \\
+\multicolumn{4}{l}{\textit{Migration}} \\
+& Settled destination floor, documented & 1.05~M & lower bound \\
+& ONEI identity-consistent net, 2022--25 & 1.50~M & official \\
+& Central-scenario migration engine & $\sim$2.0~M & prior \\
+& Emigration share of the gap (central) & $\sim$91\% & scenario \\
+& ONEI declared net migration, 2021 / 2022 & $+$169 / $+$991 & official \\
+& US-recorded Cuban arrivals, 2021 / 2022 & 54{,}818 / 313{,}506 & external \\
+& High-severity consistency failures & 7 of 18 & audit \\
+\midrule
+\multicolumn{4}{l}{\textit{Health-system deterioration}} \\
+& Registered deaths, 2025 & 136{,}214 & official \\
+& Expected at 2019 rates, 2025 age structure & 112{,}100 & derived \\
+& Excess vs 2019 schedule, 2025 & 28{,}500 [18{,}600--38{,}200] & scenario value \\
+& Excess, 2022--2025 (post-pandemic) & 74{,}800 [47{,}000--103{,}000] & scenario value \\
+& \quad under alternative counterfactuals & 69{,}400--103{,}300 & sensitivity \\
+& \quad on the pre-revision 2022 total & $\sim$84{,}100 & sensitivity \\
+& Explained by ageing alone, 2025 & 22{,}400 & derived \\
+& Population-size effect, 2025 & $-$19{,}400 & derived \\
+& Standardised mortality ratio vs 2019, 2025 & 1.215 & derived \\
+& Share of crude death rate that is age structure (2019) & 40.8\% & derived \\
+& Documented 2022 register removal & 8{,}951 (7.5\%) & official \\
+\midrule
+\multicolumn{4}{l}{\textit{Projected population}} \\
+& Gap vs official 2021, across assumption sets & 1.97--2.79~M & scenario span \\
+& \quad of which ONEI's own published decline & 1.68~M & official \\
+& \quad this paper's added correction (central) & 0.85~M & scenario value \\
+& Living population end-2025 (central) & 8.58~M & scenario \\
+& Gap, central scenario & 2.52~M (22.8\%) & scenario \\
+& ONEI official end-2025 & 9.43~M & official \\
+& Living population end-2026 (central) & 8.29~M & scenario \\
+& Emigration share of the gap (central) & $\sim$92\% & scenario \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\begin{figure}[!htbp]
-\centering
-\begin{subfigure}[t]{0.495\linewidth}
-\centering
-\includegraphics[width=\linewidth]{f1_poblacion.png}
-\caption{Official versus scenario living population, 2021--2030 (Model~D illustrative path in red; post-2026 segment is a non-probabilistic trend scenario).}
-\label{fig:pop}
-\end{subfigure}\hfill
-\begin{subfigure}[t]{0.495\linewidth}
-\centering
-\includegraphics[width=\linewidth]{f3_cascada.png}
-\caption{Accounting decomposition under Model~D medians (2021--2025); illustrative scenario, not identified attribution.}
-\label{fig:cascade}
-\end{subfigure}
-\caption{Headline population path and accounting decomposition.}
-\label{fig:headline}
-\end{figure}
+\subsection{Migration}
 
-Sources that do not purge emigrants (electoral roll, MINSAP health denominator) sit high and function as soft ceilings.
-Exit-correcting constructs (housing occupancy $\sim$8.7~M; Albizu-Campos 8.0--8.6~M) sit near Model~D but share migration-critique assumptions with this study; they are not independent censuses.
-The official 9.43~M sits between the two families (Figure~\ref{fig:tri}).
-Voter turnout fell sharply between 2018 and 2023; that pattern is compatible with physical absence but also with abstention, logistics, and political factors, and is \emph{not} used as a person count.
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=0.95\linewidth]{f7_triangulacion.png}
-\caption{Triangulation of end-2025 population levels.
-Model~D is the study estimand (not a validator); Albizu/housing are soft, assumption-laden anchors.}
-\label{fig:tri}
-\end{figure}
 
 Table~\ref{tab:bridge} separates settled counts from encounters, ACS stock change, and nationality applications.
 The settled floor ($\sim$1.05~M) confirms that emigration is large while remaining a lower bound.
-Closing the gap to ONEI's $\sim$1.5~million is an unquantified residual; Model~D's $\sim$2.0~million is a prior on $R$, not destination identification.
-If true net is nearer 1.5 than 2.0~million, living population sits toward the high end of our band ($\sim$8.9 rather than 8.6~M).
+Closing the gap to ONEI's $\sim$1.5~million is an unquantified residual; the central scenario's $\sim$2.0~million is a prior on $R$, not destination identification.
+If true net is nearer 1.5 than 2.0~million, living population sits toward the high end of our band ($\sim$9.1 rather than 8.6~M).
 Emigration still dominates absolute loss under every scenario in Table~\ref{tab:models}.
+
+ONEI's own numbers contradict the destination registers before any model is applied (Figure~\ref{fig:mig}).
+For 2021 and 2022 ONEI declares net \emph{arrivals} of $+$169 and $+$991, while the United States alone recorded 54{,}818 and 313{,}506 Cuban arrivals in those years.
+A systematic pass over the published series (\texttt{scripts/consistency\_model.py}) returns 18 tests, of which 7 fail at high severity: four use only official sources, so the inconsistency is internal to ONEI's own published series.
+The 2023 series shows a single-year population drop of 1{,}033{,}543 against a natural decrease of 27{,}347, implying a migration component of 1{,}006{,}196---more than double any documented annual outflow, and best read as a backlog correction booked as one year's flow.
+The published 2023 crude death rate of 11.5 per thousand implies a mid-year population of 10.24~million against 10.57~million in the published series, a gap of 334{,}000; the two figures cannot both be correct.
+
+About \textbf{77\%} of emigrants are aged 15--59; the median leaver is about 30 years old (Figure~\ref{fig:mig}).
+Among those remaining, the reported official share aged 60+ is about 26.7\% (median age $\sim$45); note that ONEI table 3.12 projects 25.0\% for 2025, and 26.7\% is a reported figure we cannot reproduce from the published tables---neither is a central-scenario-consistent stock.
+Exit hollows the centre of the pyramid and removes those who would have children~\citep{coleman2006,lee2014}.
+The flow is majority female~\citep{albizu2023} and concentrated at working ages (Figure~\ref{fig:mig}).
+Subnational outflow is uneven: ONEI-reported Havana net emigration is about \textbf{$-$33 per 1{,}000} in 2025 (provincial ranks more reliable than levels if national migration accounting is biased; map in the supplement).
+Selectivity of exit and the ageing it produces are two views of the same process (Figure~\ref{fig:mig}).
+
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth]{f15_migracion.png}
+\caption{The migration claim, in three panels.
+Left: age composition of emigrants against remaining residents---the exodus is selective.
+Centre: net migration ONEI declares against Cubans other countries recorded arriving; ONEI reports net \emph{arrivals} in 2021 and 2022.
+Right: the bridge from a documented settled floor to the central scenario's migration engine. Only the first bar is ledger-like.
+The working-age hollowing in the left panel is what drives the ageing term in Figure~\ref{fig:attrib}.}
+\label{fig:mig}
+\end{figure}
+\FloatBarrier
+
+\subsection{Health-system deterioration}
 
 Reducing the crisis to emigration alone is incomplete: emigration can reverse, but missing births and an aged residual population cannot.
 A useful distinction is \textbf{realized loss} (exit-dominated) versus \textbf{future inertia} (natural decrease increasingly important).
@@ -269,7 +317,7 @@ The total fertility rate fell to 1.29 children per woman in 2025, the lowest sin
 Emigration removes young women (majority-female flow) and those who remain defer births under scarcity.
 Births fell 38\% (from $\sim$110{,}000 in 2019 to 68{,}000 in 2025).
 A back-of-envelope split into ``half fewer women / half lower TFR'' is \emph{illustrative only}: ONEI TFR denominators may themselves be inflated by absent women, which would overstate the rate half; a formal exposure--ASFR decomposition is not claimed here.
-Official projections move the share aged 60+ from 20.4\% (2019) to 26.7\% (2025) and toward 33\% by 2035 under a larger living stock than Model~D~\citep{onei_2025,lee2014}.
+Official projections move the share aged 60+ from 20.4\% (2019) to 26.7\% (2025) and toward 33\% by 2035 under a larger living stock than the central scenario~\citep{onei_2025,lee2014}.
 Under a smaller, youth-depleted stock the elderly share would be higher; any $\sim$29\% / $\sim$40\% figures in companion graphics are \textbf{illustrative sketches}, not cohort-component estimates.
 Median age reached \textbf{45} years in 2025 on official reporting (Figure~\ref{fig:aging}).
 
@@ -292,50 +340,109 @@ Median age reached \textbf{45} years in 2025 on official reporting (Figure~\ref{
 \end{figure}
 
 Official life expectancy at birth peaked in 2011--13 (78.5 years) and fell to 77.7 in 2018--20; an independent 2021 estimate places it near 71 years~\citep{albizu2023,bronnum2023}.
-That decline is large relative to COVID-era international losses~\citep{aburto2022,msemburi2023}; LE re-expresses mortality rather than independently corroborating Model~D (series in the supplement).
+That decline is large relative to COVID-era international losses~\citep{aburto2022,msemburi2023}; LE re-expresses mortality rather than independently corroborating the central scenario (series in the supplement).
 Infant deaths rose from 461 (2018) to 715 (2022); the rate reached 9.9 per thousand in 2025 ($+$98\% since 2019).
-Figure~\ref{fig:excess} reports a \emph{provisional} 2019-schedule residual of order $\sim$77{,}000 for 2024--2025 combined (sensitivity band 65{,}000--90{,}000; coarse bridge in \texttt{scripts/mortality\_schedule\_residual.py}), distinct from crude registered excess of $\sim$153{,}000 over 2020--2025~\citep{karlinsky2021}.
 
-About \textbf{77\%} of emigrants are aged 15--59; nearly half are under 35 (Figure~\ref{fig:age}).
-Among those remaining, official structure places about 26.7\% at ages 60+ (median age $\sim$45)---not a Model~D-consistent stock.
-Exit hollows the centre of the pyramid and removes those who would have children~\citep{coleman2006,lee2014}.
-The flow is majority female~\citep{albizu2023} and concentrated at working ages (Figure~\ref{fig:age}).
-Subnational outflow is uneven: ONEI-reported Havana net emigration is about \textbf{$-$33 per 1{,}000} in 2025 (provincial ranks more reliable than levels if national migration accounting is biased; map in the supplement).
-Together, mortality and selectivity close the internal story of who dies, who leaves, and who remains (Figure~\ref{fig:mortality_selectivity}).
+The mortality decomposition answers the ageing-versus-collapse question directly (Figure~\ref{fig:attrib}).
+Cuba registered 136{,}214 deaths in 2025 against 109{,}080 in 2019---27{,}134 more, or some 31{,}300 more once residual under-registration is included---while carrying about 2~million fewer residents.
+The 60+ population meanwhile rose from 2.31~million (2019, observed) to a projected 2.60~million in 2025.
+Three terms net to that rise.
+A resident population smaller by $\sim$2~million should have reduced annual deaths by about \textbf{19{,}400}; ageing added about \textbf{22{,}400}; and the residual excess against the 2019 schedule is about \textbf{28{,}500} per year (prior sensitivity range 18{,}600--38{,}200), or $\sim$297 per 100{,}000 on the official stock.
+The two upward terms are of comparable magnitude ($\sim$44\% and $\sim$56\% of the gross increase); neither alone accounts for the rise, and together they exceed it because the shrinking population pulls the other way.
+The crude bridge reported in earlier versions of this work charged the whole ageing shift to the crisis and overstated the collapse component: $\sim$77{,}000 for 2024--2025 combined against \textbf{50{,}100} (32{,}600--67{,}500) here.
+
+The time profile separates two distinct episodes.
+Excess deaths against the 2019 schedule were about 5{,}400 in 2020, peaked at $\sim$61{,}900 in the 2021 COVID-19 wave, fell back to $\sim$12{,}800 (2022) and $\sim$11{,}900 (2023), and then roughly doubled to $\sim$21{,}600 (2024) and $\sim$28{,}500 (2025).
+The 2022--2023 trough separates the pandemic wave from the later rise, so the 2024--2025 increase is not a continuation of the 2021 peak; it coincides with the blackout, fuel, medicine, and arbovirus crises, though the residual cannot by itself exclude post-acute COVID-19 mortality or coding drift as contributors.
+Excluding 2021 entirely, the 2022--2025 excess total is $\sim$\textbf{74{,}800} (47{,}000--103{,}000); including it, 2020--2025 gives $\sim$142{,}100 (105{,}400--180{,}500).
+A 2026 scenario continuation reaches $\sim$32{,}300 (20{,}000--44{,}200), but that figure inherits the assumed $+$4\% death continuation and is not an observation.
+The dominant uncertainty is not inside the simulation but in the choice of counterfactual, and it is not in the range above.
+Holding 2019 mortality flat is an assumption. We now fit the pre-crisis trend rather than assert it, and it is window-fragile: the sparse 2006--2019 series (four years are unusable, see Disclaimers) gives $+0.236\%$/yr, while the contiguous 2013--2019 window gives $+0.678\%$/yr. Carrying the former forward gives 26{,}700 for 2025 and the latter about 23{,}600; assuming instead the 0.5--1.5\%/yr improvement Cuba's regional peers achieved gives 31{,}600--38{,}000.
+The full span, \textbf{23{,}600--38{,}000}, is comparable in width to the entire reported range and is \emph{not propagated into} it. The same exercise on the cumulative window moves 2022--2025 from 74{,}200 to a span of \textbf{69{,}400--103{,}300}, so the abstract's 74{,}800 is conditional on the flat anchor in the same way. A flat anchor is more likely to under- than overstate, because Cuba's regional peers continued to improve.
+Turning to the anchor's internal noise rather than its choice: mean 2017--2019 age-specific rates sit within 1.1\% of 2019 at ages 65+, where most deaths occur---slightly \emph{above} it, so 2019 was a comparatively good year and the anchor is not flattering the result---and the difference is well inside the 2\% schedule noise.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth]{f14_atribuible.png}
+\caption{Why deaths rose while the population fell.
+Left: change in annual deaths versus 2019 decomposed into population size, ageing, and rate deterioration; the dot is the net observed change including estimated unregistered deaths.
+Right: excess deaths against the 2019 schedule, median and prior sensitivity range.
+2026 is a scenario continuation, not an observation.
+Bands are prior-predictive under the stated margins and share $D_{\mathrm{fac}}$ with the central scenario.}
+\label{fig:attrib}
+\end{figure}
+
+\subsection{Projected population}
+
+Sources that do not purge emigrants (electoral roll, MINSAP health denominator) sit high and function as soft ceilings.
+Exit-correcting constructs (housing occupancy $\sim$8.7~M; Albizu-Campos 8.0--8.6~M) sit near the central scenario but share migration-critique assumptions with this study; they are not independent censuses.
+The official 9.43~M sits between the two families (Figure~\ref{fig:tri}).
+Voter turnout fell sharply between 2018 and 2023; that pattern is compatible with physical absence but also with abstention, logistics, and political factors, and is \emph{not} used as a person count.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.95\linewidth]{f7_triangulacion.png}
+\caption{Triangulation of end-2025 population levels.
+the central scenario is the study estimand (not a validator); Albizu/housing are soft, assumption-laden anchors.}
+\label{fig:tri}
+\end{figure}
+
+Table~\ref{tab:models} summarizes the three scenarios.
+The primary uncertainty statement is the across-scenario envelope: against the official end-2021 stock of 11.11~million, the gap by end-2025 spans \textbf{1.97--2.79~million}, or \textbf{17.8--25.1\%}.
+The central scenario places living population at \textbf{8.58~million} (gap \textbf{2.53~million}, \textbf{22.8\%}) against 9.43~million officially, with the floor at 9.14~million and the upper stress case at 8.32~million.
+Emigration accounts for about \textbf{92\%} of the central gap once the pre-2021 backlog is counted alongside the 2022--2025 flow; within the flow alone it is $\sim$91\%.
+The end-2026 continuation places the central scenario near \textbf{8.29~million} (envelope 8.01--8.88~million).
+Because there is now a single base, the headline has a single form: between roughly one in six and one in four of the officially counted 2021 population is not there, with the central scenario near one in four\,--\,one in five.
+
+\begin{table}[ht]
+\centering
+\caption{Three scenarios against one base: the official end-2021 stock (11{,}113{,}215).
+Point estimates are closed form; within-scenario 90\% bands are prior sensitivity ranges over the stated margins. They are not confidence intervals, carry no coverage property, and no parameter in this paper is informed by a likelihood.
+Earlier versions carried five prior sets; a crisis-adjusted variant (within 0.02~M of the central path) and a vital-reconstruction companion have been retired.}
+\label{tab:models}
+\begin{tabular}{lrrrr}
+\toprule
+Scenario & Gap (M) & Gap \% & Pop.\ end-2025 (M) & Pop.\ end-2026 (M) \\
+\midrule
+\textit{Null: ONEI at face value} & \textit{1.68} & \textit{15.1} & \textit{9.43} & \textit{9.14} \\
+Conservative & 1.97 & 17.8 & 9.14 & 8.84 \\
+\textbf{Crisis-adjusted central} & \textbf{2.52} & \textbf{22.7} & \textbf{8.59} & \textbf{8.30} \\
+Upper stress & 2.79 & 25.1 & 8.32 & 8.02 \\
+\midrule
+\textit{Envelope (excl.\ null)} & \textit{1.97--2.79} & \textit{17.8--25.1} & \textit{8.32--9.14} & \textit{8.02--8.84} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{figure}[!htbp]
 \centering
 \begin{subfigure}[t]{0.495\linewidth}
 \centering
-\includegraphics[width=\linewidth]{f9_exceso.png}
-\caption{Registered deaths versus a provisional 2019-schedule expectation (illustrative).
-Combined residual $\sim$77k for 2024--2025; sensitivity band 65--90k pending full age--sex computation.
-Crude registered excess $\sim$153{,}000 over 2020--2025 is a separate quantity.}
-\label{fig:excess}
+\includegraphics[width=\linewidth]{f1_poblacion.png}
+\caption{Official versus scenario living population, 2021--2030 (the central scenario illustrative path in red; post-2026 segment is a non-probabilistic trend scenario).}
+\label{fig:pop}
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.495\linewidth}
 \centering
-\includegraphics[width=\linewidth]{f10_edad.png}
-\caption{Age composition of emigrants versus remaining residents.}
-\label{fig:age}
+\includegraphics[width=\linewidth]{f3_cascada.png}
+\caption{Accounting decomposition under the central scenario medians (2021--2025); illustrative scenario, not identified attribution.}
+\label{fig:cascade}
 \end{subfigure}
-\caption{Mortality residual (provisional) and selectivity of exit.
-Life expectancy and provincial maps appear in the supplement.}
-\label{fig:mortality_selectivity}
+\caption{Headline population path and accounting decomposition.}
+\label{fig:headline}
 \end{figure}
-\FloatBarrier
 
 Regionally, Latin America and the Caribbean still grow ($\sim$+$0.7\%$ per year; Table~\ref{tab:region}, UN WPP / CEPAL approximations).
 Cuba shows net population loss of about $-$3.3\% annually on recent official-path comparisons.
 Among peacetime emigration-driven contractions, Venezuela is the closest regional peer (Table~\ref{tab:hist}); disaster-driven cases are not treated as peers.
-By \textbf{end-2026}, the Model~D scenario continuation implies about 300{,}000 further loss: living population near \textbf{8.29~million} (illustrative across-scenario band 7.9--8.9~M).
-Against the official 2021 base, the register gap approaches $\sim$2.8~million ($\sim$25\%): a different estimand from Model~D's $-$20.5\% on the corrected base.
+By \textbf{end-2026}, the central continuation implies about 300{,}000 further loss: living population near \textbf{8.29~million} (across-scenario band 8.01--8.88~M).
+By end-2026 the upper scenario reaches a gap of $\sim$3.1~million; the central scenario $\sim$2.8~million ($\sim$25\%).
 Illustrative trend paths toward $\sim$7~million by 2030 (Figure~\ref{fig:pop}, post-2026 segment) are scenarios only.
 
 \begin{table}[ht]
 \centering
 \caption{Cuba versus selected peacetime emigration-driven contractions.
-Cuba row uses Model~D on corrected base; comparators are approximate and not window-harmonised. Puerto Rico row confounded by hurricane disaster.}
+Cuba row uses the central scenario against the official 2021 base; comparators are approximate and not window-harmonised. Puerto Rico row confounded by hurricane disaster.}
 \label{tab:hist}
 \begin{tabular}{lrrr}
 \toprule
@@ -343,7 +450,7 @@ Case & Cum.\ loss & Approx.\ annual & Dominant engine \\
 \midrule
 Venezuela 2013--24 & $\sim$25\% & 1--3\% & emigration \\
 Puerto Rico post-2017 (Mar{\'i}a era) & large net exit & --- & emigration + disaster \\
-Cuba 2021--25 (Model~D) & $\sim$20.5\% (corrected base) & $\sim$3--5\% & emigration + internal \\
+Cuba 2021--25 (central) & $\sim$22.8\% (official base) & $\sim$3--5\% & emigration + internal \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -365,7 +472,7 @@ Colombia & $+0.7\%$ \\
 Brazil & $+0.4\%$ \\
 Chile & $+0.3\%$ \\
 Uruguay & $+0.1\%$ \\
-Venezuela & $\approx 0\%$ (after $\sim$25\% loss 2013--20) \\
+Venezuela & $\approx 0\%$ (after $\sim$25\% loss 2013--24) \\
 Cuba & $-3.3\%$ \\
 \bottomrule
 \end{tabular}
@@ -373,43 +480,77 @@ Cuba & $-3.3\%$ \\
 
 \section{Discussion}
 
-Model~D is retained as the illustrative central scenario because the IMR consistency check shrinks the need for large hidden-death multipliers and focuses residual uncertainty on migration~\citep{pagegarcia2020,modeld}.
-It is not an identified point estimate: absolute loss remains $\sim$91\% migratory under D's priors, and $U_0$ with $M>1$ can share a common outdated-register defect.
-Provisional Model~E lands in the same loss band with a higher stock ($\sim$8.96~M) and is summarized in Table~\ref{tab:models} and the supplement~\citep{modele_supp}; its adversarial gate (different $U_0$, ageing double-count risk in $S_t$, migration still identifying $P^*$) keeps E non-preferred.
-Within-scenario intervals look falsely precise relative to the across-scenario envelope---the envelope should lead.
-The scientific lead is Model~D $\sim$20.5\% loss by end-2025 on the \emph{corrected} base (about one in five); as a register-gap aside, against official 2021 (11.11~M), cumulative gap by end-2026 approaches $\sim$25\% (about one in four).
-These are not interchangeable headlines.
-Exit is age- and sex-selective; it ages the island and structurally depresses fertility~\citep{coleman2006,diazbriquets2014,lee2014}.
-The natural balance, positive in 2019, fell to $-$68{,}150 in 2025; the provisional schedule residual in 2024--2025 is consistent with elevated mortality beyond ageing alone, pending full age--sex computation~\citep{karlinsky2021,msemburi2023}.
-WFP food-insecurity and anaemia indicators, and the fall in agricultural GDP, are discussed only as \emph{contextual} amplifying pathways~\citep{wfp_cuba}; they do not enter $D_{\mathrm{fac}}$ or excess formulas and are not identified causes of the death or birth series.
+\subsection{Migration}
+
+
+The two engines meet in the mortality decomposition, and reading it correctly matters.
+
+We use the published figure, but the pre-revision total would raise 2022 attributable mortality from $\sim$12{,}700 to $\sim$21{,}900 and the 2022--2025 post-pandemic total from $\sim$74{,}800 to $\sim$84{,}100.
+This is the empirical anchor for how much slack the register demonstrably has: 7.5\% in a single year, just below the 9\% cap on $D_{\mathrm{fac}}$, which is why that cap is retained rather than raised.
+It bounds the question from observation rather than from prior belief, and it cuts both ways---a register that can shed 8{,}951 deaths without explanation is not fully trustworthy, but one that published a 54\% single-year surge in 2021 (109{,}080 to 167{,}645) is also not one that hides at scale.
+
 ONEI's declared 2022 net migration ($+$991) is inconsistent with hundreds of thousands of U.S.\ Cuban arrivals that year at any plausible encounter-to-emigrant conversion (encounters are not unique net emigrants 1:1).
-The accounting relocates much of the exodus into a single 2023 revision jump.
-Even after that revision, 2024--2025 net balances remain only slightly above U.S.-only recorded entries, while the 2025 balance admits 317{,}320 gross external emigrations (net $-$245{,}264): continued understatement of exit.
+Much of the exodus is booked in a single 2023 revision, consistent with a lagged register catch-up recorded within one year.
+Even after that revision, 2024--2025 net balances remain only slightly above U.S.-only recorded entries, while the 2025 balance admits 317{,}320 gross external emigrations (net $-$245{,}264): a shortfall against the multi-destination floor, though the 2025 balance is internally consistent.
 This paper therefore treats the official headcount as a ceiling and contrasts it with exit-correcting sources (Figure~\ref{fig:tri}).
 
-\section{Limitations}
-No post-2012 census; ONEI's $\sim$24-month emigration rule lags recent exits; destination microdata are incomplete; U.S.\ ``settled'' administrative totals are not ACS stock; the IMR analogy is not a Cuban structural parameter; housing-occupancy assumptions are fragile; ageing sketches are not cohort-component projections; life expectancy re-expresses mortality; 2026--2030 paths are scenarios.
+Taken together: against the official end-2021 stock, the gap by end-2025 lies between 1.97 and 2.79~million, or 17.8--25.1\% (the primary statement).
+Under the central scenario, living population is near 8.58~million at end-2025 rather than the official 9.43~million, a gap of 2.53~million (22.8\%), about 92\% of it emigration; the ONEI-anchored floor sits at 9.14~million.
+By end-2026 the central continuation is near 8.29~million, taking the gap to roughly one in four.
+Alongside that headcount, excess mortality against the 2019 schedule runs at $\sim$28{,}500 deaths a year at 2025 levels and $\sim$74{,}800 cumulatively over 2022--2025, a toll larger than what ageing alone explains and about a third below what the crude bridge previously implied for 2024--2025.
+A 2026 census conducted under standard practice would be informative; the working end-2026 scenario band is 7.9--8.9~million rather than the 10.9~million World Population Prospects path under still-low net-emigration assumptions~\citep{un_wpp}.
+
+
+\subsection{Health-system deterioration}
+
+Emigration removes working-age adults, which raises the elderly share, which raises deaths even with an unchanged health system: that is the $\sim$22{,}400 additional deaths a year the ageing term measures.
+How much of that ageing is migration-induced is \emph{not} identified here---the term is computed from the observed ONEI age structure, and Cuba's fertility transition was already generating ageing decades before the crisis---so it should be read as ageing from all causes combined, of which selective exit is one.
+On top of it sits a rate deterioration of $\sim$28{,}500 deaths a year that ageing does not explain, concentrated in 2024--2025 and still rising in the 2026 scenario.
+The policy-relevant asymmetry is that emigration can reverse, whereas neither those deaths nor the births that did not occur can.
+Two properties make the attributable estimate more robust than the population scenarios it sits beside: it does not depend on resolving the migration dispute, because the elderly count is held approximately fixed and $E_t$ therefore barely moves between the official and the central scenario stocks; and it is insensitive to the anchor's \emph{level}, which 2017--2019 sensitivity leaves essentially unchanged at ages 60+ (it is \emph{not} insensitive to the anchor's trend, which is the dominant uncertainty above).
+It remains conditional on registered deaths being close to complete---an assumption the infant-mortality sentinel makes plausible for institutional deaths but does not establish, and which the $D_{\mathrm{fac}}$ prior is meant to absorb rather than resolve.
+Its principal weakness is the opposite of the population models': the mechanism is unidentified.
+Blackouts, fuel-driven ambulance and dialysis failures, drug shortages, delayed oncology, and the 2025--2026 arbovirus waves are all plausible pathways, and none is separately estimated here; the estimate is an association with the crisis period, not a cause-of-death attribution.
+WFP food-insecurity and anaemia indicators, and the fall in agricultural GDP, are discussed only as \emph{contextual} amplifying pathways~\citep{wfp_cuba}; they do not enter $D_{\mathrm{fac}}$ or the decomposition~\citep{karlinsky2021,msemburi2023}.
+
+The one documented instance of the death register being revised downward is instructive.
+
+\subsection{Projected population}
+
+The central scenario is retained because the IMR consistency check shrinks the need for large hidden-death multipliers and focuses residual uncertainty on migration~\citep{pagegarcia2020,modeld}.
+It is not an identified point estimate: absolute loss remains $\sim$91\% migratory under the central scenario's priors, and $U_0$ with $M>1$ can share a common outdated-register defect.
+Within-scenario intervals look falsely precise relative to the across-scenario envelope---the envelope should lead.
+The scientific lead is the central scenario's 22.8\% gap by end-2025 against the official 2021 base (between one in five and one in four), reaching $\sim$25\% by end-2026.
+Exit is age- and sex-selective; it ages the island and structurally depresses fertility~\citep{coleman2006,diazbriquets2014,lee2014}.
+The natural balance, positive in 2019, fell to $-$68{,}150 in 2025.
+
+\section{Disclaimers}
+
+\textbf{Limitations.}
+There has been no census since 2012; ONEI's $\sim$24-month emigration rule lags recent exits; destination microdata are incomplete; U.S.\ ``settled'' administrative totals are not ACS stock; housing-occupancy assumptions are fragile; ageing sketches are not cohort-component projections; life expectancy re-expresses mortality; 2026--2030 paths are scenarios.
 $U_0$ and $M$ can double-count register lag; destination encounter ceilings can inflate unique persons; within-scenario intervals give false precision relative to structural uncertainty.
-The provisional 2019-schedule residual is not yet a published age--sex computation from ONEI 3.15.
-Model~E's higher population partly reflects a different $U_0$ prior.
+The mortality decomposition uses four age groups because that is the finest set ONEI 3.15 and 3.3 share; both ONEI 3.15 and 3.3 stop at 2022, so the 2023--2026 age structure is a cohort projection rather than an observation, and within-65+ composition after 2022 enters as a residual drift parameter.
+Its 2019 anchor assumes no counterfactual post-2019 improvement in Cuban mortality, and it shares $D_{\mathrm{fac}}$ with the central scenario, so it is not independent of the headcount scenario.
+Attributable deaths are an association with the crisis period, not a cause-of-death attribution.
 Food-insecurity indicators are contextual only.
 
-\section{Conclusions}
-Across scenarios, Cuba's 2021--2025 population loss lies near 1.8--2.4~million (primary statement).
-Under illustrative Model~D priors, living population is near 8.59~million at end-2025 (not the official 9.43~million), with median loss 2.21~million (20.5\% on the corrected base) and emigration about 91\% of absolute loss; Model~A remains the ONEI-anchored floor neighbourhood.
-By end-2026 the Model~D scenario continuation is near 8.29~million; the register gap against the official 2021 base approaches one in four---a different definition from $-$20.5\%.
-A provisional schedule residual of order $\sim$77{,}000 deaths in 2024--2025 (sensitivity 65--90k) is secondary to the migration scenario envelope and must be kept distinct from crude registered excess of $\sim$153{,}000 over 2020--2025.
-A 2026 census conducted under standard practice would be informative; the working scenario band is 8.6--9.0~million rather than the 10.9~million World Population Prospects path under still-low net-emigration assumptions~\citep{un_wpp}.
+The pre-crisis age-standardised series cannot be fitted on a complete window: ONEI 3.15 panels for 2009--2012 parse to roughly half the true death totals and are rejected by a reader guard, so the trend rests on 10 non-contiguous years (or 7 contiguous ones, which give a trend nearly three times larger).
+The dominant uncertainty in the mortality estimand is the choice of counterfactual, not anything inside the simulation, and it is reported separately rather than folded into the range.
 
-\section{Data and code availability}
+\textbf{Status.}
+This is a preprint and has not been peer reviewed.
+The three scenarios are prior narratives, not identified estimators of a unique living population, and reported bands are prior-predictive spreads rather than sampling error from data.
+
+\textbf{Data and code availability.}
 ONEI tables and a machine-readable claim sheet are in the public repository
 \url{https://github.com/ypriverol/cubascience} under \texttt{demographics/}.
 Interactive companion: \url{https://ypriverol.github.io/cubascience/demographics/}.
-Monte Carlo scripts (\texttt{scripts/model\_*.py}) write summaries to \texttt{artifacts/}.
+Monte Carlo scripts (\texttt{scripts/model\_*.py}) and the mortality decomposition
+(\texttt{scripts/attributable\_mortality.py}) write summaries to \texttt{artifacts/}.
 Supplementary PDF: \texttt{manuscript/en/cuba-depopulation-2021-2026-supplement.pdf}~\citep{modele_supp}.
 Third-party literature is cited, not redistributed.
 
-\section*{Competing interests}
+\textbf{Competing interests.}
 None declared.
 
 \FloatBarrier

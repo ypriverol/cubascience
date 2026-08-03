@@ -27,6 +27,7 @@ quantities:
     value: 1050000
     class: derived
     source: "destinations_settled.csv ledger"
+  # SUPERSEDED by attributable_mortality (age-standardised). Retained for traceability.
   - id: mortality_schedule_residual
     point: 77000
     class: derived

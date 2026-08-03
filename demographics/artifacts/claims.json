@@ -1,15 +1,17 @@
 {
   "meta": {
     "version": "2026-08-02",
-    "preferred_model": "D",
+    "preferred_scenario": "central",
     "preferred_model_role": "illustrative central scenario (not an identified estimator)",
     "mc_window": "end-2021 \u2192 end-2025",
-    "mc_draws_paper": 1000000,
+    "mc_draws_paper": 200000,
     "mc_draws_notebook_interactive": 100000,
     "deaths_2023_canonical": 117739,
     "deaths_2023_anuario_footnote": 117746,
     "deaths_2023_note": "Canonical scripts use 117739 (Indicadores 2025). Anuario table 3.13 may show 117746 \u2014 do not mix in one sum.",
-    "natural_balance_2025_note": "136214 \u2212 68064 = \u221268150 (canonical). Prior draft used \u221268149 in error.",
+    "natural_balance_2025_note": "136214 \u2212 68064 = \u221268150 (canonical, computed). ONEI Indicadores 2025 prints \u221268,149; treat as a rounding/source discrepancy in ONEI, not an internal error.",
+    "deaths_2022_note": "ONEI first reported 129,049 deaths for calendar year 2022, then published 120,098 in its official statistics with no methodological explanation \u2014 a downward revision of 8,951 (7.5%). Canonical scripts use the published 120,098; the pre-revision figure is carried in death_register_revisions as a sensitivity, not as an alternative headline.\n",
+    "deaths_2022_note_correction": "CORRECTION 2026-08-03: earlier drafts attributed the trio 129,049 / 120,098 / 117,746 to 2023. That was wrong \u2014 129,049 and 120,098 are BOTH 2022 figures (pre- and post-revision), which is why 120,098 is our canonical 2022 value. 117,746 is the Anuario 2023 total. Source: Latinoam\u00e9rica 21 / El Universal, \"El extra\u00f1o caso de los 9 mil muertos desaparecidos en Cuba\".\n",
     "deaths_2022_2025_note": "Identity window sum 502149 (model_from_2021). Model E death JSON sums 502159 \u2014 internal reconstruction path only.",
     "script": "scripts/model_from_2021.py",
     "primary_uncertainty": "across-scenario envelope A\u2013C/D (~1.8\u20132.4M loss), not within-D percentiles"
@@ -96,48 +98,86 @@
     "values": [
       11.11,
       8.59,
-      8.29,
+      8.3,
       7.0
     ],
     "note": "2030 point is illustrative scenario only, not a forecast."
   },
-  "model_d": {
-    "pop_end_2025_m": 8.59,
-    "loss_2021_2025_m": 2.21,
-    "loss_pct_corrected_base": 20.5,
-    "loss_90_m": [
-      1.84,
-      2.6
+  "population_scenarios": {
+    "script": "scripts/model_population.py",
+    "artifact": "artifacts/population_scenarios.json",
+    "base": "official end-2021 stock 11,113,215 \u2014 ONE base; the corrected-base variant is retired",
+    "point_estimates": "closed form (three prior MEANS; exact because the identity is linear)",
+    "copula": "none",
+    "primary_uncertainty": "across-scenario envelope, NOT within-scenario percentiles",
+    "envelope_gap_m": [
+      1.97,
+      2.79
     ],
-    "loss_90_note": "Prior-predictive under fixed Model D margins \u2014 not sampling error from data.",
-    "pop_end_2026_m": 8.29,
-    "loss_during_2026_approx": 300000,
-    "migration_share_of_loss_pct": 91.0,
-    "definition_loss_pct": "Percent decline uses corrected end-2021 base (official minus baseline overstatement U0), not raw official 11.11M.",
-    "onei_anchored_M1_note": "If M=1 (ONEI R only) and U0 modest, living population sits nearer ~9.0\u20139.2M (Model A neighbourhood)."
+    "envelope_gap_pct": [
+      17.8,
+      25.1
+    ],
+    "scenarios": {
+      "null_onei_face_value": {
+        "label": "Null: ONEI at face value (U0=0, M=1, Dfac=1)",
+        "pop_end_2025_m": 9.43,
+        "gap_m": 1.68,
+        "gap_pct": 15.1,
+        "pop_end_2026_m": 9.14,
+        "note": "Reproduces ONEI's published figure exactly, by construction (R closes the identity). Excluded from the envelope; reported so the span does not exclude the official series."
+      },
+      "conservative": {
+        "label": "Conservative (not an ONEI-consistent floor: mean M = 1.089)",
+        "pop_end_2025_m": 9.14,
+        "gap_m": 1.97,
+        "gap_pct": 17.8,
+        "pop_end_2026_m": 8.84
+      },
+      "central": {
+        "label": "Crisis-adjusted central",
+        "pop_end_2025_m": 8.58,
+        "gap_m": 2.53,
+        "gap_pct": 22.8,
+        "pop_end_2026_m": 8.29,
+        "emigration_share_of_gap_pct": 92,
+        "preferred": true
+      },
+      "upper": {
+        "label": "Upper stress",
+        "pop_end_2025_m": 8.32,
+        "gap_m": 2.79,
+        "gap_pct": 25.1,
+        "pop_end_2026_m": 8.02
+      }
+    },
+    "headline": "Against the official end-2021 stock, the gap by end-2025 is 1.94-2.80 million (17.4-25.2%); the central scenario is 2.52 million (22.7%), leaving about 8.59 million living, against 9.43 million officially. Roughly 92% of the gap is emigration, counting both the 2022-25 flow and the pre-2021 backlog still on the roll.\n",
+    "retired": {
+      "model_B": "landed within 0.02 M of the central scenario \u2014 same story, different dials",
+      "model_E": "dominated by attributable_mortality.py (observed age data vs a hand-weighted index)",
+      "gaussian_copula": "moved the median ~2,200 people; only widened a band the paper does not lead with",
+      "corrected_base": "dual headline (-20.5% corrected vs ~25% official) removed",
+      "imr_elasticity": "two numbers from one country with no CI; the conclusion survives without it"
+    },
+    "simplification_evidence": "Closed form gives 8.5928 M against 8.5886 M from 10^6 draws with the copula: 4,253 people, 0.05%. The simulation was computing arithmetic.\n"
   },
   "headline_rules": {
+    "single_base": "official end-2021 stock (11,113,215). Do not publish a second base.",
     "primary_scientific": {
-      "value_approx": "about 1 in 5",
-      "pct_approx": 20.5,
-      "base": "corrected / Model D scenario",
+      "value_approx": "between one in six and one in four",
+      "pct_range": [
+        17.4,
+        25.2
+      ],
+      "central_pct": 22.7,
       "year": 2025,
       "products": [
         "en_paper",
+        "es_paper",
         "notebook"
       ]
     },
-    "register_gap_official_2021_to_end_2026": {
-      "value_approx": "about 1 in 4",
-      "pct_approx": 25,
-      "loss_m_approx": 2.82,
-      "base": "official 2021 (11.11M)",
-      "year": 2026,
-      "years_span": 5,
-      "social_allowed": true,
-      "scientific_lead": false,
-      "note": "Register gap vs official 2021 stock \u2014 not interchangeable with Model D \u221220.5%. Do not lead the scientific abstract with this figure."
-    }
+    "note": "The previous dual headline is retired. There is now one definition: the gap between the official end-2021 stock and the estimated living population.\n"
   },
   "excess_mortality": {
     "provisional_schedule_residual_2024_2025": {
@@ -174,7 +214,89 @@
     },
     "secondary_crude_registered_2020_2025": 153000,
     "secondary_crude_registered_2024_2025": 66000,
-    "note": "Always label crude vs schedule residual. Windows differ (2020\u20132025 vs 2024\u20132025)."
+    "note": "Always label crude vs schedule residual. Windows differ (2020\u20132025 vs 2024\u20132025).",
+    "superseded_by": "attributable_mortality",
+    "superseded_note": "The crude 2019-CDR bridge charges the entire ageing shift (20.4% -> ~26% aged 60+) to 'crisis'. attributable_mortality replaces it with indirect age standardisation, which lowers the 2024-2025 figure from 77k to ~50k. Keep the provisional numbers only for traceability against earlier versions.\n"
+  },
+  "attributable_mortality": {
+    "script": "scripts/attributable_mortality.py",
+    "artifact": "artifacts/attributable_mortality.json",
+    "figure": "figures/f14_atribuible.png",
+    "n_draws": 200000,
+    "seed": 2028,
+    "base_year": 2019,
+    "method": "Indirect age standardisation on {0-14, 15-59, 60-64, 65+}. 2019 rates = ONEI 3.15 deaths / ONEI 3.3 mid-year population. Age structure OBSERVED 2019-2022 (ONEI 3.3 publishes mid-year population by age annually to 2022); 2023-2026 cohort-projected from the observed 2022 structure.\n",
+    "base_deaths_2019": 109080,
+    "base_mid_year_pop_2019": 11201549,
+    "base_cdr_2019_per_1000": 9.738,
+    "share_of_2019_deaths_at_60_plus_pct": 82.1,
+    "rates_2019_per_1000": {
+      "age_0_14": 0.542,
+      "age_15_59": 2.615,
+      "age_60_64": 13.025,
+      "age_65_plus": 47.697
+    },
+    "annual_2025": {
+      "median": 28501,
+      "p05": 18617,
+      "p95": 38203,
+      "per_100k_official_stock": 298
+    },
+    "annual_2026_scenario": {
+      "median": 32600,
+      "p05": 20300,
+      "p95": 44500,
+      "note": "Depends on the +4% registered-death continuation in model_from_2021.py \u2014 scenario, not observation."
+    },
+    "cumulative": {
+      "2020_2025": {
+        "median": 142095,
+        "p05": 105356,
+        "p95": 180494
+      },
+      "2021_2025": {
+        "median": 136800,
+        "p05": 105900,
+        "p95": 169000
+      },
+      "2022_2025_post_covid": {
+        "median": 74847,
+        "p05": 46976,
+        "p95": 103025
+      },
+      "2024_2025": {
+        "median": 50147,
+        "p05": 32557,
+        "p95": 67507
+      }
+    },
+    "by_year_median": {
+      "2020": 5400,
+      "2021": 61900,
+      "2022": 12800,
+      "2023": 11900,
+      "2024": 21600,
+      "2025": 28600,
+      "2026": 32600
+    },
+    "decomposition_2025": {
+      "population_size_effect": -19400,
+      "ageing_effect": 22300,
+      "health_system_effect": 28600,
+      "observed_rise_incl_unregistered": 31300,
+      "note": "Change in annual deaths vs 2019 = size + ageing + rate, exactly per draw. A ~2.0M smaller resident population should have cut ~19,400 deaths a year; ageing added ~22,300; health-system deterioration added ~28,600. The two upward terms sum to more than the observed 31,300 rise because the smaller population pulls the other way.\n"
+    },
+    "ageing_share_of_gross_increase_2025_pct": 44,
+    "headline_en": "Excess mortality against the 2019 age-specific schedule runs at roughly 28,500 deaths a year at 2025 levels (prior sensitivity range 18,600-38,200), against ~22,300 a year explained by population ageing alone.\n",
+    "headline_es": "El deterioro del sistema de salud se asocia a unas 28,500 muertes anuales en exceso a niveles de 2025 (banda 90% 18,700-38,300), frente a ~22,300 anuales que explica el envejecimiento por si solo.\n",
+    "status": "primary age-standardised estimate; supersedes the crude 2019-CDR bridge",
+    "revision_note": "2026-08-03 adversarial review: the previous version derived the elderly count as (share x official total), which made it FALL 67k in 2024 because the official total absorbs ONEI's 2023 register catch-up in one step; and it used 3.12 shares rather than ONEI 3.3 observed age denominators. Both are fixed. 2024-2025 moved 47.1k -> 50.2k and 2022 moved 7.4k -> 12.8k.\n",
+    "caveats": [
+      "Age structure observed only through 2022 (ONEI 3.3); 2023-2026 is a cohort projection carrying an explicit horizon-growing noise term.",
+      "2019 is a crisis-free anchor with no assumed post-2019 improvement; 2017-2019 mean rates are within 1.1% at ages 65+.",
+      "Association with the crisis period, not cause-of-death attribution: blackouts, arboviruses, drug shortages and delayed care are not separately identified.",
+      "Shares Dfac with Model D, so attributable deaths and the headcount scenario are not independent."
+    ]
   },
   "selectivity": {
     "emigrants_age_15_59_pct": 77,
@@ -187,63 +309,16 @@
     "median_age_leavers": 30,
     "median_age_stayers": 45,
     "pct_age_60_plus_remaining": 26.7,
-    "pct_age_60_plus_note": "26.7% is official structure; Model-D-consistent share would be higher \u2014 treat as official, not D-consistent.",
+    "pct_age_60_plus_note": "26.7% is a REPORTED figure and is NOT reproducible from the ONEI tables in data/onei/: table 3.12 projects 25.0% for 2025 and its observed series stops at 22.3% (2022); indicadoresdemograficos2025.pdf has no age-structure table. Treat as reported-official, not verified, and not Model-D-consistent.\n",
+    "pct_age_60_plus_provenance": "unverified_reported",
     "female_share_emigrants_pct": null,
     "female_share_note": "Manuscript uses majority-female wording only; exact share not recomputed from ONEI microdata in this repo.",
     "reproductive_age_women_per_100_men": null,
     "reproductive_age_ratio_note": "Prior essay cited ~133:100 from external flow tables; omitted from EN preprint until sourced in selectivity.yaml."
   },
-  "models_summary": [
-    {
-      "id": "A",
-      "label": "A \u00b7 conservative",
-      "assumption": "ONEI-anchored",
-      "role": "scenario",
-      "decline_m": 1.8,
-      "decline_pct": 16.4,
-      "pop_end_2025_m": 9.16
-    },
-    {
-      "id": "B",
-      "label": "B \u00b7 crisis-adjusted",
-      "assumption": "under-registration + independent emigration",
-      "role": "scenario",
-      "decline_m": 2.19,
-      "decline_pct": 20.4,
-      "pop_end_2025_m": 8.57
-    },
-    {
-      "id": "C",
-      "label": "C \u00b7 worst case",
-      "assumption": "analog-calibrated upper bound",
-      "role": "scenario",
-      "decline_m": 2.41,
-      "decline_pct": 22.6,
-      "pop_end_2025_m": 8.26
-    },
-    {
-      "id": "D",
-      "label": "D \u00b7 sentinel",
-      "assumption": "IMR consistency check + migration priors near B",
-      "role": "illustrative central scenario",
-      "decline_m": 2.21,
-      "decline_pct": 20.5,
-      "pop_end_2025_m": 8.59,
-      "preferred": true
-    },
-    {
-      "id": "E",
-      "label": "E \u00b7 vital reconstruction (HSDS)",
-      "assumption": "ageing + health decadence + bad reporting \u2192 B*, D*, P*",
-      "role": "provisional companion",
-      "decline_m": 2.13,
-      "decline_pct": 19.2,
-      "pop_end_2025_m": 8.96,
-      "preferred": false,
-      "provisional": true
-    }
-  ],
   "model_e": {
+    "RETIRED": true,
+    "retired_reason": "Dominated by attributable_mortality.py; a hand-weighted dimensionless index cannot be validated. Scripts retained for traceability only.",
     "pop_end_2025_m": 8.96,
     "loss_2021_2025_m": 2.13,
     "loss_pct_corrected_base": 19.2,
@@ -264,6 +339,24 @@
     "band_low_m": 8.0,
     "band_high_m": 8.9,
     "note": "Model D is the study estimand and must not appear as external validation of itself. Albizu/housing share exit-correcting assumptions with the migration narrative \u2014 soft independence only.",
+    "unsourced_anchors": [
+      {
+        "source": "MINSAP denominator",
+        "estimate": 10.24,
+        "status": "no citation in repo \u2014 derived from Anuario CDR/deaths ratio; treat as indicative"
+      },
+      {
+        "source": "Electoral roll (level)",
+        "estimate": 10.0,
+        "status": "no citation in repo \u2014 reported level, not verified against a published roll"
+      },
+      {
+        "source": "Housing \u00d7 occupancy",
+        "estimate": 8.7,
+        "status": "no citation in repo \u2014 occupancy scalar ~2.2 is itself unsourced; most fragile anchor"
+      }
+    ],
+    "unsourced_note": "These three anchors carry no bib key and no data file. They are drawn in the triangulation figure as soft ceilings/constructs and must not be described as independent measurements until sourced.\n",
     "sources": [
       {
         "source": "UN (stale migration)",
@@ -331,5 +424,155 @@
     "model_d_median_Rm_m": 2.0,
     "note": "Only the floor is ledger-like. 1.05\u21921.5 is an unquantified residual; 1.5\u21922.0 is Model D prior M on R, not destination microdata.",
     "u0_M_budget_note": "U0 and (M-1)R can double-count the same register lag; report ONEI-anchored (M\u22481) beside D."
+  },
+  "death_register_revisions": {
+    "note": "A 7.5% single-year removal is the empirical anchor for how much slack the register demonstrably has. It sits just below the Model D Dfac cap of 9%, which is why that cap is retained rather than raised.\n",
+    "revisions": [
+      {
+        "year": 2022,
+        "first_reported": 129049,
+        "published": 120098,
+        "removed": 8951,
+        "removed_pct": 7.5,
+        "explanation_given": "none",
+        "source": "Latinoamerica 21 / El Universal, 'El extrano caso de los 9 mil muertos desaparecidos en Cuba'",
+        "effect_on_attributable_2022": "12,700 (published) -> 21,900 (pre-revision)",
+        "effect_on_post_covid_2022_2025": "74,900 -> 84,100"
+      },
+      {
+        "year": 2023,
+        "anuario": 117746,
+        "indicadores_canonical": 117739,
+        "removed": 7,
+        "note": "Trivial 7-death discrepancy between official sources; not a revision."
+      }
+    ]
+  },
+  "cause_specific_standardised": {
+    "script": "scripts/cause_specific_standardised.py",
+    "artifact": "artifacts/cause_specific_standardised.json",
+    "data": "data/who/cuba_morticd10_2021_2023.csv",
+    "standard": "WHO World Standard Population 2000-2025, 18 groups to 85+",
+    "years_standardisable": [
+      2021,
+      2022
+    ],
+    "year_2023_note": "Cuba submitted 2023 deaths to WHO, but ONEI 3.3 population stops at 2022, so 2023 has no observed denominator and is deliberately not standardised.\n",
+    "crude_over_standardised_factor": 1.9,
+    "crude_over_standardised_note": "Any Cuban crude cause-specific rate is roughly DOUBLE its age-standardised value (2.05-2.08 for circulatory and cerebrovascular). Comparing a Cuban crude rate to a regional standardised rate silently smuggles in that factor.\n",
+    "asmr_2022_per_100k": {
+      "all_causes": 568.1,
+      "circulatory_I00_I99": 210.3,
+      "ischaemic_heart_I20_I25": 87.2,
+      "cerebrovascular_I60_I69": 50.4,
+      "malignant_neoplasms_C00_C97": 123.3,
+      "diabetes_E10_E14": 12.2,
+      "respiratory_J00_J99": 65.8
+    },
+    "refuted_claims": [
+      {
+        "claim": "Cuba's cardiovascular mortality is ~3x the subregional average",
+        "their_comparison": "Cuba all-circulatory CRUDE 313.5 vs regional ischaemic-heart 104.9",
+        "error": "crude vs standardised, AND a broader cause category vs a narrower one",
+        "like_for_like": "Cuba ischaemic-heart ASMR 87.2 vs regional 104.9 = 0.83x",
+        "verdict": "reversed \u2014 Cuba is BELOW the regional figure, not 3x above"
+      },
+      {
+        "claim": "Cuba's stroke mortality is 27x the subregional baseline",
+        "their_comparison": "Cuba 75+ age-SPECIFIC 927.6 vs regional ALL-AGES 34.1",
+        "error": "an age-specific rate compared to an all-ages rate",
+        "like_for_like": "Cuba cerebrovascular ASMR 50.4 vs regional 34.1 = 1.48x",
+        "verdict": "elevated, but ~1.5x not 27x"
+      }
+    ],
+    "caveat_regional_comparators": "The regional figures (104.9, 34.1) are quoted from a secondary source and are assumed to be age-standardised, as PAHO usually reports. They are NOT recomputed here. Confirm against a PLISA export before publishing a ratio.\n",
+    "diagnosis_dependent_causes_note": "Standardised diabetes mortality FELL 36% and neoplasms 6% from 2021 to 2022, during documented insulin stockouts and oncology collapse. As with the cancer sentinel, a falling registered rate for a diagnosis-dependent cause is more plausibly under-diagnosis than improvement. Do not read these as good news.\n"
+  },
+  "sourcing_resolutions": {
+    "regional_comparators": {
+      "status": "UNRESOLVED_BY_DESIGN",
+      "values_in_question": {
+        "ischaemic_heart_regional": 104.9,
+        "stroke_regional": 34.1
+      },
+      "what_was_tried": "Downloaded the WHO Mortality Database raw files and checked whether a like-for-like Latin American comparator could be computed from the same source as Cuba's own rates.\n",
+      "finding": "It cannot. Of the 64 countries with 2021+ deaths AND 2021+ population in the WHO raw files, the only ones in the Americas are French Guiana, Guadeloupe and Martinique. Every Latin American comparator (Mexico, Colombia, Chile, Argentina, Dominican Republic) has population data ending between 1985 and 2007, so no post-2020 standardised rate can be built for them from this source.\n",
+      "consequence": "104.9 and 34.1 remain UNVERIFIED. Do not publish a ratio against them. Either export precomputed age-standardised rates from PAHO PLISA (which publishes them directly), or state Cuba's ASMR without a regional ratio. Cuba's own side is solid: ischaemic heart 87.2, cerebrovascular 50.4 per 100k, 2022, WHO World Standard.\n",
+      "do_not_retry": "The WHO raw-file route is closed; this was checked, not assumed."
+    },
+    "vital_series_provenance": {
+      "status": "PARTIAL",
+      "status_correction": "Previously marked RESOLVED with the claim that the WHO submission was \"IN REPO ... independently corroborated\". That was false: data/who/ was untracked and did not exist for anyone cloning the repository. Now tracked. 2024 births and deaths remain without an in-repo primary source, so the item is PARTIAL, not resolved.\n",
+      "note": "Each value in vital_series now has a named source. WHO totals differ trivially from the domestic publications because they are a separate submission, not a correction.\n",
+      "by_year": {
+        "2019": {
+          "deaths": 109080,
+          "source": "ONEI 3.15 (in repo, verified)"
+        },
+        "2020": {
+          "deaths": 112439,
+          "source": "ONEI 3.15 (in repo, verified)"
+        },
+        "2021": {
+          "deaths": 167645,
+          "source": "ONEI 3.15 (in repo)",
+          "who_submission": 167675
+        },
+        "2022": {
+          "deaths": 120098,
+          "source": "ONEI published (in repo, 3.15)",
+          "who_submission": 120108,
+          "first_reported": 129049
+        },
+        "2023": {
+          "deaths": 117739,
+          "source": "ONEI Indicadores 2025",
+          "anuario": 117746,
+          "who_submission": 117749,
+          "note": "WHO submission tracked at data/who/ \u2014 2023 deaths independently corroborated"
+        },
+        "2024": {
+          "deaths": 128098,
+          "source": "ONEI Indicadores 2025 / state press",
+          "note": "NOT in any ONEI table shipped here and NOT in WHO (Cuba's submission stops at 2023). Weakest link in the series."
+        },
+        "2025": {
+          "deaths": 136214,
+          "source": "ONEI Indicadores 2025 (PDF in repo, table 1)"
+        }
+      },
+      "births_note": "Births 2023 (90,392) and 2024 (71,374) are likewise from Indicadores 2025 / state press, not from a shipped ONEI table. 2025 (68,064) IS in the Indicadores PDF in repo.\n",
+      "residual_gap": "2024 births and deaths have no in-repo primary source."
+    },
+    "selectivity_splits": {
+      "status": "RECLASSIFIED",
+      "values": {
+        "emigrants_15_59_pct": 77,
+        "emigrants_60_plus_pct": 8,
+        "emigrants_children_pct": 15,
+        "median_age_leavers": 30,
+        "median_age_stayers": 45
+      },
+      "finding": "Only median_age_stayers (45) is verifiable: ONEI Indicadores 2025 table 6 gives a median age of 45.0 for the whole resident population, which is not the same concept as \"stayers\" but is the figure the manuscript uses. The 15/77/8 split and median_age_leavers (30) trace to the Albizu-Campos reports plus a circular reference back to this file. They are expert priors, not measurements.\n",
+      "action": "Reclassified as expert_prior. The 8% figure is load-bearing (it sets elderly emigration in the cohort projection), so a sensitivity is recorded: moving it from 8% to 0-16% shifts 2025 attributable mortality by roughly +/-1,500, well inside the 90% band.\n",
+      "class": "expert_prior"
+    },
+    "estimand_rename_2026_08": {
+      "from": "deaths attributable to health-system deterioration",
+      "to": "excess deaths relative to the 2019 age-specific schedule",
+      "reason": "The same formula returns ~61,900 for 2021, which is a pandemic. A residual against a fixed schedule cannot distinguish health-system deterioration from post-acute COVID, coding drift, mortality displacement, health- selective emigration, or denominator error. \"Attributable\" requires an identified exposure and cause-of-death evidence; neither exists here.\n"
+    },
+    "counterfactual_sensitivity_2025": {
+      "cuba_pre_crisis_trend": 26681,
+      "flat_2019_as_used": 28305,
+      "improvement_0_5pct": 31625,
+      "improvement_1_0pct": 34864,
+      "improvement_1_5pct": 38022,
+      "span": [
+        26700,
+        38000
+      ],
+      "note": "This span is comparable to the entire Monte Carlo range and is NOT inside it. A flat anchor is more likely to under- than overstate, because Cuba's regional peers continued to improve.\n"
+    }
   }
 }

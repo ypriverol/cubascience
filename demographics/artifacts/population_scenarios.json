@@ -1,0 +1,130 @@
+{
+  "base": "official end-2021 stock, 11,113,215 \u2014 one base, no corrected variant",
+  "window": "end-2021 -> end-2025 (+ end-2026 continuation)",
+  "point_estimates": "closed form: three prior MEANS in the accounting identity (exact by linearity)",
+  "band_draws": 200000,
+  "copula": "none \u2014 independent margins",
+  "retired": {
+    "model_B": "landed within 0.02 M of the central scenario",
+    "model_E": "dominated by attributable_mortality.py",
+    "gaussian_copula": "moved the median ~2,200 people; widened an unused band",
+    "corrected_base": "dual headline removed; one base only"
+  },
+  "scenarios": {
+    "null": {
+      "U0": 5e-10,
+      "M": 1.0000000005,
+      "Dfac": 1.0000000005,
+      "pop_end_2025": 9434592.998998072,
+      "pop_end_2026": 9142612.43892724,
+      "gap_vs_official_2021": 1678622.001001928,
+      "gap_pct": 15.104737926890893,
+      "components": {
+        "baseline_overstatement_U0": 5e-10,
+        "net_emigration_2022_2025": 1501706.000750853,
+        "natural_decrease": 176916.0002510745
+      },
+      "emigration_share_of_gap_pct": 89.46064092181099,
+      "flow_emigration_share_pct": 89.460640921811,
+      "band": {
+        "pop_end_2025_p05": 9429241.30965453,
+        "pop_end_2025_median": 9434586.048432965,
+        "pop_end_2025_p95": 9439924.78412857,
+        "pop_end_2025_mean": 9434590.032255813,
+        "gap_p05": 1673290.2158714295,
+        "gap_p95": 1683973.6903454694
+      },
+      "closed_form_vs_mc_mean": 3,
+      "label": "Null (ONEI at face value)",
+      "note": "U0=0, M=1, Dfac=1. Reproduces ONEI's published end-2025 figure exactly, because R is defined as the residual that closes the identity. Included so the envelope does not exclude the official series by construction."
+    },
+    "conservative": {
+      "U0": 150000.0,
+      "M": 1.0888888888888888,
+      "Dfac": 1.024,
+      "pop_end_2025": 9139056.446222223,
+      "pop_end_2026": 8843675.984782223,
+      "gap_vs_official_2021": 1974158.5537777767,
+      "gap_pct": 17.76406335860304,
+      "components": {
+        "baseline_overstatement_U0": 150000.0,
+        "net_emigration_2022_2025": 1635190.9777777777,
+        "natural_decrease": 188967.576
+      },
+      "emigration_share_of_gap_pct": 90.42794330585109,
+      "flow_emigration_share_pct": 89.64083601128566,
+      "band": {
+        "pop_end_2025_p05": 8883737.136482768,
+        "pop_end_2025_median": 9154123.935348623,
+        "pop_end_2025_p95": 9340619.650688851,
+        "pop_end_2025_mean": 9138864.934918707,
+        "gap_p05": 1772595.3493111487,
+        "gap_p95": 2229477.8635172327
+      },
+      "closed_form_vs_mc_mean": 192,
+      "label": "Conservative",
+      "note": "Adds a modest correction. NOT 'M approx 1': its median M is 1.072, i.e. 7% more emigration than ONEI reports."
+    },
+    "central": {
+      "U0": 318181.8181818182,
+      "M": 1.3443478260869566,
+      "Dfac": 1.0324,
+      "pop_end_2025": 8583032.357696444,
+      "pop_end_2026": 8286461.930752443,
+      "gap_vs_official_2021": 2530182.642303556,
+      "gap_pct": 22.767332786268927,
+      "components": {
+        "baseline_overstatement_U0": 318181.8181818182,
+        "net_emigration_2022_2025": 2018815.1965217392,
+        "natural_decrease": 193185.6276
+      },
+      "emigration_share_of_gap_pct": 92.36475563581779,
+      "flow_emigration_share_pct": 91.26647578548246,
+      "band": {
+        "pop_end_2025_p05": 8127723.608779795,
+        "pop_end_2025_median": 8586104.518836144,
+        "pop_end_2025_p95": 9027544.22492506,
+        "pop_end_2025_mean": 8582895.410760589,
+        "gap_p05": 2085670.7750749409,
+        "gap_p95": 2985491.3912202055
+      },
+      "closed_form_vs_mc_mean": 137,
+      "label": "Crisis-adjusted central",
+      "note": "Migration prior above ONEI; death under-registration capped at 9%, just above the 7.5% the register itself shed in 2022."
+    },
+    "upper": {
+      "U0": 446511.6279069768,
+      "M": 1.4173913043478261,
+      "Dfac": 1.0765217391304347,
+      "pop_end_2025": 8322857.031223459,
+      "pop_end_2026": 8020036.205762589,
+      "gap_vs_official_2021": 2790357.968776541,
+      "gap_pct": 25.108467430680868,
+      "components": {
+        "baseline_overstatement_U0": 446511.6279069768,
+        "net_emigration_2022_2025": 2128505.0260869567,
+        "natural_decrease": 215341.31478260865
+      },
+      "emigration_share_of_gap_pct": 92.28266347213416,
+      "flow_emigration_share_pct": 90.8124815595754,
+      "band": {
+        "pop_end_2025_p05": 7820425.586143871,
+        "pop_end_2025_median": 8318603.993821349,
+        "pop_end_2025_p95": 8835832.549112,
+        "pop_end_2025_mean": 8321739.5735913245,
+        "gap_p05": 2277382.4508879995,
+        "gap_p95": 3292789.413856129
+      },
+      "closed_form_vs_mc_mean": 1117,
+      "label": "Upper stress",
+      "note": "Defines the top of the envelope."
+    }
+  },
+  "envelope": {
+    "gap_low_m": 1.97,
+    "gap_high_m": 2.79,
+    "pct_low": 17.8,
+    "pct_high": 25.1,
+    "statement": "Range across the three assumption sets. This is NOT a confidence interval and has no coverage property: it is the span of three chosen scenarios. The null scenario (ONEI at face value) sits BELOW it at zero added correction and is reported separately."
+  }
+}

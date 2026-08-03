@@ -25,17 +25,17 @@ def title(ax,t,sub=None):
 # ================= F1: la población se desploma =================
 fig,ax=plt.subplots(figsize=(9.2,5.0),dpi=200); style(ax)
 oy=[2019,2020,2021,2022,2023,2024,2025]; ov=[11.19,11.18,11.11,11.09,10.06,9.75,9.43]
-ey=[2019,2025,2026,2030]; ev=[11.19,8.56,8.27,7.0]
+ey=[2019,2025,2026,2030]; ev=[11.19,8.59,8.29,7.0]
 ax.plot(oy,ov,color=BLUE,lw=3,marker="o",ms=6,zorder=4)
 ax.plot(ey,ev,color=RED,lw=3,marker="o",ms=7,zorder=5)
-ax.plot([2025,2030],[8.56,7.0],color=RED,lw=3,ls=(0,(1.5,1.5)),zorder=5)
+ax.plot([2025,2030],[8.59,7.0],color=RED,lw=3,ls=(0,(1.5,1.5)),zorder=5)
 ax.axvspan(2025,2030.5,color=GRID,alpha=0.35,lw=0)
 ax.annotate("cifra oficial",(2024,9.75),color=BLUE,fontsize=12,fontweight="bold",ha="right",va="bottom")
 ax.annotate("9,4 M",(2025,9.43),xytext=(8,2),textcoords="offset points",color=BLUE,fontsize=11,fontweight="bold")
 ax.annotate("estimación real\n(este estudio)",(2022.6,8.9),color=RED,fontsize=12,fontweight="bold",ha="center")
 ax.annotate("11,2 M",(2019,11.19),xytext=(0,9),textcoords="offset points",color=INK,fontsize=11,fontweight="bold",ha="center")
-ax.annotate("8,6 M",(2025,8.56),xytext=(-6,-16),textcoords="offset points",color=RED,fontsize=11,fontweight="bold",ha="right")
-ax.annotate("8,3 M\n(2026)",(2026,8.27),xytext=(8,-4),textcoords="offset points",color=RED,fontsize=11,fontweight="bold")
+ax.annotate("8,6 M",(2025,8.59),xytext=(-6,-16),textcoords="offset points",color=RED,fontsize=11,fontweight="bold",ha="right")
+ax.annotate("8,3 M\n(2026)",(2026,8.29),xytext=(8,-4),textcoords="offset points",color=RED,fontsize=11,fontweight="bold")
 ax.annotate("7 M\n(2030)",(2030,7.0),xytext=(8,0),textcoords="offset points",color=RED,fontsize=11.5,fontweight="bold",va="center")
 ax.text(2027.6,10.4,"proyección",color=MUTED,fontsize=11,style="italic",ha="center")
 ax.set_xlim(2018.6,2031.2); ax.set_ylim(6.3,11.8); ax.set_xticks(range(2019,2031,2))
@@ -66,7 +66,7 @@ fig.tight_layout(); fig.savefig(str(FIGURES / "f2_tijera.png"), bbox_inches="tig
 fig,ax=plt.subplots(figsize=(9.2,4.8),dpi=200); style(ax)
 steps=[("Población\n2019",11.19,"base"),("Se fueron\n(emigración)",-2.00,"neg"),
        ("Muertes de\nmás que nacim.",-0.28,"neg"),("Ajuste de\npadrón",-0.35,"neg"),
-       ("Población real\n2025",8.56,"base")]
+       ("Población real\n2025",8.59,"base")]
 running=steps[0][1]
 for i,(lab,val,kind) in enumerate(steps):
     if kind=="base":
