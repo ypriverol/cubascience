@@ -1,4 +1,4 @@
-% Supplementary materials for: Estimating Cuba's 2021--2026 population decline
+% Supplementary materials for: Scenario audit of Cuba's 2021--2026 population decline
 \documentclass[11pt,a4paper]{article}
 
 \usepackage[margin=2.2cm]{geometry}
@@ -16,7 +16,7 @@
 \graphicspath{{../../../figures/}}
 
 \title{Supplementary materials:\\
-Estimating Cuba's 2021--2026 population decline}
+Scenario audit of Cuba's 2021--2026 population decline}
 \author{Yasset P\'erez-Riverol}
 \date{Preprint supplement · 31 July 2026}
 
@@ -26,6 +26,30 @@ Estimating Cuba's 2021--2026 population decline}
 \noindent These materials accompany the main preprint.
 Models~A--D are scenarios; Model~D is an illustrative central path, not an identified estimator.
 Model~E is provisional and is not preferred for public claims~\citep{repo,modele_supp}.
+
+\section{Provenance of headline quantities}
+Table~\ref{tab:prov} classifies major inputs as observed (ONEI tables), derived (accounting identities), assumed (scenario priors), or expert-coded (HSDS features).
+Full machine-readable version: \texttt{data/provenance.yaml}.
+
+\begin{table}[ht]
+\centering
+\caption{Provenance taxonomy (selected quantities).}
+\label{tab:prov}
+\begin{tabular}{llll}
+\toprule
+Quantity & Class & Source & Status \\
+\midrule
+ONEI $B$, $D$, 2022--25 & observed & Anuario / Indicadores & canonical \\
+Identity $R$ & derived & \texttt{model\_from\_2021.py} & canonical \\
+Scenario envelope 1.8--2.4 M & assumed & Models A--D priors & primary \\
+Model D 8.59 M & assumed & Model D margins & illustrative \\
+Destination floor 1.05 M & derived & \texttt{destinations\_settled.csv} & ledger \\
+Schedule residual $\sim$77k & derived & \texttt{mortality\_schedule\_residual.py} & provisional \\
+HSDS $S_t$ & expert-coded & \texttt{hsds\_features.csv} & Model E only \\
+Model E 8.96 M & assumed & HSDS + migration bridge & provisional \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \section{Life expectancy series}
 Official life expectancy at birth peaked in 2011--13 (78.5 years) and fell to 77.7 in 2018--20 (Figure~\ref{fig:le}).
@@ -40,7 +64,7 @@ Life expectancy re-expresses the same mortality shock rather than providing inde
 \end{figure}
 
 \section{Provincial intensity of exit}
-Emptying is national but unequal (Figure~\ref{fig:prov}).
+Subnational net outflow is national but uneven (Figure~\ref{fig:prov}).
 ONEI \emph{Indicadores 2025} reports Havana external net emigration near \textbf{$-$33 per 1{,}000} in 2025; western and central provinces empty faster than the east~\citep{onei_2025}.
 If national migration accounting is biased, provincial \emph{ranks} are more trustworthy than precise levels.
 
@@ -60,7 +84,9 @@ The spirit follows excess-mortality reconstruction under incomplete registration
   \item Ageing enters both the expected-death schedule and the $S_t$ bucket (double-count risk).
   \item ``Ageing schedule'' is currently a two-factor CDR proxy, not $\sum_a m_a P_a$.
   \item Model~E's $U_0$ prior is much smaller than Model~D's; the higher end-2025 stock ($\sim$8.96~M vs 8.59~M) is therefore partly a \emph{different baseline prior}, not independent vital evidence.
-  \item $P^*$ remains migration-identified.
+  \item Expert-coded HSDS inputs (\texttt{hsds\_features.csv}) use subjective feature weights; full sensitivity mapping is pending.
+  \item Transfer from generic excess-mortality methods~\citep{karlinsky2021} to Cuban reporting institutions is not validated out of sample.
+  \item $P^*$ remains migration-identified under the reconstruction path.
 \end{itemize}
 Median end-2025 population about \textbf{8.96~million} (loss 2.13~million, 19.2\% on the corrected base; migration share $\sim$88\%).
 Figure~\ref{fig:hsds} shows $S_t$ and reconstructed versus registered vitals; Figure~\ref{fig:modele} places E beside A--D.

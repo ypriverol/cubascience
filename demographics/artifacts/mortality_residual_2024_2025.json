@@ -1,0 +1,49 @@
+{
+  "combined_residual": 77333,
+  "years": [
+    {
+      "year": 2024,
+      "expected_deaths": 95043,
+      "expected_deaths_k": 95.0,
+      "registered_deaths": 128100,
+      "registered_deaths_k": 128.1,
+      "residual": 33057,
+      "detail": {
+        "target_year": 2024,
+        "pop_mean": 9750000.0,
+        "pop_source": "claims.yaml population_official_m",
+        "deaths_2019_schedule_total": 109080.0,
+        "cdr_2019_per_thousand": 9.74798927613941,
+        "expected_deaths": 95042.89544235925,
+        "method": "2019 ONEI 3.15 total deaths / 2019 population \u00d7 target population",
+        "source_files": [
+          "3.15",
+          "3.13 or claims.yaml"
+        ]
+      }
+    },
+    {
+      "year": 2025,
+      "expected_deaths": 91924,
+      "expected_deaths_k": 91.9,
+      "registered_deaths": 136200,
+      "registered_deaths_k": 136.2,
+      "residual": 44276,
+      "detail": {
+        "target_year": 2025,
+        "pop_mean": 9430000.0,
+        "pop_source": "claims.yaml population_official_m",
+        "deaths_2019_schedule_total": 109080.0,
+        "cdr_2019_per_thousand": 9.74798927613941,
+        "expected_deaths": 91923.53887399464,
+        "method": "2019 ONEI 3.15 total deaths / 2019 population \u00d7 target population",
+        "source_files": [
+          "3.15",
+          "3.13 or claims.yaml"
+        ]
+      }
+    }
+  ],
+  "status": "provisional \u2014 coarse 2019 schedule bridge; refine with full age-sex cells",
+  "note": "Registered minus expected deaths: 2019 total deaths / 2019 population \u00d7 year-t population (ONEI 3.15 + claims population path)."
+}

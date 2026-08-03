@@ -10,11 +10,13 @@ DATA = ROOT / "data"
 FIGURES = ROOT / "figures"
 ARTIFACTS = ROOT / "artifacts"
 INFOGRAPHIC = ROOT / "infographic"
+INFOGRAPHIC_EN = INFOGRAPHIC / "en"
 CLAIMS_YAML = DATA / "claims.yaml"
 CLAIMS_JSON = ARTIFACTS / "claims.json"
 
 ARTIFACTS.mkdir(parents=True, exist_ok=True)
 FIGURES.mkdir(parents=True, exist_ok=True)
+INFOGRAPHIC_EN.mkdir(parents=True, exist_ok=True)
 
 
 def _load_yaml(path: Path) -> dict[str, Any]:

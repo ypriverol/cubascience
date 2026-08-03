@@ -11,8 +11,8 @@ Quantitative scenario audit of Cuba’s population loss between **end-2021 and e
 > **Register-gap aside (not the scientific lead).** Against the **official 2021** base,
 > the end-2026 gap approaches ~**1 in 4** — a different definition from Model D −20.5%.
 >
-> **Provisional mortality residual.** Illustrative 2019-schedule residual ≈**~38k** in
-> 2024–2025 (sensitivity 30–60k), pending a full ONEI 3.15 age–sex pipeline.
+> **Provisional mortality residual.** Illustrative 2019-schedule residual ≈**~77k** in
+> 2024–2025 (sensitivity 65–90k), coarse bridge in `scripts/mortality_schedule_residual.py`.
 > Crude registered excess 2020–2025 ≈**153k** is a separate quantity.
 >
 > **Model E (provisional).** Vital reconstruction ≈**8.96 M** end-2025 (−2.13 M, −19.2%).

@@ -1,0 +1,42 @@
+# Provenance taxonomy for headline quantities (observed / derived / assumed / expert-coded).
+meta:
+  version: "2026-08-02"
+
+quantities:
+  - id: onei_births_2022_2025
+    value: 325233
+    class: observed
+    source: "ONEI Anuario / Indicadores 2025"
+  - id: onei_deaths_2022_2025
+    value: 502149
+    class: observed
+    source: "ONEI identity window; see meta.deaths_2022_2025_note in claims.yaml"
+  - id: onei_net_migration_R
+    value: 1501706
+    class: derived
+    source: "Identity-consistent R from official B, D, ΔP (model_from_2021.py)"
+  - id: scenario_envelope_loss
+    range_m: [1.8, 2.4]
+    class: assumed
+    source: "Monte Carlo scenario medians Models A–D"
+  - id: model_d_pop_end_2025
+    value_m: 8.59
+    class: assumed
+    source: "Model D prior margins; illustrative central scenario"
+  - id: destination_floor
+    value: 1050000
+    class: derived
+    source: "destinations_settled.csv ledger"
+  - id: mortality_schedule_residual
+    point: 77000
+    class: derived
+    source: "scripts/mortality_schedule_residual.py → artifacts/mortality_residual_2024_2025.json"
+    status: provisional
+  - id: hsds_score
+    class: expert-coded
+    source: "scripts/hsds_features.py + hsds_features.csv"
+  - id: model_e_pop_end_2025
+    value_m: 8.96
+    class: assumed
+    source: "HSDS reconstruction; different U0 prior vs Model D"
+    status: provisional

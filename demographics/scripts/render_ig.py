@@ -6,6 +6,7 @@ from playwright.async_api import async_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 IG = ROOT / "infographic"
+IG_EN = IG / "en"
 
 RENDER_TARGETS = [
     {
@@ -23,6 +24,23 @@ RENDER_TARGETS = [
     {
         "html": IG / "social_4x5.html",
         "png": IG / "social_4x5.png",
+        "viewport": {"width": 1080, "height": 1350},
+    },
+    {
+        "html": IG_EN / "infographic.html",
+        "pdf": IG_EN / "cuba-depopulation-infographic.pdf",
+        "png": IG_EN / "cuba-depopulation-infographic.png",
+        "viewport": None,
+        "pdf_size": {"width": "420mm", "height": "594mm"},
+    },
+    {
+        "html": IG_EN / "social_1x1.html",
+        "png": IG_EN / "social_1x1.png",
+        "viewport": {"width": 1080, "height": 1080},
+    },
+    {
+        "html": IG_EN / "social_4x5.html",
+        "png": IG_EN / "social_4x5.png",
         "viewport": {"width": 1080, "height": 1350},
     },
 ]
@@ -59,7 +77,7 @@ async def main() -> None:
         page = await browser.new_page(device_scale_factor=2)
         for target in RENDER_TARGETS:
             await render_target(page, target)
-            print(f"rendered -> {target['png'].name}")
+            print(f"rendered -> {target['png'].relative_to(ROOT)}")
         await browser.close()
 
 
