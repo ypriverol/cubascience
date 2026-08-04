@@ -1,0 +1,112 @@
+{
+  "f10_edad.png": {
+    "figure_sha": "85c5b039f6bb5998158330488bdf275253fae7cb7062dcdd735e6e04f7864fad",
+    "producer": "charts_publication.py",
+    "producer_sha": "2a978d2533dc98748085850ecd430c77be42dc0f0f6557e6a5bd1099384d9704"
+  },
+  "f10_edad_es.png": {
+    "figure_sha": "9c0fa7fe6ae3b606d7a11d042eff4d9122d4a8bb033b6be7521b8a4e5165d708",
+    "producer": "charts_manuscript_es.py",
+    "producer_sha": "70561c19ba361a17a6c7ca7c78af785c63866d75dd7d8f50513dbc1be56c92ed"
+  },
+  "f11_provincias.png": {
+    "figure_sha": "932dfc6dd073b701a4b6d8f4526dc31800df7024c2397be94f95da9d38cddb71",
+    "producer": "charts_publication.py",
+    "producer_sha": "2a978d2533dc98748085850ecd430c77be42dc0f0f6557e6a5bd1099384d9704"
+  },
+  "f12_hsds_vitals.png": {
+    "figure_sha": "242ae1c45b60fabc34053fb10038c695b9197855e49a43ad81ecc39cade8949c",
+    "producer": "charts_hsds.py",
+    "producer_sha": "90a9df47d9c02367887573fe9ce0b7b694548136324b027e3b762bdd3e7b1ac7"
+  },
+  "f13_model_e_population.png": {
+    "figure_sha": "ea9c6c9d35537a6dbd2e53f4b1e2cdca81a3d049a62e775baeb2d1ac442a1ddb",
+    "producer": "charts_hsds.py",
+    "producer_sha": "90a9df47d9c02367887573fe9ce0b7b694548136324b027e3b762bdd3e7b1ac7"
+  },
+  "f14_atribuible.png": {
+    "figure_sha": "47829cb80fe16a1f82366c0d76f2a70e9c525917c8b2450f348f5c6a9ccfaecc",
+    "producer": "charts_attributable.py",
+    "producer_sha": "bd4abb9c866babfb3ce1c7dea68fea517645b3bd8f17a343481099f72aa899a2"
+  },
+  "f14_atribuible_es.png": {
+    "figure_sha": "90f4c4c2ea19bf0ddc062849420d8e3950f67542e834de17ef6ea3769e00f407",
+    "producer": "charts_attributable.py",
+    "producer_sha": "bd4abb9c866babfb3ce1c7dea68fea517645b3bd8f17a343481099f72aa899a2"
+  },
+  "f15_migracion.png": {
+    "figure_sha": "718b32a292a21892e1db8eacdd173ec4aeea13a0d5a88106924a4550b06caf0a",
+    "producer": "charts_migration.py",
+    "producer_sha": "7f4fe95bfa1c86d67fcae10b0722984ebe3294d04008537f79b4de740194b7f2"
+  },
+  "f15_migracion_es.png": {
+    "figure_sha": "d7c4a8382b7298832b6a8c384f2e734ec1f3babbe47507ea75d3b08c3d42aedf",
+    "producer": "charts_migration.py",
+    "producer_sha": "7f4fe95bfa1c86d67fcae10b0722984ebe3294d04008537f79b4de740194b7f2"
+  },
+  "f1_poblacion.png": {
+    "figure_sha": "3c231a92a4d98044eb78b0ed3b209dfe54ef2cc9f5bd0a72976069c9f3a6a10e",
+    "producer": "charts_publication.py",
+    "producer_sha": "2a978d2533dc98748085850ecd430c77be42dc0f0f6557e6a5bd1099384d9704"
+  },
+  "f1_poblacion_es.png": {
+    "figure_sha": "98bbfc4d4b628df6abeb6057048fef7d2a8ba5d055386e259ca99970855aa38a",
+    "producer": "charts_manuscript_es.py",
+    "producer_sha": "70561c19ba361a17a6c7ca7c78af785c63866d75dd7d8f50513dbc1be56c92ed"
+  },
+  "f2_tijera.png": {
+    "figure_sha": "c4d167d31c8b70eb765fa215ffcf41a175f6702ddeb0aba44ef1497e260bf94a",
+    "producer": "charts_publication.py",
+    "producer_sha": "2a978d2533dc98748085850ecd430c77be42dc0f0f6557e6a5bd1099384d9704"
+  },
+  "f2_tijera_es.png": {
+    "figure_sha": "f5cf9a9656bb41d67374c591c0d8ff52f5aa11e13bac7a6ccfc4294efeb1fc75",
+    "producer": "charts_manuscript_es.py",
+    "producer_sha": "70561c19ba361a17a6c7ca7c78af785c63866d75dd7d8f50513dbc1be56c92ed"
+  },
+  "f3_cascada.png": {
+    "figure_sha": "027e13400b18e69c75578d31d30eaf8ec087c41396434fce95062414fa9b75bf",
+    "producer": "charts_publication.py",
+    "producer_sha": "2a978d2533dc98748085850ecd430c77be42dc0f0f6557e6a5bd1099384d9704"
+  },
+  "f3_cascada_es.png": {
+    "figure_sha": "6ebba908c894bb67234469378c0de11ead341746c911c8e9cdaf8b2f4619c9fa",
+    "producer": "charts_manuscript_es.py",
+    "producer_sha": "70561c19ba361a17a6c7ca7c78af785c63866d75dd7d8f50513dbc1be56c92ed"
+  },
+  "f4_envejece.png": {
+    "figure_sha": "89abc74aa41748483e698357578ac99b52107aef2f8d02be8a05bc178276bc71",
+    "producer": "charts_publication.py",
+    "producer_sha": "2a978d2533dc98748085850ecd430c77be42dc0f0f6557e6a5bd1099384d9704"
+  },
+  "f4_envejece_es.png": {
+    "figure_sha": "568222475b8e722fa37f711a6d9dd3bfbe9f71de7489183c806e861ed7bc1edb",
+    "producer": "charts_manuscript_es.py",
+    "producer_sha": "70561c19ba361a17a6c7ca7c78af785c63866d75dd7d8f50513dbc1be56c92ed"
+  },
+  "f5_esperanza.png": {
+    "figure_sha": "7d514bc7aef1aa12be09e41e1e3fac1b2aacd6ec35a4ce981a9cd0592f87a281",
+    "producer": "charts_publication.py",
+    "producer_sha": "2a978d2533dc98748085850ecd430c77be42dc0f0f6557e6a5bd1099384d9704"
+  },
+  "f7_triangulacion.png": {
+    "figure_sha": "699d9fc5ef27e55d99f65452b733725057d703116ced49e15e0fc7dbfe5ef4dd",
+    "producer": "charts_publication.py",
+    "producer_sha": "2a978d2533dc98748085850ecd430c77be42dc0f0f6557e6a5bd1099384d9704"
+  },
+  "f7_triangulacion_es.png": {
+    "figure_sha": "f3ae586a1844b2edb3b0d0e2d30d4d09788feb273b16bb60445af4f36c0af58f",
+    "producer": "charts_manuscript_es.py",
+    "producer_sha": "70561c19ba361a17a6c7ca7c78af785c63866d75dd7d8f50513dbc1be56c92ed"
+  },
+  "f9_exceso.png": {
+    "figure_sha": "9cfdd047be311fd756709da847146fa784585040b917eeb7ec91e6bdf489701d",
+    "producer": "charts_publication.py",
+    "producer_sha": "2a978d2533dc98748085850ecd430c77be42dc0f0f6557e6a5bd1099384d9704"
+  },
+  "f9_exceso_es.png": {
+    "figure_sha": "68fb772448fa4921c6f06c27c53742c3837f32f21dfb21c0e8fb2e6fd5b24052",
+    "producer": "charts_publication.py",
+    "producer_sha": "2a978d2533dc98748085850ecd430c77be42dc0f0f6557e6a5bd1099384d9704"
+  }
+}

@@ -27,6 +27,7 @@ Exit 1 on any failure. Run it before every commit that touches a manuscript.
 from __future__ import annotations
 
 import collections
+import hashlib
 import json
 import re
 import sys
@@ -98,6 +99,10 @@ RETIRED = {
     "19426": "superseded 2025 size effect (now 19,468)",
     "19400": "superseded 2025 size effect, rounded (now 19,500)",
 }
+
+
+def _sha(p: Path) -> str:
+    return hashlib.sha256(p.read_bytes()).hexdigest()
 
 
 def _tex(p: Path) -> str:
@@ -242,28 +247,34 @@ def main() -> int:
             print(f"  - {e}", file=sys.stderr)
         return 1
 
-    # 4. FIGURE FRESHNESS. Round 7 shipped an ES manuscript figure reading
-    # "8,0-8,9 M" and "Albizu-Campos (2023)" while the EN figure on the same
-    # paper said 8.0-8.7 and (2025): the committed PNG had been produced by code
-    # that no longer existed. Scanning chart SOURCE cannot see that -- only
-    # regenerating and comparing can. This checks mtime ordering as a cheap
-    # proxy; --regen does the real thing.
-    stale = []
-    _src_text = {s: s.read_text(encoding="utf-8", errors="ignore")
-                 for s in CHART_SCRIPTS}
-    for fig in sorted((ROOT / "figures").glob("*.png")):
-        # Only compare against the script that actually WRITES this figure,
-        # found by looking for its filename in the source.
-        for src, body in _src_text.items():
-            if fig.name not in body:
+    # 4. FIGURE FRESHNESS, by content rather than mtime.
+    # The first version of this check compared mtimes. That is meaningless after
+    # a clone or a rebase, both of which rewrite them -- a rebase made it flag
+    # five current figures as stale. Instead figures/MANIFEST.json records, for
+    # each figure, the hash of the figure AND of the script that produces it. A
+    # script edited without regenerating its figures changes one hash and not the
+    # other, which is exactly the defect that shipped an ES figure reading
+    # "8,0-8,9 M" while the EN figure on the same paper said 8.0-8.7.
+    man_f = ROOT / "figures" / "MANIFEST.json"
+    if not man_f.exists():
+        errors.append("figures/MANIFEST.json missing -- run scripts/figure_manifest.py")
+    else:
+        man = json.loads(man_f.read_text(encoding="utf-8"))
+        for name, rec in sorted(man.items()):
+            fig = ROOT / "figures" / name
+            src = ROOT / "scripts" / rec["producer"]
+            if not fig.exists():
+                errors.append(f"figure {name} in the manifest but missing on disk")
                 continue
-            if src.stat().st_mtime > fig.stat().st_mtime + 1:
-                stale.append(f"{fig.name} is older than its producer {src.name}")
-            break
-    if stale:
-        errors.extend(f"figure may be stale: {s} "
-                      f"(re-run the chart scripts and commit the PNGs)"
-                      for s in stale[:10])
+            if not src.exists():
+                continue
+            if _sha(src) != rec["producer_sha"]:
+                errors.append(
+                    f"{rec['producer']} changed since {name} was generated -- "
+                    f"re-run it and refresh figures/MANIFEST.json")
+            elif _sha(fig) != rec["figure_sha"]:
+                errors.append(
+                    f"figure {name} was edited without its producer changing")
 
     if errors:
         print(f"MANUSCRIPT VERIFICATION FAILED ({len(errors)} issues):", file=sys.stderr)
