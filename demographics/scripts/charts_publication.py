@@ -69,6 +69,12 @@ _U0 = _C["components"]["baseline_overstatement_U0"] / 1e6
 _MIG = _C["components"]["net_emigration_2022_2025"] / 1e6
 _NAT = _C["components"]["natural_decrease"] / 1e6
 # Top of the exit-correcting family (housing x occupancy), not a typed constant.
+# The shaded span and its label must come from the SAME numbers. They did not:
+# the shading used claims.yaml band_low_m/band_high_m (8.0/8.9) while the label
+# used the anchor maximum (8.7), so the region ended where its own label denied.
+_TRI_EXIT = [s["estimate"] for s in C["triangulation"]["sources"]
+             if isinstance(s.get("estimate"), (int, float)) and s["estimate"] < 9.0]
+_TRI_LO = min(_TRI_EXIT)
 _TRI_HI = max(s["estimate"] for s in C["triangulation"]["sources"]
               if isinstance(s.get("estimate"), (int, float))
               and s["estimate"] < 9.0)
@@ -340,8 +346,8 @@ def _triangulation(ax, lang: str) -> None:
         "estimand_not_validator": RED,
     }
     ax.axvspan(
-        C["triangulation"]["band_low_m"],
-        C["triangulation"]["band_high_m"],
+        _TRI_LO,
+        _TRI_HI,
         color=SOFT_GREEN,
         alpha=0.55,
         lw=0,
@@ -388,11 +394,11 @@ def _triangulation(ax, lang: str) -> None:
     ax.set_xlim(7.35, 11.55)
     if lang == "es":
         ax.set_xlabel("Población estimada (millones)")
-        ax.text(8.45, -1.15, f"anclas correctoras de salida 8,0–{_TRI_HI:.1f} M".replace(".",","), color=GREEN, fontsize=10.5, fontweight="bold", ha="center")
+        ax.text(8.45, -1.15, f"anclas correctoras de salida {_TRI_LO:.1f}–{_TRI_HI:.1f} M".replace(".",","), color=GREEN, fontsize=10.5, fontweight="bold", ha="center")
         title_block(ax, "Triangulación: ¿cuántos cubanos quedan?", "Los registros que no depuran emigrados actúan como techos.")
     else:
         ax.set_xlabel("Estimated population (millions)")
-        ax.text(8.45, -1.15, f"exit-correcting anchors 8.0–{_TRI_HI:.1f} M", color=GREEN, fontsize=10.5, fontweight="bold", ha="center")
+        ax.text(8.45, -1.15, f"exit-correcting anchors {_TRI_LO:.1f}–{_TRI_HI:.1f} M", color=GREEN, fontsize=10.5, fontweight="bold", ha="center")
         title_block(ax, "How many Cubans remain? Seven external anchors and this study", "Registers that do not purge emigrants act as ceilings.")
     ax.set_ylim(-1.6, len(rows) - 0.35)
 

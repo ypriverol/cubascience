@@ -98,4 +98,4 @@ Artifacts: `artifacts/model_e_summary.json`, `artifacts/hsds_scores.json`.
 
 ## License
 
-Content: **CC0 1.0** (see `LICENSE`; an earlier version of this line said CC0 1.0, which no shipped licence text supported). Code: repository license (CC0 1.0). ONEI tables: public official data.
+Content: **CC0 1.0** (see `LICENSE`). Code: repository license (CC0 1.0). ONEI tables: public official data.
