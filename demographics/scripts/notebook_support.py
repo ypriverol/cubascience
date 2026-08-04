@@ -18,6 +18,7 @@ _claims = get_claims()
 _v = _claims["vital"]
 
 OFFICIAL_2019 = int(_v["official_pop_2019"])
+OFFICIAL_2021 = 11_113_215  # official end-2021 stock: the single base the paper uses
 BIRTHS_2020_25 = int(_v["births_2020_2025"])
 DEATHS_2020_25 = int(_v["deaths_2020_2025_registered"])
 R_MIG_ONEI = int(_v["onei_net_mig_2020_2025"])
@@ -44,26 +45,33 @@ MODEL_SUMMARY = [
 ]
 
 
-def run_model_a(n: int = 100_000, seed: int = 42) -> dict[str, np.ndarray]:
-    """Conservative Monte Carlo (Model A style). Paper uses n=2e5."""
-    rng = np.random.default_rng(seed)
-    z = rng.multivariate_normal([0, 0], [[1, 0.5], [0.5, 1]], size=n)
-    u1, u2 = norm.cdf(z[:, 0]), norm.cdf(z[:, 1])
-    b = beta_dist.ppf(u1, 1.5, 3.0)
-    b2 = beta_dist.ppf(u2, 1.0, 3.5)
-    u0 = 620_000 * b
-    m = 1 + 0.55 * b2
-    births = BIRTHS_2020_25 * rng.normal(1.0, 0.01, n)
-    dmult = np.clip(rng.normal(1.015, 0.012, n), 0.99, 1.06)
-    deaths = DEATHS_2020_25 * dmult
-    mig = R_MIG_ONEI * m
-    decline = (deaths - births) + mig
-    base_true = OFFICIAL_2019 - u0
+def run_model_a(n: int | None = None, seed: int | None = None) -> dict[str, np.ndarray]:
+    """
+    Conservative-scenario spread, delegated to the shipped pipeline.
+
+    This used to be a hand-rolled recreation: a Gaussian copula (rho=0.5) over a
+    2019 base with its own priors. It printed a median of 9.05 M -- a figure in
+    no scenario -- labelled a "90% CI", which is the one label the paper forbids.
+    Recreations drift; the notebook now runs the same code the paper does, so it
+    cannot disagree with it.
+    """
+    import model_population as mp
+
+    rng = np.random.default_rng(mp.SEED if seed is None else seed)
+    s = mp.SCENARIOS["conservative"]
+    b = mp.band(s, rng)
+    draws = rng.random(0)  # kept for signature compatibility; unused
+    del draws
+    p2025 = np.array([b["pop_end_2025_p05"], b["pop_end_2025_median"],
+                      b["pop_end_2025_p95"]])
+    decline = mp.P2021 - p2025
     return {
         "decline": decline,
-        "pct": 100 * decline / base_true,
-        "p2025": base_true - decline,
-        "mig": mig,
+        "pct": 100 * decline / mp.P2021,
+        "p2025": p2025,
+        "mig": np.array([mp.R * (1 + mp._mean(*s["M"]))]),
+        "note": "conservative scenario, prior-predictive spread (NOT a confidence "
+                "interval; no coverage property)",
     }
 
 

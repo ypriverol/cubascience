@@ -336,8 +336,6 @@
     "script": "scripts/hsds_population.py"
   },
   "triangulation": {
-    "band_low_m": 8.0,
-    "band_high_m": 8.9,
     "note": "Model D is the study estimand and must not appear as external validation of itself. Albizu/housing share exit-correcting assumptions with the migration narrative \u2014 soft independence only.",
     "unsourced_anchors": [
       {
@@ -437,7 +435,7 @@
         "explanation_given": "none",
         "source": "Latinoamerica 21 / El Universal, 'El extrano caso de los 9 mil muertos desaparecidos en Cuba'",
         "effect_on_excess_2022": "12,831 (published) -> ~21,800 (pre-revision, i.e. published + 8,951)",
-        "effect_on_post_covid_2022_2025": "74,900 -> 84,100"
+        "effect_on_post_covid_2022_2025": "74,900 -> 83,800"
       },
       {
         "year": 2023,

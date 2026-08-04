@@ -32,4 +32,4 @@ Issues and PRs welcome: https://github.com/ypriverol/cubascience/issues
 
 ## License
 
-See [`LICENSE`](LICENSE). Project content for demographics is CC BY 4.0; code follows the repository license.
+See [`LICENSE`](LICENSE). Project content for demographics is CC0 1.0; code follows the repository license.
