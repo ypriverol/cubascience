@@ -554,7 +554,7 @@
         "median_age_stayers": 45
       },
       "finding": "Only median_age_stayers (45) is verifiable: ONEI Indicadores 2025 table 6 gives a median age of 45.0 for the whole resident population, which is not the same concept as \"stayers\" but is the figure the manuscript uses. The 15/77/8 split and median_age_leavers (30) trace to the Albizu-Campos reports plus a circular reference back to this file. They are expert priors, not measurements.\n",
-      "action": "Reclassified as expert_prior. The 8% figure is load-bearing (it sets elderly emigration in the cohort projection), so a sensitivity is recorded: moving it from 8% to 0-16% shifts 2025 attributable mortality by roughly +/-1,500, well inside the 90% band.\n",
+      "action": "Reclassified as expert_prior. The 8% figure is load-bearing (it sets elderly emigration in the cohort projection), so a sensitivity is recorded: moving it from 8% to 0-16% shifts 2025 excess mortality by +/-4,845 and the 2022-2025 cumulative by +/-12,025 -- about a quarter and a fifth of the respective prior sensitivity ranges, NOT the +/-1,500 an earlier version of this file claimed. Corrected 2026-08-04.\n",
       "class": "expert_prior"
     },
     "estimand_rename_2026_08": {

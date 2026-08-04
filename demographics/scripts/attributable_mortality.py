@@ -85,7 +85,7 @@ OFFICIAL_END_M = {2019: 11.19, 2020: 11.18, 2021: 11.11, 2022: 11.09,
                   2023: 10.06, 2024: 9.75, 2025: 9.43, 2026: 9.12}
 
 # Model D living-population path (millions, end of year).
-MODEL_D_ANCHORS_M = {2021: 10.80, 2025: 8.59, 2026: 8.29}
+MODEL_D_ANCHORS_M = {2021: 10.80, 2025: 8.58, 2026: 8.29}
 
 # Net emigration by year (persons) used to age the elderly cohorts. Official
 # branch: ONEI implied. Model D branch: scaled by the median M.
@@ -457,6 +457,22 @@ def run() -> dict:
             "population_by_group": {g: int(round(v)) for g, v in base["pops"].items()},
         },
         "baseline_sensitivity": _baseline_sensitivity(base),
+        # The 8% elderly-emigrant share is an expert prior and it is load-bearing:
+        # it is NOT a "held fixed" elderly count. Values recomputed by rerunning
+        # this script with claims.selectivity.emigrants_60_plus_pct set to 0/8/16.
+        "elderly_share_sensitivity": {
+            "parameter": "claims.selectivity.emigrants_60_plus_pct",
+            "class": "expert_prior",
+            "excess_2025": {"0pct": 23668, "8pct_as_used": 28501, "16pct": 33346},
+            "cumulative_2022_2025": {"0pct": 62836, "8pct_as_used": 74847,
+                                     "16pct": 86872},
+            "swing_2025": 4845,
+            "swing_cumulative": 12025,
+            "note": "About a quarter of the 2025 prior sensitivity range and a "
+                    "fifth of the cumulative one, from a single expert prior. "
+                    "Raising the share RAISES the excess: a genuinely fixed "
+                    "elderly count (0%) gives 23,668, not more.",
+        },
         "counterfactual_sensitivity": counterfactual_sensitivity(
             base,
             [r for r in results if r["year"] == 2025][0][

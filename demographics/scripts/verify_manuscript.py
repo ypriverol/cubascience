@@ -38,6 +38,12 @@ from constants import ARTIFACTS, ROOT, get_claims  # noqa: E402
 MS = ROOT / "manuscript"
 EN = MS / "en" / "latex" / "main.tex"
 ES = MS / "es" / "latex" / "main.tex"
+# Everything the README advertises as a public product. Retired values must not
+# survive in any of them -- they contradicted the paper for three rounds because
+# only the two main .tex files were ever checked.
+COMPANIONS = [MS / "en" / "latex" / "supplement.tex",
+              ROOT / "demographics.ipynb"] + \
+    sorted((ROOT / "infographic").rglob("*.html"))
 
 # Values the project has retired. Any reappearance in a manuscript is drift.
 RETIRED = {
@@ -140,11 +146,18 @@ def main() -> int:
             errors.append(f"parity: '{tok}' appears {ne.get(tok,0)}x in EN, "
                           f"{ns.get(tok,0)}x in ES")
 
-    # 3. RETIRED
+    # 3. RETIRED -- across the manuscripts AND every advertised companion product
+    targets = [("EN", en), ("ES", es)]
+    for c in COMPANIONS:
+        if c.exists():
+            try:
+                targets.append((c.name, _tex(c)))
+            except Exception:
+                continue
     for bad, why in RETIRED.items():
-        for lang, txt in (("EN", en), ("ES", es)):
+        for label, txt in targets:
             if re.search(rf"(?<![\d.]){re.escape(bad)}(?![\d])", txt):
-                errors.append(f"{lang}: retired value {bad} reappeared -- {why}")
+                errors.append(f"{label}: retired value {bad} reappeared -- {why}")
 
     if errors:
         print(f"MANUSCRIPT VERIFICATION FAILED ({len(errors)} issues):", file=sys.stderr)
@@ -152,8 +165,10 @@ def main() -> int:
             print(f"  - {e}", file=sys.stderr)
         return 1
 
+    n_comp = sum(1 for c in COMPANIONS if c.exists())
     print(f"manuscript verification OK — {len(build_registry())} headline "
-          f"quantities matched in both languages; numeral parity clean")
+          f"quantities matched in both languages; numeral parity clean; "
+          f"{n_comp} companion products scanned for retired values")
     return 0
 
 

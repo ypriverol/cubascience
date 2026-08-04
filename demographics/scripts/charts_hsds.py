@@ -106,17 +106,19 @@ def chart_population() -> Path:
 
     labels = []
     pops = []
-    for m in claims["models_summary"]:
-        labels.append(m["id"])
+    # Model E is retired; this figure survives only as a historical companion in
+    # the supplement, so it plots the current scenarios beside E's retired value.
+    for key, m in claims["population_scenarios"]["scenarios"].items():
+        labels.append(key.replace("_onei_face_value", "").capitalize())
         pops.append(m["pop_end_2025_m"])
-    labels.append("E")
+    labels.append("E (retired)")
     pops.append(e["pop_2025"]["median"] / 1e6)
 
     fig, ax = plt.subplots(figsize=(8.0, 4.8))
     colors = [INK2] * (len(labels) - 1) + [RED]
     # highlight D
     for i, lab in enumerate(labels):
-        if lab == "D":
+        if lab == "Central":
             colors[i] = BLUE
     ax.bar(labels, pops, color=colors, edgecolor="white")
     ax.axhline(9.43, color=INK2, ls="--", lw=1, label="ONEI end-2025 (9.43M)")

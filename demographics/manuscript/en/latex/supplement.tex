@@ -23,6 +23,9 @@ Scenario audit of Cuba's 2021--2026 population decline}
 \begin{document}
 \maketitle
 
+\noindent\textbf{Status.} Model~E is \emph{retired}. It is documented here only for traceability: it was superseded by the age-standardised excess-mortality decomposition in the main paper, which estimates the same quantity from observed age denominators rather than a hand-weighted dimensionless index. Its figures are historical and are not current claims.
+
+
 \noindent These materials accompany the main preprint.
 Models~A--D are scenarios; Model~D is an illustrative central path, not an identified estimator.
 Model~E is provisional and is not preferred for public claims~\citep{repo,modele_supp}.
@@ -42,7 +45,7 @@ Quantity & Class & Source & Status \\
 ONEI $B$, $D$, 2022--25 & observed & Anuario / Indicadores & canonical \\
 Identity $R$ & derived & \texttt{model\_from\_2021.py} & canonical \\
 Scenario envelope 1.8--2.4 M & assumed & Models A--D priors & primary \\
-Model D 8.59 M & assumed & Model D margins & illustrative \\
+Central scenario 8.58 M & assumed & central margins & scenario value \\
 Destination floor 1.05 M & derived & \texttt{destinations\_settled.csv} & ledger \\
 Attributable mortality (2024--25 $\sim$50k) & derived & \texttt{attributable\_mortality.py} & age-standardised \\
 Crude 2019-CDR residual $\sim$77k & derived & \texttt{mortality\_schedule\_residual.py} & \emph{superseded} \\
@@ -84,7 +87,7 @@ The spirit follows excess-mortality reconstruction under incomplete registration
 \begin{itemize}
   \item Ageing enters both the expected-death schedule and the $S_t$ bucket (double-count risk).
   \item ``Ageing schedule'' is currently a two-factor CDR proxy, not $\sum_a m_a P_a$.
-  \item Model~E's $U_0$ prior is much smaller than Model~D's; the higher end-2025 stock ($\sim$8.96~M vs 8.59~M) is therefore partly a \emph{different baseline prior}, not independent vital evidence.
+  \item Model~E's $U_0$ prior is much smaller than the central scenario's; the higher end-2025 stock ($\sim$8.96~M vs 8.58~M) is therefore partly a \emph{different baseline prior}, not independent vital evidence.
   \item Expert-coded HSDS inputs (\texttt{hsds\_features.csv}) use subjective feature weights; full sensitivity mapping is pending.
   \item Transfer from generic excess-mortality methods~\citep{karlinsky2021} to Cuban reporting institutions is not validated out of sample.
   \item $P^*$ remains migration-identified under the reconstruction path.
@@ -118,7 +121,7 @@ Model & Main assumption & Loss (M) & \% & Pop.\ (M) \\
 A · conservative & ONEI-anchored & 1.80 & 16.4 & 9.16 \\
 B · crisis-adjusted & under-reg.\ + independent migration & 2.19 & 20.4 & 8.57 \\
 C · upper stress & analog upper bound & 2.41 & 22.6 & 8.26 \\
-D · sentinel (illustrative) & IMR check + migration priors near B & 2.21 & 20.5 & 8.59 \\
+Central (crisis-adjusted) & migration prior above ONEI + bounded $D_{\mathrm{fac}}$ & 2.53 & 22.8 & 8.58 \\
 E · vital reconstr.\ (prov.) & HSDS $\to B^*,D^*$ & 2.13 & 19.2 & 8.96 \\
 \bottomrule
 \end{tabular}

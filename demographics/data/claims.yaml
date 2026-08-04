@@ -458,8 +458,10 @@ sourcing_resolutions:
     action: >
       Reclassified as expert_prior. The 8% figure is load-bearing (it sets
       elderly emigration in the cohort projection), so a sensitivity is recorded:
-      moving it from 8% to 0-16% shifts 2025 attributable mortality by roughly
-      +/-1,500, well inside the 90% band.
+      moving it from 8% to 0-16% shifts 2025 excess mortality by +/-4,845 and
+      the 2022-2025 cumulative by +/-12,025 -- about a quarter and a fifth of
+      the respective prior sensitivity ranges, NOT the +/-1,500 an earlier
+      version of this file claimed. Corrected 2026-08-04.
     class: expert_prior
 
   estimand_rename_2026_08:
