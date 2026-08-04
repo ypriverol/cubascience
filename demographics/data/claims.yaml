@@ -209,7 +209,7 @@ attributable_mortality:
     note: >
       Change in annual deaths vs 2019 = size + ageing + rate, exactly per draw.
       A ~2.0M smaller resident population should have cut ~19,500 deaths a year;
-      ageing added ~22,400; health-system deterioration added ~28,500. The two
+      ageing added ~22,400; the residual against the 2019 schedule added ~28,500. The two
       upward terms sum to more than the observed 31,300 rise because the smaller
       population pulls the other way.
   ageing_share_of_gross_increase_2025_pct: 44

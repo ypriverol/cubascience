@@ -2,6 +2,8 @@
 """Regenerate publication charts: Spanish infographic + English manuscript (seaborn style, 600 dpi MS)."""
 from __future__ import annotations
 
+import json
+
 import sys
 from pathlib import Path
 
@@ -13,7 +15,7 @@ import seaborn as sns
 _SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(_SCRIPTS))
 
-from constants import get_claims  # noqa: E402
+from constants import ARTIFACTS, get_claims  # noqa: E402
 from plot_style import (  # noqa: E402
     BLUE,
     CEIL,
@@ -43,6 +45,19 @@ VIT = C["vital_series"]
 POP_OFF = C["population_official_m"]
 PATH = C["model_d_path_m"]
 XM = C["excess_mortality"]["provisional_schedule_residual_2024_2025"]
+
+# Scenario values are read from the artifact, never typed. Round 6 found 22.7,
+# 8.59 and a 2.2 M waterfall total hard-coded here and rendered into the shipped
+# PDFs, contradicting the LaTeX caption on the same page.
+_PS = json.loads((ARTIFACTS / "population_scenarios.json").read_text(encoding="utf-8"))
+SC = _PS["scenarios"]
+_C = SC["central"]
+_GAP = _C["gap_vs_official_2021"] / 1e6
+_POP = _C["pop_end_2025"] / 1e6
+_EMIG = _C["emigration_share_of_gap_pct"]
+_U0 = _C["components"]["baseline_overstatement_U0"] / 1e6
+_MIG = _C["components"]["net_emigration_2022_2025"] / 1e6
+_NAT = _C["components"]["natural_decrease"] / 1e6
 
 
 def _pop_series(ax, lang: str) -> None:
@@ -115,7 +130,7 @@ def _pop_series(ax, lang: str) -> None:
         title_block(
             ax,
             "Despoblación acelerada de Cuba, 2021–2026",
-            "Brecha vs el stock oficial de 2021: 22.7% en 2025, ~25% hacia 2026 (escenario central).",
+            f"Brecha vs el stock oficial de 2021: {SC['central']['gap_pct']:.1f}% en 2025, ~25% hacia 2026 (escenario central).",
         )
     else:
         ax.annotate("official series", (2024.6, 10.3), color=BLUE, fontsize=12, fontweight="bold", ha="center")
@@ -125,7 +140,7 @@ def _pop_series(ax, lang: str) -> None:
         title_block(
             ax,
             "Cuba’s 2021–2026 population decline",
-            "Gap vs the official 2021 stock: 22.7% by 2025, ~25% by 2026 (central scenario).",
+            f"Gap vs the official 2021 stock: {SC['central']['gap_pct']:.1f}% by 2025, ~25% by 2026 (central scenario).",
         )
 
 
@@ -327,8 +342,7 @@ def _triangulation(ax, lang: str) -> None:
         "ONEI official": "ONEI — oficial",
         "Housing × occupancy": "Viviendas × ocupación",
         "Albizu-Campos (2023)": "Albizu-Campos (2023)",
-        "This study (Model D)": "Este estudio (Modelo D)",
-        "This study (Model D scenario)": "Este estudio (escenario D)",
+        "This study (central scenario)": "Este estudio (escenario central)",
         "Albizu-Campos (2024)": "Albizu-Campos (2024)",
     }
     for i, (lab, val, role) in zip(y, rows):
@@ -481,10 +495,13 @@ def _waterfall(ax, lang: str = "en") -> None:
         labels = ["Population\nend-2021", "Net\nemigration", "Natural\ndecrease",
                   "Baseline\nadjustment", "Living pop.\nend-2025"]
         ylab = "Population (millions)"
-        title = "Where 2.2 million people went (2021→2025)"
-        sub = ("Scenario D median decomposition under fixed priors "
-               "(~91% emigration); not identified attribution.")
-    steps = list(zip(labels, [11.11, -2.01, -0.18, -0.33, 8.59],
+        title = f"Where {_GAP:.2f} million people went (2021\u21922025)"
+        sub = (f"Central-scenario decomposition under fixed priors "
+               f"(~{_EMIG:.0f}% emigration); not identified attribution.")
+    # Driven from population_scenarios.json. These were hard-coded, so the
+    # shipped figure showed 8.59 and a 2.2 M total while the caption on the
+    # same page said 8.58 and 2.53 M.
+    steps = list(zip(labels, [11.113, -_MIG, -_NAT, -_U0, _POP],
                      ["base", "neg", "neg", "neg", "base"]))
     running = steps[0][1]
     for i, (lab, val, kind) in enumerate(steps):

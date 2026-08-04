@@ -52,15 +52,25 @@ COMPANIONS = [MS / "en" / "latex" / "supplement.tex",
               ROOT / "README.md",
               ROOT.parent / "README.md",
               MS / "en" / "cuba-depopulation-2021-2026.md",
-              MS / "es" / "Cuba_despoblacion_2021-2026_manuscrito.md"] + \
+              # Round 6: this path was wrong, and `if c.exists()` SKIPPED it
+              # silently -- the gate reported 12 products scanned and the ES
+              # markdown manuscript had never been checked once. Missing
+              # companions now fail instead of vanishing.
+              MS / "es" / "cuba-despoblacion-2021-2026.md"] + \
     sorted((ROOT / "infographic").rglob("*.html"))
+
+# Round 6: retired values had migrated into the FIGURES, where no check looked.
+# charts_publication.py hard-coded 22.7 and a [11.11, -2.01, -0.18, -0.33, 8.59]
+# waterfall, so the shipped PDFs displayed values their own captions contradicted
+# on the same page. The chart scripts draw the manuscript; they are companions.
+CHART_SCRIPTS = sorted(p for p in (ROOT / "scripts").glob("*.py")
+                       if p.name.startswith(("charts", "chart_", "ig_", "render_")))
 
 # Values the project has retired. Any reappearance in a manuscript is drift.
 RETIRED = {
     "8.59": "central end-2025 population (now 8.58)",
     "2.52": "central gap (now 2.53)",
     "8.30": "central end-2026 population (now 8.29)",
-    "20.5": "corrected-base loss percentage (base retired)",
     "1.94": "old envelope low (now 1.97)",
     "2.80": "old envelope high (now 2.79)",
     "17.4": "old envelope low pct (now 17.8)",
@@ -72,7 +82,7 @@ RETIRED = {
     # The retired A/B/C scenario table, which survived in the supplement and the
     # infographics for five rounds because only individual headline numbers were
     # ever listed here.
-    # The retired percentages (16.4 / 20.4 / 22.6) are deliberately NOT listed:
+    # The retired percentages (16.4 / 20.4 / 20.5 / 22.6) are deliberately NOT listed:
     # 20.4 is also the live 2019 elderly share, so a bare-numeral rule would fire
     # on a correct sentence. They are reachable only through the scenario table,
     # which the loss and population values below already cover.
@@ -91,8 +101,16 @@ RETIRED = {
 
 
 def _tex(p: Path) -> str:
-    """Strip comments: a retired value in a comment is not a claim."""
-    return re.sub(r"(?<!\\)%.*", "", p.read_text(encoding="utf-8"))
+    """
+    Strip comments: a retired value in a comment is not a claim.
+
+    Python sources use `#`, and the chart scripts document WHY a value was
+    retired -- without this, the gate fires on its own explanatory comments.
+    """
+    src = p.read_text(encoding="utf-8")
+    if p.suffix == ".py":
+        return re.sub(r"#.*", "", src)
+    return re.sub(r"(?<!\\)%.*", "", src)
 
 
 # ONEI table numbers are citations, not quantities. The two languages phrase
@@ -204,12 +222,15 @@ def main() -> int:
 
     # 3. RETIRED -- across the manuscripts AND every advertised companion product
     targets = [("EN", en), ("ES", es)]
-    for c in COMPANIONS:
-        if c.exists():
-            try:
-                targets.append((c.name, _tex(c)))
-            except Exception:
-                continue
+    for c in COMPANIONS + CHART_SCRIPTS:
+        if not c.exists():
+            errors.append(f"companion missing: {c} -- a listed product that does "
+                          f"not exist is a broken path, not an absent check")
+            continue
+        try:
+            targets.append((c.name, _tex(c)))
+        except Exception as exc:
+            errors.append(f"companion unreadable: {c} ({exc})")
     for bad, why in RETIRED.items():
         for label, txt in targets:
             if re.search(rf"(?<![\d.]){re.escape(bad)}(?![\d])", txt):
@@ -221,10 +242,10 @@ def main() -> int:
             print(f"  - {e}", file=sys.stderr)
         return 1
 
-    n_comp = sum(1 for c in COMPANIONS if c.exists())
     print(f"manuscript verification OK — {len(build_registry())} headline "
           f"quantities matched in both languages; numeral parity clean; "
-          f"{n_comp} companion products scanned for retired values")
+          f"{len(COMPANIONS)} companion products and {len(CHART_SCRIPTS)} chart "
+          f"scripts scanned for retired values")
     return 0
 
 

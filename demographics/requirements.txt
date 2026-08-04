@@ -10,3 +10,9 @@ pyyaml==6.0.3
 xlrd==2.0.2
 openpyxl==3.1.5
 pytest==8.1.1
+
+# Only needed to re-render the infographic PNG/PDF from the HTML
+# (scripts/render_ig.py). Round 6 found the shipped PNGs two revisions
+# behind their own HTML because this was undeclared and unrunnable.
+# After installing: python3 -m playwright install chromium
+playwright==1.48.0

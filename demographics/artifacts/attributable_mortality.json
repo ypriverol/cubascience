@@ -57,31 +57,31 @@
   "counterfactual_sensitivity": {
     "cuba_trend_contiguous_upper95": {
       "expected_2025": 121920,
-      "attributable_2025": 18471
+      "excess_2025": 18471
     },
     "cuba_trend_sparse_2006_2019": {
       "expected_2025": 113672,
-      "attributable_2025": 26718
+      "excess_2025": 26718
     },
     "cuba_trend_contiguous_2013_2019": {
       "expected_2025": 116713,
-      "attributable_2025": 23677
+      "excess_2025": 23677
     },
     "flat_2019_schedule_AS_USED": {
       "expected_2025": 112076,
-      "attributable_2025": 28315
+      "excess_2025": 28315
     },
     "improvement_0.5pct_yr": {
       "expected_2025": 108755,
-      "attributable_2025": 31635
+      "excess_2025": 31635
     },
     "improvement_1.0pct_yr": {
       "expected_2025": 105517,
-      "attributable_2025": 34873
+      "excess_2025": 34873
     },
     "improvement_1.5pct_yr_regional_norm": {
       "expected_2025": 102360,
-      "attributable_2025": 38031
+      "excess_2025": 38031
     },
     "cumulative_2022_2025": {
       "cuba_trend_contiguous_upper95": 45245,
@@ -123,7 +123,7 @@
       "verdict": "Neither slope differs from zero at conventional levels; the flat 2019 anchor is a convention, not a finding."
     },
     "dfac_symmetric_variant": {
-      "attributable_2025": 24878,
+      "excess_2025": 24878,
       "note": "Dfac applied to the 2019 anchor as well. Lower than the headline because only a CHANGE in completeness since 2019 then counts as excess. The headline treats Dfac as crisis-induced deterioration."
     },
     "_range": {
@@ -432,7 +432,7 @@
   "caveats": [
     "Age structure is observed only through 2022 (ONEI 3.3); 2023-2026 is a cohort projection whose error grows with horizon and is carried as an explicit noise term.",
     "The 2019 baseline embeds no counterfactual improvement in Cuban mortality after 2019.",
-    "Attributable deaths are an association with the crisis period, not a cause-of-death attribution; blackouts, arboviruses, drug shortages and delayed care are not separately identified.",
+    "Excess deaths against the 2019 schedule are an association with the crisis period, not a cause-of-death attribution; blackouts, arboviruses, drug shortages and delayed care are not separately identified.",
     "Registered deaths for 2026 are a scenario continuation (+4% on 2025).",
     "Dfac is shared with Model D, so this is not independent of the headcount."
   ]

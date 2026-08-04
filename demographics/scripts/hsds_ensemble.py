@@ -75,7 +75,7 @@ Preferred public model remains **{claims['meta']['preferred_scenario']}**.
     # Keep machine summary from population run
     print(md)
     print(f"wrote {OUT_MD}")
-    print(f"summary {ARTIFACTS / 'model_e_summary.json'}")
+    print(f"summary {ARTIFACTS / 'model_e_ensemble_summary.json'}")
 
 
 if __name__ == "__main__":

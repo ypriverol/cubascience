@@ -10,15 +10,25 @@ validated, and it can be: run it forward from observed 2019 and compare against
 observed 2020, 2021 and 2022 -- exactly three years, the same horizon the
 forward projection runs past 2022.
 
-It overshoots, and the error is one-sided and grows with horizon. The model
-carried projection error as a symmetric +/-1.5%/yr draw, which by construction
-cannot represent a bias. This script measures the bias so the manuscript can
-state it with a sign instead of claiming the noise term absorbs it.
+It overshoots. The model carried projection error as a symmetric +/-1.5%/yr
+draw, which by construction cannot represent a bias, so the direction is worth
+stating.
 
-Direction of the consequence: an overshooting 60+ count raises expected deaths
-E_t, and excess = D_t * Dfac - E_t, so the bias makes the reported excess too
-SMALL. The headline is conservative on this axis. That is worth stating plainly
-rather than leaving a reader to discover the rule is untested.
+WHAT THIS DOES NOT MEASURE. An earlier version of this script read the overshoot
+as the cohort-flow rule's bias and quoted it in the manuscript as a death count.
+That was wrong. Re-running with each year's ACTUAL age-specific rates instead of
+the 2019 schedule collapses the 8%-arm horizon-2 error from +49,399 to -101: the
+overshoot is dominated by unmodelled 2020-2022 excess mortality (+48,120 of it
+the 2021 COVID peak), which the 2019 schedule does not contain, not by the
+cohort flow. A window whose middle year is a pandemic cannot calibrate a
+2023-2026 horizon where the paper's own estimates put annual excess at 12k-29k.
+
+The MECHANISM is real for the forward years and survives: depletion at the 2019
+schedule under-depletes the elderly stock whenever actual mortality runs above
+2019, which raises E_t and so lowers the reported excess. But the paper also
+applies the 8% elderly share to the 2023 catch-up figure, which pushes the other
+way by a comparable amount. This script therefore reports the SIGN and both
+diagnostic arms, and declines to publish a magnitude.
 
 Writes artifacts/projection_backtest.json.
 """
@@ -70,10 +80,17 @@ def run() -> dict:
     obs = {y: mean_population_by_age(y) for y in range(2019, 2023)}
 
     arms = {}
-    for label, share in (("no_migration", 0.0), ("elderly_share_8pct", 0.08)):
+    # Two rate regimes. The 2019-schedule arm is what the forward projection
+    # actually does; the actual-rates arm isolates the cohort-flow rule from the
+    # excess mortality the 2019 schedule cannot see.
+    for label, share, actual in (("no_migration", 0.0, False),
+                                 ("elderly_share_8pct", 0.08, False),
+                                 ("no_migration_actual_rates", 0.0, True),
+                                 ("elderly_share_8pct_actual_rates", 0.08, True)):
         cur, rows = dict(obs[2019]), []
         for year in (2020, 2021, 2022):
-            cur = _step(cur, rates, BACKTEST_MIG * share)
+            yr_rates = am._load_rates(year)["rates_per_1000"] if actual else rates
+            cur = _step(cur, yr_rates, BACKTEST_MIG * share)
             proj = cur["age_60_64"] + cur["age_65_plus"]
             truth = obs[year]["age_60_plus"]
             rows.append({
@@ -86,33 +103,45 @@ def run() -> dict:
             })
         arms[label] = rows
 
-    # Translate the horizon-3 error into deaths, which is the quantity the
-    # manuscript reports. The 60+ groups carry ~82% of all deaths.
-    h3 = arms["elderly_share_8pct"][-1]
-    death_bias = h3["error"] * rates["age_65_plus"] / 1000.0
-    h3_nomig = arms["no_migration"][-1]
-    death_bias_nomig = h3_nomig["error"] * rates["age_65_plus"] / 1000.0
+    # Unmodelled 60+ excess in the back-test window, which is what the
+    # 2019-schedule arms are mostly picking up.
+    unmodelled = {}
+    for year in (2020, 2021, 2022):
+        b = am._load_rates(year)
+        exp = sum(rates[g] / 1000.0 * obs[year][g]
+                  for g in ("age_60_64", "age_65_plus"))
+        act = b["deaths"]["age_60_64"] + b["deaths"]["age_65_plus"]
+        unmodelled[year] = round(act - exp)
 
     return {
         "what": "cohort projection rule run forward from observed 2019, "
                 "compared against observed 2020-2022 (ONEI 3.3)",
         "horizon": "three years, matching 2023->2025 past the 2022 anchor",
         "arms": arms,
+        "unmodelled_60_plus_excess_deaths": unmodelled,
         "finding": {
-            "direction": "the rule OVERSHOOTS the 60+ count at every horizon, "
-                         "and the error grows monotonically",
-            "horizon_3_error_pct": {
-                "no_migration": h3_nomig["error_pct"],
-                "elderly_share_8pct": h3["error_pct"],
-            },
-            "implied_expected_death_bias_2025": {
-                "no_migration": round(death_bias_nomig),
-                "elderly_share_8pct": round(death_bias),
-            },
-            "effect_on_headline": "excess = D*Dfac - E, so an overshooting E "
-                                  "makes the reported excess too SMALL. The "
-                                  "2025 headline is conservative on this axis "
-                                  "by roughly the death figures above.",
+            "direction": "under the 2019 schedule the rule OVERSHOOTS the 60+ "
+                         "count at every horizon",
+            "what_the_overshoot_mostly_is": "unmodelled 2020-2022 excess "
+                                            "mortality, not cohort-flow error: "
+                                            "with each year's actual rates the "
+                                            "8%-arm horizon-2 error collapses "
+                                            "from +49,399 to -101, and 2021 "
+                                            "alone contributes +48,120 "
+                                            "unmodelled 60+ excess deaths",
+            "magnitude_is_NOT_reported": "a window whose middle year is a "
+                                         "pandemic cannot calibrate a 2023-2026 "
+                                         "horizon. An earlier version published "
+                                         "a death count from this exercise; it "
+                                         "was withdrawn.",
+            "mechanism_that_survives": "depletion at the 2019 schedule "
+                                       "under-depletes whenever actual mortality "
+                                       "exceeds 2019, raising E_t and so lowering "
+                                       "the reported excess. The 8% elderly share "
+                                       "applied to the 2023 catch-up pushes the "
+                                       "other way by a comparable amount, so we "
+                                       "do not claim a net direction for the "
+                                       "projection as configured.",
             "why_the_noise_term_does_not_cover_it": "projection error entered "
                                                     "as a symmetric N(0, 1.5%) "
                                                     "draw, which has zero mean "
@@ -132,11 +161,12 @@ def main() -> None:
             print(f"  {r['year']}  proj {r['projected_60_plus']:>10,}"
                   f"  obs {r['observed_60_plus']:>10,}"
                   f"  err {r['error']:>+9,} ({r['error_pct']:+.2f}%)")
-    f = out["finding"]
-    print(f"\nBias is one-sided and grows. Implied 2025 expected-death bias: "
-          f"{f['implied_expected_death_bias_2025']['elderly_share_8pct']:,} to "
-          f"{f['implied_expected_death_bias_2025']['no_migration']:,} deaths.")
-    print("The reported excess is too SMALL by that amount — conservative.")
+    print("\nunmodelled 60+ excess deaths in the window:",
+          ", ".join(f"{y} {v:+,}" for y, v in
+                    out["unmodelled_60_plus_excess_deaths"].items()))
+    print("\nThe 2019-schedule overshoot is mostly that excess, not cohort-flow")
+    print("error. No magnitude is published from this exercise; the sign of the")
+    print("depletion mechanism is stated in the manuscript and nothing more.")
     print("wrote", OUT)
 
 
