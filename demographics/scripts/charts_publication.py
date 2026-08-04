@@ -44,7 +44,17 @@ SEL = C["selectivity"]
 VIT = C["vital_series"]
 POP_OFF = C["population_official_m"]
 PATH = C["model_d_path_m"]
-XM = C["excess_mortality"]["provisional_schedule_residual_2024_2025"]
+# The retired crude-CDR bridge lives at
+# C["excess_mortality"]["provisional_schedule_residual_2024_2025"]. Reading it
+# here put "~77k, sensitivity 65-90k" and 95k/92k expected-death bars into the
+# shipped infographic PNGs, against an age-standardised artifact of 50.1k
+# [32.6-67.5k] and 112,076 expected. Driven from the artifact now.
+_AM = json.loads((ARTIFACTS / "attributable_mortality.json").read_text(encoding="utf-8"))
+_AM_BY = {r["year"]: r for r in _AM["by_year"]}
+_CUM_2425 = _AM["cumulative_excess"]["2024_2025"]
+_EXC_YEARS = [2024, 2025]
+_EXC_EXPECTED_K = [_AM_BY[y]["expected_deaths_2019_schedule"]["median"] / 1000 for y in _EXC_YEARS]
+_EXC_REGISTERED_K = [_AM_BY[y]["registered_deaths"] / 1000 for y in _EXC_YEARS]
 
 # Scenario values are read from the artifact, never typed. Round 6 found 22.7,
 # 8.59 and a 2.2 M waterfall total hard-coded here and rendered into the shipped
@@ -58,6 +68,10 @@ _EMIG = _C["emigration_share_of_gap_pct"]
 _U0 = _C["components"]["baseline_overstatement_U0"] / 1e6
 _MIG = _C["components"]["net_emigration_2022_2025"] / 1e6
 _NAT = _C["components"]["natural_decrease"] / 1e6
+# Top of the exit-correcting family (housing x occupancy), not a typed constant.
+_TRI_HI = max(s["estimate"] for s in C["triangulation"]["sources"]
+              if isinstance(s.get("estimate"), (int, float))
+              and s["estimate"] < 9.0)
 
 
 def _pop_series(ax, lang: str) -> None:
@@ -183,18 +197,17 @@ def _scissors(ax, lang: str) -> None:
 
 
 def _excess_subtitle(lang: str) -> str:
-    pt = int(round(XM["point_illustrative"] / 1000))
-    bl = int(round(XM["band_low"] / 1000))
-    bh = int(round(XM["band_high"] / 1000))
-    crude = int(C["excess_mortality"]["secondary_crude_registered_2020_2025"] / 1000)
+    pt = int(round(_CUM_2425["median"] / 1000))
+    bl = int(round(_CUM_2425["p05"] / 1000))
+    bh = int(round(_CUM_2425["p95"] / 1000))
     if lang == "es":
         return (
-            f"Residual provisional ~{pt} mil (2024–2025); banda {bl}–{bh} mil. "
-            f"Distinto del exceso bruto ~{crude} mil (2020–2025)."
+            f"Exceso vs la tabla de tasas por edad de 2019: ~{pt} mil en 2024–2025 "
+            f"(rango {bl}–{bh} mil). No es una atribución causal."
         )
     return (
-        f"Illustrative schedule residual ~{pt}k (2024–2025); sensitivity {bl}–{bh}k. "
-        f"Distinct from crude ~{crude}k (2020–2025)."
+        f"Excess vs the 2019 age-specific schedule: ~{pt}k over 2024–2025 "
+        f"(range {bl}–{bh}k). Not a causal attribution."
     )
 
 
@@ -203,14 +216,14 @@ def _excess(ax, lang: str) -> None:
     if lang == "es":
         lab_e, lab_r = "Esperadas (tasas 2019)", "Registradas"
         ylab = "Defunciones (miles)"
-        title = "Exceso de mortalidad 2024–2025"
+        title = "Exceso de defunciones vs la tabla de tasas por edad de 2019, 2024–2025"
     else:
         lab_e, lab_r = "Expected (2019 rates)", "Registered"
         ylab = "Deaths (thousands)"
-        title = "Mortality residual, 2024–2025 (provisional)"
+        title = "Excess deaths vs the 2019 age-specific schedule, 2024–2025"
     sub = _excess_subtitle(lang)
     rows = []
-    for y, e, r in zip(XM["years"], XM["expected_deaths_k"], XM["registered_deaths_k"]):
+    for y, e, r in zip(_EXC_YEARS, _EXC_EXPECTED_K, _EXC_REGISTERED_K):
         rows.append({"year": str(y), "deaths": e, "kind": lab_e})
         rows.append({"year": str(y), "deaths": r, "kind": lab_r})
     df = pd.DataFrame(rows)
@@ -239,7 +252,7 @@ def _excess(ax, lang: str) -> None:
                 color=color,
             )
     # gap callouts on registered bars
-    for i, (e, r) in enumerate(zip(XM["expected_deaths_k"], XM["registered_deaths_k"])):
+    for i, (e, r) in enumerate(zip(_EXC_EXPECTED_K, _EXC_REGISTERED_K)):
         ax.annotate(
             f"+{r - e:.0f}k",
             (i + 0.18, r),
@@ -375,11 +388,11 @@ def _triangulation(ax, lang: str) -> None:
     ax.set_xlim(7.35, 11.55)
     if lang == "es":
         ax.set_xlabel("Población estimada (millones)")
-        ax.text(8.45, -1.15, "zona más probable 8,0–8,9 M", color=GREEN, fontsize=10.5, fontweight="bold", ha="center")
+        ax.text(8.45, -1.15, f"zona más probable 8,0–{_TRI_HI:.1f} M".replace(".",","), color=GREEN, fontsize=10.5, fontweight="bold", ha="center")
         title_block(ax, "Triangulación: ¿cuántos cubanos quedan?", "Los registros que no depuran emigrados actúan como techos.")
     else:
         ax.set_xlabel("Estimated population (millions)")
-        ax.text(8.45, -1.15, "most probable band 8.0–8.9 M", color=GREEN, fontsize=10.5, fontweight="bold", ha="center")
+        ax.text(8.45, -1.15, f"most probable band 8.0–{_TRI_HI:.1f} M", color=GREEN, fontsize=10.5, fontweight="bold", ha="center")
         title_block(ax, "How many Cubans remain? Eight external registers", "Registers that do not purge emigrants act as ceilings.")
     ax.set_ylim(-1.6, len(rows) - 0.35)
 
