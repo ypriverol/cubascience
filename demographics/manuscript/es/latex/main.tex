@@ -96,7 +96,7 @@ Los dos motores no son independientes: la salida selectiva de adultos en edad la
 \section{Métodos}
 
 La ecuación de balance es la identidad contable demográfica estándar~\citep{preston2001}.
-Los agregados registrados por la ONEI para 2022--2025 son anclas fijas~\citep{onei_2025}:
+Los agregados registrados por la ONEI para 2022--2025 son anclas fijas~\citep{onei_2025}. Su procedencia es desigual: los recuentos vitales de 2019--2022 están en los cuadros de la ONEI que distribuimos, las defunciones de 2023 quedan corroboradas de forma independiente por la submisión cubana a la OMS, pero los nacimientos y defunciones de 2024 (71\,374 y 128\,098) no aparecen en ningún cuadro a nuestro alcance y descansan en el reporte estatal. El total de defunciones de 2024 alimenta la cifra de exceso de ese año y todas las ventanas acumuladas, y es el eslabón más débil de la serie.
 nacimientos $B^{\mathrm{reg}}=325\,233$, defunciones $D^{\mathrm{reg}}=502\,149$,
 y emigración neta consistente con la identidad $R=1\,501\,706$.
 La población oficial a fin de 2021 es $P^{\mathrm{off}}_{2021}=11\,113\,215$.
@@ -293,7 +293,14 @@ Una revisión sistemática de la serie publicada (\texttt{scripts/consistency\_m
 La serie de 2023 muestra una caída poblacional de 1\,033\,543 personas en un solo año frente a un decrecimiento natural de 27\,347, lo que implica un componente migratorio de 1\,006\,196: más del doble de cualquier salida anual documentada, y que se lee mejor como una corrección de rezago contabilizada como flujo de un año.
 La tasa bruta de mortalidad publicada para 2023 (11.5 por mil) implica una población media de 10.24~millones frente a los 10.57~millones de la serie publicada, una brecha de 334\,000 personas; ambas cifras no pueden ser correctas a la vez.
 
-Alrededor del \textbf{77\%} de los emigrantes tienen entre 15 y 59 años; la edad mediana de quien se va es de unos 30 años (Figura~\ref{fig:mig}).
+La estandarización por causas solo es posible para 2021--2022, usando la propia submisión CIE-10 de Cuba a la OMS sobre denominadores de la ONEI 3.3, y la reportamos porque uno de sus resultados va en contra del encuadre anterior.
+Las tasas brutas cubanas por causa son unas 1.9 veces sus valores estandarizados por edad, de modo que comparar tasas brutas cubanas con tasas regionales estandarizadas ---habitual en el comentario público--- sobrestima la posición de Cuba en torno al doble.
+En términos comparables, la mortalidad cubana por cardiopatía isquémica está \emph{por debajo} de la cifra regional que suele oponérsele (estandarizada 87.2 por 100\,000 frente a $\sim$105), y su tasa cerebrovascular es unas 1.5 veces la base regional y no las 27 veces que resultan de comparar una tasa cubana específica de 75 y más con una tasa regional de todas las edades.
+La mortalidad estandarizada por diabetes además \emph{cayó} un 36\% y la de neoplasias un 6\% entre 2021 y 2022.
+No leemos esas caídas como mejora ---2021 es un pico pandémico, y las causas dependientes del diagnóstico se vuelven menos visibles cuando la capacidad diagnóstica falla--- pero tampoco las leemos como corroboración, y señalamos que la proporción de causas mal definidas (R00--R99, 0.87--0.98\%) es estable en el período, lo que es evidencia \emph{en contra} de un deterioro de la certificación.
+El trabajo por causas no puede extenderse más allá de 2022 porque los denominadores de la ONEI 3.3 se detienen ahí, razón por la cual ninguna causa entra en la estimación de exceso.
+
+Alrededor del \textbf{77\%} de los emigrantes tienen entre 15 y 59 años y la edad mediana de quien se va es de unos 30 años (Figura~\ref{fig:mig}); ambas son distribuciones a priori expertas sintetizadas de los informes de Albizu-Campos y no mediciones, igual que la proporción del 8\% de mayores que gobierna la emigración de ancianos en la proyección.
 Entre quienes permanecen, la proporción oficial reportada de 60 años y más es de alrededor del 26.7\% (edad mediana $\sim$45); nótese que el cuadro 3.12 de la ONEI proyecta 25.0\% para 2025, y que 26.7\% es una cifra reportada que no podemos reproducir a partir de los cuadros publicados. Ninguna de las dos es consistente con el escenario central.
 La salida vacía el centro de la pirámide y se lleva a quienes habrían tenido hijos~\citep{coleman2006,lee2014}.
 El flujo es mayoritariamente femenino~\citep{albizu2023} y se concentra en edades laborales (Figura~\ref{fig:mig}).

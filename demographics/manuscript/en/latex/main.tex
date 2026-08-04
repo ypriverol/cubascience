@@ -92,7 +92,7 @@ The two engines are not independent: selective exit of working-age adults and wo
 \section{Methods}
 
 The balancing equation is the standard demographic accounting identity~\citep{preston2001}.
-Registered ONEI aggregates over 2022--2025 are fixed anchors~\citep{onei_2025}:
+Registered ONEI aggregates over 2022--2025 are fixed anchors~\citep{onei_2025}. Their provenance is uneven: 2019--2022 vital counts are in the ONEI tables we ship, 2023 deaths are independently corroborated by Cuba's WHO submission, but the 2024 births and deaths (71{,}374 and 128{,}098) appear in no table available to us and rest on state reporting. The 2024 death total feeds the 2024 excess figure and every cumulative window, and is the weakest link in the series.
 births $B^{\mathrm{reg}}=325{,}233$, deaths $D^{\mathrm{reg}}=502{,}149$,
 and identity-consistent net emigration $R=1{,}501{,}706$.
 Official end-2021 population is $P^{\mathrm{off}}_{2021}=11{,}113{,}215$.
@@ -288,7 +288,14 @@ A systematic pass over the published series (\texttt{scripts/consistency\_model.
 The 2023 series shows a single-year population drop of 1{,}033{,}543 against a natural decrease of 27{,}347, implying a migration component of 1{,}006{,}196---more than double any documented annual outflow, and best read as a backlog correction booked as one year's flow.
 The published 2023 crude death rate of 11.5 per thousand implies a mid-year population of 10.24~million against 10.57~million in the published series, a gap of 334{,}000; the two figures cannot both be correct.
 
-About \textbf{77\%} of emigrants are aged 15--59; the median leaver is about 30 years old (Figure~\ref{fig:mig}).
+Cause-specific standardisation is possible for 2021--2022 only, using Cuba's own ICD-10 submission to WHO over ONEI 3.3 denominators, and we report it because one result cuts against the framing above.
+Cuba's crude cause-specific rates run about 1.9 times their age-standardised values, so comparisons of Cuban crude rates against regional standardised rates---common in public commentary---overstate Cuba's position roughly twofold.
+On a like-for-like basis Cuba's ischaemic-heart mortality is \emph{below} the regional figure often quoted against it (age-standardised 87.2 per 100{,}000 against $\sim$105), and its cerebrovascular rate is about 1.5 times the regional baseline rather than the 27-fold figure obtained by comparing a Cuban 75+ age-specific rate with an all-ages regional one.
+Standardised diabetes mortality also \emph{fell} 36\% and neoplasms 6\% between 2021 and 2022.
+We do not read the falls as improvement---2021 is a pandemic peak, and diagnosis-dependent causes become less visible when diagnostic capacity fails---but we decline to read them as corroboration either, and note that ill-defined-cause shares (R00--R99, 0.87--0.98\%) are stable across the period, which is evidence \emph{against} certification deterioration.
+Cause-specific work cannot be extended past 2022 because ONEI 3.3 denominators stop there, which is also why no cause enters the excess estimate.
+
+About \textbf{77\%} of emigrants are aged 15--59 and the median leaver is about 30 years old (Figure~\ref{fig:mig}); both are expert priors synthesised from the Albizu-Campos reports rather than measurements, as is the 8\% elderly share that drives elderly emigration in the projection.
 Among those remaining, the reported official share aged 60+ is about 26.7\% (median age $\sim$45); note that ONEI table 3.12 projects 25.0\% for 2025, and 26.7\% is a reported figure we cannot reproduce from the published tables---neither is a central-scenario-consistent stock.
 Exit hollows the centre of the pyramid and removes those who would have children~\citep{coleman2006,lee2014}.
 The flow is majority female~\citep{albizu2023} and concentrated at working ages (Figure~\ref{fig:mig}).
