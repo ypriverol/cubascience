@@ -101,6 +101,21 @@ scientific value; use a Cloudflare Worker instead.
 GitHub Pages (static index.html)  ──POST──▶  Apps Script web app  ──▶  Google Sheet
 ```
 
+Both halves are in this directory: `index.html` (the form respondents see, in
+Spanish) and `apps-script.gs` (the backend). **The `name` attributes in
+`index.html` must match `FIELDS` in `apps-script.gs` exactly and in the same
+order** — the backend writes one column per name and silently stores `''` for
+anything it does not recognise, so a typo loses a variable without any error.
+Add a question to `FIELDS` first, then to the form.
+
+The form validates internal consistency before sending (household members abroad
+plus deceased cannot exceed the 2021 total; deaths at 60+ cannot exceed all
+deaths; and so on) so the respondent can correct it, rather than having the row
+discarded later. It posts with `mode: 'no-cors'`, because Apps Script web apps
+return no CORS headers — the response is opaque and cannot be read, which is
+acceptable here since the backend drops honeypot, too-fast and non-consenting
+submissions silently by design.
+
 No server. Free. The Sheet stays private; the deployment URL is a public *write*
 endpoint only.
 
