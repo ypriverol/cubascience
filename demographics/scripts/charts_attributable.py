@@ -6,7 +6,7 @@ Panel A  Change in annual deaths versus 2019, decomposed into population size
          (fewer residents), ageing (older residents), and rate deterioration
          (the health system itself).  Diverging stack around zero; the dot is
          the net observed change.
-Panel B  Annual deaths attributable to health-system deterioration, with the
+Panel B  Annual excess deaths against the 2019 age-specific schedule, with the
          90% band.  2026 is a scenario continuation, drawn dashed.
 
 Palette: BLUE / AMBER / RED, validated for CVD separation (worst adjacent
@@ -54,7 +54,7 @@ TEXT = {
         "ageing": "Older residents",
         "rate": "Rate deterioration",
         "ylab_a": "Deaths vs 2019 (thousands)",
-        "ylab_b": "Attributable deaths per year (thousands)",
+        "ylab_b": "Excess deaths per year vs 2019 schedule (thousands)",
         "covid": "COVID-19 wave",
         "scen": "scenario",
         "net": "net change",
@@ -68,7 +68,7 @@ TEXT = {
         "ageing": "Residentes más viejos",
         "rate": "Deterioro de tasas",
         "ylab_a": "Defunciones vs 2019 (miles)",
-        "ylab_b": "Defunciones atribuibles por año (miles)",
+        "ylab_b": "Exceso anual vs la tabla de 2019 (miles)",
         "covid": "ola de COVID-19",
         "scen": "escenario",
         "net": "cambio neto",

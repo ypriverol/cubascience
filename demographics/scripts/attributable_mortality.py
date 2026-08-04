@@ -298,7 +298,7 @@ def counterfactual_sensitivity(base: dict, expected_2025: float,
         exp = expected_2025 * (1 + drift) ** (2025 - BASE_YEAR)
         out[label] = {
             "expected_2025": int(round(exp)),
-            "attributable_2025": int(round(registered_2025 * dfac_med - exp)),
+            "excess_2025": int(round(registered_2025 * dfac_med - exp)),
         }
     # The cumulative windows are what the abstract quotes, so they need the
     # same sensitivity -- previously it was computed for 2025 only.
@@ -326,13 +326,13 @@ def counterfactual_sensitivity(base: dict, expected_2025: float,
     # which Dfac is a constant level, and is reported so the choice is visible.
     sym_2025 = registered_2025 * dfac_med - expected_2025 * dfac_med
     out["dfac_symmetric_variant"] = {
-        "attributable_2025": int(round(sym_2025)),
+        "excess_2025": int(round(sym_2025)),
         "note": "Dfac applied to the 2019 anchor as well. Lower than the headline "
                 "because only a CHANGE in completeness since 2019 then counts as "
                 "excess. The headline treats Dfac as crisis-induced deterioration.",
     }
-    vals = [v["attributable_2025"] for v in out.values()
-            if isinstance(v, dict) and "attributable_2025" in v]
+    vals = [v["excess_2025"] for v in out.values()
+            if isinstance(v, dict) and "excess_2025" in v]
     out["_range"] = {"low": min(vals), "high": max(vals),
                      "note": "This span is comparable to the entire Monte Carlo "
                              "band and is NOT included in it. A flat anchor is "
@@ -529,7 +529,7 @@ def run(share_override: float | None = None, with_sensitivity: bool = True) -> d
             "explicit noise term.",
             "The 2019 baseline embeds no counterfactual improvement in Cuban "
             "mortality after 2019.",
-            "Attributable deaths are an association with the crisis period, not a "
+            "Excess deaths against the 2019 schedule are an association with the crisis period, not a "
             "cause-of-death attribution; blackouts, arboviruses, drug shortages and "
             "delayed care are not separately identified.",
             "Registered deaths for 2026 are a scenario continuation (+4% on 2025).",

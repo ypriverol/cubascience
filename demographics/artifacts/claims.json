@@ -284,7 +284,7 @@
       "ageing_effect": 22415,
       "excess_vs_2019_schedule": 28512,
       "observed_rise_incl_unregistered": 31300,
-      "note": "Change in annual deaths vs 2019 = size + ageing + rate, exactly per draw. A ~2.0M smaller resident population should have cut ~19,500 deaths a year; ageing added ~22,400; health-system deterioration added ~28,500. The two upward terms sum to more than the observed 31,300 rise because the smaller population pulls the other way.\n"
+      "note": "Change in annual deaths vs 2019 = size + ageing + rate, exactly per draw. A ~2.0M smaller resident population should have cut ~19,500 deaths a year; ageing added ~22,400; the residual against the 2019 schedule added ~28,500. The two upward terms sum to more than the observed 31,300 rise because the smaller population pulls the other way.\n"
     },
     "ageing_share_of_gross_increase_2025_pct": 44,
     "headline_en": "Excess mortality against the 2019 age-specific schedule runs at roughly 28,500 deaths a year at 2025 levels (prior sensitivity range 18,600-38,200), against ~22,400 a year explained by population ageing alone.\n",

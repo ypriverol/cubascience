@@ -63,6 +63,8 @@
       "spread": 30,
       "spread_pct": 0.02,
       "canonical_used": 167645,
+      "press_sourced_inputs": [],
+      "spread_excluding_press_pct": null,
       "severity": "low",
       "verdict": "trivial disagreement between official sources"
     },
@@ -77,8 +79,12 @@
       "spread": 8951,
       "spread_pct": 7.45,
       "canonical_used": 120098,
+      "press_sourced_inputs": [
+        "onei_first_reported"
+      ],
+      "spread_excluding_press_pct": 0.008,
       "severity": "high",
-      "verdict": "official sources disagree materially"
+      "verdict": "sources disagree materially, but the spread depends on a press-reported figure and is not internal to ONEI's published tables"
     },
     {
       "test": "T2_multisource_death_totals",
@@ -91,6 +97,8 @@
       "spread": 10,
       "spread_pct": 0.01,
       "canonical_used": 117739,
+      "press_sourced_inputs": [],
+      "spread_excluding_press_pct": 0.008,
       "severity": "low",
       "verdict": "trivial disagreement between official sources"
     },
@@ -207,5 +215,5 @@
       "verdict": "the revision corrected the 2023 level but left the 2021-2022 path intact, so the published stock for those years remains too high by at least this much"
     }
   ],
-  "reading": "T1/T2/T4 use only official sources, so a failure there is the state's own numbers contradicting each other. T5/T6 use external arrival counts, which bound emigration from below and never fix its level. Nothing here identifies the true population: it identifies where the official series cannot be taken at face value, which is what the scenario priors in L4 are built to absorb."
+  "reading": "T1 and T4 use only official sources, so a failure there is the state's own numbers contradicting each other. T2's 2022 failure depends on a press-reported pre-revision total: excluding it, the two official 2022 totals differ by 0.008%, so T2 is NOT internal to ONEI's tables. T5/T6 use external arrival counts, which bound emigration from below and never fix its level. Nothing here identifies the true population: it identifies where the official series cannot be taken at face value, which is what the scenario priors in L4 are built to absorb."
 }

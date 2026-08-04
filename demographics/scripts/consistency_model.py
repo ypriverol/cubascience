@@ -111,8 +111,22 @@ def t2_multisource_deaths() -> list[dict]:
             "spread": int(spread),
             "spread_pct": round(100 * spread / lo, 2),
             "canonical_used": _canonical_deaths(year),
+            # Round 6: the 2022 spread is driven ENTIRELY by onei_first_reported
+            # (129,049), which is a press report, not an ONEI table. The two
+            # genuinely official 2022 totals differ by 10 deaths (0.008%). The
+            # manuscript claimed T2 "uses only official sources"; it does not,
+            # so the record now carries the distinction rather than the claim.
+            "press_sourced_inputs": sorted(k for k in src if k == "onei_first_reported"),
+            "spread_excluding_press_pct": round(
+                100 * (max(v for k, v in src.items() if k != "onei_first_reported")
+                       - min(v for k, v in src.items() if k != "onei_first_reported"))
+                / lo, 3) if len(src) > 2 else None,
             "severity": "high" if spread / lo > 0.02 else "low",
-            "verdict": ("official sources disagree materially"
+            "verdict": ("sources disagree materially, but the spread depends on a "
+                        "press-reported figure and is not internal to ONEI's "
+                        "published tables"
+                        if spread / lo > 0.02 and "onei_first_reported" in src
+                        else "official sources disagree materially"
                         if spread / lo > 0.02
                         else "trivial disagreement between official sources"),
         }
@@ -261,8 +275,11 @@ def main() -> None:
         "n_high_severity": len(high),
         "tests": tests,
         "reading": (
-            "T1/T2/T4 use only official sources, so a failure there is the state's "
-            "own numbers contradicting each other. T5/T6 use external arrival "
+            "T1 and T4 use only official sources, so a failure there is the state's "
+            "own numbers contradicting each other. T2's 2022 failure depends on a "
+            "press-reported pre-revision total: excluding it, the two official 2022 "
+            "totals differ by 0.008%, so T2 is NOT internal to ONEI's tables. "
+            "T5/T6 use external arrival "
             "counts, which bound emigration from below and never fix its level. "
             "Nothing here identifies the true population: it identifies where the "
             "official series cannot be taken at face value, which is what the "

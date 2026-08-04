@@ -49,17 +49,22 @@ def model_d_anchors(claims: dict[str, Any] | None = None) -> dict[str, float]:
     # the moment the fallback key was retired -- which is what stopped the
     # shipped notebook from running at all.
     em = c["excess_mortality"]
-    for key in ("provisional_schedule_residual_2024_2025",
-                "primary_age_adjusted_2024_2025",
-                "cumulative_excess_2024_2025"):
-        if key in em:
-            x = em[key]
-            break
+    # The age-standardised 2024-2025 window is the live quantity. The
+    # `excess_mortality.provisional_*` block is the retired crude-CDR bridge,
+    # kept for traceability only -- claims.yaml says so in its own note -- and
+    # reading it made the shipped notebook headline 65,000-90,000 against an
+    # artifact value of 50,164.
+    cum = c.get("attributable_mortality", {}).get("cumulative", {})
+    if "2024_2025" in cum:
+        w = cum["2024_2025"]
+        x = {"low": w["p05"], "high": w["p95"], "point": w["median"]}
+    elif "primary_age_adjusted_2024_2025" in em:
+        x = em["primary_age_adjusted_2024_2025"]
     else:
         raise KeyError(
-            "no excess-mortality anchor in claims.yaml; tried "
-            "provisional_schedule_residual_2024_2025, "
-            "primary_age_adjusted_2024_2025, cumulative_excess_2024_2025")
+            "no age-standardised 2024-2025 excess window in claims.yaml; the "
+            "retired excess_mortality.provisional_* block must not be used as a "
+            "headline anchor")
     s = c["selectivity"]
     return {
         "population_end_2025_model_d_m": float(d["pop_end_2025_m"]),
