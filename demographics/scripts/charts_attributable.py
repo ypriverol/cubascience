@@ -3,8 +3,8 @@
 Figure: why deaths rose while the population fell.
 
 Panel A  Change in annual deaths versus 2019, decomposed into population size
-         (fewer residents), ageing (older residents), and rate deterioration
-         (the health system itself).  Diverging stack around zero; the dot is
+         (fewer residents), ageing (older residents), and the change in age-specific rates
+         (NOT identified as health-system deterioration).  Diverging stack around zero; the dot is
          the net observed change.
 Panel B  Annual excess deaths against the 2019 age-specific schedule, with the
          90% band.  2026 is a scenario continuation, drawn dashed.
@@ -52,7 +52,7 @@ TEXT = {
         "sub_b": "Median and 90% band. 2026 is a scenario continuation, not an observation.",
         "size": "Fewer residents",
         "ageing": "Older residents",
-        "rate": "Rate deterioration",
+        "rate": "Excess vs 2019 schedule",
         "ylab_a": "Deaths vs 2019 (thousands)",
         "ylab_b": "Excess deaths per year vs 2019 schedule (thousands)",
         "covid": "COVID-19 wave",
@@ -61,12 +61,12 @@ TEXT = {
     },
     "es": {
         "title_a": "Las muertes suben mientras la población cae",
-        "sub_a": "Cambio en defunciones anuales vs 2019, por causa. Punto = cambio neto observado.",
+        "sub_a": "Cambio en defunciones anuales vs 2019, por componente. Punto = cambio neto observado.",
         "title_b": "Exceso de defunciones vs la tabla de tasas por edad de 2019",
         "sub_b": "Mediana y banda del 90%. 2026 es continuación de escenario, no una observación.",
         "size": "Menos residentes",
         "ageing": "Residentes más viejos",
-        "rate": "Deterioro de tasas",
+        "rate": "Exceso vs tabla 2019",
         "ylab_a": "Defunciones vs 2019 (miles)",
         "ylab_b": "Exceso anual vs la tabla de 2019 (miles)",
         "covid": "ola de COVID-19",
