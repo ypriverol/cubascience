@@ -135,6 +135,9 @@ analysis is indistinguishable from fishing.
 1. Create a Google Sheet; Extensions → Apps Script; paste `apps-script.gs`.
 2. Deploy → New deployment → Web app; Execute as **Me**; Access **Anyone**.
 3. Copy the `/exec` URL into `index.html` as `ENDPOINT`.
-4. Publish `index.html` via GitHub Pages.
+4. Publish via GitHub Pages: `.github/workflows/pages.yml` copies `survey/index.html`
+   to `site/survey/` on every push to `master`, so the form lands at
+   **https://ypriverol.github.io/cubascience/survey/**. The workflow does not run
+   on feature branches, so the URL is live only after the branch is merged.
 5. Replace the three calibration groups with ones whose population size you can
    cite, and put those sizes in the analysis script.
