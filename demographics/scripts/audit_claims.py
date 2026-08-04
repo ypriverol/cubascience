@@ -105,12 +105,14 @@ def main() -> int:
 
     am = claims["attributable_mortality"]["decomposition_2025"]
     total = (am["population_size_effect"] + am["ageing_effect"]
-             + am["health_system_effect"])
-    if abs(total - am["observed_rise_incl_unregistered"]) > 0.05 * abs(
-            am["observed_rise_incl_unregistered"]):
+             + am["excess_vs_2019_schedule"])
+    # Tolerance was 5% (~1,565 deaths), wide enough that a term could drift by
+    # more than a thousand and still pass. The identity is exact per draw, so the
+    # only slack needed is median non-additivity.
+    if abs(total - am["observed_rise_incl_unregistered"]) > 250:
         errors.append(
-            f"claims.yaml: attributable decomposition does not reconstruct the "
-            f"observed rise ({total} vs {am['observed_rise_incl_unregistered']})"
+            f"claims.yaml: decomposition does not reconstruct the observed rise "
+            f"({total} vs {am['observed_rise_incl_unregistered']})"
         )
 
     # The claim sheet must agree with the artifacts it summarises. Without this
@@ -146,21 +148,26 @@ def main() -> int:
              by[2025]["excess_vs_2019_schedule"]["median"], "annual_2025.median"),
             (cam["decomposition_2025"]["ageing_effect"],
              by[2025]["ageing_effect_vs_2019"]["median"], "decomposition_2025.ageing_effect"),
-            (cam["decomposition_2025"]["health_system_effect"],
+            (cam["decomposition_2025"]["excess_vs_2019_schedule"],
              by[2025]["excess_vs_2019_schedule"]["median"],
-             "decomposition_2025.health_system_effect"),
+             "decomposition_2025.excess_vs_2019_schedule"),
+            # Never compared to the artifact before. It drifted inside a single
+            # commit and shipped stale in both abstracts and both headline tables.
+            (cam["decomposition_2025"]["population_size_effect"],
+             by[2025]["population_size_effect_vs_2019"]["median"],
+             "decomposition_2025.population_size_effect"),
             (cam["annual_2026_scenario"]["median"],
              by[2026]["excess_vs_2019_schedule"]["median"], "annual_2026_scenario.median"),
         ]
         for got, want, name in checks:
-            if abs(float(got) - float(want)) > max(150, 0.01 * abs(want)):
+            if abs(float(got) - float(want)) > 50:
                 errors.append(f"claims.yaml {name} {got} != artifact {want}")
         for win, key in (("2024_2025", "2024_2025"), ("2020_2025", "2020_2025"),
                          ("2022_2025_post_covid", "2022_2025_post_covid")):
             a = am["cumulative_excess"][key]
             b = cam["cumulative"][win]
             for f in ("median", "p05", "p95"):
-                if abs(float(b[f]) - float(a[f])) > max(400, 0.02 * abs(a[f])):
+                if abs(float(b[f]) - float(a[f])) > 100:
                     errors.append(
                         f"claims.yaml cumulative.{win}.{f} {b[f]} != artifact {a[f]}")
 

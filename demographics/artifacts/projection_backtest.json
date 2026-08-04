@@ -1,0 +1,71 @@
+{
+  "what": "cohort projection rule run forward from observed 2019, compared against observed 2020-2022 (ONEI 3.3)",
+  "horizon": "three years, matching 2023->2025 past the 2022 anchor",
+  "arms": {
+    "no_migration": [
+      {
+        "year": 2020,
+        "horizon": 1,
+        "projected_60_plus": 2389331,
+        "observed_60_plus": 2357313,
+        "error": 32018,
+        "error_pct": 1.36
+      },
+      {
+        "year": 2021,
+        "horizon": 2,
+        "projected_60_plus": 2474597,
+        "observed_60_plus": 2392196,
+        "error": 82401,
+        "error_pct": 3.44
+      },
+      {
+        "year": 2022,
+        "horizon": 3,
+        "projected_60_plus": 2561782,
+        "observed_60_plus": 2438100,
+        "error": 123682,
+        "error_pct": 5.07
+      }
+    ],
+    "elderly_share_8pct": [
+      {
+        "year": 2020,
+        "horizon": 1,
+        "projected_60_plus": 2372531,
+        "observed_60_plus": 2357313,
+        "error": 15218,
+        "error_pct": 0.65
+      },
+      {
+        "year": 2021,
+        "horizon": 2,
+        "projected_60_plus": 2441594,
+        "observed_60_plus": 2392196,
+        "error": 49399,
+        "error_pct": 2.06
+      },
+      {
+        "year": 2022,
+        "horizon": 3,
+        "projected_60_plus": 2513189,
+        "observed_60_plus": 2438100,
+        "error": 75089,
+        "error_pct": 3.08
+      }
+    ]
+  },
+  "finding": {
+    "direction": "the rule OVERSHOOTS the 60+ count at every horizon, and the error grows monotonically",
+    "horizon_3_error_pct": {
+      "no_migration": 5.07,
+      "elderly_share_8pct": 3.08
+    },
+    "implied_expected_death_bias_2025": {
+      "no_migration": 5899,
+      "elderly_share_8pct": 3582
+    },
+    "effect_on_headline": "excess = D*Dfac - E, so an overshooting E makes the reported excess too SMALL. The 2025 headline is conservative on this axis by roughly the death figures above.",
+    "why_the_noise_term_does_not_cover_it": "projection error entered as a symmetric N(0, 1.5%) draw, which has zero mean and cannot represent a one-sided bias."
+  }
+}

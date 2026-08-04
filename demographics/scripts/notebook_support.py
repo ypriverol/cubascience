@@ -29,20 +29,23 @@ TRIANGULATION = [
     for row in _claims["triangulation"]["sources"]
 ]
 
+# `models_summary` was removed from claims.yaml when the A-E model set was
+# replaced by the four scenarios. Read the live scenarios instead, so the
+# notebook cannot ship a table the paper no longer stands behind.
 MODEL_SUMMARY = [
     (
-        m["label"],
-        m["assumption"],
-        m["decline_m"],
-        m["decline_pct"],
-        m["pop_end_2025_m"],
+        s["label"],
+        s.get("note", "").split(".")[0],
+        s["gap_m"],
+        s["gap_pct"],
+        s["pop_end_2025_m"],
     )
-    for m in _claims["models_summary"]
+    for key, s in _claims["population_scenarios"]["scenarios"].items()
 ]
 
 
 def run_model_a(n: int = 100_000, seed: int = 42) -> dict[str, np.ndarray]:
-    """Conservative Monte Carlo (Model A style). Paper uses n=1_000_000."""
+    """Conservative Monte Carlo (Model A style). Paper uses n=2e5."""
     rng = np.random.default_rng(seed)
     z = rng.multivariate_normal([0, 0], [[1, 0.5], [0.5, 1]], size=n)
     u1, u2 = norm.cdf(z[:, 0]), norm.cdf(z[:, 1])

@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 """
-Attributable-mortality decomposition: how many deaths are the ageing population,
-and how many are health-system deterioration?
+Excess-mortality decomposition: how much of the rise in deaths is the ageing
+population, and how much is a change in age-specific death rates?
+
+The rate term is NOT identified as health-system deterioration. It is the
+residual against the 2019 age-specific schedule and absorbs every unmodelled
+cause -- reporting changes, denominator error, the projection bias measured in
+backtest_projection.py, and genuine deterioration alike.
 
 Replaces the coarse 2019-crude-death-rate bridge in
 ``mortality_schedule_residual.py`` with indirect age standardisation on
@@ -336,14 +341,54 @@ def counterfactual_sensitivity(base: dict, expected_2025: float,
     return out
 
 
-def run() -> dict:
+def _elderly_share_sensitivity() -> dict:
+    """
+    Re-run the decomposition at 0%, the assumed 8%, and 16%.
+
+    Computed, not typed. The hard-coded version of this block had drifted from
+    what the script produces (23,668 vs 23,679 and so on) -- small, but the
+    artifact's own headline sensitivity was not reproducible by the script that
+    writes it, which is the failure mode this whole pipeline exists to prevent.
+    """
+    out = {}
+    for label, share in (("0pct", 0.0), ("8pct_as_used", None), ("16pct", 0.16)):
+        r = run(share_override=share, with_sensitivity=False)
+        yr = {x["year"]: x for x in r["by_year"]}
+        out[label] = {
+            "excess_2025": yr[2025]["excess_vs_2019_schedule"]["median"],
+            "cumulative_2022_2025": r["cumulative_excess"]["2022_2025_post_covid"]["median"],
+        }
+    return {
+        "parameter": "claims.selectivity.emigrants_60_plus_pct",
+        "class": "expert_prior",
+        "excess_2025": {k: v["excess_2025"] for k, v in out.items()},
+        "cumulative_2022_2025": {k: v["cumulative_2022_2025"] for k, v in out.items()},
+        "swing_2025": round((out["16pct"]["excess_2025"]
+                             - out["0pct"]["excess_2025"]) / 2),
+        "swing_cumulative": round((out["16pct"]["cumulative_2022_2025"]
+                                   - out["0pct"]["cumulative_2022_2025"]) / 2),
+        "note": "About a quarter of the 2025 prior sensitivity range and a "
+                "fifth of the cumulative one, from a single expert prior. "
+                "Raising the share RAISES the excess: a genuinely fixed "
+                "elderly count (0%) gives the LOWEST value, not the highest.",
+    }
+
+
+def run(share_override: float | None = None, with_sensitivity: bool = True) -> dict:
+    """
+    ``share_override`` re-runs the whole decomposition at a different elderly
+    emigration share, so the sensitivity block is computed rather than typed.
+    The previous version hard-coded it and had drifted from what the script
+    actually produces.
+    """
     rng = np.random.default_rng(SEED)
     base = _load_rates(BASE_YEAR)
     claims = get_claims()
     vs = claims["vital_series"]
     reg_by_year = dict(zip(vs["years"], vs["deaths"]))
     reg_by_year[2026] = int(round(reg_by_year[2025] * 1.04))
-    elderly_share = float(claims["selectivity"]["emigrants_60_plus_pct"]) / 100.0
+    elderly_share = (float(claims["selectivity"]["emigrants_60_plus_pct"]) / 100.0
+                     if share_override is None else share_override)
 
     m = base["rates_per_1000"]
     p19 = base["pops"]
@@ -461,19 +506,8 @@ def run() -> dict:
         # The 8% elderly-emigrant share is an expert prior and it is load-bearing:
         # it is NOT a "held fixed" elderly count. Values recomputed by rerunning
         # this script with claims.selectivity.emigrants_60_plus_pct set to 0/8/16.
-        "elderly_share_sensitivity": {
-            "parameter": "claims.selectivity.emigrants_60_plus_pct",
-            "class": "expert_prior",
-            "excess_2025": {"0pct": 23668, "8pct_as_used": 28501, "16pct": 33346},
-            "cumulative_2022_2025": {"0pct": 62836, "8pct_as_used": 74847,
-                                     "16pct": 86872},
-            "swing_2025": 4845,
-            "swing_cumulative": 12025,
-            "note": "About a quarter of the 2025 prior sensitivity range and a "
-                    "fifth of the cumulative one, from a single expert prior. "
-                    "Raising the share RAISES the excess: a genuinely fixed "
-                    "elderly count (0%) gives 23,668, not more.",
-        },
+        "elderly_share_sensitivity": _elderly_share_sensitivity()
+        if with_sensitivity else None,
         "counterfactual_sensitivity": counterfactual_sensitivity(
             base,
             [r for r in results if r["year"] == 2025][0][

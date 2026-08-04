@@ -1,15 +1,12 @@
 # Model E claims proposal (do not auto-promote)
 
-Preferred public model remains **D**.
+Preferred public model remains **central**.
 
 ## Comparison (end-2025)
 
 | Model | Label | Loss M | Loss % | Pop M |
 |---|---|---:|---:|---:|
-| A | A · conservative | 1.8 | 16.4 | 9.16 |
-| B | B · crisis-adjusted | 2.19 | 20.4 | 8.57 |
-| C | C · worst case | 2.41 | 22.6 | 8.26 |
-| D | D · sentinel | 2.21 | 20.5 | 8.59 |
+
 | E | vital reconstruction (HSDS) | 2.13 | 19.2 | 8.96 |
 
 ## Proposed YAML block (append only)

@@ -42,7 +42,17 @@ ES = MS / "es" / "latex" / "main.tex"
 # survive in any of them -- they contradicted the paper for three rounds because
 # only the two main .tex files were ever checked.
 COMPANIONS = [MS / "en" / "latex" / "supplement.tex",
-              ROOT / "demographics.ipynb"] + \
+              ROOT / "demographics.ipynb",
+              # Added after round 5. Each of these shipped a retired value while
+              # the gate reported clean, because the gate had never been pointed
+              # at them. provenance.yaml still carried 8.59 and the 1.8-2.4
+              # envelope; the READMEs and the generated .md manuscripts are
+              # advertised products too.
+              ROOT / "data" / "provenance.yaml",
+              ROOT / "README.md",
+              ROOT.parent / "README.md",
+              MS / "en" / "cuba-depopulation-2021-2026.md",
+              MS / "es" / "Cuba_despoblacion_2021-2026_manuscrito.md"] + \
     sorted((ROOT / "infographic").rglob("*.html"))
 
 # Values the project has retired. Any reappearance in a manuscript is drift.
@@ -59,6 +69,24 @@ RETIRED = {
     "112006": "expected deaths 2025 (transposition of 112,086)",
     "1.216": "SMR 2025 (now 1.215)",
     "9.18": "old conservative end-2025 population (now 9.14)",
+    # The retired A/B/C scenario table, which survived in the supplement and the
+    # infographics for five rounds because only individual headline numbers were
+    # ever listed here.
+    # The retired percentages (16.4 / 20.4 / 22.6) are deliberately NOT listed:
+    # 20.4 is also the live 2019 elderly share, so a bare-numeral rule would fire
+    # on a correct sentence. They are reachable only through the scenario table,
+    # which the loss and population values below already cover.
+    "1.80": "retired scenario A loss (now 1.97)",
+    "2.19": "retired scenario B loss (now 2.53)",
+    "2.41": "retired scenario C loss (now 2.79)",
+    "9.16": "retired scenario A population (now 9.14)",
+    "8.57": "retired scenario B population (now 8.58)",
+    "8.26": "retired scenario C population (now 8.32)",
+    "8.56": "superseded central end-2025 population (now 8.58)",
+    "8.27": "superseded central end-2026 population (now 8.29)",
+    "8.96": "retired Model E headline",
+    "19426": "superseded 2025 size effect (now 19,468)",
+    "19400": "superseded 2025 size effect, rounded (now 19,500)",
 }
 
 
@@ -114,6 +142,19 @@ def build_registry() -> list[dict]:
         {"name": "excess 2025", "v": by[2025]["excess_vs_2019_schedule"]["median"],
          "kind": "thousands_sep"},
         {"name": "ageing 2025", "v": by[2025]["ageing_effect_vs_2019"]["median"],
+         "kind": "thousands_sep"},
+        # Registered after round 5: this one drifted inside a single commit that
+        # touched attributable_mortality.py without re-copying the manuscript
+        # number, and no check looked at it.
+        {"name": "size effect 2025", "v": abs(by[2025]["population_size_effect_vs_2019"]["median"]),
+         "kind": "thousands_sep"},
+        {"name": "excess 2022-25 p95", "v": am["cumulative_excess"]["2022_2025_post_covid"]["p95"],
+         "kind": "thousands_sep"},
+        {"name": "excess 2022-25 p05", "v": am["cumulative_excess"]["2022_2025_post_covid"]["p05"],
+         "kind": "thousands_sep"},
+        {"name": "excess 2025 p05", "v": by[2025]["excess_vs_2019_schedule"]["p05"],
+         "kind": "thousands_sep"},
+        {"name": "excess 2025 p95", "v": by[2025]["excess_vs_2019_schedule"]["p95"],
          "kind": "thousands_sep"},
         {"name": "excess 2022-25", "v": am["cumulative_excess"]["2022_2025_post_covid"]["median"],
          "kind": "thousands_sep"},

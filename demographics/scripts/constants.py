@@ -45,10 +45,21 @@ def model_d_anchors(claims: dict[str, Any] | None = None) -> dict[str, float]:
     c = claims or get_claims()
     d = c["population_scenarios"]["scenarios"]["central"]
     v = c["vital"]
-    x = c["excess_mortality"].get(
-        "provisional_schedule_residual_2024_2025",
-        c["excess_mortality"]["primary_age_adjusted_2024_2025"],
-    )
+    # `.get(k, default)` evaluates the default eagerly, so this raised KeyError
+    # the moment the fallback key was retired -- which is what stopped the
+    # shipped notebook from running at all.
+    em = c["excess_mortality"]
+    for key in ("provisional_schedule_residual_2024_2025",
+                "primary_age_adjusted_2024_2025",
+                "cumulative_excess_2024_2025"):
+        if key in em:
+            x = em[key]
+            break
+    else:
+        raise KeyError(
+            "no excess-mortality anchor in claims.yaml; tried "
+            "provisional_schedule_residual_2024_2025, "
+            "primary_age_adjusted_2024_2025, cumulative_excess_2024_2025")
     s = c["selectivity"]
     return {
         "population_end_2025_model_d_m": float(d["pop_end_2025_m"]),

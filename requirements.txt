@@ -1,4 +1,4 @@
-# Minimal pins for local hub tooling / CI helpers.
-# Prefer per-project requirements under science/ and demographics/.
+# Pinned 2026-08-04. The demographics pipeline pins its own deps in
+# demographics/requirements.txt; these two are for the notebook only.
 jupyter
-nbconvert
+nbconvert==7.16.2

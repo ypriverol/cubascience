@@ -141,8 +141,9 @@ demographics/manuscript/*/latex/*.png
 .codacy/
 
 # Duplicate LaTeX build PDFs (canonical copies live in manuscript/en/)
-demographics/manuscript/en/latex/main.pdf
-demographics/manuscript/en/latex/supplement.pdf
+# Build outputs. The distributed copies live one level up, in manuscript/<lang>/.
+# ES was asymmetrically tracked, so every ES rebuild dirtied the tree.
+demographics/manuscript/*/latex/*.pdf
 demographics/.mplconfig/
 
 # Git worktrees (local agent isolation)
