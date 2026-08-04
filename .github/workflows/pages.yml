@@ -39,6 +39,12 @@ jobs:
           jupyter nbconvert demographics/demographics.ipynb \
             --to html --output-dir site/demographics --output index
           mkdir -p site/demographics/figures site/science/data site/science/images
+          # The survey is a static form; it is published as-is. It carries no
+          # analytics, fonts or third-party assets by design, so nothing else
+          # needs building. Its ENDPOINT must be set to the Apps Script /exec
+          # URL before this is of any use -- an unset placeholder submits nowhere.
+          mkdir -p site/survey
+          cp survey/index.html site/survey/index.html
           cp -R demographics/figures/. site/demographics/figures/ || true
           cp -R science/data/. site/science/data/ || true
           cp -R science/images/. site/science/images/ || true
