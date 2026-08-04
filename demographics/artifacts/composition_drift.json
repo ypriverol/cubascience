@@ -1,0 +1,47 @@
+{
+  "within_65_rates_2022_per_1000": {
+    "age_65_74": 25.29,
+    "age_75_84": 62.27,
+    "age_85_plus": 162.72
+  },
+  "rates_source": "Cuba WHO ICD-10 submission (data/who), deaths by 5-year band over ONEI 3.3 mid-year denominators",
+  "composition_only_drift": {
+    "contiguous_2013_2019": {
+      "years": [
+        2013,
+        2019
+      ],
+      "drift_pct_per_yr": 0.16
+    },
+    "sparse_2006_2019": {
+      "years": [
+        2006,
+        2019
+      ],
+      "drift_pct_per_yr": -0.144
+    },
+    "post_break_2014_2019": {
+      "years": [
+        2014,
+        2019
+      ],
+      "drift_pct_per_yr": 0.172
+    }
+  },
+  "denominator_break_2012_2013": {
+    "2012": {
+      "share_85_plus_pct": 12.029,
+      "count_85_plus": 175724,
+      "count_65_74": 853383,
+      "count_75_84": 431739
+    },
+    "2013": {
+      "share_85_plus_pct": 11.146,
+      "count_85_plus": 166556,
+      "count_65_74": 878232,
+      "count_75_84": 449478
+    },
+    "drop_85_plus": 9168
+  },
+  "reading": "The drift CHANGES SIGN between the contiguous and sparse windows. ONEI 3.3's 85+ count FALLS between 2012 and 2013 while 65-74 and 75-84 both rise, which is not a demographic path; the contiguous window begins on that break and the sparse window straddles it, so they are not measuring the same object."
+}

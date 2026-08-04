@@ -388,12 +388,12 @@ def _triangulation(ax, lang: str) -> None:
     ax.set_xlim(7.35, 11.55)
     if lang == "es":
         ax.set_xlabel("Población estimada (millones)")
-        ax.text(8.45, -1.15, f"zona más probable 8,0–{_TRI_HI:.1f} M".replace(".",","), color=GREEN, fontsize=10.5, fontweight="bold", ha="center")
+        ax.text(8.45, -1.15, f"anclas correctoras de salida 8,0–{_TRI_HI:.1f} M".replace(".",","), color=GREEN, fontsize=10.5, fontweight="bold", ha="center")
         title_block(ax, "Triangulación: ¿cuántos cubanos quedan?", "Los registros que no depuran emigrados actúan como techos.")
     else:
         ax.set_xlabel("Estimated population (millions)")
-        ax.text(8.45, -1.15, f"most probable band 8.0–{_TRI_HI:.1f} M", color=GREEN, fontsize=10.5, fontweight="bold", ha="center")
-        title_block(ax, "How many Cubans remain? Eight external registers", "Registers that do not purge emigrants act as ceilings.")
+        ax.text(8.45, -1.15, f"exit-correcting anchors 8.0–{_TRI_HI:.1f} M", color=GREEN, fontsize=10.5, fontweight="bold", ha="center")
+        title_block(ax, "How many Cubans remain? Seven external anchors and this study", "Registers that do not purge emigrants act as ceilings.")
     ax.set_ylim(-1.6, len(rows) - 0.35)
 
 

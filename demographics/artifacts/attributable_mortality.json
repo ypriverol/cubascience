@@ -160,7 +160,7 @@
     "_range": {
       "low": 18471,
       "high": 38031,
-      "note": "This span is comparable to the entire Monte Carlo band and is NOT included in it. A flat anchor is more likely to under- than overstate, because Cuba's peers kept improving."
+      "note": "This span is comparable to the entire Monte Carlo band and is NOT included in it. We do not claim a direction: Cuba's own fitted trends put the excess below the flat anchor, its peers' improvement above."
     }
   },
   "by_year": [

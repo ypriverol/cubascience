@@ -335,9 +335,9 @@ def counterfactual_sensitivity(base: dict, expected_2025: float,
             if isinstance(v, dict) and "excess_2025" in v]
     out["_range"] = {"low": min(vals), "high": max(vals),
                      "note": "This span is comparable to the entire Monte Carlo "
-                             "band and is NOT included in it. A flat anchor is "
-                             "more likely to under- than overstate, because "
-                             "Cuba's peers kept improving."}
+                             "band and is NOT included in it. We do not claim a "
+                             "direction: Cuba's own fitted trends put the excess "
+                             "below the flat anchor, its peers' improvement above."}
     return out
 
 

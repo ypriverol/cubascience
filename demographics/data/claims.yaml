@@ -480,11 +480,11 @@ sourcing_resolutions:
   counterfactual_sensitivity_2025:
     cuba_trend_sparse_2006_2019: 26708
     cuba_trend_contiguous_2013_2019: 23667
-    flat_2019_as_used: 28305
+    flat_2019_as_used: 28315
     improvement_0_5pct: 31625
     improvement_1_0pct: 34864
     improvement_1_5pct: 38022
-    span: [18460, 38022]
+    span: [18471, 38031]
     cumulative_2022_2025_span: [45220, 103321]
     trend_identifiable: false
     trend_note: >
