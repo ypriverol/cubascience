@@ -1,4 +1,4 @@
 # Pinned 2026-08-04. The demographics pipeline pins its own deps in
 # demographics/requirements.txt; these two are for the notebook only.
 jupyter
-nbconvert==7.16.2
+nbconvert==7.17.1
