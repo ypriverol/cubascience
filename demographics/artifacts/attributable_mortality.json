@@ -37,46 +37,63 @@
     },
     "note": "A ratio above 1 at ages 65+ means 2019 was a comparatively good year, so the 2019 anchor is NOT conservative there; the shift is well inside the 2% schedule noise either way."
   },
-  "counterfactual_sensitivity": {
-    "cuba_trend_contiguous_upper95": {
-      "expected_2025": 121931,
-      "attributable_2025": 18460
-    },
-    "cuba_trend_sparse_2006_2019": {
-      "expected_2025": 113683,
-      "attributable_2025": 26708
-    },
-    "cuba_trend_contiguous_2013_2019": {
-      "expected_2025": 116724,
-      "attributable_2025": 23667
-    },
-    "flat_2019_schedule_AS_USED": {
-      "expected_2025": 112086,
-      "attributable_2025": 28305
-    },
-    "improvement_0.5pct_yr": {
-      "expected_2025": 108765,
-      "attributable_2025": 31625
-    },
-    "improvement_1.0pct_yr": {
-      "expected_2025": 105527,
-      "attributable_2025": 34864
-    },
-    "improvement_1.5pct_yr_regional_norm": {
-      "expected_2025": 102369,
-      "attributable_2025": 38022
+  "elderly_share_sensitivity": {
+    "parameter": "claims.selectivity.emigrants_60_plus_pct",
+    "class": "expert_prior",
+    "excess_2025": {
+      "0pct": 23668,
+      "8pct_as_used": 28501,
+      "16pct": 33346
     },
     "cumulative_2022_2025": {
-      "cuba_trend_contiguous_upper95": 45220,
-      "cuba_trend_sparse_2006_2019": 69469,
-      "cuba_trend_contiguous_2013_2019": 60488,
-      "flat_2019_schedule_AS_USED": 74203,
-      "improvement_0.5pct_yr": 84094,
-      "improvement_1.0pct_yr": 93799,
-      "improvement_1.5pct_yr_regional_norm": 103321,
+      "0pct": 62836,
+      "8pct_as_used": 74847,
+      "16pct": 86872
+    },
+    "swing_2025": 4845,
+    "swing_cumulative": 12025,
+    "note": "About a quarter of the 2025 prior sensitivity range and a fifth of the cumulative one, from a single expert prior. Raising the share RAISES the excess: a genuinely fixed elderly count (0%) gives 23,668, not more."
+  },
+  "counterfactual_sensitivity": {
+    "cuba_trend_contiguous_upper95": {
+      "expected_2025": 121920,
+      "attributable_2025": 18471
+    },
+    "cuba_trend_sparse_2006_2019": {
+      "expected_2025": 113672,
+      "attributable_2025": 26718
+    },
+    "cuba_trend_contiguous_2013_2019": {
+      "expected_2025": 116713,
+      "attributable_2025": 23677
+    },
+    "flat_2019_schedule_AS_USED": {
+      "expected_2025": 112076,
+      "attributable_2025": 28315
+    },
+    "improvement_0.5pct_yr": {
+      "expected_2025": 108755,
+      "attributable_2025": 31635
+    },
+    "improvement_1.0pct_yr": {
+      "expected_2025": 105517,
+      "attributable_2025": 34873
+    },
+    "improvement_1.5pct_yr_regional_norm": {
+      "expected_2025": 102360,
+      "attributable_2025": 38031
+    },
+    "cumulative_2022_2025": {
+      "cuba_trend_contiguous_upper95": 45245,
+      "cuba_trend_sparse_2006_2019": 69493,
+      "cuba_trend_contiguous_2013_2019": 60513,
+      "flat_2019_schedule_AS_USED": 74227,
+      "improvement_0.5pct_yr": 84118,
+      "improvement_1.0pct_yr": 93822,
+      "improvement_1.5pct_yr_regional_norm": 103344,
       "_span": [
-        45220,
-        103321
+        45245,
+        103344
       ]
     },
     "pre_crisis_trend_fitted": {
@@ -106,12 +123,12 @@
       "verdict": "Neither slope differs from zero at conventional levels; the flat 2019 anchor is a convention, not a finding."
     },
     "dfac_symmetric_variant": {
-      "attributable_2025": 24868,
+      "attributable_2025": 24878,
       "note": "Dfac applied to the 2019 anchor as well. Lower than the headline because only a CHANGE in completeness since 2019 then counts as excess. The headline treats Dfac as crisis-induced deterioration."
     },
     "_range": {
-      "low": 18460,
-      "high": 38022,
+      "low": 18471,
+      "high": 38031,
       "note": "This span is comparable to the entire Monte Carlo band and is NOT included in it. A flat anchor is more likely to under- than overstate, because Cuba's peers kept improving."
     }
   },
@@ -204,25 +221,25 @@
         "p95": 127818
       },
       "expected_deaths_2019_schedule": {
-        "p05": 106836,
-        "median": 111073,
-        "p95": 115409
+        "p05": 106834,
+        "median": 111071,
+        "p95": 115408
       },
       "population_60_plus_median": 2438100,
       "attributable_health_system": {
-        "p05": 7483,
-        "median": 12829,
-        "p95": 18528
+        "p05": 7485,
+        "median": 12831,
+        "p95": 18531
       },
       "attributable_per_100k_official_stock": 115.6,
       "ageing_effect_vs_2019": {
         "p05": 1524,
-        "median": 5993,
-        "p95": 10263
+        "median": 5998,
+        "p95": 10274
       },
       "population_size_effect_vs_2019": {
-        "p05": -9482,
-        "median": -3986,
+        "p05": -9496,
+        "median": -3994,
         "p95": 1788
       },
       "unregistered_deaths": {
@@ -231,7 +248,7 @@
         "p95": 7720
       },
       "identity_residual_median": 0,
-      "share_of_death_rise_from_ageing_pct": 31.8
+      "share_of_death_rise_from_ageing_pct": 31.9
     },
     {
       "year": 2023,
@@ -243,25 +260,25 @@
         "p95": 125307
       },
       "expected_deaths_2019_schedule": {
-        "p05": 104484,
-        "median": 109630,
-        "p95": 114968
+        "p05": 104477,
+        "median": 109625,
+        "p95": 114966
       },
       "population_60_plus_median": 2447328,
       "attributable_health_system": {
-        "p05": 5674,
-        "median": 11868,
-        "p95": 18186
+        "p05": 5676,
+        "median": 11872,
+        "p95": 18193
       },
-      "attributable_per_100k_official_stock": 112.2,
+      "attributable_per_100k_official_stock": 112.3,
       "ageing_effect_vs_2019": {
         "p05": 5211,
-        "median": 9954,
-        "p95": 14524
+        "median": 9970,
+        "p95": 14556
       },
       "population_size_effect_vs_2019": {
-        "p05": -15051,
-        "median": -9400,
+        "p05": -15092,
+        "median": -9423,
         "p95": -3447
       },
       "unregistered_deaths": {
@@ -282,25 +299,25 @@
         "p95": 136332
       },
       "expected_deaths_2019_schedule": {
-        "p05": 103906,
-        "median": 110554,
-        "p95": 117474
+        "p05": 103895,
+        "median": 110547,
+        "p95": 117471
       },
       "population_60_plus_median": 2527261,
       "attributable_health_system": {
-        "p05": 13895,
-        "median": 21645,
-        "p95": 29373
+        "p05": 13901,
+        "median": 21652,
+        "p95": 29383
       },
-      "attributable_per_100k_official_stock": 218.5,
+      "attributable_per_100k_official_stock": 218.6,
       "ageing_effect_vs_2019": {
-        "p05": 11175,
-        "median": 16803,
-        "p95": 22420
+        "p05": 11183,
+        "median": 16829,
+        "p95": 22462
       },
       "population_size_effect_vs_2019": {
-        "p05": -20325,
-        "median": -15322,
+        "p05": -20391,
+        "median": -15353,
         "p95": -10120
       },
       "unregistered_deaths": {
@@ -321,25 +338,25 @@
         "p95": 144970
       },
       "expected_deaths_2019_schedule": {
-        "p05": 103316,
-        "median": 112086,
-        "p95": 121253
+        "p05": 103302,
+        "median": 112076,
+        "p95": 121249
       },
       "population_60_plus_median": 2604090,
       "attributable_health_system": {
-        "p05": 18617,
-        "median": 28501,
-        "p95": 38203
+        "p05": 18622,
+        "median": 28512,
+        "p95": 38217
       },
-      "attributable_per_100k_official_stock": 297.2,
+      "attributable_per_100k_official_stock": 297.3,
       "ageing_effect_vs_2019": {
-        "p05": 14384,
-        "median": 22415,
-        "p95": 30500
+        "p05": 14396,
+        "median": 22447,
+        "p95": 30557
       },
       "population_size_effect_vs_2019": {
-        "p05": -25347,
-        "median": -19426,
+        "p05": -25433,
+        "median": -19468,
         "p95": -13235
       },
       "unregistered_deaths": {
@@ -360,25 +377,25 @@
         "p95": 150769
       },
       "expected_deaths_2019_schedule": {
-        "p05": 102843,
-        "median": 113936,
-        "p95": 125585
+        "p05": 102836,
+        "median": 113931,
+        "p95": 125580
       },
       "population_60_plus_median": 2679612,
       "attributable_health_system": {
-        "p05": 20004,
-        "median": 32291,
-        "p95": 44173
+        "p05": 20008,
+        "median": 32296,
+        "p95": 44181
       },
       "attributable_per_100k_official_stock": 348.2,
       "ageing_effect_vs_2019": {
-        "p05": 17377,
-        "median": 27773,
-        "p95": 38294
+        "p05": 17383,
+        "median": 27794,
+        "p95": 38325
       },
       "population_size_effect_vs_2019": {
-        "p05": -29259,
-        "median": -22903,
+        "p05": -29308,
+        "median": -22928,
         "p95": -16332
       },
       "unregistered_deaths": {
@@ -387,29 +404,29 @@
         "p95": 9106
       },
       "identity_residual_median": 0,
-      "share_of_death_rise_from_ageing_pct": 46.2
+      "share_of_death_rise_from_ageing_pct": 46.3
     }
   ],
   "cumulative_attributable": {
     "2020_2025": {
-      "p05": 105356,
-      "median": 142095,
-      "p95": 180494
+      "p05": 105368,
+      "median": 142123,
+      "p95": 180518
     },
     "2021_2025": {
-      "p05": 104017,
-      "median": 136752,
-      "p95": 170594
+      "p05": 104031,
+      "median": 136775,
+      "p95": 170628
     },
     "2022_2025_post_covid": {
-      "p05": 46976,
-      "median": 74847,
-      "p95": 103025
+      "p05": 46991,
+      "median": 74869,
+      "p95": 103056
     },
     "2024_2025": {
-      "p05": 32557,
-      "median": 50147,
-      "p95": 67507
+      "p05": 32568,
+      "median": 50164,
+      "p95": 67528
     }
   },
   "caveats": [
