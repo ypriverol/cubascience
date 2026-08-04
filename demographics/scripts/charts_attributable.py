@@ -91,7 +91,7 @@ def _panel_a(ax, data: dict, t: dict) -> None:
     x = np.arange(len(years))
     size = np.array([r["population_size_effect_vs_2019"]["median"] for r in rows]) / 1e3
     ageing = np.array([r["ageing_effect_vs_2019"]["median"] for r in rows]) / 1e3
-    rate = np.array([r["attributable_health_system"]["median"] for r in rows]) / 1e3
+    rate = np.array([r["excess_vs_2019_schedule"]["median"] for r in rows]) / 1e3
     net = np.array([r["total_deaths_incl_unregistered"]["median"] for r in rows]) / 1e3
     net = net - data["base_2019"]["total_deaths"] / 1e3
 
@@ -146,9 +146,9 @@ def _panel_b(ax, data: dict, t: dict) -> None:
     style_ax(ax)
     rows = data["by_year"]
     years = np.array([r["year"] for r in rows])
-    med = np.array([r["attributable_health_system"]["median"] for r in rows]) / 1e3
-    lo = np.array([r["attributable_health_system"]["p05"] for r in rows]) / 1e3
-    hi = np.array([r["attributable_health_system"]["p95"] for r in rows]) / 1e3
+    med = np.array([r["excess_vs_2019_schedule"]["median"] for r in rows]) / 1e3
+    lo = np.array([r["excess_vs_2019_schedule"]["p05"] for r in rows]) / 1e3
+    hi = np.array([r["excess_vs_2019_schedule"]["p95"] for r in rows]) / 1e3
 
     ax.fill_between(years, lo, hi, color=RED, alpha=0.14, lw=0, zorder=2)
     obs = years <= 2025

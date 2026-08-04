@@ -148,12 +148,12 @@
         "p95": 114428
       },
       "population_60_plus_median": 2357313,
-      "attributable_health_system": {
+      "excess_vs_2019_schedule": {
         "p05": 601,
         "median": 5385,
         "p95": 10582
       },
-      "attributable_per_100k_official_stock": 48.1,
+      "excess_per_100k_official_stock": 48.1,
       "ageing_effect_vs_2019": {
         "p05": -1051,
         "median": 1731,
@@ -187,12 +187,12 @@
         "p95": 114987
       },
       "population_60_plus_median": 2392196,
-      "attributable_health_system": {
+      "excess_vs_2019_schedule": {
         "p05": 56085,
         "median": 61890,
         "p95": 68576
       },
-      "attributable_per_100k_official_stock": 555.3,
+      "excess_per_100k_official_stock": 555.3,
       "ageing_effect_vs_2019": {
         "p05": 347,
         "median": 3278,
@@ -226,12 +226,12 @@
         "p95": 115408
       },
       "population_60_plus_median": 2438100,
-      "attributable_health_system": {
+      "excess_vs_2019_schedule": {
         "p05": 7485,
         "median": 12831,
         "p95": 18531
       },
-      "attributable_per_100k_official_stock": 115.6,
+      "excess_per_100k_official_stock": 115.6,
       "ageing_effect_vs_2019": {
         "p05": 1524,
         "median": 5998,
@@ -265,12 +265,12 @@
         "p95": 114966
       },
       "population_60_plus_median": 2447328,
-      "attributable_health_system": {
+      "excess_vs_2019_schedule": {
         "p05": 5676,
         "median": 11872,
         "p95": 18193
       },
-      "attributable_per_100k_official_stock": 112.3,
+      "excess_per_100k_official_stock": 112.3,
       "ageing_effect_vs_2019": {
         "p05": 5211,
         "median": 9970,
@@ -304,12 +304,12 @@
         "p95": 117471
       },
       "population_60_plus_median": 2527261,
-      "attributable_health_system": {
+      "excess_vs_2019_schedule": {
         "p05": 13901,
         "median": 21652,
         "p95": 29383
       },
-      "attributable_per_100k_official_stock": 218.6,
+      "excess_per_100k_official_stock": 218.6,
       "ageing_effect_vs_2019": {
         "p05": 11183,
         "median": 16829,
@@ -343,12 +343,12 @@
         "p95": 121249
       },
       "population_60_plus_median": 2604090,
-      "attributable_health_system": {
+      "excess_vs_2019_schedule": {
         "p05": 18622,
         "median": 28512,
         "p95": 38217
       },
-      "attributable_per_100k_official_stock": 297.3,
+      "excess_per_100k_official_stock": 297.3,
       "ageing_effect_vs_2019": {
         "p05": 14396,
         "median": 22447,
@@ -382,12 +382,12 @@
         "p95": 125580
       },
       "population_60_plus_median": 2679612,
-      "attributable_health_system": {
+      "excess_vs_2019_schedule": {
         "p05": 20008,
         "median": 32296,
         "p95": 44181
       },
-      "attributable_per_100k_official_stock": 348.2,
+      "excess_per_100k_official_stock": 348.2,
       "ageing_effect_vs_2019": {
         "p05": 17383,
         "median": 27794,
@@ -407,7 +407,7 @@
       "share_of_death_rise_from_ageing_pct": 46.3
     }
   ],
-  "cumulative_attributable": {
+  "cumulative_excess": {
     "2020_2025": {
       "p05": 105368,
       "median": 142123,

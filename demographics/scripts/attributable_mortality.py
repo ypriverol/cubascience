@@ -29,8 +29,9 @@ so that ``D_t*Dfac - E_ref = size + ageing + rate`` holds exactly per draw (the
 reference is E_ref rather than the raw 2019 count so that rate perturbations
 cancel instead of leaking into the ageing term).
 
-The **rate** term is the estimate of deaths attributable to health-system
-deterioration.
+The **rate** term is excess deaths relative to the 2019 age-specific schedule.
+It is deliberately NOT called 'attributable to health-system deterioration': the
+same formula returns ~61,900 for 2021, which is a pandemic.
 
 Population inputs
 -----------------
@@ -370,7 +371,7 @@ def run() -> dict:
     drift_max = rng.normal(0.0, 0.03, N)
 
     results = []
-    attributable_draws: dict[int, np.ndarray] = {}
+    excess_draws: dict[int, np.ndarray] = {}
 
     for year in YEARS:
         drift = drift_max * (year - BASE_YEAR) / (YEARS[-1] - BASE_YEAR)
@@ -407,7 +408,7 @@ def run() -> dict:
         size_effect = (p_tot - pop19) * e_ref / pop19
         struct_size = sum(rates[g] * (pa[g] - p19[g]) / 1000.0 for g in GROUPS)
         ageing_effect = struct_size - size_effect
-        attributable_draws[year] = rate_effect
+        excess_draws[year] = rate_effect
 
         def q(x: np.ndarray) -> dict[str, int]:
             lo, med, hi = np.percentile(x, [5, 50, 95])
@@ -422,8 +423,8 @@ def run() -> dict:
             "total_deaths_incl_unregistered": q(total_deaths),
             "expected_deaths_2019_schedule": q(expected),
             "population_60_plus_median": int(round(float(np.median(p60_64 + p65)))),
-            "attributable_health_system": q(rate_effect),
-            "attributable_per_100k_official_stock": round(
+            "excess_vs_2019_schedule": q(rate_effect),
+            "excess_per_100k_official_stock": round(
                 float(np.median(rate_effect)) / _midyear(OFFICIAL_END_M, year) * 1e5, 1),
             "ageing_effect_vs_2019": q(ageing_effect),
             "population_size_effect_vs_2019": q(size_effect),
@@ -436,7 +437,7 @@ def run() -> dict:
         })
 
     def _cum(lo: int, hi: int) -> dict[str, int]:
-        tot = sum(v for y, v in attributable_draws.items() if lo <= y <= hi)
+        tot = sum(v for y, v in excess_draws.items() if lo <= y <= hi)
         p05, med, p95 = np.percentile(tot, [5, 50, 95])
         return {"p05": int(round(p05)), "median": int(round(med)), "p95": int(round(p95))}
 
@@ -482,7 +483,7 @@ def run() -> dict:
             {r["year"]: r["expected_deaths_2019_schedule"]["median"] for r in results},
             {y: float(reg_by_year[y]) for y in YEARS}),
         "by_year": results,
-        "cumulative_attributable": {
+        "cumulative_excess": {
             "2020_2025": _cum(2020, 2025),
             "2021_2025": _cum(2021, 2025),
             "2022_2025_post_covid": _cum(2022, 2025),
@@ -511,9 +512,9 @@ def main() -> None:
           f"population, CDR {b['cdr_per_1000']:.2f}, {b['share_of_deaths_at_60_plus_pct']}% at 60+")
     print(f"  rates/1000: {b['rates_per_1000']}")
     print(f"{'yr':>5} {'src':>10} {'reg':>8} {'60+pop':>10} {'expected':>9} "
-          f"{'size':>8} {'ageing':>8} {'collapse (90%)':>24} {'resid':>6}")
+          f"{'size':>8} {'ageing':>8} {'excess (range)':>24} {'resid':>6}")
     for r in out["by_year"]:
-        a = r["attributable_health_system"]
+        a = r["excess_vs_2019_schedule"]
         print(f"{r['year']:>5} {'obs' if 'observed' in r['age_structure_source'] else 'proj':>10} "
               f"{r['registered_deaths']:>8,} {r['population_60_plus_median']:>10,} "
               f"{r['expected_deaths_2019_schedule']['median']:>9,} "
@@ -521,8 +522,8 @@ def main() -> None:
               f"{r['ageing_effect_vs_2019']['median']:>8,} "
               f"{a['median']:>8,} [{a['p05']:,}–{a['p95']:,}]".ljust(24)
               + f" {r['identity_residual_median']:>6}")
-    print("\ncumulative attributable to health-system deterioration:")
-    for k, v in out["cumulative_attributable"].items():
+    print("\ncumulative excess vs the 2019 age-specific schedule:")
+    for k, v in out["cumulative_excess"].items():
         print(f"  {k}: {v['median']:,} [{v['p05']:,}–{v['p95']:,}]")
     print("wrote", OUT)
 

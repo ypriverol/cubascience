@@ -1,11 +1,12 @@
-numpy
-scipy
-matplotlib
-seaborn
-pandas
-nbformat
-jupyter
-nbconvert
-pyyaml
-pillow
-xlrd>=2.0.1
+# Pinned for reproducibility: the artifacts are byte-identical across runs
+# only if the RNG and scipy.stats.beta.ppf implementations match.
+# Captured 2026-08-04 on Python 3.11.8.
+numpy==2.4.6
+scipy==1.16.2
+pandas==2.3.3
+matplotlib==3.10.6
+seaborn==0.13.2
+pyyaml==6.0.3
+xlrd==2.0.2
+openpyxl==3.1.5
+pytest==8.1.1

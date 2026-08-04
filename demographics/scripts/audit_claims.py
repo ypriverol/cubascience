@@ -143,21 +143,21 @@ def main() -> int:
         by = {r["year"]: r for r in am["by_year"]}
         checks = [
             (cam["annual_2025"]["median"],
-             by[2025]["attributable_health_system"]["median"], "annual_2025.median"),
+             by[2025]["excess_vs_2019_schedule"]["median"], "annual_2025.median"),
             (cam["decomposition_2025"]["ageing_effect"],
              by[2025]["ageing_effect_vs_2019"]["median"], "decomposition_2025.ageing_effect"),
             (cam["decomposition_2025"]["health_system_effect"],
-             by[2025]["attributable_health_system"]["median"],
+             by[2025]["excess_vs_2019_schedule"]["median"],
              "decomposition_2025.health_system_effect"),
             (cam["annual_2026_scenario"]["median"],
-             by[2026]["attributable_health_system"]["median"], "annual_2026_scenario.median"),
+             by[2026]["excess_vs_2019_schedule"]["median"], "annual_2026_scenario.median"),
         ]
         for got, want, name in checks:
             if abs(float(got) - float(want)) > max(150, 0.01 * abs(want)):
                 errors.append(f"claims.yaml {name} {got} != artifact {want}")
         for win, key in (("2024_2025", "2024_2025"), ("2020_2025", "2020_2025"),
                          ("2022_2025_post_covid", "2022_2025_post_covid")):
-            a = am["cumulative_attributable"][key]
+            a = am["cumulative_excess"][key]
             b = cam["cumulative"][win]
             for f in ("median", "p05", "p95"):
                 if abs(float(b[f]) - float(a[f])) > max(400, 0.02 * abs(a[f])):

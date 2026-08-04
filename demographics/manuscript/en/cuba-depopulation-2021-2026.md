@@ -30,9 +30,9 @@ Supplementary figures (life expectancy; provinces):
 
 Counting Cubans has become contested. The last completed census was in 2012; the census planned for 2022 has been repeatedly postponed and is now promised for 2026 (ONEI 2022). Without a census, published population depends on projections and a lagging migration register (Preston et al. 2001; United Nations, Department of Economic and Social Affairs, Population Division 2024). In July 2024, ONEI reported an “effective population” of 10,055,968 at end-2023 (about one million below prior published levels), then 9,748,007 (end-2024) and 9,434,593 (end-2025) (ONEI 2024, 2025).
 
-Three incompatible series coexist (Figure <a href="#fig:pop" data-reference-type="ref" data-reference="fig:pop">7</a>): the United Nations World Population Prospects path near 10.9 million (still assuming net emigration of order $`2\times10^4`$ per year) (United Nations, Department of Economic and Social Affairs, Population Division 2024; Economic Commission for Latin America and the Caribbean (ECLAC) 2022); ONEI’s revised official series (9.43 million at end-2025); and independent studies placing the living population nearer 8.0–8.6 million (Albizu-Campos Espiñeira 2023, 2024). Almost three million people separate the extremes. This paper presents a scenario audit of the 2021–2025 headcount decline with transparent prior ensembles, decomposes migratory and internal components, compares official migration accounting with destination registers, and reports an end-2026 scenario continuation.
+Three incompatible series coexist (Figure <a href="#fig:pop" data-reference-type="ref" data-reference="fig:pop">7</a>): the United Nations World Population Prospects path near 10.9 million (still assuming net emigration of order $`2\times10^4`$ per year) (United Nations, Department of Economic and Social Affairs, Population Division 2024; Economic Commission for Latin America and the Caribbean (ECLAC) 2023); ONEI’s revised official series (9.43 million at end-2025); and independent studies placing the living population nearer 8.0–8.6 million (Albizu-Campos Espiñeira 2023, 2024). Almost three million people separate the extremes. This paper presents a scenario audit of the 2021–2025 headcount decline with transparent prior ensembles, decomposes migratory and internal components, compares official migration accounting with destination registers, and reports an end-2026 scenario continuation.
 
-Cuba’s fertility transition was already among Latin America’s earliest and deepest (Díaz-Briquets and Pérez 1982; Hollerbach et al. 1984; Díaz-Briquets 2014), so below-replacement fertility is not new. What is new is the *speed* of headcount loss under combined emigration and natural decrease, in a regional context where Latin America and the Caribbean still grow overall (Economic Commission for Latin America and the Caribbean (ECLAC) 2022; United Nations, Department of Economic and Social Affairs, Population Division 2024). Comparable peacetime contractions elsewhere have been driven primarily by emigration (e.g. Venezuela) (Coleman 2006; García et al. 2019).
+Cuba’s fertility transition was already among Latin America’s earliest and deepest (Díaz-Briquets and Pérez 1982; Hollerbach et al. 1984; Díaz-Briquets 2014), so below-replacement fertility is not new. What is new is the *speed* of headcount loss under combined emigration and natural decrease, in a regional context where Latin America and the Caribbean still grow overall (Economic Commission for Latin America and the Caribbean (ECLAC) 2023; United Nations, Department of Economic and Social Affairs, Population Division 2024). Comparable peacetime contractions elsewhere have been driven primarily by emigration (e.g. Venezuela) (Coleman 2006; García et al. 2019).
 
 **Central thesis.** The headcount loss is mostly emigration, but a second “internal” engine (birth decline, excess mortality, and ageing) would sustain contraction even if emigration slowed (Lee and Mason 2014; Lesthaeghe 2010). The two engines are not independent: selective exit of working-age adults and women of reproductive age causes much of the fertility decline, so many “births that do not occur” are a delayed migratory effect (Bongaarts and Sobotka 2012; Díaz-Briquets 2014).
 
@@ -84,7 +84,7 @@ The decomposition is far less denominator-sensitive than the crude bridge it rep
 
 Published population levels are grouped by information content (Figure <a href="#fig:tri" data-reference-type="ref" data-reference="fig:tri">6</a>). Ceilings that do not purge emigrants include the UN World Population Prospects, the MINSAP denominator, and the electoral roll (soft upper bounds only). The official ONEI revised headcount is 9.43 M at end-2025. Exit-correcting or independent constructs include housing$`\times`$occupancy ($`\sim`$<!-- -->8.7 M; fragile occupancy scalar) and Albizu-Campos 2023/2024 (8.0–8.6 M; methods that share migration-critique assumptions with this paper). The central scenario (8.58 M) is the study estimand and is *not* external validation of itself; agreement with Albizu/housing is partly shared-prior echo, while ceilings bound the upside. The soft band from exit-correcting sources is near 8.0–8.9 million.
 
-The settled-concept destination floor (Table <a href="#tab:bridge" data-reference-type="ref" data-reference="tab:bridge">2</a>) comprises United States $`\sim`$<!-- -->800,000 (administrative/CBP-pipeline statuses, *not* ACS stock), non-U.S. total $`\sim`$<!-- -->250,000 (Spain $`\sim`$<!-- -->135,000 + Uruguay $`\sim`$<!-- -->35,000 + rest $`\sim`$<!-- -->80,000), and floor $`\sim`$<!-- -->1.05 million (Pérez-Riverol 2026d; Moslimani and Passel 2024). ACS Cuban-born stock rose by only $`\sim`$<!-- -->335,000 from 2019–2024—a lower stock-change floor that must not be silently equated with the 800,000 administrative figure. Encounter counts and nationality applications are separate concepts and are never added into the settled floor (U.S. Customs and Border Protection 2024).
+The settled-concept destination floor (Table <a href="#tab:bridge" data-reference-type="ref" data-reference="tab:bridge">2</a>) comprises United States $`\sim`$<!-- -->800,000 (administrative/CBP-pipeline statuses, *not* ACS stock), non-U.S. total $`\sim`$<!-- -->250,000 (Spain $`\sim`$<!-- -->135,000 + Uruguay $`\sim`$<!-- -->35,000 + rest $`\sim`$<!-- -->80,000), and floor $`\sim`$<!-- -->1.05 million (Pérez-Riverol 2026d; Pew Research Center 2024). ACS Cuban-born stock rose by only $`\sim`$<!-- -->335,000 from 2019–2024—a lower stock-change floor that must not be silently equated with the 800,000 administrative figure. Encounter counts and nationality applications are separate concepts and are never added into the settled floor (U.S. Customs and Border Protection 2024).
 
 <div id="tab:bridge">
 
@@ -491,7 +491,7 @@ Díaz-Briquets, Sergio, and Lisandro Pérez. 1982. “Fertility Decline in Cuba:
 
 <div id="ref-eclac2022" class="csl-entry">
 
-Economic Commission for Latin America and the Caribbean (ECLAC). 2022. *Demographic Observatory of Latin America and the Caribbean 2022: Population Trends in Latin America and the Caribbean*. United Nations.
+Economic Commission for Latin America and the Caribbean (ECLAC). 2023. *Latin America and the Caribbean Demographic Observatory 2022*. United Nations ECLAC. <https://doi.org/10.18356/9789210055840>.
 
 </div>
 
@@ -534,12 +534,6 @@ Lee, Ronald, and Andrew Mason. 2014. “Is Low Fertility Really a Problem? Popul
 <div id="ref-lesthaeghe2010" class="csl-entry">
 
 Lesthaeghe, Ron. 2010. “The Unfolding Story of the Second Demographic Transition.” *Population and Development Review* 36 (2): 211–51. <https://doi.org/10.1111/j.1728-4457.2010.00328.x>.
-
-</div>
-
-<div id="ref-pew_cuban" class="csl-entry">
-
-Moslimani, Mohamad, and Jeffrey S. Passel. 2024. *Facts about the U.S. Cuban Immigrant Population*. Pew Research Center; <https://www.pewresearch.org/short-reads/>.
 
 </div>
 
@@ -588,6 +582,12 @@ Pérez-Riverol, Yasset. 2026c. *Model e Vital Reconstruction (HSDS) — Suppleme
 <div id="ref-destinations" class="csl-entry">
 
 Pérez-Riverol, Yasset. 2026d. *Settled Destinations Ledger (Aggregated Public Statistics)*. File `demographics/data/destinations_settled.csv` in.
+
+</div>
+
+<div id="ref-pew_cuban" class="csl-entry">
+
+Pew Research Center. 2024. *Facts on Hispanics of Cuban Origin in the United States*. Pew Research Center, Race and Ethnicity.
 
 </div>
 

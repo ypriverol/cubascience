@@ -255,9 +255,9 @@
         "p95": 180494
       },
       "2021_2025": {
-        "median": 136800,
-        "p05": 105900,
-        "p95": 169000
+        "median": 136775,
+        "p05": 104031,
+        "p95": 170628
       },
       "2022_2025_post_covid": {
         "median": 74847,
@@ -284,11 +284,11 @@
       "ageing_effect": 22415,
       "health_system_effect": 28501,
       "observed_rise_incl_unregistered": 31300,
-      "note": "Change in annual deaths vs 2019 = size + ageing + rate, exactly per draw. A ~2.0M smaller resident population should have cut ~19,400 deaths a year; ageing added ~22,300; health-system deterioration added ~28,600. The two upward terms sum to more than the observed 31,300 rise because the smaller population pulls the other way.\n"
+      "note": "Change in annual deaths vs 2019 = size + ageing + rate, exactly per draw. A ~2.0M smaller resident population should have cut ~19,400 deaths a year; ageing added ~22,400; health-system deterioration added ~28,500. The two upward terms sum to more than the observed 31,300 rise because the smaller population pulls the other way.\n"
     },
     "ageing_share_of_gross_increase_2025_pct": 44,
-    "headline_en": "Excess mortality against the 2019 age-specific schedule runs at roughly 28,500 deaths a year at 2025 levels (prior sensitivity range 18,600-38,200), against ~22,300 a year explained by population ageing alone.\n",
-    "headline_es": "El exceso respecto de la tabla de 2019 corre a unas 28,500 muertes anuales en exceso a niveles de 2025 (banda 90% 18,700-38,300), frente a ~22,300 anuales que explica el envejecimiento por si solo.\n",
+    "headline_en": "Excess mortality against the 2019 age-specific schedule runs at roughly 28,500 deaths a year at 2025 levels (prior sensitivity range 18,600-38,200), against ~22,400 a year explained by population ageing alone.\n",
+    "headline_es": "El exceso respecto de la tabla de 2019 corre a unas 28,500 muertes anuales en exceso a niveles de 2025 (rango de sensibilidad 18,600-38,200), frente a ~22,400 anuales que explica el envejecimiento por si solo.\n",
     "status": "primary age-standardised estimate; supersedes the crude 2019-CDR bridge",
     "revision_note": "2026-08-03 adversarial review: the previous version derived the elderly count as (share x official total), which made it FALL 67k in 2024 because the official total absorbs ONEI's 2023 register catch-up in one step; and it used 3.12 shares rather than ONEI 3.3 observed age denominators. Both are fixed. 2024-2025 moved 47.1k -> 50.2k and 2022 moved 7.4k -> 12.8k.\n",
     "caveats": [
@@ -389,8 +389,8 @@
         "role": "independent_shared_assumptions"
       },
       {
-        "source": "This study (Model D scenario)",
-        "estimate": 8.59,
+        "source": "This study (central scenario)",
+        "estimate": 8.58,
         "role": "estimand_not_validator"
       },
       {

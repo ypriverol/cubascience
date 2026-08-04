@@ -54,11 +54,11 @@ def test_decomposition_is_exact_per_draw():
 def test_bands_ordered_and_cumulative_is_correlated():
     out = am.run()
     for row in out["by_year"]:
-        a = row["attributable_health_system"]
+        a = row["excess_vs_2019_schedule"]
         assert a["p05"] <= a["median"] <= a["p95"]
-    cum = out["cumulative_attributable"]["2024_2025"]
+    cum = out["cumulative_excess"]["2024_2025"]
     per_year = [r for r in out["by_year"] if r["year"] in (2024, 2025)]
-    naive_low = sum(r["attributable_health_system"]["p05"] for r in per_year)
+    naive_low = sum(r["excess_vs_2019_schedule"]["p05"] for r in per_year)
     # Systematic parameters are shared, so the cumulative low must not sit far
     # above the perfectly-correlated sum (which independence would produce).
     assert cum["p05"] >= naive_low - 1
@@ -66,7 +66,7 @@ def test_bands_ordered_and_cumulative_is_correlated():
 
 def test_2021_covid_wave_dominates_and_2024_25_rises_again():
     out = am.run()
-    by = {r["year"]: r["attributable_health_system"]["median"] for r in out["by_year"]}
+    by = {r["year"]: r["excess_vs_2019_schedule"]["median"] for r in out["by_year"]}
     assert by[2021] > 40_000                 # pandemic wave
     assert by[2022] < by[2021] / 3           # falls back sharply
     assert by[2025] > by[2023]               # post-pandemic escalation
