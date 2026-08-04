@@ -51,7 +51,7 @@ Los registros externos se usan como techos o corroboración blanda; el escenario
 Por separado, descomponemos el cambio en las defunciones anuales desde 2019 mediante estandarización indirecta por edad sobre la mortalidad por edades de la ONEI, separándolo en un término de tamaño poblacional, un término de envejecimiento y un término residual de tasas reportado como exceso de defunciones respecto de la tabla de tasas por edad de 2019.
 
 \textbf{Resultados.}
-Frente al stock oficial de fin de 2021 (11.11~millones), la brecha a fin de 2025 abarca \textbf{1.97--2.79~millones} (\textbf{17.8--25.1\%}) entre escenarios: el enunciado primario de incertidumbre.
+Frente al stock oficial de fin de 2021 (11.11~millones), la brecha a fin de 2025 abarca \textbf{1.97--2.79~millones} (\textbf{17.8--25.1\%}) entre tres conjuntos de supuestos; un escenario nulo que toma a la ONEI al pie de la letra da 1.68~millones (exactamente, por construcción) y se reporta junto a ellos.
 Hay que separar dos cantidades.
 Frente al \emph{stock oficial de 2021}, la brecha del escenario central es de \textbf{2.53~millones} (22.8\%), pero 1.68~millones de eso es caída que la propia ONEI publicó, de modo que solo \textbf{0.85~millones} es la corrección añadida por este trabajo.
 Frente a la cifra de la ONEI para \emph{fin de 2025} (9.43~millones), la población viva del escenario central (\textbf{8.58~millones}) es menor en \textbf{0.85~millones}.
@@ -181,6 +181,7 @@ Por eso mantenemos aproximadamente fijo el \emph{número} de ancianos entre esce
 Ese $\sim$29\% es un supuesto de esta descomposición, no una observación, y es deliberadamente conservador: como el 8\% de los emigrantes tiene 60 años o más, mantener fijo el número sobrestima ligeramente las defunciones esperadas y por tanto subestima el residual atribuible.
 Su consecuencia es que $E_t$ apenas cambia entre la población oficial ($\sim$9.4~M) y la del escenario central ($\sim$8.6~M), mientras que una tasa bruta aplicada a la población menor infla mecánicamente el residual.
 La estructura por edades es \emph{observada} para 2019--2022 y se proyecta por cohortes para 2023--2026 a partir de la estructura observada de 2022, con entradas desde la cohorte de 55--59, salidas a la tabla de tasas de 2019, y emigración de mayores según la proporción del 8\% de emigrantes de 60 y más.
+Las edades 40--59 no reciben mermas por emigración ni mortalidad, y $U_0$ no se retira de la estructura de 2022; ambas omisiones inflan el stock de mayores proyectado, elevan $E_t$ y por tanto \emph{reducen} el exceso que reportamos, en torno a 1\,000 defunciones en 2025.
 Nunca derivamos el número de mayores como (proporción por edad $\times$ total oficial): el total oficial absorbe en un solo salto la puesta al día del registro de la ONEI en 2023, y multiplicar ese salto por una proporción etaria elimina residentes mayores que nunca emigraron.
 Propagamos cuatro fuentes de incertidumbre sobre $N=2\times10^5$ extracciones: ruido del 2\% sobre la tabla de tasas por edad de 2019; una deriva residual simétrica $\mathcal{N}(0,0.03)$ para la composición dentro del grupo de 65 y más después de 2022; la distribución a priori de $D_{\mathrm{fac}}$ del escenario central para defunciones no registradas; y una mezcla 50/50 entre la trayectoria poblacional oficial y la del escenario central, con un error de proyección que crece 1.5\% por año más allá de 2022.
 Los parámetros sistemáticos se extraen una sola vez y se reutilizan en cada año, de modo que las ventanas acumuladas propagan error correlacionado y no independiente.
@@ -323,7 +324,7 @@ La tasa global de fecundidad cayó a 1.29 hijos por mujer en 2025, la más baja 
 La emigración se lleva mujeres jóvenes (flujo mayoritariamente femenino) y quienes permanecen posponen nacimientos ante la escasez.
 Los nacimientos cayeron un 38\% (de $\sim$110\,000 en 2019 a 68\,000 en 2025).
 Un cálculo aproximado que reparta la caída en ``mitad menos mujeres / mitad menor fecundidad'' es \emph{solo ilustrativo}: los denominadores de la fecundidad de la ONEI pueden estar ellos mismos inflados por mujeres ausentes, lo que sobrestimaría la mitad atribuida a la tasa; aquí no se afirma una descomposición formal de exposición y tasas específicas de fecundidad por edad.
-Las proyecciones oficiales llevan la proporción de 60 y más del 20.4\% (2019) al 26.7\% (2025) y hacia el 33\% en 2035, bajo un stock vivo mayor que el del escenario central~\citep{onei_2025,lee2014}.
+La proporción reportada de 60 y más pasa del 20.4\% (2019) al 26.7\% (2025) ---cifra que, como se señaló arriba, no es reproducible a partir de los cuadros publicados, frente a la proyección del 25.0\% del propio cuadro 3.12 de la ONEI--- y hacia el 33\% en 2035, bajo un stock vivo mayor que el del escenario central~\citep{onei_2025,lee2014}.
 Bajo un stock menor y vaciado de jóvenes la proporción de ancianos sería mayor; cualquier cifra de $\sim$29\% o $\sim$40\% en gráficos acompañantes es un \textbf{bosquejo ilustrativo}, no una estimación por componentes de cohorte.
 La edad mediana alcanzó los \textbf{45} años en 2025 según el reporte oficial (Figura~\ref{fig:aging}).
 
