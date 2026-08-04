@@ -13,7 +13,7 @@ Quantitative scenario audit of Cuba’s population loss between **end-2021 and e
 > Point figures are closed-form arithmetic on three prior means; no parameter is informed
 > by a likelihood, and the ranges are prior sensitivity ranges, not confidence intervals.
 >
-> **Mortality attributable to health-system collapse.** Age-standardised decomposition
+> **Excess mortality against the 2019 age-specific schedule.** Age-standardised decomposition
 > (`scripts/attributable_mortality.py`), on **observed** ONEI 3.3 age denominators:
 > at 2025 levels ≈**28.5k deaths/year** (prior sensitivity range 18.6–38.2k) of **excess
 > against the 2019 age-specific schedule** — deliberately *not* called "attributable to
@@ -23,7 +23,10 @@ Quantitative scenario audit of Cuba’s population loss between **end-2021 and e
 > 2024–2025, which charged the whole ageing shift to the crisis). Crude registered
 > excess 2020–2025 ≈**153k** is a separate, cruder quantity and must not be added.
 >
-> **Model E (provisional).** Vital reconstruction ≈**8.96 M** end-2025 (−2.13 M, −19.2%).
+> **Model E is retired.** It was superseded by the age-standardised excess-mortality
+> decomposition, which estimates the same quantity from observed age denominators.
+> Its numeric results are not reproduced here: a retired headline that stays in a
+> README gets quoted as current.
 > Not preferred (different \(U_0\); ageing double-count risk). Details in the supplement.
 
 The Monte Carlo window starts at **official end-2021** (11,113,215), not 2019.
@@ -95,4 +98,4 @@ Artifacts: `artifacts/model_e_summary.json`, `artifacts/hsds_scores.json`.
 
 ## License
 
-Content: **CC BY 4.0**. Code: repository license (CC0 1.0). ONEI tables: public official data.
+Content: **CC0 1.0** (see `LICENSE`; an earlier version of this line said CC BY 4.0, which no shipped licence text supported). Code: repository license (CC0 1.0). ONEI tables: public official data.

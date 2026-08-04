@@ -41,18 +41,18 @@
     "parameter": "claims.selectivity.emigrants_60_plus_pct",
     "class": "expert_prior",
     "excess_2025": {
-      "0pct": 23668,
-      "8pct_as_used": 28501,
-      "16pct": 33346
+      "0pct": 23679,
+      "8pct_as_used": 28512,
+      "16pct": 33356
     },
     "cumulative_2022_2025": {
-      "0pct": 62836,
-      "8pct_as_used": 74847,
-      "16pct": 86872
+      "0pct": 62863,
+      "8pct_as_used": 74869,
+      "16pct": 86897
     },
-    "swing_2025": 4845,
-    "swing_cumulative": 12025,
-    "note": "About a quarter of the 2025 prior sensitivity range and a fifth of the cumulative one, from a single expert prior. Raising the share RAISES the excess: a genuinely fixed elderly count (0%) gives 23,668, not more."
+    "swing_2025": 4838,
+    "swing_cumulative": 12017,
+    "note": "About a quarter of the 2025 prior sensitivity range and a fifth of the cumulative one, from a single expert prior. Raising the share RAISES the excess: a genuinely fixed elderly count (0%) gives the LOWEST value, not the highest."
   },
   "counterfactual_sensitivity": {
     "cuba_trend_contiguous_upper95": {

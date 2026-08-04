@@ -163,7 +163,7 @@
       "total_deaths": 117739,
       "crude_per_100k": 1113.4,
       "age_standardised_per_100k": null,
-      "expected_deaths_2019_schedule": 109630,
+      "expected_deaths_2019_schedule": 109625,
       "smr_vs_2019_schedule": 1.074,
       "implied_asmr_per_100k": 618.8,
       "note": "Direct standardisation impossible (no deaths-by-age after 2022). SMR = registered / expected-at-2019-rates on the projected age structure; implied ASMR assumes the rate rise is proportional across ages, which is an assumption, not a measurement."
@@ -173,9 +173,9 @@
       "total_deaths": 128098,
       "crude_per_100k": 1293.3,
       "age_standardised_per_100k": null,
-      "expected_deaths_2019_schedule": 110554,
+      "expected_deaths_2019_schedule": 110547,
       "smr_vs_2019_schedule": 1.159,
-      "implied_asmr_per_100k": 667.6,
+      "implied_asmr_per_100k": 667.7,
       "note": "Direct standardisation impossible (no deaths-by-age after 2022). SMR = registered / expected-at-2019-rates on the projected age structure; implied ASMR assumes the rate rise is proportional across ages, which is an assumption, not a measurement."
     },
     {
@@ -183,9 +183,9 @@
       "total_deaths": 136214,
       "crude_per_100k": 1420.4,
       "age_standardised_per_100k": null,
-      "expected_deaths_2019_schedule": 112086,
+      "expected_deaths_2019_schedule": 112076,
       "smr_vs_2019_schedule": 1.215,
-      "implied_asmr_per_100k": 700.2,
+      "implied_asmr_per_100k": 700.3,
       "note": "Direct standardisation impossible (no deaths-by-age after 2022). SMR = registered / expected-at-2019-rates on the projected age structure; implied ASMR assumes the rate rise is proportional across ages, which is an assumption, not a measurement."
     }
   ],

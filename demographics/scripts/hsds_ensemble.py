@@ -48,7 +48,7 @@ def main() -> None:
 
     md = f"""# Model E claims proposal (do not auto-promote)
 
-Preferred public model remains **{claims['meta']['preferred_model']}**.
+Preferred public model remains **{claims['meta']['preferred_scenario']}**.
 
 ## Comparison (end-2025)
 

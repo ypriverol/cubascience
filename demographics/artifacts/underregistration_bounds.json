@@ -2,7 +2,7 @@
   "question": "How many Cuban deaths could be going unregistered?",
   "year": 2025,
   "registered_deaths": 136214,
-  "expected_deaths_2019_schedule": 112086,
+  "expected_deaths_2019_schedule": 112076,
   "anchors_2019": {
     "total_deaths": 109080,
     "population_60_plus": 2307646,
@@ -11,7 +11,7 @@
   },
   "stocks_2025_midyear": {
     "official": 9590000,
-    "model_d": 8843004,
+    "model_d": 8834032,
     "population_60_plus": 2604090
   },
   "sweep": [
@@ -21,10 +21,10 @@
       "true_deaths_2025": 136214,
       "deaths_never_registered": 0,
       "cdr_official_stock": 14.2,
-      "cdr_model_d_stock": 15.4,
+      "cdr_model_d_stock": 15.42,
       "rate_60_plus_per_1000": 42.9,
       "rate_60_plus_vs_2019_pct": 10.7,
-      "attributable_2025": 24128,
+      "attributable_2025": 24138,
       "vs_cuba_2021_peak_pct": -18.7
     },
     {
@@ -33,10 +33,10 @@
       "true_deaths_2025": 140300,
       "deaths_never_registered": 4086,
       "cdr_official_stock": 14.63,
-      "cdr_model_d_stock": 15.87,
+      "cdr_model_d_stock": 15.88,
       "rate_60_plus_per_1000": 44.2,
       "rate_60_plus_vs_2019_pct": 14.0,
-      "attributable_2025": 28214,
+      "attributable_2025": 28224,
       "vs_cuba_2021_peak_pct": -16.3
     },
     {
@@ -45,10 +45,10 @@
       "true_deaths_2025": 144387,
       "deaths_never_registered": 8173,
       "cdr_official_stock": 15.06,
-      "cdr_model_d_stock": 16.33,
+      "cdr_model_d_stock": 16.34,
       "rate_60_plus_per_1000": 45.5,
       "rate_60_plus_vs_2019_pct": 17.3,
-      "attributable_2025": 32301,
+      "attributable_2025": 32311,
       "vs_cuba_2021_peak_pct": -13.9
     },
     {
@@ -57,10 +57,10 @@
       "true_deaths_2025": 148473,
       "deaths_never_registered": 12259,
       "cdr_official_stock": 15.48,
-      "cdr_model_d_stock": 16.79,
+      "cdr_model_d_stock": 16.81,
       "rate_60_plus_per_1000": 46.8,
       "rate_60_plus_vs_2019_pct": 20.6,
-      "attributable_2025": 36387,
+      "attributable_2025": 36397,
       "vs_cuba_2021_peak_pct": -11.4
     },
     {
@@ -69,10 +69,10 @@
       "true_deaths_2025": 156646,
       "deaths_never_registered": 20432,
       "cdr_official_stock": 16.33,
-      "cdr_model_d_stock": 17.71,
+      "cdr_model_d_stock": 17.73,
       "rate_60_plus_per_1000": 49.4,
       "rate_60_plus_vs_2019_pct": 27.3,
-      "attributable_2025": 44560,
+      "attributable_2025": 44570,
       "vs_cuba_2021_peak_pct": -6.6
     },
     {
@@ -81,10 +81,10 @@
       "true_deaths_2025": 163457,
       "deaths_never_registered": 27243,
       "cdr_official_stock": 17.04,
-      "cdr_model_d_stock": 18.48,
+      "cdr_model_d_stock": 18.5,
       "rate_60_plus_per_1000": 51.5,
       "rate_60_plus_vs_2019_pct": 32.8,
-      "attributable_2025": 51371,
+      "attributable_2025": 51381,
       "vs_cuba_2021_peak_pct": -2.5
     },
     {
@@ -93,10 +93,10 @@
       "true_deaths_2025": 177078,
       "deaths_never_registered": 40864,
       "cdr_official_stock": 18.46,
-      "cdr_model_d_stock": 20.02,
+      "cdr_model_d_stock": 20.05,
       "rate_60_plus_per_1000": 55.8,
       "rate_60_plus_vs_2019_pct": 43.9,
-      "attributable_2025": 64992,
+      "attributable_2025": 65002,
       "vs_cuba_2021_peak_pct": 5.6
     },
     {
@@ -105,10 +105,10 @@
       "true_deaths_2025": 190700,
       "deaths_never_registered": 54486,
       "cdr_official_stock": 19.89,
-      "cdr_model_d_stock": 21.57,
+      "cdr_model_d_stock": 21.59,
       "rate_60_plus_per_1000": 60.1,
       "rate_60_plus_vs_2019_pct": 54.9,
-      "attributable_2025": 78614,
+      "attributable_2025": 78624,
       "vs_cuba_2021_peak_pct": 13.8
     },
     {
@@ -117,10 +117,10 @@
       "true_deaths_2025": 204321,
       "deaths_never_registered": 68107,
       "cdr_official_stock": 21.31,
-      "cdr_model_d_stock": 23.11,
+      "cdr_model_d_stock": 23.13,
       "rate_60_plus_per_1000": 64.4,
       "rate_60_plus_vs_2019_pct": 66.0,
-      "attributable_2025": 92235,
+      "attributable_2025": 92245,
       "vs_cuba_2021_peak_pct": 21.9
     }
   ],

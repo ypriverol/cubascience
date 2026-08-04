@@ -77,3 +77,27 @@ if __name__ == "__main__":
         if callable(fn) and getattr(fn, "__name__", "").startswith("test_"):
             fn()
     print("ok")
+
+
+def test_projection_rule_backtest_bias_is_measured_and_one_sided():
+    """
+    Round 5: the cohort projection was never validated on the years where truth
+    is observed, and the model carried its error as a SYMMETRIC noise term. Run
+    forward from observed 2019, the rule overshoots the 60+ count at every
+    horizon, so the error is a bias the noise term cannot represent.
+
+    The bias direction matters for how the headline is read: excess = D*Dfac - E,
+    so an overshooting E makes the reported excess too small. If this test ever
+    flips sign, the manuscript's "conservative on this axis" claim is wrong.
+    """
+    import backtest_projection as bt
+
+    out = bt.run()
+    for arm in out["arms"].values():
+        errs = [r["error"] for r in arm]
+        assert all(e > 0 for e in errs), errs          # one-sided, not noise
+        assert errs == sorted(errs), errs              # and it grows with horizon
+    # the manuscript quotes these to one decimal place
+    h3 = out["arms"]["no_migration"][-1]
+    assert 4.5 < h3["error_pct"] < 5.5, h3
+    assert out["finding"]["implied_expected_death_bias_2025"]["elderly_share_8pct"] > 0
