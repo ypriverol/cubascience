@@ -341,6 +341,45 @@ def counterfactual_sensitivity(base: dict, expected_2025: float,
     return out
 
 
+def _variance_attribution() -> dict:
+    """
+    Freeze each uncertainty term in turn and measure how much of the 2025 band
+    width it accounts for.
+
+    The abstract has always claimed "no single term dominates: the cohort
+    projection accounts for about a quarter of the band width and the rest for
+    less". That claim was true but computed nowhere -- an abstract-level
+    empirical assertion with no artifact behind it, which is exactly what this
+    pipeline exists to prevent. Now it is generated.
+
+    Note the scope, which the abstract states and which matters: this covers the
+    terms INSIDE the simulation. The single largest lever on the headline -- the
+    8% elderly-emigrant share -- is held fixed and is reported separately by
+    _elderly_share_sensitivity(); it swings the result by about a quarter of the
+    prior range on its own.
+    """
+    base = run(with_sensitivity=False, freeze=None)
+    b25 = [r for r in base["by_year"] if r["year"] == 2025][0]["excess_vs_2019_schedule"]
+    full = b25["p95"] - b25["p05"]
+    out = {}
+    for term in ("projection", "dfac", "rate_noise", "drift", "pop_path", "pop_noise"):
+        r = run(with_sensitivity=False, freeze=term)
+        x = [q for q in r["by_year"] if q["year"] == 2025][0]["excess_vs_2019_schedule"]
+        w = x["p95"] - x["p05"]
+        out[term] = {"band_width": w,
+                     "share_of_width_removed_pct": round(100 * (full - w) / full, 1)}
+    top = max(out, key=lambda k: out[k]["share_of_width_removed_pct"])
+    return {
+        "full_band_width_2025": full,
+        "by_term": out,
+        "largest_term": top,
+        "note": "Freezing each term in turn. The largest single contributor is "
+                "the cohort projection; no term dominates. Scope is terms INSIDE "
+                "the simulation -- the 8% elderly share is fixed, not propagated, "
+                "and is reported by elderly_share_sensitivity.",
+    }
+
+
 def _elderly_share_sensitivity() -> dict:
     """
     Re-run the decomposition at 0%, the assumed 8%, and 16%.
@@ -374,7 +413,8 @@ def _elderly_share_sensitivity() -> dict:
     }
 
 
-def run(share_override: float | None = None, with_sensitivity: bool = True) -> dict:
+def run(share_override: float | None = None, with_sensitivity: bool = True,
+        freeze: str | None = None) -> dict:
     """
     ``share_override`` re-runs the whole decomposition at a different elderly
     emigration share, so the sensitivity block is computed rather than typed.
@@ -405,15 +445,29 @@ def run(share_override: float | None = None, with_sensitivity: bool = True) -> d
     dfac = 1.0 + 0.09 * beta_dist.ppf(rng.random(N), 1.8, 3.2)
     use_d = rng.random(N) < 0.5
     pop_noise = rng.normal(1.0, 0.02, N)
+    # `freeze` pins one term at its central value so its contribution to the
+    # band width can be measured (see _variance_attribution).
+    if freeze == "rate_noise":
+        rate_noise = np.ones(N)
+    elif freeze == "dfac":
+        dfac = np.full(N, 1.0 + 0.09 * beta_dist.mean(1.8, 3.2))
+    elif freeze == "pop_path":
+        use_d = np.zeros(N, dtype=bool)
+    elif freeze == "pop_noise":
+        pop_noise = np.ones(N)
     # Projection error is SYSTEMATIC: a mis-projected 2022->2023 age structure
     # propagates mechanically into every later year. Drawing it per-year (as the
     # previous version did) averaged it down and made cumulative bands ~8% too
     # narrow, contradicting the Methods claim that all systematic parameters are
     # shared. One shared normal, scaled by horizon.
     proj_z = rng.normal(0.0, 1.0, N)
+    if freeze == "projection":
+        proj_z = np.zeros(N)
     # Residual within-65+ composition drift not captured by the 60-64/65+ split.
     # Symmetric: the observed shift since 2019 is toward *younger* elderly.
     drift_max = rng.normal(0.0, 0.03, N)
+    if freeze == "drift":
+        drift_max = np.zeros(N)
 
     results = []
     excess_draws: dict[int, np.ndarray] = {}
@@ -508,6 +562,7 @@ def run(share_override: float | None = None, with_sensitivity: bool = True) -> d
         # this script with claims.selectivity.emigrants_60_plus_pct set to 0/8/16.
         "elderly_share_sensitivity": _elderly_share_sensitivity()
         if with_sensitivity else None,
+        "variance_attribution": _variance_attribution() if with_sensitivity else None,
         "counterfactual_sensitivity": counterfactual_sensitivity(
             base,
             [r for r in results if r["year"] == 2025][0][

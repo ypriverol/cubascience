@@ -54,6 +54,37 @@
     "swing_cumulative": 12017,
     "note": "About a quarter of the 2025 prior sensitivity range and a fifth of the cumulative one, from a single expert prior. Raising the share RAISES the excess: a genuinely fixed elderly count (0%) gives the LOWEST value, not the highest."
   },
+  "variance_attribution": {
+    "full_band_width_2025": 19595,
+    "by_term": {
+      "projection": {
+        "band_width": 14104,
+        "share_of_width_removed_pct": 28.0
+      },
+      "dfac": {
+        "band_width": 17947,
+        "share_of_width_removed_pct": 8.4
+      },
+      "rate_noise": {
+        "band_width": 18202,
+        "share_of_width_removed_pct": 7.1
+      },
+      "drift": {
+        "band_width": 18130,
+        "share_of_width_removed_pct": 7.5
+      },
+      "pop_path": {
+        "band_width": 19062,
+        "share_of_width_removed_pct": 2.7
+      },
+      "pop_noise": {
+        "band_width": 19572,
+        "share_of_width_removed_pct": 0.1
+      }
+    },
+    "largest_term": "projection",
+    "note": "Freezing each term in turn. The largest single contributor is the cohort projection; no term dominates. Scope is terms INSIDE the simulation -- the 8% elderly share is fixed, not propagated, and is reported by elderly_share_sensitivity."
+  },
   "counterfactual_sensitivity": {
     "cuba_trend_contiguous_upper95": {
       "expected_2025": 121920,

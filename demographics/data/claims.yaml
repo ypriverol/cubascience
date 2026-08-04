@@ -292,7 +292,7 @@ triangulation:
     - {source: "Electoral roll (level)", estimate: 10.00, role: ceiling}
     - {source: "ONEI official", estimate: 9.43, role: official}
     - {source: "Housing × occupancy", estimate: 8.70, role: occupancy_fragile}
-    - {source: "Albizu-Campos (2023)", estimate: 8.62, role: independent_shared_assumptions}
+    - {source: "Albizu-Campos (2025)", estimate: 8.62, role: independent_shared_assumptions}
     - {source: "This study (central scenario)", estimate: 8.58, role: estimand_not_validator}
     - {source: "Albizu-Campos (2024)", estimate: 8.03, role: independent_shared_assumptions}
 
