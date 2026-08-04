@@ -30,9 +30,9 @@ Versión en inglés y material suplementario, solo en inglés (esperanza de vida
 
 Contar cubanos se ha vuelto un asunto en disputa. El último censo completado fue el de 2012; el censo previsto para 2022 se ha pospuesto repetidamente y ahora se promete para 2026 (ONEI 2022). Sin censo, la población publicada depende de proyecciones y de un registro migratorio rezagado (Preston et al. 2001; United Nations, Department of Economic and Social Affairs, Population Division 2024). En julio de 2024 la ONEI informó una “población efectiva” de 10 055 968 a fin de 2023 (cerca de un millón por debajo de los niveles publicados previamente), luego 9 748 007 (fin de 2024) y 9 434 593 (fin de 2025) (ONEI 2024, 2025).
 
-Coexisten tres series incompatibles (Figura <a href="#fig:pop" data-reference-type="ref" data-reference="fig:pop">7</a>): la trayectoria de *World Population Prospects* de Naciones Unidas, cercana a 10.9 millones (que todavía supone una emigración neta del orden de $`2\times10^4`$ al año) (United Nations, Department of Economic and Social Affairs, Population Division 2024; Economic Commission for Latin America and the Caribbean (ECLAC) 2022); la serie oficial revisada de la ONEI (9.43 millones a fin de 2025); y estudios independientes que sitúan la población viva más cerca de 8.0–8.6 millones (Albizu-Campos Espiñeira 2023, 2024). Casi tres millones de personas separan los extremos. Este trabajo presenta una auditoría de escenarios de la caída del recuento 2021–2025 con conjuntos de distribuciones a priori transparentes, separa los componentes migratorio e interno, compara la contabilidad migratoria oficial con los registros de los países de destino, y reporta una continuación de escenario a fin de 2026.
+Coexisten tres series incompatibles (Figura <a href="#fig:pop" data-reference-type="ref" data-reference="fig:pop">7</a>): la trayectoria de *World Population Prospects* de Naciones Unidas, cercana a 10.9 millones (que todavía supone una emigración neta del orden de $`2\times10^4`$ al año) (United Nations, Department of Economic and Social Affairs, Population Division 2024; Economic Commission for Latin America and the Caribbean (ECLAC) 2023); la serie oficial revisada de la ONEI (9.43 millones a fin de 2025); y estudios independientes que sitúan la población viva más cerca de 8.0–8.6 millones (Albizu-Campos Espiñeira 2023, 2024). Casi tres millones de personas separan los extremos. Este trabajo presenta una auditoría de escenarios de la caída del recuento 2021–2025 con conjuntos de distribuciones a priori transparentes, separa los componentes migratorio e interno, compara la contabilidad migratoria oficial con los registros de los países de destino, y reporta una continuación de escenario a fin de 2026.
 
-La transición de la fecundidad cubana fue de las más tempranas y profundas de América Latina (Díaz-Briquets and Pérez 1982; Hollerbach et al. 1984; Díaz-Briquets 2014), de modo que una fecundidad por debajo del reemplazo no es novedad. Lo nuevo es la *velocidad* de la pérdida de recuento bajo emigración y decrecimiento natural combinados, en un contexto regional donde América Latina y el Caribe todavía crecen en conjunto (Economic Commission for Latin America and the Caribbean (ECLAC) 2022; United Nations, Department of Economic and Social Affairs, Population Division 2024). Contracciones comparables en tiempos de paz en otros países han estado impulsadas sobre todo por la emigración (por ejemplo, Venezuela) (Coleman 2006; García et al. 2019).
+La transición de la fecundidad cubana fue de las más tempranas y profundas de América Latina (Díaz-Briquets and Pérez 1982; Hollerbach et al. 1984; Díaz-Briquets 2014), de modo que una fecundidad por debajo del reemplazo no es novedad. Lo nuevo es la *velocidad* de la pérdida de recuento bajo emigración y decrecimiento natural combinados, en un contexto regional donde América Latina y el Caribe todavía crecen en conjunto (Economic Commission for Latin America and the Caribbean (ECLAC) 2023; United Nations, Department of Economic and Social Affairs, Population Division 2024). Contracciones comparables en tiempos de paz en otros países han estado impulsadas sobre todo por la emigración (por ejemplo, Venezuela) (Coleman 2006; García et al. 2019).
 
 **Tesis central.** La pérdida de recuento es mayoritariamente emigración, pero un segundo motor “interno” (caída de nacimientos, exceso de mortalidad y envejecimiento) sostendría la contracción incluso si la emigración se frenara (Lee and Mason 2014; Lesthaeghe 2010). Los dos motores no son independientes: la salida selectiva de adultos en edad laboral y de mujeres en edad reproductiva causa buena parte de la caída de la fecundidad, de modo que muchos “nacimientos que no ocurren” son un efecto migratorio diferido (Bongaarts and Sobotka 2012; Díaz-Briquets 2014).
 
@@ -84,7 +84,7 @@ La descomposición es mucho menos sensible al denominador que el puente basado e
 
 Los niveles de población publicados se agrupan por contenido informativo (Figura <a href="#fig:tri" data-reference-type="ref" data-reference="fig:tri">6</a>). Los techos que no depuran emigrantes incluyen *World Population Prospects* de la ONU, el denominador del MINSAP y el padrón electoral (solo cotas superiores blandas). El recuento oficial revisado de la ONEI es 9.43 M a fin de 2025. Las construcciones independientes o que corrigen por salida incluyen viviendas$`\times`$ocupación ($`\sim`$<!-- -->8.7 M; escalar de ocupación frágil) y Albizu-Campos 2023/2024 (8.0–8.6 M; métodos que comparten con este trabajo los supuestos de crítica migratoria). El escenario central (8.58 M) es el estimando del estudio y *no* es validación externa de sí mismo; la coincidencia con Albizu o con viviendas es en parte un eco de distribuciones a priori compartidas, mientras que los techos acotan por arriba. La banda blanda de las fuentes que corrigen por salida está cerca de 8.0–8.9 millones.
 
-El piso de destinos bajo concepto de asentamiento (Cuadro <a href="#tab:bridge" data-reference-type="ref" data-reference="tab:bridge">2</a>) comprende Estados Unidos $`\sim`$<!-- -->800 000 (estatus administrativos / flujo CBP, *no* el stock de la ACS), total no estadounidense $`\sim`$<!-- -->250 000 (España $`\sim`$<!-- -->135 000 + Uruguay $`\sim`$<!-- -->35 000 + resto $`\sim`$<!-- -->80 000), y un piso de $`\sim`$<!-- -->1.05 millones (Pérez-Riverol 2026d; Moslimani and Passel 2024). El stock de nacidos en Cuba de la ACS creció solo $`\sim`$<!-- -->335 000 entre 2019 y 2024, un piso menor de cambio de stock que no debe igualarse en silencio con la cifra administrativa de 800 000. Los conteos de encuentros y las solicitudes de nacionalidad son conceptos distintos y nunca se suman al piso de asentados (U.S. Customs and Border Protection 2024).
+El piso de destinos bajo concepto de asentamiento (Cuadro <a href="#tab:bridge" data-reference-type="ref" data-reference="tab:bridge">2</a>) comprende Estados Unidos $`\sim`$<!-- -->800 000 (estatus administrativos / flujo CBP, *no* el stock de la ACS), total no estadounidense $`\sim`$<!-- -->250 000 (España $`\sim`$<!-- -->135 000 + Uruguay $`\sim`$<!-- -->35 000 + resto $`\sim`$<!-- -->80 000), y un piso de $`\sim`$<!-- -->1.05 millones (Pérez-Riverol 2026d; Pew Research Center 2024). El stock de nacidos en Cuba de la ACS creció solo $`\sim`$<!-- -->335 000 entre 2019 y 2024, un piso menor de cambio de stock que no debe igualarse en silencio con la cifra administrativa de 800 000. Los conteos de encuentros y las solicitudes de nacionalidad son conceptos distintos y nunca se suman al piso de asentados (U.S. Customs and Border Protection 2024).
 
 <div id="tab:bridge">
 
@@ -491,7 +491,7 @@ Díaz-Briquets, Sergio, and Lisandro Pérez. 1982. “Fertility Decline in Cuba:
 
 <div id="ref-eclac2022" class="csl-entry">
 
-Economic Commission for Latin America and the Caribbean (ECLAC). 2022. *Demographic Observatory of Latin America and the Caribbean 2022: Population Trends in Latin America and the Caribbean*. United Nations.
+Economic Commission for Latin America and the Caribbean (ECLAC). 2023. *Latin America and the Caribbean Demographic Observatory 2022*. United Nations ECLAC. <https://doi.org/10.18356/9789210055840>.
 
 </div>
 
@@ -534,12 +534,6 @@ Lee, Ronald, and Andrew Mason. 2014. “Is Low Fertility Really a Problem? Popul
 <div id="ref-lesthaeghe2010" class="csl-entry">
 
 Lesthaeghe, Ron. 2010. “The Unfolding Story of the Second Demographic Transition.” *Population and Development Review* 36 (2): 211–51. <https://doi.org/10.1111/j.1728-4457.2010.00328.x>.
-
-</div>
-
-<div id="ref-pew_cuban" class="csl-entry">
-
-Moslimani, Mohamad, and Jeffrey S. Passel. 2024. *Facts about the U.S. Cuban Immigrant Population*. Pew Research Center; <https://www.pewresearch.org/short-reads/>.
 
 </div>
 
@@ -588,6 +582,12 @@ Pérez-Riverol, Yasset. 2026c. *Model e Vital Reconstruction (HSDS) — Suppleme
 <div id="ref-destinations" class="csl-entry">
 
 Pérez-Riverol, Yasset. 2026d. *Settled Destinations Ledger (Aggregated Public Statistics)*. File `demographics/data/destinations_settled.csv` in.
+
+</div>
+
+<div id="ref-pew_cuban" class="csl-entry">
+
+Pew Research Center. 2024. *Facts on Hispanics of Cuban Origin in the United States*. Pew Research Center, Race and Ethnicity.
 
 </div>
 

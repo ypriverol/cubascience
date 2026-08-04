@@ -190,7 +190,7 @@ attributable_mortality:
     note: "Depends on the +4% registered-death continuation in model_from_2021.py — scenario, not observation."
   cumulative:
     "2020_2025": {median: 142095, p05: 105356, p95: 180494}
-    "2021_2025": {median: 136800, p05: 105900, p95: 169000}
+    "2021_2025": {median: 136775, p05: 104031, p95: 170628}
     "2022_2025_post_covid": {median: 74847, p05: 46976, p95: 103025}
     "2024_2025": {median: 50147, p05: 32557, p95: 67507}
   by_year_median:
@@ -209,17 +209,17 @@ attributable_mortality:
     note: >
       Change in annual deaths vs 2019 = size + ageing + rate, exactly per draw.
       A ~2.0M smaller resident population should have cut ~19,400 deaths a year;
-      ageing added ~22,300; health-system deterioration added ~28,600. The two
+      ageing added ~22,400; health-system deterioration added ~28,500. The two
       upward terms sum to more than the observed 31,300 rise because the smaller
       population pulls the other way.
   ageing_share_of_gross_increase_2025_pct: 44
   headline_en: >
     Excess mortality against the 2019 age-specific schedule runs at roughly
-    28,500 deaths a year at 2025 levels (prior sensitivity range 18,600-38,200), against ~22,300 a year explained
+    28,500 deaths a year at 2025 levels (prior sensitivity range 18,600-38,200), against ~22,400 a year explained
     by population ageing alone.
   headline_es: >
     El exceso respecto de la tabla de 2019 corre a unas 28,500 muertes anuales en
-    exceso a niveles de 2025 (banda 90% 18,700-38,300), frente a ~22,300 anuales
+    exceso a niveles de 2025 (rango de sensibilidad 18,600-38,200), frente a ~22,400 anuales
     que explica el envejecimiento por si solo.
   status: "primary age-standardised estimate; supersedes the crude 2019-CDR bridge"
   revision_note: >
@@ -293,7 +293,7 @@ triangulation:
     - {source: "ONEI official", estimate: 9.43, role: official}
     - {source: "Housing × occupancy", estimate: 8.70, role: occupancy_fragile}
     - {source: "Albizu-Campos (2023)", estimate: 8.62, role: independent_shared_assumptions}
-    - {source: "This study (Model D scenario)", estimate: 8.59, role: estimand_not_validator}
+    - {source: "This study (central scenario)", estimate: 8.58, role: estimand_not_validator}
     - {source: "Albizu-Campos (2024)", estimate: 8.03, role: independent_shared_assumptions}
 
 # Settled ledger: US + non_US = floor. Breakdown of non_US must sum to non_us_total.

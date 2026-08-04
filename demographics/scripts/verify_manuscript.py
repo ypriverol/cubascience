@@ -111,11 +111,11 @@ def build_registry() -> list[dict]:
         {"name": "envelope gap low", "v": env["gap_low_m"] * 1e6, "kind": "millions"},
         {"name": "envelope gap high", "v": env["gap_high_m"] * 1e6, "kind": "millions"},
         {"name": "central gap pct", "v": sc["central"]["gap_pct"], "kind": "pct"},
-        {"name": "excess 2025", "v": by[2025]["attributable_health_system"]["median"],
+        {"name": "excess 2025", "v": by[2025]["excess_vs_2019_schedule"]["median"],
          "kind": "thousands_sep"},
         {"name": "ageing 2025", "v": by[2025]["ageing_effect_vs_2019"]["median"],
          "kind": "thousands_sep"},
-        {"name": "excess 2022-25", "v": am["cumulative_attributable"]["2022_2025_post_covid"]["median"],
+        {"name": "excess 2022-25", "v": am["cumulative_excess"]["2022_2025_post_covid"]["median"],
          "kind": "thousands_sep"},
     ]
     return reg
@@ -128,13 +128,28 @@ def main() -> int:
     en, es = _tex(EN), _tex(ES)
     errors: list[str] = []
 
-    # 1. HEADLINE
+    # 1. HEADLINE -- existence AND placement.
+    # An existence-only test let a wrong abstract value pass so long as the right
+    # value survived anywhere else and both languages drifted together, which is
+    # exactly what a careless global sync produces.
+    abstracts = {}
+    for lang, txt in (("EN", en), ("ES", es)):
+        m = re.search(r"\\begin\{abstract\}(.*?)\\end\{abstract\}", txt, re.S)
+        abstracts[lang] = m.group(1) if m else ""
+    ABSTRACT_CRITICAL = {"central pop end-2025", "central gap", "central gap pct",
+                         "excess 2025", "excess 2022-25"}
     for item in build_registry():
+        forms = _fmt(item["v"], item["kind"])
         for lang, txt in (("EN", en), ("ES", es)):
-            if not any(f in txt for f in _fmt(item["v"], item["kind"])):
+            if not any(f in txt for f in forms):
                 errors.append(
-                    f"{lang}: '{item['name']}' = {_fmt(item['v'], item['kind'])[0]} "
+                    f"{lang}: '{item['name']}' = {forms[0]} "
                     f"not found in the manuscript (artifact value)")
+            elif item["name"] in ABSTRACT_CRITICAL and abstracts[lang] and \
+                    not any(f in abstracts[lang] for f in forms):
+                errors.append(
+                    f"{lang}: '{item['name']}' = {forms[0]} is in the body but "
+                    f"NOT in the abstract (placement check)")
 
     # 2. PARITY -- year tokens excepted (Spanish punctuation absorbs them)
     ne, ns = _numerals(en), _numerals(es)
