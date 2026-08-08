@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiencia familiar · Cuba 2019–2026</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --ink:#111; --muted:#555; --line:#d8d8d8; --bg:#fff;
+    --accent:#b3261e; --ok:#0b6b3a; --focus:#1a56db;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --ink:#eee; --muted:#aaa; --line:#3a3a3a; --bg:#141414; --accent:#ff6b5e;
+           --ok:#4ade80; --focus:#7aa2f7; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  main{max-width:44rem;margin:0 auto;padding:1.5rem 1.1rem 4rem}
+  h1{font-size:1.5rem;line-height:1.25;margin:.2rem 0 .6rem}
+  h2{font-size:1.05rem;margin:2rem 0 .3rem;padding-top:1rem;border-top:1px solid var(--line)}
+  p{margin:.5rem 0}
+  .lede{color:var(--muted)}
+  .note{font-size:.9rem;color:var(--muted)}
+  fieldset{border:0;padding:0;margin:0}
+  label{display:block;margin:.9rem 0 .25rem;font-weight:600}
+  .hint{font-weight:400;color:var(--muted);font-size:.9rem;display:block;margin-top:.1rem}
+  select,input[type=number]{width:100%;padding:.6rem;font-size:1rem;
+    border:1px solid var(--line);border-radius:.4rem;background:var(--bg);color:var(--ink)}
+  select:focus,input:focus,button:focus{outline:3px solid var(--focus);outline-offset:1px}
+  .consent{border:1px solid var(--line);border-radius:.5rem;padding:.9rem;margin:1.4rem 0}
+  .consent label{display:flex;gap:.6rem;align-items:flex-start;font-weight:600}
+  .consent input{margin-top:.3rem;width:1.1rem;height:1.1rem;flex:0 0 auto}
+  button{margin-top:1.6rem;width:100%;padding:.85rem;font-size:1rem;font-weight:700;
+    border:0;border-radius:.4rem;background:var(--accent);color:#fff;cursor:pointer}
+  button[disabled]{opacity:.5;cursor:not-allowed}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  #done{display:none;border:1px solid var(--ok);border-radius:.5rem;padding:1rem;margin-top:1.5rem}
+  #done.show{display:block}
+  #err{display:none;color:var(--accent);font-weight:600;margin-top:1rem}
+  #err.show{display:block}
+  footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);
+    font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Experiencia familiar · Cuba 2019–2026</h1>
+  <p class="lede">
+    Unas <strong>10 preguntas</strong>, sin texto libre. Cuéntanos cuántos parientes
+    tienes y cuántos emigraron o fallecieron en estos años — para contrastar con
+    las cifras oficiales del estudio demográfico.
+  </p>
+
+  <h2>Privacidad</h2>
+  <ul class="note">
+    <li>No se pide nombre, contacto, dirección ni municipio.</li>
+    <li>No hay campos de texto libre.</li>
+    <li>Las respuestas en bruto <strong>no se publican</strong>; solo agregados.</li>
+    <li>No se te pide identificar a ninguna persona fallecida.</li>
+  </ul>
+
+  <form id="f" novalidate>
+    <div class="hp" aria-hidden="true">
+      <label for="website">Website</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <h2>Sobre ti</h2>
+    <fieldset>
+      <label for="resides">¿Dónde vives hoy?</label>
+      <select id="resides" name="resides" required>
+        <option value="">Selecciona…</option>
+        <option value="cuba">En Cuba</option>
+        <option value="abroad">Fuera de Cuba</option>
+      </select>
+
+      <label for="province_group">Grupo de provincias donde vivías en diciembre de 2019</label>
+      <select id="province_group" name="province_group" required>
+        <option value="">Selecciona…</option>
+        <option value="occidente">Occidente (Pinar del Río, Artemisa, Mayabeque, Matanzas)</option>
+        <option value="habana">La Habana</option>
+        <option value="centro">Centro (Villa Clara, Cienfuegos, Sancti Spíritus, Ciego de Ávila, Camagüey)</option>
+        <option value="oriente">Oriente (Las Tunas, Holguín, Granma, Santiago, Guantánamo)</option>
+        <option value="isla">Isla de la Juventud</option>
+        <option value="na">No vivía en Cuba en 2019</option>
+      </select>
+
+      <label for="left_year">Si vives fuera, ¿en qué año saliste de Cuba?</label>
+      <select id="left_year" name="left_year">
+        <option value="">No aplica / no he emigrado</option>
+        <option value="pre2019">Antes de 2019</option>
+        <option value="2019">2019</option><option value="2020">2020</option>
+        <option value="2021">2021</option><option value="2022">2022</option>
+        <option value="2023">2023</option><option value="2024">2024</option>
+        <option value="2025">2025</option><option value="2026">2026</option>
+      </select>
+
+      <label for="age_band">Tu edad</label>
+      <select id="age_band" name="age_band" required>
+        <option value="">Selecciona…</option>
+        <option value="15_29">15–29</option><option value="30_44">30–44</option>
+        <option value="45_59">45–59</option><option value="60_74">60–74</option>
+        <option value="75plus">75 o más</option>
+      </select>
+    </fieldset>
+
+    <h2>Tu familia (vivos hoy)</h2>
+    <p class="note">Cuenta solo parientes con los que tienes o has tenido relación. Incluye
+      a quienes viven en Cuba y fuera.</p>
+    <fieldset>
+      <label for="uncles_aunts">¿Cuántos tíos y tías tienes?</label>
+      <input type="number" id="uncles_aunts" name="uncles_aunts" min="0" max="80" inputmode="numeric" required>
+
+      <label for="cousins">¿Cuántos primos tienes?</label>
+      <input type="number" id="cousins" name="cousins" min="0" max="200" inputmode="numeric" required>
+
+      <label for="children">¿Cuántos hijos tienes?</label>
+      <span class="hint">Si no tienes hijos, escribe 0.</span>
+      <input type="number" id="children" name="children" min="0" max="25" inputmode="numeric" required>
+    </fieldset>
+
+    <h2>Entre 2019 y 2026</h2>
+    <p class="note">Piensa en tu familia extendida: padres, hermanos, tíos, primos, hijos,
+      abuelos y otros parientes cercanos. No hace falta que coincidan exactamente con
+      los números de arriba.</p>
+    <fieldset>
+      <label for="fam_left_2019_2026">¿Cuántos miembros de tu familia salieron de Cuba entre 2019 y 2026?</label>
+      <input type="number" id="fam_left_2019_2026" name="fam_left_2019_2026" min="0" max="200" inputmode="numeric" required>
+
+      <label for="fam_died_2019_2026">¿Cuántos fallecieron entre 2019 y 2026?</label>
+      <input type="number" id="fam_died_2019_2026" name="fam_died_2019_2026" min="0" max="200" inputmode="numeric" required>
+
+      <label for="fam_died_60plus">De los fallecidos, ¿cuántos tenían 60 años o más?</label>
+      <input type="number" id="fam_died_60plus" name="fam_died_60plus" min="0" max="200" inputmode="numeric" required>
+    </fieldset>
+
+    <div class="consent">
+      <label for="consent">
+        <input type="checkbox" id="consent" name="consent" value="yes">
+        <span>Respondo voluntariamente y acepto que estas respuestas se usen de forma
+        agregada en un estudio demográfico público.</span>
+      </label>
+    </div>
+
+    <button type="submit" id="send">Enviar</button>
+    <p id="err"></p>
+  </form>
+
+  <div id="done">
+    <strong>Gracias.</strong>
+    <p class="note">Tu respuesta se ha enviado. Puedes cerrar esta página.</p>
+  </div>
+
+  <footer>
+    Estudio demográfico independiente · muestra de conveniencia ·
+    no es un censo nacional.
+  </footer>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw5gPYadK_bgiK_LoC3IoeMkOF50hbXnsuwmILtVUMU0Lu4Eenf4dwa5fUOJAeyzOMOTw/exec';
+
+  var form = document.getElementById('f');
+  var btn  = document.getElementById('send');
+  var err  = document.getElementById('err');
+  var done = document.getElementById('done');
+  var started = Date.now();
+
+  var token;
+  try {
+    token = localStorage.getItem('cuba_survey_token');
+    if (!token) {
+      token = (crypto && crypto.randomUUID) ? crypto.randomUUID()
+            : String(Math.random()).slice(2) + String(Date.now());
+      localStorage.setItem('cuba_survey_token', token);
+    }
+  } catch (e) {
+    token = String(Math.random()).slice(2) + String(Date.now());
+  }
+
+  function n(id) {
+    var v = document.getElementById(id).value;
+    return v === '' ? 0 : Number(v);
+  }
+
+  function inconsistent() {
+    if (n('fam_died_60plus') > n('fam_died_2019_2026')) {
+      return 'Los fallecidos de 60 años o más no pueden superar el total de fallecidos.';
+    }
+    if (document.getElementById('resides').value === 'cuba') {
+      var ly = document.getElementById('left_year').value;
+      if (ly && ly !== 'pre2019' && ly !== '') {
+        return 'Si vives en Cuba, el año de salida debe ser «No aplica» o «Antes de 2019».';
+      }
+    }
+    return null;
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    err.classList.remove('show');
+    err.textContent = '';
+
+    if (!document.getElementById('consent').checked) {
+      err.textContent = 'Hace falta marcar la casilla de consentimiento.';
+      err.classList.add('show');
+      return;
+    }
+    var required = form.querySelectorAll('[required]');
+    for (var i = 0; i < required.length; i++) {
+      if (required[i].value === '') {
+        err.textContent = 'Falta responder alguna pregunta obligatoria.';
+        err.classList.add('show');
+        required[i].focus();
+        return;
+      }
+    }
+    var bad = inconsistent();
+    if (bad) { err.textContent = bad; err.classList.add('show'); return; }
+
+    var payload = new URLSearchParams();
+    var fd = new FormData(form);
+    fd.forEach(function (v, k) { payload.append(k, v); });
+    payload.append('token', token);
+    payload.append('elapsed_s', String(Math.round((Date.now() - started) / 1000)));
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+
+    fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: payload })
+      .then(function () {
+        form.style.display = 'none';
+        done.classList.add('show');
+        done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Enviar';
+        err.textContent = 'No se pudo enviar. Revisa la conexión e inténtalo de nuevo.';
+        err.classList.add('show');
+      });
+  });
+})();
+</script>
+</body>
+</html>

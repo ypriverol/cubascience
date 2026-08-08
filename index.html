@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CubaScience</title>
+  <style>
+    :root {
+      --ink: #1a1f2e;
+      --muted: #5a6478;
+      --line: #d8deea;
+      --accent: #0b6e4f;
+      --accent-2: #1d4e89;
+      --bg: #f7f5f1;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 500px at 10% -10%, #e7eef8 0%, transparent 55%),
+        radial-gradient(900px 400px at 100% 0%, #e4f0ea 0%, transparent 50%),
+        var(--bg);
+      line-height: 1.5;
+    }
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem 5rem;
+    }
+    .brand {
+      font-size: clamp(2.4rem, 6vw, 3.4rem);
+      letter-spacing: -0.03em;
+      margin: 0 0 0.35rem;
+      font-weight: 700;
+    }
+    .lede {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 36rem;
+      margin: 0 0 2.75rem;
+    }
+    .projects {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 720px) {
+      .projects { grid-template-columns: 1fr 1fr; }
+    }
+    a.project {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 1.4rem 1.35rem 1.5rem;
+      transition: border-color 160ms ease, transform 160ms ease;
+    }
+    a.project:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    a.project h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1.35rem;
+      color: var(--accent-2);
+    }
+    a.project.demo h2 { color: var(--accent); }
+    a.project p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+    .meta {
+      margin-top: 2.75rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    .meta a { color: var(--accent-2); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 class="brand">CubaScience</h1>
+    <p class="lede">
+      Open analyses of Cuban research output and the 2021–2026 demographic crisis —
+      notebooks, data, and manuscripts.
+    </p>
+    <div class="projects">
+      <a class="project" href="science/">
+        <h2>Cuban scientific output</h2>
+        <p>
+          Publications, citations, and patents since 1970 — companion to
+          arXiv:2007.09638.
+        </p>
+      </a>
+      <a class="project demo" href="demographics/">
+        <h2>Cuban demographics 2021–2026</h2>
+        <p>
+          Monte Carlo depopulation estimates from end-2021, triangulation, and
+          projections through end-2026.
+        </p>
+      </a>
+    </div>
+    <p class="meta">
+      Repository:
+      <a href="https://github.com/ypriverol/cubascience">github.com/ypriverol/cubascience</a>
+      · Science paper:
+      <a href="https://arxiv.org/abs/2007.09638">arXiv:2007.09638</a>
+    </p>
+  </main>
+</body>
+</html>
