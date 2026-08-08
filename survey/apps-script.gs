@@ -1,45 +1,22 @@
 /**
- * Backend for the Cuba demography survey: appends one row per response to a
- * Google Sheet.
+ * Backend for the Cuba family experience survey (2019–2026).
  *
  * Deploy: Extensions > Apps Script from the target Sheet, paste this, then
  * Deploy > New deployment > Web app, "Execute as: Me",
  * "Who has access: Anyone". Copy the /exec URL into index.html (ENDPOINT).
  *
- * PRIVACY — the design constraints, not decoration:
- *  - Apps Script cannot read the client IP, so no IP can reach the Sheet even
- *    by accident. (Google's own infrastructure logs still exist and are subject
- *    to legal process; that is unavoidable with any hosted backend and must be
- *    stated on the landing page.)
- *  - No field collects a name, address, municipality, or contact detail.
- *  - The Sheet must stay private. The deployment URL is a public WRITE endpoint;
- *    it is not a read endpoint, and doGet returns nothing useful.
- *
- * ABUSE — the endpoint is public, so:
- *  - a honeypot field ("website") must be empty;
- *  - responses completed in under MIN_SECONDS are dropped as bots;
- *  - a client-generated token allows duplicate detection without identifying
- *    anyone (it is random per browser, not per person).
+ * Field names in index.html MUST match FIELDS below exactly and in this order.
  */
 
 var SHEET_NAME = 'responses';
-var MIN_SECONDS = 20;          // nobody answers this instrument honestly faster
-var MAX_PER_TOKEN = 3;         // same browser resubmitting
+var MIN_SECONDS = 15;
+var MAX_PER_TOKEN = 3;
 
 var FIELDS = [
   'received_utc', 'token', 'elapsed_s',
-  // respondent context (coarse by design — no municipality)
   'resides', 'province_group', 'left_year', 'age_band',
-  // household roster anchored at Dec 2021
-  'hh_2021', 'hh_now_abroad', 'hh_now_dead', 'hh_dead_60plus',
-  // network scale-up: "how many people do you know who..."
-  'net_size_known', 'net_left_since2021', 'net_died_2024_2025',
-  'net_died_60plus_2024_2025',
-  // NSUM calibration groups (known population sizes, used to estimate degree)
-  'cal_teachers', 'cal_twins', 'cal_dialysis',
-  // sibling survival (robust to the respondent's own migration)
-  'sibs_born', 'sibs_alive', 'sibs_abroad',
-  // free-form kept deliberately absent; only a coarse comment flag
+  'uncles_aunts', 'cousins', 'children',
+  'fam_left_2019_2026', 'fam_died_2019_2026', 'fam_died_60plus',
   'consent'
 ];
 
@@ -47,7 +24,7 @@ function doPost(e) {
   try {
     var p = (e && e.parameter) ? e.parameter : {};
 
-    if (p.website) return _ok('dropped');                       // honeypot
+    if (p.website) return _ok('dropped');
     if (Number(p.elapsed_s || 0) < MIN_SECONDS) return _ok('dropped');
     if (p.consent !== 'yes') return _ok('dropped');
 
@@ -66,7 +43,7 @@ function doPost(e) {
     }
     return _ok('stored');
   } catch (err) {
-    return _ok('error');   // never leak a stack trace to a public endpoint
+    return _ok('error');
   }
 }
 

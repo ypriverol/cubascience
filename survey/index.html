@@ -3,24 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Encuesta demográfica sobre Cuba</title>
+<title>Experiencia familiar · Cuba 2019–2026</title>
 <meta name="robots" content="noindex">
-<!--
-  Frontend for the Cuba demography survey.
-
-  Field names MUST match FIELDS in apps-script.gs exactly; the backend writes one
-  column per name in that order and silently stores '' for anything it does not
-  recognise. If you add a question here, add it there first.
-
-  Deliberate constraints, per survey/README.md:
-   - no analytics, no fonts, no third-party assets, no cookies (a token lives in
-     localStorage, is random per browser, and identifies nobody);
-   - no free-text input anywhere -- free text de-anonymises;
-   - no name, contact, address, or municipality; province GROUP only;
-   - explicit consent required, and the backend drops anything without it.
-
-  Set ENDPOINT to the Apps Script /exec URL before publishing.
--->
 <style>
   :root{
     --ink:#111; --muted:#555; --line:#d8d8d8; --bg:#fff;
@@ -62,34 +46,22 @@
 </head>
 <body>
 <main>
-  <h1>Encuesta demográfica sobre Cuba</h1>
+  <h1>Experiencia familiar · Cuba 2019–2026</h1>
   <p class="lede">
-    Unas 20 preguntas, sin texto libre. Ayuda a estimar cuántas personas han
-    emigrado y cuántas han fallecido, de forma independiente de las cifras
-    oficiales.
+    Unas <strong>10 preguntas</strong>, sin texto libre. Cuéntanos cuántos parientes
+    tienes y cuántos emigraron o fallecieron en estos años — para contrastar con
+    las cifras oficiales del estudio demográfico.
   </p>
 
-  <h2>Qué se recoge y qué no</h2>
+  <h2>Privacidad</h2>
   <ul class="note">
-    <li>No se pide nombre, contacto, dirección ni municipio: solo un
-      <strong>grupo de provincias</strong>.</li>
-    <li>No hay ningún campo de texto libre.</li>
-    <li>No se registra tu dirección IP: la plataforma usada no puede leerla.
-      No se usan cookies, ni analítica, ni recursos de terceros.</li>
-    <li>Las respuestas en bruto <strong>no se publican nunca</strong>. Solo se
-      publican agregados.</li>
-    <li>No se te pide identificar a ninguna persona fallecida. Las edades van
-      por rangos.</li>
+    <li>No se pide nombre, contacto, dirección ni municipio.</li>
+    <li>No hay campos de texto libre.</li>
+    <li>Las respuestas en bruto <strong>no se publican</strong>; solo agregados.</li>
+    <li>No se te pide identificar a ninguna persona fallecida.</li>
   </ul>
-  <p class="note">
-    Advertencia honesta: el servidor pertenece a un proveedor externo, cuyos
-    registros de infraestructura existen y están sujetos a requerimientos
-    legales. Eso es inevitable en cualquier servicio alojado y no depende de
-    esta encuesta. Si eso te preocupa, no la respondas.
-  </p>
 
   <form id="f" novalidate>
-    <!-- honeypot: real people never see this; bots fill it -->
     <div class="hp" aria-hidden="true">
       <label for="website">Website</label>
       <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
@@ -97,15 +69,14 @@
 
     <h2>Sobre ti</h2>
     <fieldset>
-      <label for="resides">¿Dónde vives actualmente?
-        <span class="hint">Necesario para separar la muestra de la isla, que es la más valiosa.</span></label>
+      <label for="resides">¿Dónde vives hoy?</label>
       <select id="resides" name="resides" required>
         <option value="">Selecciona…</option>
         <option value="cuba">En Cuba</option>
         <option value="abroad">Fuera de Cuba</option>
       </select>
 
-      <label for="province_group">Grupo de provincias donde vivías en diciembre de 2021</label>
+      <label for="province_group">Grupo de provincias donde vivías en diciembre de 2019</label>
       <select id="province_group" name="province_group" required>
         <option value="">Selecciona…</option>
         <option value="occidente">Occidente (Pinar del Río, Artemisa, Mayabeque, Matanzas)</option>
@@ -113,13 +84,14 @@
         <option value="centro">Centro (Villa Clara, Cienfuegos, Sancti Spíritus, Ciego de Ávila, Camagüey)</option>
         <option value="oriente">Oriente (Las Tunas, Holguín, Granma, Santiago, Guantánamo)</option>
         <option value="isla">Isla de la Juventud</option>
-        <option value="na">No vivía en Cuba en 2021</option>
+        <option value="na">No vivía en Cuba en 2019</option>
       </select>
 
-      <label for="left_year">Si emigraste, ¿en qué año saliste?</label>
+      <label for="left_year">Si vives fuera, ¿en qué año saliste de Cuba?</label>
       <select id="left_year" name="left_year">
-        <option value="">No he emigrado / no aplica</option>
-        <option value="pre2021">Antes de 2021</option>
+        <option value="">No aplica / no he emigrado</option>
+        <option value="pre2019">Antes de 2019</option>
+        <option value="2019">2019</option><option value="2020">2020</option>
         <option value="2021">2021</option><option value="2022">2022</option>
         <option value="2023">2023</option><option value="2024">2024</option>
         <option value="2025">2025</option><option value="2026">2026</option>
@@ -134,85 +106,46 @@
       </select>
     </fieldset>
 
-    <h2>Tu hogar en diciembre de 2021</h2>
-    <p class="note">Piensa en el hogar al que pertenecías en diciembre de 2021,
-      incluyéndote a ti.</p>
+    <h2>Tu familia (vivos hoy)</h2>
+    <p class="note">Cuenta solo parientes con los que tienes o has tenido relación. Incluye
+      a quienes viven en Cuba y fuera.</p>
     <fieldset>
-      <label for="hh_2021">¿Cuántas personas vivían en ese hogar?</label>
-      <input type="number" id="hh_2021" name="hh_2021" min="1" max="30" inputmode="numeric" required>
+      <label for="uncles_aunts">¿Cuántos tíos y tías tienes?</label>
+      <input type="number" id="uncles_aunts" name="uncles_aunts" min="0" max="80" inputmode="numeric" required>
 
-      <label for="hh_now_abroad">De esas, ¿cuántas viven hoy fuera de Cuba?</label>
-      <input type="number" id="hh_now_abroad" name="hh_now_abroad" min="0" max="30" inputmode="numeric" required>
+      <label for="cousins">¿Cuántos primos tienes?</label>
+      <input type="number" id="cousins" name="cousins" min="0" max="200" inputmode="numeric" required>
 
-      <label for="hh_now_dead">De esas, ¿cuántas han fallecido desde diciembre de 2021?</label>
-      <input type="number" id="hh_now_dead" name="hh_now_dead" min="0" max="30" inputmode="numeric" required>
-
-      <label for="hh_dead_60plus">De las fallecidas, ¿cuántas tenían 60 años o más?</label>
-      <input type="number" id="hh_dead_60plus" name="hh_dead_60plus" min="0" max="30" inputmode="numeric" required>
+      <label for="children">¿Cuántos hijos tienes?</label>
+      <span class="hint">Si no tienes hijos, escribe 0.</span>
+      <input type="number" id="children" name="children" min="0" max="25" inputmode="numeric" required>
     </fieldset>
 
-    <h2>Personas que conoces</h2>
-    <p class="note">
-      «Conocer» significa: sabes su nombre, esa persona sabe el tuyo, y has
-      tenido contacto en los últimos dos años. Si no estás seguro, da tu mejor
-      estimación; no busques la cifra exacta.
-    </p>
+    <h2>Entre 2019 y 2026</h2>
+    <p class="note">Piensa en tu familia extendida: padres, hermanos, tíos, primos, hijos,
+      abuelos y otros parientes cercanos. No hace falta que coincidan exactamente con
+      los números de arriba.</p>
     <fieldset>
-      <label for="net_size_known">¿A cuántas personas dirías que conoces así, aproximadamente?</label>
-      <input type="number" id="net_size_known" name="net_size_known" min="0" max="2000" inputmode="numeric" required>
+      <label for="fam_left_2019_2026">¿Cuántos miembros de tu familia salieron de Cuba entre 2019 y 2026?</label>
+      <input type="number" id="fam_left_2019_2026" name="fam_left_2019_2026" min="0" max="200" inputmode="numeric" required>
 
-      <label for="net_left_since2021">De ellas, ¿cuántas han salido de Cuba desde 2021?</label>
-      <input type="number" id="net_left_since2021" name="net_left_since2021" min="0" max="2000" inputmode="numeric" required>
+      <label for="fam_died_2019_2026">¿Cuántos fallecieron entre 2019 y 2026?</label>
+      <input type="number" id="fam_died_2019_2026" name="fam_died_2019_2026" min="0" max="200" inputmode="numeric" required>
 
-      <label for="net_died_2024_2025">De ellas, ¿cuántas fallecieron en 2024 o 2025?</label>
-      <input type="number" id="net_died_2024_2025" name="net_died_2024_2025" min="0" max="2000" inputmode="numeric" required>
-
-      <label for="net_died_60plus_2024_2025">De esas fallecidas, ¿cuántas tenían 60 años o más?</label>
-      <input type="number" id="net_died_60plus_2024_2025" name="net_died_60plus_2024_2025" min="0" max="2000" inputmode="numeric" required>
-    </fieldset>
-
-    <h2>Grupos de referencia</h2>
-    <p class="note">
-      Estas preguntas sirven para estimar el tamaño de tu red de contactos. No
-      tienen ningún otro uso.
-    </p>
-    <fieldset>
-      <label for="cal_teachers">¿A cuántos maestros de primaria conoces?</label>
-      <input type="number" id="cal_teachers" name="cal_teachers" min="0" max="500" inputmode="numeric" required>
-
-      <label for="cal_twins">¿A cuántas personas que son gemelas o mellizas conoces?</label>
-      <input type="number" id="cal_twins" name="cal_twins" min="0" max="500" inputmode="numeric" required>
-
-      <label for="cal_dialysis">¿A cuántas personas en diálisis conoces?</label>
-      <input type="number" id="cal_dialysis" name="cal_dialysis" min="0" max="500" inputmode="numeric" required>
-    </fieldset>
-
-    <h2>Hermanos y hermanas</h2>
-    <p class="note">
-      Esta sección da una señal de mortalidad que no depende de si tú emigraste
-      o no. Si prefieres no responderla, deja los campos vacíos.
-    </p>
-    <fieldset>
-      <label for="sibs_born">¿Cuántos hijos tuvo tu madre en total, contándote a ti?</label>
-      <input type="number" id="sibs_born" name="sibs_born" min="1" max="25" inputmode="numeric">
-
-      <label for="sibs_alive">De ellos, ¿cuántos viven hoy?</label>
-      <input type="number" id="sibs_alive" name="sibs_alive" min="0" max="25" inputmode="numeric">
-
-      <label for="sibs_abroad">De los que viven, ¿cuántos están fuera de Cuba?</label>
-      <input type="number" id="sibs_abroad" name="sibs_abroad" min="0" max="25" inputmode="numeric">
+      <label for="fam_died_60plus">De los fallecidos, ¿cuántos tenían 60 años o más?</label>
+      <input type="number" id="fam_died_60plus" name="fam_died_60plus" min="0" max="200" inputmode="numeric" required>
     </fieldset>
 
     <div class="consent">
       <label for="consent">
         <input type="checkbox" id="consent" name="consent" value="yes">
-        <span>He leído lo anterior. Respondo voluntariamente y acepto que estas
-        respuestas se usen de forma agregada en un estudio demográfico público.</span>
+        <span>Respondo voluntariamente y acepto que estas respuestas se usen de forma
+        agregada en un estudio demográfico público.</span>
       </label>
     </div>
 
     <button type="submit" id="send">Enviar</button>
-    <p id="err">No se pudo enviar. Revisa la conexión e inténtalo de nuevo.</p>
+    <p id="err"></p>
   </form>
 
   <div id="done">
@@ -221,8 +154,8 @@
   </div>
 
   <footer>
-    Estudio demográfico independiente · sin fines comerciales ·
-    los datos en bruto no se publican.
+    Estudio demográfico independiente · muestra de conveniencia ·
+    no es un censo nacional.
   </footer>
 </main>
 
@@ -230,7 +163,6 @@
 (function () {
   'use strict';
 
-  // Apps Script /exec URL. Deployment: see survey/README.md.
   var ENDPOINT = 'REPLACE_WITH_APPS_SCRIPT_EXEC_URL';
 
   var form = document.getElementById('f');
@@ -239,8 +171,6 @@
   var done = document.getElementById('done');
   var started = Date.now();
 
-  // Random per BROWSER, not per person. Lets the backend cap resubmissions
-  // without anything that identifies a respondent.
   var token;
   try {
     token = localStorage.getItem('cuba_survey_token');
@@ -253,29 +183,14 @@
     token = String(Math.random()).slice(2) + String(Date.now());
   }
 
-  // Internal consistency, checked here so the respondent can fix it rather than
-  // having the row silently discarded later.
+  function n(id) {
+    var v = document.getElementById(id).value;
+    return v === '' ? 0 : Number(v);
+  }
+
   function inconsistent() {
-    function n(id) { var v = document.getElementById(id).value; return v === '' ? 0 : Number(v); }
-    if (n('hh_now_abroad') + n('hh_now_dead') > n('hh_2021')) {
-      return 'Las personas del hogar que están fuera o han fallecido no pueden superar el total de 2021.';
-    }
-    if (n('hh_dead_60plus') > n('hh_now_dead')) {
-      return 'Las fallecidas de 60 años o más no pueden superar el total de fallecidas.';
-    }
-    if (n('net_died_60plus_2024_2025') > n('net_died_2024_2025')) {
-      return 'Las personas fallecidas de 60 años o más no pueden superar el total que indicaste.';
-    }
-    var netSum = n('net_left_since2021') + n('net_died_2024_2025');
-    if (netSum > n('net_size_known')) {
-      return 'Las personas que emigraron o fallecieron no pueden superar el total de personas que conoces.';
-    }
-    if (document.getElementById('sibs_born').value !== '' &&
-        n('sibs_alive') > n('sibs_born')) {
-      return 'Los hermanos vivos no pueden superar el total.';
-    }
-    if (n('sibs_abroad') > n('sibs_alive')) {
-      return 'Los hermanos en el exterior no pueden superar los que viven.';
+    if (n('fam_died_60plus') > n('fam_died_2019_2026')) {
+      return 'Los fallecidos de 60 años o más no pueden superar el total de fallecidos.';
     }
     return null;
   }
@@ -283,6 +198,7 @@
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     err.classList.remove('show');
+    err.textContent = '';
 
     if (!document.getElementById('consent').checked) {
       err.textContent = 'Hace falta marcar la casilla de consentimiento.';
@@ -310,10 +226,6 @@
     btn.disabled = true;
     btn.textContent = 'Enviando…';
 
-    // no-cors: Apps Script web apps do not return CORS headers, so the response
-    // is opaque and cannot be read. The backend drops honeypot/too-fast/no-consent
-    // submissions silently by design, so there is no per-response status to show
-    // a respondent in any case.
     fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: payload })
       .then(function () {
         form.style.display = 'none';
