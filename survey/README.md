@@ -1,143 +1,56 @@
-# Cuba demography survey — instrument and rationale
+# Cuba family experience survey (2019–2026)
 
-A convenience sample recruited from Twitter **cannot estimate national levels**.
-The audience is a Cuban-science-diaspora following; it over-represents emigration
-by an unknown and probably large factor. Any "% who left" computed from it is
-uninterpretable as a national rate, and the first reviewer to see it will say so.
+Short convenience-sample instrument: **~10 questions**, Spanish, no free text.
+Collects extended-family structure (uncles/aunts, cousins, children) and counts
+of relatives who **left Cuba** or **died** between 2019 and 2026.
 
-So the instrument is built around three designs that are *made* for biased
-samples, and it is scoped to inform exactly one parameter the manuscript cannot
-currently identify.
+## What it can inform
 
-## What it can actually inform
+This is **not** a national census. A Twitter/diaspora sample over-represents
+emigration. Aggregates still help:
 
-The weakest quantity in the paper is the gap between the **1.05 M documented
-settled floor** and the **~2.0 M migration engine** the central scenario runs.
-Nothing in the repository identifies it: destination registers bound it from
-below and stop. That gap is what this survey targets.
+| Field | Study use |
+|-------|-----------|
+| `uncles_aunts`, `cousins`, `children` | Family-network scale (denominator context) |
+| `fam_left_2019_2026` | Migration intensity vs ONEI net migration (2022–2025 window) |
+| `fam_died_2019_2026`, `fam_died_60plus` | Mortality experience vs registered deaths / excess-mortality band |
+| `resides` | Stratify on-island vs abroad subsamples |
+| `province_group`, `age_band` | Coarse geography and selectivity |
 
-Everything else it produces is secondary and should be reported as such.
+Report only **aggregates**; never raw rows.
 
-## The three designs
+## Fields (must match `apps-script.gs`)
 
-### 1. Network Scale-Up Method (NSUM) — the primary estimator
+**Context:** `resides`, `province_group`, `left_year`, `age_band`
 
-Ask how many people the respondent knows in groups of *known* size, to estimate
-their personal network size `d`, then ask how many they know in the *unknown*
-group. For respondent *i*:
+**Family structure (alive today):** `uncles_aunts`, `cousins`, `children`
 
-```
-d_i  =  N * SUM_k( c_ik )  /  SUM_k( N_k )
-```
+**Events 2019–2026 (extended family):** `fam_left_2019_2026`, `fam_died_2019_2026`, `fam_died_60plus`
 
-where `c_ik` is how many people respondent *i* knows in calibration group *k*,
-`N_k` is that group's true size, and `N` is the total population. Then
+**Meta:** `consent`, `token`, `elapsed_s`, `received_utc`
 
-```
-N_unknown  =  N * SUM_i( y_i ) / SUM_i( d_i )
-```
+## Ethics
 
-with `y_i` the number known in the target group (emigrated since 2021; died in
-2024–2025).
-
-Calibration groups must have a genuinely known `N` from ONEI or MINSAP. The
-three in the form are placeholders — **replace them with groups whose size you
-can cite**, and prefer groups with low visibility bias:
-
-- primary-school teachers (ONEI education tables)
-- people on dialysis (MINSAP; also directly relevant to the crisis)
-- twins (demographic constant, ~1.2% of births, low social bias)
-
-NSUM's known weaknesses, all of which must be reported: **transmission bias**
-(respondents do not know that a contact has died or emigrated), **barrier
-effects** (networks are not random across the population), and **recall decay**
-over a multi-year window. These bias the estimate downward, so an NSUM emigration
-figure is best read as another *floor* — but a floor constructed independently of
-destination registers, which is exactly what the 1.05→2.0 M gap lacks.
-
-### 2. Household roster anchored at December 2021
-
-"In the household you belonged to in December 2021, how many people were there?
-Of those, how many now live abroad? How many have died?"
-
-Anchoring at Dec 2021 matches the manuscript's window exactly. Selection bias
-still bites, so **stratify by respondent residence and report the on-island
-subsample separately** — that stratum is the scientifically valuable one and the
-hardest to recruit.
-
-### 3. Sibling survival
-
-"How many children did your mother give birth to in total? How many are alive
-today? How many live abroad?"
-
-This is the DHS maternal-mortality instrument adapted. Its virtue here is that
-sibship composition does not depend on the respondent's own migration decision,
-so it is far more robust to the sample's diaspora skew than any household
-question. It gives a mortality signal without a census.
-
-## Ethics — not boilerplate for this subject
-
-Respondents may be on the island, reporting deaths and emigration under a state
-that treats demographic statistics as contested. The instrument therefore:
-
-- collects **no** name, contact, address, or municipality (province *group* only);
-- has **no** free-text field, because free text de-anonymises;
-- records **no** IP (Apps Script cannot read one) and sets no cookies;
-- carries no analytics, no fonts, no third-party assets of any kind;
-- states on the landing page what is collected, that raw responses are never
-  published, and that only aggregates are released;
-- requires explicit consent, and drops any submission without it.
-
-Nobody is asked to identify a deceased person. Ages are banded.
-
-**Before building anything, test that `script.google.com` is reachable from
-Cuba.** US sanctions have historically restricted Google services there. If the
-endpoint is blocked, the on-island stratum is lost and with it most of the
-scientific value; use a Cloudflare Worker instead.
+- No name, contact, address, or municipality (province **group** only).
+- No free-text fields.
+- No IP stored by the script; no analytics or third-party assets.
+- Explicit consent required.
+- Test `script.google.com` reachability from Cuba before launch.
 
 ## Architecture
 
 ```
-GitHub Pages (static index.html)  ──POST──▶  Apps Script web app  ──▶  Google Sheet
+GitHub Pages (survey/index.html)  ──POST──▶  Apps Script  ──▶  private Google Sheet
 ```
 
-Both halves are in this directory: `index.html` (the form respondents see, in
-Spanish) and `apps-script.gs` (the backend). **The `name` attributes in
-`index.html` must match `FIELDS` in `apps-script.gs` exactly and in the same
-order** — the backend writes one column per name and silently stores `''` for
-anything it does not recognise, so a typo loses a variable without any error.
-Add a question to `FIELDS` first, then to the form.
-
-The form validates internal consistency before sending (household members abroad
-plus deceased cannot exceed the 2021 total; deaths at 60+ cannot exceed all
-deaths; and so on) so the respondent can correct it, rather than having the row
-discarded later. It posts with `mode: 'no-cors'`, because Apps Script web apps
-return no CORS headers — the response is opaque and cannot be read, which is
-acceptable here since the backend drops honeypot, too-fast and non-consenting
-submissions silently by design.
-
-No server. Free. The Sheet stays private; the deployment URL is a public *write*
-endpoint only.
-
-Abuse controls: honeypot field, minimum completion time, per-browser token with a
-submission cap. None of these identify anyone.
-
-## Expected yield and what it will support
-
-At 1–3% of ~11,000 followers: **100–300 responses**. Enough for an NSUM estimate
-with wide intervals and a crude on-island/abroad split. Not enough to stratify by
-province and age simultaneously. Plan the analysis for that sample size before
-launching, and pre-register it — with a convenience sample, an unregistered
-analysis is indistinguishable from fishing.
-
-## Deployment
-
-1. Create a Google Sheet; Extensions → Apps Script; paste `apps-script.gs`.
-2. Deploy → New deployment → Web app; Execute as **Me**; Access **Anyone**.
+1. Create a Google Sheet → Extensions → Apps Script → paste `apps-script.gs`.
+2. Deploy → Web app → Execute as **Me**, Access **Anyone**.
 3. Copy the `/exec` URL into `index.html` as `ENDPOINT`.
-4. Publish via GitHub Pages: `.github/workflows/pages.yml` copies `survey/index.html`
-   to `site/survey/` on every push to `master`, so the form lands at
-   **https://ypriverol.github.io/cubascience/survey/**. The workflow does not run
-   on feature branches, so the URL is live only after the branch is merged.
-5. Replace the three calibration groups with ones whose population size you can
-   cite, and put those sizes in the analysis script.
+4. Merge to `master` → CI publishes to `https://ypriverol.github.io/cubascience/survey/`.
+
+Abuse controls: honeypot, minimum completion time (15 s), per-browser token cap (3).
+
+## Analysis (planned)
+
+Export Sheet → `demographics/artifacts/survey_responses/` (gitignored) →
+aggregate script in `demographics/scripts/` (not yet implemented).
