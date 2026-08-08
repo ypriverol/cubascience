@@ -192,6 +192,12 @@
     if (n('fam_died_60plus') > n('fam_died_2019_2026')) {
       return 'Los fallecidos de 60 años o más no pueden superar el total de fallecidos.';
     }
+    if (document.getElementById('resides').value === 'cuba') {
+      var ly = document.getElementById('left_year').value;
+      if (ly && ly !== 'pre2019' && ly !== '') {
+        return 'Si vives en Cuba, el año de salida debe ser «No aplica» o «Antes de 2019».';
+      }
+    }
     return null;
   }
 
